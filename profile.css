@@ -1,51 +1,57 @@
-*{
+
+/* Reset lại margin và padding mặc định của trình duyệt cho tất cả phần tử */
+* {
   margin: 0;
   padding: 0;
-
 }
 
+/* Thiết lập chung cho toàn bộ trang */
 body {
-  font-family: poppins, sans-serif;
-  background-color: #feead4;
+  font-family: poppins, sans-serif; /* Font chữ chính */
+  background-color: #feead4;        /* Màu nền tổng thể */
   margin: 0;
-  padding-top: 100px;
- 
+  padding-top: 100px;               /* Dành không gian phía trên (thường cho navbar) */
 }
 
+/* Phần bao quanh form để căn giữa nội dung */
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 70px;
-  
+  margin-bottom: 70px;              /* Khoảng cách dưới cùng */
 }
 
+/* Container chính của form nhập thông tin */
 .form-container {
-  background-color: rgba(253, 108, 77, 0.1);
+  background-color: rgba(253, 108, 77, 0.1); /* Màu nền nhẹ */
   border-color: rgba(253, 108, 77, 0.5);
-  box-shadow: 2px 2px 5px rgba(253, 108, 77, 0.7);
+  box-shadow: 2px 2px 5px rgba(253, 108, 77, 0.7); /* Đổ bóng */
   padding: 10px 20px 20px 20px;
   border-radius: 8px;
   border: 1px solid rgba(253, 108, 77, 0.5);
-  width: 600px;
+  width: 600px; /* Độ rộng cố định */
 }
 
+/* Một dòng chứa nhiều nhóm nhập liệu */
 .form-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
+/* Nhóm nhập liệu: ô input và nhãn */
 .form-group {
   position: relative;
   flex: 1;
   margin-right: 10px;
 }
 
+/* Nhóm cuối không cần margin bên phải */
 .form-group:last-child {
   margin-right: 0;
 }
 
+/* Định dạng nhãn (label) hiển thị bên trong ô input */
 .form-group label {
   position: absolute;
   top: 12px;
@@ -54,16 +60,15 @@ body {
   font-weight: bold;
   color: #333;
   transition: 0.2s;
-  pointer-events: none;
-  /* Allow clicking through the label */
+  pointer-events: none; /* Cho phép click xuyên qua label */
 }
 
+/* Định dạng các ô nhập liệu */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="file"] {
   width: 100%;
-  padding: 15px 15px 15px 15px;
-  /* Extra padding to accommodate label */
+  padding: 15px;
   margin-bottom: 10px;
   border: 1px solid rgba(253, 108, 77, 0.8);
   background-color: rgba(253, 108, 77, 0.2);
@@ -74,10 +79,12 @@ body {
   font-size: 15px;
 }
 
+/* Ô input file có padding riêng */
 .form-group input[type="file"] {
   padding: 13px 15px 13px 15px;
 }
 
+/* Nút bấm submit trong form */
 form button {
   width: 100%;
   padding: 10px;
@@ -90,32 +97,36 @@ form button {
   transition: all 0.3s ease;
 }
 
+/* Hiệu ứng hover cho nút */
 form button:hover {
   background-color: #fbdac7;
   color: #fb4a36;
   border: 2px solid #fb4a36;
 }
 
+/* Ảnh đại diện hồ sơ */
 .profile-image {
   display: block;
   margin: 15px auto 20px auto;
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
 }
 
-h2{
+/* Tiêu đề */
+h2 {
   text-align: center;
-  
 }
+
+/* Giao diện responsive cho thiết bị nhỏ */
 @media screen and (max-width: 700px) {
-  .form-row{
+  .form-row {
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column !important; /* Xếp dọc khi màn hình nhỏ */
   }
-  .form-container{
-    margin: 40px 30px 40px 30px !important;
-   
+
+  .form-container {
+    margin: 40px 30px 40px 30px !important; /* Bo lề bên khi màn hình hẹp */
   }
 }
