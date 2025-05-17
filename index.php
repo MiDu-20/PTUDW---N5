@@ -6,7 +6,7 @@ include 'db_connection.php';
 
 // Check if database connection was successful
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error()); --Hiển thị thông báo lỗi trực tiếp
 }
 
 // Prepare query to fetch popular items
@@ -26,7 +26,7 @@ if ($result = $conn->query($sql)) {
   $result->close();
 } else {
   // Display error message if query fails
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error: " . $sql . "<br>" . $conn->error; --Hiển thị thông báo lỗi SQL trực tiếp
 }
 
 // Close database connection
