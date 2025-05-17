@@ -1,6 +1,7 @@
 
 
 <?php
+-- Mã lặp lại - nên sử dụng tệp db_connection.php
 // Establish a connection to the database
 $servername = "localhost";
 $username = "root";
@@ -12,18 +13,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+-- Kết nối được tạo hai lần
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+-- Không có xác thực đầu vào - dữ liệu người dùng được sử dụng trực tiếp
 // Insert user details into database
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $email = $_POST['email'];
 $contact = $_POST['contact'];
-$password = $_POST['password'];
+$password = $_POST['password']; -- Mật khẩu không được mã hóa - nên sử dụng password_hash()
 
+-- Tiết lộ thông tin cơ sở dữ liệu trong thông báo lỗi
 $sql = "INSERT INTO users (firstName, lastName, email, contact,  password) VALUES (?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssss", $firstName, $lastName, $email, $contact, $password);
@@ -47,6 +51,7 @@ try {
         echo '<script>alert("Email already exists."); window.location.href="login.php";</script>';
         exit();
     }
+    -- Hiển thị thông báo lỗi chi tiết cho người dùng - có thể tiết lộ thông tin nhạy cảm
     echo '<script>alert("Registration failed! Error: ' . $e->getMessage() . '"); window.location.href="login.php";</script>';
     exit();
 }
