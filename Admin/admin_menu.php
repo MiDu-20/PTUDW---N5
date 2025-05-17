@@ -1,13 +1,15 @@
 <?php
 session_start();
+// Nếu chưa đăng nhập thì quay về trang login
 if (!isset($_SESSION['adminloggedin'])) {
     header("Location: ../login.php");
     exit();
 }
-
+// Kết nối đến cơ sở dữ liệu
 include 'db_connection.php';
 ?>
 <?php
+// Giao diện sidebar (thanh điều hướng bên trái)
 include 'sidebar.php';
 ?>
 
@@ -15,6 +17,7 @@ include 'sidebar.php';
 <html lang="en">
 
 <head>
+    <!-- Cấu hình charset và hiển thị trên thiết bị -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Menu Management</title>
@@ -29,6 +32,7 @@ include 'sidebar.php';
 </head>
 
 <body>
+    <!-- Sidebar bên trái chứa các mục quản lý -->
     <div class="sidebar">
         <button class="close-sidebar" id="closeSidebar">&times;</button>
 
@@ -41,7 +45,7 @@ include 'sidebar.php';
             </div>
         </div>
 
-        <!-- Navigation Items -->
+        <!-- Menu điều hướng -->
 
         <ul>
             <li><a href="index.php"><i class="fas fa-chart-line"></i> Overview</a></li>
@@ -56,6 +60,7 @@ include 'sidebar.php';
         </ul>
     </div>
 
+    <!-- Nội dung chính -->
     <div class="content">
         <div class="header">
             <button id="toggleSidebar" class="toggle-button">
@@ -64,11 +69,13 @@ include 'sidebar.php';
             <h2><i class="fas fa-utensils"></i> Menu Management</h2>
         </div>
         <div class="modal-row">
+            <!-- Các nút thao tác chính: thêm category, item, xem danh muc -->
             <div>
                 <button onclick="openModal()"><i class="fas fa-plus"></i> &nbsp;Add New Category</button>
                 <button onclick="openItemModal()"> <i class="fas fa-plus"></i> &nbsp;Add New Item</button>
                 <button onclick="openViewCategoryModal()"> <i class="fas fa-eye"></i> &nbsp;View Categories</button>
             </div>
+            <!-- Combo box lọc theo danh mục -->           
             <div class="search-bar ">
                 <select id="categoryFilter" onchange="filterCategories()">
                     <option value="">All Categories</option>
@@ -84,7 +91,7 @@ include 'sidebar.php';
             </div>
 
         </div>
-
+        <!-- Bảng hiển thị danh sách món ăn -->
         <table id="menuTable">
             <thead>
                 <tr>
@@ -100,6 +107,7 @@ include 'sidebar.php';
             </thead>
             <tbody>
                 <?php
+                // Truy vấn dữ liệu menuitem
                 include 'db_connection.php';
                 $sql = "SELECT * FROM menuitem";
                 $result = mysqli_query($conn, $sql);
@@ -128,6 +136,7 @@ include 'sidebar.php';
                     </div>
                 </td>
                 <td>
+                    <!-- Nút chỉnh sửa và xóa món -->
                     <button id='editbtn' onclick='openEditItemModal(this)' data-itemid='{$row['itemId']}' data-itemname='{$row['itemName']}' data-description='{$row['description']}' data-price='{$row['price']}' data-image='{$row['image']}' data-category='{$row['catName']}' data-status='{$row['status']}'><i class='fas fa-edit'></i></button>  
                     <button id='deletebtn'  onclick=\"deleteItem('" . $row["itemId"] . "')\"><i class='fas fa-trash'></i></button>
                 </td>
@@ -166,119 +175,72 @@ include 'sidebar.php';
     </div>
 
     <div class="modal" id="itemModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-container">
-            <form class="form" method="POST" action="add_item.php" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h2>Add New Item</h2>
-                    <span class="close-icon" onclick="closeItemModal()">&times;</span>
+    <!-- Modal thêm món ăn mới -->
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+        <form class="form" method="POST" action="add_item.php" enctype="multipart/form-data">
+            <div class="modal-header">
+                <!-- Tiêu đề modal -->
+                <h2>Add New Item</h2>
+                <!-- Nút đóng modal -->
+                <span class="close-icon" onclick="closeItemModal()">&times;</span>
+            </div>
+            <div class="modal-content">
+                <!-- Nhập tên món -->
+                <div class="input-group">
+                    <input type="text" name="itemName" id="itemName" class="input" required>
+                    <label for="itemName" class="label">Item Name</label>
                 </div>
-                <div class="modal-content">
-                    <div class="input-group">
-                        <input type="text" name="itemName" id="itemName" class="input" required>
-                        <label for="itemName" class="label">Item Name</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="description" id="description" class="input" required>
-                        <label for="description" class="label">Description</label>
-                    </div>
-                    <div class="input-group">
-                        <select name="status" id="status" class="input" required>
-                            <option value="">Status</option>
-                            <option value="Available">Available</option>
-                            <option value="Unavailable">Unavailable</option>
-                        </select>
-                        <label for="status" class="label">Status</label>
-                    </div>
-
-                    <div class="input-group">
-                        <input type="number" name="price" id="price" class="input" required>
-                        <label for="price" class="label">Price</label>
-                    </div>
-                    <div class="input-group">
-                        <select name="catName" id="catName" class="input" required>
-                            <option value="">Select Category</option>
-                            <?php
-                            $sql = "SELECT catName FROM menucategory";
-                            $result = mysqli_query($conn, $sql);
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<option value='{$row['catName']}'>{$row['catName']}</option>";
-                            }
-                            ?>
-                        </select>
-                        <label for="catName" class="label">Category</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="file" name="image" id="image" class="input" accept="image/*" required>
-
-                    </div>
+                <!-- Nhập mô tả món -->
+                <div class="input-group">
+                    <input type="text" name="description" id="description" class="input" required>
+                    <label for="description" class="label">Description</label>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="button" onclick="closeItemModal()">Cancel</button>
-                    <button type="submit" class="button">Save</button>
+                <!-- Chọn trạng thái món (hiện/tạm ngưng) -->
+                <div class="input-group">
+                    <select name="status" id="status" class="input" required>
+                        <option value="">Status</option>
+                        <option value="Available">Available</option>
+                        <option value="Unavailable">Unavailable</option>
+                    </select>
+                    <label for="status" class="label">Status</label>
                 </div>
-            </form>
-        </div>
+                <!-- Nhập giá món -->
+                <div class="input-group">
+                    <input type="number" name="price" id="price" class="input" required>
+                    <label for="price" class="label">Price</label>
+                </div>
+                <!-- Chọn danh mục cho món -->
+                <div class="input-group">
+                    <select name="catName" id="catName" class="input" required>
+                        <option value="">Select Category</option>
+                        <?php
+                        // Lấy danh sách danh mục từ database
+                        $sql = "SELECT catName FROM menucategory";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='{$row['catName']}'>{$row['catName']}</option>";
+                        }
+                        ?>
+                    </select>
+                    <label for="catName" class="label">Category</label>
+                </div>
+                <!-- Tải lên ảnh món -->
+                <div class="input-group">
+                    <input type="file" name="image" id="image" class="input" accept="image/*" required>
+                </div>
+            </div>
+            <!-- Nút lưu hoặc hủy thêm món -->
+            <div class="modal-footer">
+                <button type="button" class="button" onclick="closeItemModal()">Cancel</button>
+                <button type="submit" class="button">Save</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <!-- Edit Item Modal -->
-    <div class="modal" id="editItemModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-container">
-            <form class="form" method="POST" action="edit_item.php" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h2>Edit Item</h2>
-                    <span class="close-icon" onclick="closeEditItemModal()">&times;</span>
-                </div>
-                <div class="modal-content">
-                    <input type="hidden" name="itemId" id="editItemId">
-                    <input type="hidden" name="existingImage" id="editExistingImage">
-                    <div class="input-group">
-                        <input type="text" name="itemName" id="editItemName" class="input" required>
-                        <label for="editItemName" class="label">Item Name</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="description" id="editDescription" class="input" required>
-                        <label for="editDescription" class="label">Description</label>
-                    </div>
-                    <div class="input-group">
-                        <select name="status" id="editStatus" class="input" required>
-                            <option value="Available">Available</option>
-                            <option value="Unavailable">Unavailable</option>
-                        </select>
-                        <label for="editStatus" class="label">Status</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="number" name="price" id="editPrice" class="input" required>
-                        <label for="editPrice" class="label">Price</label>
-                    </div>
-                    <div class="input-group">
-                        <select name="catName" id="editCatName" class="input" required>
-                            <?php
-                            $sql = "SELECT catName FROM menucategory";
-                            $result = mysqli_query($conn, $sql);
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<option value='{$row['catName']}'>{$row['catName']}</option>";
-                            }
-                            ?>
-                        </select>
-                        <label for="editCatName" class="label">Category</label>
-                    </div>
 
-                    <div class="input-group">
-                        <input type="file" name="image" id="editImage" class="input" accept="image/*">
-                        <small>Leave empty if not changing</small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="button" onclick="closeEditItemModal()">Cancel</button>
-                    <button type="submit" class="button">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- View Categories Modal -->
+    <!-- Xem Categories Modal -->
     <div class="modal" id="viewCategoryModal">
         <div class="modal-overlay"></div>
         <div class="modal-container" style="background: #fef0e8;">
@@ -359,7 +321,7 @@ include 'sidebar.php';
         function togglePopular(itemId, checkbox) {
             var isPopular = checkbox.checked ? 1 : 0;
 
-            // Create an AJAX request
+            // Tạo AJAX request
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "update_popular_status.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -391,73 +353,82 @@ include 'sidebar.php';
         });
     </script>
     <script>
-        function openModal() {
-            document.getElementById('categoryModal').classList.add('open');
-        }
+    // Mở modal thêm danh mục (category)
+    function openModal() {
+        document.getElementById('categoryModal').classList.add('open');
+    }
 
-        function closeModal() {
-            document.getElementById('categoryModal').classList.remove('open');
-        }
+    // Đóng modal thêm danh mục
+    function closeModal() {
+        document.getElementById('categoryModal').classList.remove('open');
+    }
 
-        function openItemModal() {
-            document.getElementById('itemModal').classList.add('open');
-        }
+    // Mở modal thêm món (item)
+    function openItemModal() {
+        document.getElementById('itemModal').classList.add('open');
+    }
 
-        function closeItemModal() {
-            document.getElementById('itemModal').classList.remove('open');
-        }
+    // Đóng modal thêm món
+    function closeItemModal() {
+        document.getElementById('itemModal').classList.remove('open');
+    }
 
-        function openEditItemModal(button) {
-            // Get item details from data attributes
-            var itemId = button.getAttribute('data-itemid');
-            var itemName = button.getAttribute('data-itemname');
-            var description = button.getAttribute('data-description');
-            var price = button.getAttribute('data-price');
-            var image = button.getAttribute('data-image');
-            var category = button.getAttribute('data-category');
-            var status = button.getAttribute('data-status');
+    // Mở modal chỉnh sửa món (edit item), đồng thời đổ dữ liệu lên form
+    function openEditItemModal(button) {
+        // Lấy dữ liệu món ăn từ các thuộc tính data- trên nút
+        var itemId = button.getAttribute('data-itemid');
+        var itemName = button.getAttribute('data-itemname');
+        var description = button.getAttribute('data-description');
+        var price = button.getAttribute('data-price');
+        var image = button.getAttribute('data-image');
+        var category = button.getAttribute('data-category');
+        var status = button.getAttribute('data-status');
 
-            // Set the modal fields
-            document.getElementById('editItemId').value = itemId;
-            document.getElementById('editItemName').value = itemName;
-            document.getElementById('editDescription').value = description;
-            document.getElementById('editPrice').value = price;
-            document.getElementById('editStatus').value = status;
-            document.getElementById('editCatName').value = category;
-            document.getElementById('editExistingImage').value = image; // Set the existing image name
+        // Gán dữ liệu vào các input trong form chỉnh sửa
+        document.getElementById('editItemId').value = itemId;
+        document.getElementById('editItemName').value = itemName;
+        document.getElementById('editDescription').value = description;
+        document.getElementById('editPrice').value = price;
+        document.getElementById('editStatus').value = status;
+        document.getElementById('editCatName').value = category;
+        document.getElementById('editExistingImage').value = image; // Gán tên ảnh hiện tại
 
-            // Display the modal
-            document.getElementById('editItemModal').classList.add('open');
-        }
+        // Hiển thị modal chỉnh sửa món
+        document.getElementById('editItemModal').classList.add('open');
+    }
 
-        function closeEditItemModal() {
-            document.getElementById('editItemModal').classList.remove('open');
-        }
+    // Đóng modal chỉnh sửa món
+    function closeEditItemModal() {
+        document.getElementById('editItemModal').classList.remove('open');
+    }
 
-
-        function filterCategories() {
-            const category = document.getElementById('categoryFilter').value;
-            const rows = document.querySelectorAll('#menuTable tbody tr');
-            rows.forEach(row => {
-                if (category === "" || row.dataset.category === category) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        function editItem(itemId) {
-            window.location.href = `edit_item.php?id=${itemId}`;
-        }
-
-        function deleteItem(itemId) {
-            if (confirm("Are you sure you want to delete this item?")) {
-                window.location.href = `delete_item.php?id=${itemId}`;
+    // Lọc món theo danh mục (category)
+    function filterCategories() {
+        const category = document.getElementById('categoryFilter').value;
+        const rows = document.querySelectorAll('#menuTable tbody tr');
+        
+        // Hiển thị những dòng trùng với danh mục hoặc không chọn gì thì hiện hết
+        rows.forEach(row => {
+            if (category === "" || row.dataset.category === category) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
             }
-        }
-    </script>
+        });
+    }
 
+    // Chuyển đến trang chỉnh sửa món (edit_item.php) kèm theo id
+    function editItem(itemId) {
+        window.location.href = `edit_item.php?id=${itemId}`;
+    }
+
+    // Xác nhận xóa và chuyển đến trang xóa món (delete_item.php)
+    function deleteItem(itemId) {
+        if (confirm("Bạn có chắc chắn muốn xóa món này không?")) {
+            window.location.href = `delete_item.php?id=${itemId}`;
+        }
+    }
+</script>
 
 </body>
 
