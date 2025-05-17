@@ -1,30 +1,36 @@
-*{
+/* RESET CƠ BẢN CHO TOÀN TRANG */
+* {
   padding: 0;
   margin: 0;
 }
+
 body {
-  background: #fef0e8;
-  font-family: "Poppins", sans-serif;
+  background: #fef0e8; /* Nền màu kem nhạt */
+  font-family: "Poppins", sans-serif; 
   margin: 0;
 }
+
+/* KHU VỰC CÁC NÚT VÀ THANH TÁC VỤ CHÍNH */
 .actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
   margin-top: 40px;
-  
+  margin-bottom: 20px;
 }
-.filter-orders{
+
+.filter-orders {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  
+  gap: 10px; /* Khoảng cách giữa các phần tử */
 }
-.content{
+
+.content {
   margin-bottom: 40px;
 }
+
+/* INPUT & SELECT CHUNG */
 .actions select,
 .actions input {
   padding: 15px;
@@ -34,6 +40,8 @@ body {
   cursor: pointer;
   outline: none;
 }
+
+/* Nút chung */
 button {
   background-color: #fb4a36;
   color: white;
@@ -44,21 +52,24 @@ button {
   transition: all 0.3s ease;
   font-size: 1.2rem;
 }
+
 button:hover {
   background-color: #fbdac7;
   color: #fb4a36;
   border: 2px solid #fb4a36;
 }
 
+/* SIDEBAR - MENU TRÁI */
 .sidebar {
   width: 250px;
   background-color: #ffbda1;
   color: #1d1818;
   overflow: auto;
   position: relative;
-  min-height: 100vh;
+  min-height: 100vh; /* Chiều cao tối thiểu là 100% chiều cao màn hình */
 }
 
+/* LIÊN KẾT TRONG SIDEBAR */
 .sidebar ul li a {
   display: block;
   padding: 15px;
@@ -66,13 +77,16 @@ button:hover {
   color: #1d1818;
   transition: background-color 0.3s;
 }
+
 .sidebar ul li a.active {
-background-color:#ee7149;
+  background-color: #ee7149; /* Màu cam đậm khi active */
 }
 
 .sidebar ul li a:hover {
-background-color: #f4a178;
+  background-color: #f4a178; /* Màu hover */
 }
+
+/* Các trạng thái đơn hàng */
 .status {
   padding: 5px 10px;
   border-radius: 5px;
@@ -80,26 +94,14 @@ background-color: #f4a178;
   font-weight: 450;
 }
 
-.status-pending {
-  color: black;
-}
+/* Màu theo từng trạng thái */
+.status-pending { color: black; }
+.status-processing { color: #FFBF00; }
+.status-completed { color: green; }
+.status-cancelled { color: red; }
+.status-ontheway { color: blue; }
 
-.status-processing {
-  color: #FFBF00;
-}
-
-.status-completed {
-  color: green;
-}
-
-.status-cancelled {
-  color: red;
-}
-
-.status-ontheway {
-  color: blue;
-}
-
+/* Bảng hiển thị danh sách đơn hàng */
 table {
   width: 100%;
   border: 2px solid #ffc9b3;
@@ -117,17 +119,18 @@ table td {
 }
 
 table th {
-  background-color: #fdd9c9;
+  background-color: #fdd9c9; /* Header màu cam nhạt */
 }
 
 table tr:nth-of-type(even) {
-  background-color: #fce9e2;
+  background-color: #fce9e2; /* Zebra striping: dòng chẵn */
 }
 
 table tr:hover {
-  background-color: #fdd9c9;
+  background-color: #fdd9c9; /* Hover trên dòng */
 }
 
+/* HEADER TRÊN CÙNG */
 .header {
   padding: 10px;
   background-color: #fbdac7;
@@ -136,6 +139,7 @@ table tr:hover {
   align-items: center;
 }
 
+/* Thanh tìm kiếm đơn hàng */
 .search-bar {
   margin: 40px 0 10px 0;
   display: flex;
@@ -154,6 +158,7 @@ table tr:hover {
   outline: none;
 }
 
+/* Nút tìm kiếm */
 .search-bar button {
   background-color: #fb4a36;
   border: none;
@@ -165,8 +170,10 @@ table tr:hover {
   color: #fb4a36;
   border: 1px solid #fb4a36;
 }
-#viewbtn{
-  padding: 4px 6px 4px 6px;
+
+/* Nút view đơn */
+#viewbtn {
+  padding: 4px 6px;
   font-size: 16px;
   border-radius: 4px;
   background-color: #fbdac7;
@@ -177,21 +184,27 @@ table tr:hover {
   outline: none;
   transition: all 0.3s ease;
 }
+
+/* NÚT LÀM MỚI */
 #refreshButton {
-color: #fbdac7;
-background-color: #fb4a36;
-border: 2px solid #fb4a36;
-cursor: pointer;
-padding: 11px;
-font-size: 1.4rem;
-border-radius: 5px;
-transition: all 0.3s ease;
+  color: #fbdac7;
+  background-color: #fb4a36;
+  border: 2px solid #fb4a36;
+  cursor: pointer;
+  padding: 11px;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
-#refreshButton:hover{
-    background: #fbdac7;
-    color: #fb4a36;
+#refreshButton:hover {
+  background: #fbdac7;
+  color: #fb4a36;
 }
+
+/* ====================== */
+/* ======= MODAL ======== */
+/* ====================== */
 .modal {
   position: fixed;
   inset: 0;
@@ -206,12 +219,14 @@ transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
+/* Hiển thị modal khi có class 'open' */
 .modal.open {
   z-index: 999;
   opacity: 1;
   visibility: visible;
 }
 
+/* LỚP MỜ NỀN SAU MODAL */
 .modal-overlay {
   position: absolute;
   top: 0;
@@ -230,6 +245,7 @@ transition: all 0.3s ease;
   visibility: visible;
 }
 
+/* Khung chính của modal */
 .modal-container {
   position: absolute;
   width: 50rem;
@@ -240,14 +256,15 @@ transition: all 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: column;
-  transform: scale(0.8);
+  transform: scale(0.8); /* Hiệu ứng thu nhỏ ban đầu */
   transition: all 0.3s ease;
 }
 
 .modal.open .modal-container {
-  transform: scale(1);
+  transform: scale(1); /* Hiệu ứng phóng to khi mở */
 }
 
+/* NỘI DUNG FORM TRONG MODAL */
 .form {
   width: 100%;
   height: 100%;
@@ -255,6 +272,7 @@ transition: all 0.3s ease;
   flex-direction: column;
 }
 
+/* HEADER & FOOTER CỦA MODAL */
 .modal-header,
 .modal-footer {
   flex: 0 0 10%;
@@ -266,7 +284,6 @@ transition: all 0.3s ease;
   justify-content: space-between;
   align-items: center;
   border-bottom: rgba(165, 165, 165, 0.795) 1px solid;
-  
 }
 
 .modal-footer {
@@ -274,15 +291,16 @@ transition: all 0.3s ease;
   justify-content: flex-end;
   align-items: center;
   border-top: rgba(165, 165, 165, 0.795) 1px solid;
-  
 }
 
+/* NỘI DUNG CHÍNH CỦA MODAL (PHẦN GIỮA) */
 .modal-content {
   flex: 1;
   overflow: auto;
   padding: 25px;
 }
 
+/* SCROLLBAR TRONG MODAL */
 .modal-content::-webkit-scrollbar {
   width: 10px;
   height: 8px;
@@ -293,15 +311,16 @@ transition: all 0.3s ease;
   background-color: rgba(37, 37, 37, 0.788);
 }
 
+/* Icon đóng modal */
 .close-icon {
   font-size: 40px;
   cursor: pointer;
 }
 
+/* NHÓM INPUT */
 .input-group {
   position: relative;
   margin-bottom: 10px;
-
 }
 
 .input {
@@ -315,9 +334,9 @@ transition: all 0.3s ease;
   margin-bottom: 15px;
 }
 
+/* LABEL FLOATING EFFECT */
 .label {
   position: absolute;
-
   left: 15px;
   color: #000;
   font-weight: 500;
@@ -327,23 +346,23 @@ transition: all 0.3s ease;
   transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Khi người dùng focus hoặc nhập thì label thu nhỏ lại */
 .input:focus,
 .input:valid {
   outline: none;
 }
 
-.input:focus~.label,
-.input:valid~.label {
+.input:focus ~ .label,
+.input:valid ~ .label {
   transform: translateX(-10px) translateY(-50%) scale(0.8);
   background-color: #fff;
   padding: 0.2em;
 }
 
-
-
+/* Resposive cho modal */
 @media only screen and (min-width: 767px) and (max-width: 975px) {
   .modal-container {
-      width: 45rem;
-      height: 40rem;
+    width: 45rem;
+    height: 40rem;
   }
 }

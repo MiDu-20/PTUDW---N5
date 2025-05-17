@@ -8,7 +8,6 @@ if (!isset($_SESSION['adminloggedin'])) {
 
 // Kết nối tới CSDL
 include 'db_connection.php'; 
-//khgjhg
 
 // Lấy giá trị lọc trạng thái đơn hàng và mã đơn hàng từ URL
 $statusFilter = isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '';
