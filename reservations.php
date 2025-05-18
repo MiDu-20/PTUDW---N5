@@ -1,14 +1,14 @@
 <?php
-// Database configuration
-$servername = "localhost";
+//-- Cấu hình thông tin kết nối đến cơ sở dữ liệu
+$servername = "localhost"; //-- Tên máy chủ cơ sở dữ liệu
 $username = "root";
 $password = "";
-$dbname = "restaurant";
+$dbname = "restaurant"; //--Tên cơ sở dữ liệu cần kết nối
 
-// Enable error reporting (optional, for debugging)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//-- Bật chế độ hiển thị lỗi để dễ dàng debug 
+ini_set('display_errors', 1); //-- Hiển thị lỗi khi có lỗi xảy ra
+ini_set('display_startup_errors', 1); //-- Hiển thị lỗi khi khởi động
+error_reporting(E_ALL); //-- Hiển thị 
 
 // Establishing connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
