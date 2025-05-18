@@ -1,21 +1,21 @@
 
 
 <?php
-// Establish a connection to the database
+// Thiết lập kết nối đến cơ sở dữ liệu
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "restaurant";
 
-// Create connection
+// Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Kiểm tra kết nối
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch menu item count
+// Truy vấn đếm tổng số món ăn trong bảng menuitem
 $sql = "SELECT COUNT(*) AS totalItems FROM menuitem";
 $result = $conn->query($sql);
 
@@ -25,10 +25,10 @@ if ($result->num_rows > 0) {
 } else {
   $totalItems = 0;
 }
-
+// Đóng kết nối CSDL
 $conn->close();
 
-// Return JSON response
+// Trả về kết quả dạng JSON
 header('Content-Type: application/json');
 echo json_encode(['totalItems' => $totalItems]);
 ?>

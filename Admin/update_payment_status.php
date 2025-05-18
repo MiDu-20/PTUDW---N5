@@ -1,35 +1,38 @@
 <?php
+// Bắt đầu session và kiểm tra quyền truy cập admin
 session_start();
 if (!isset($_SESSION['adminloggedin'])) {
     header("Location: ../login.php");
     exit();
 }
 
+// Kết nối đến cơ sở dữ liệu
 include 'db_connection.php';
 
-// Get POST data
+// Nhận dữ liệu từ form POST
 $orderId = isset($_POST['order_id']) ? $_POST['order_id'] : '';
 $paymentStatus = isset($_POST['payment_status']) ? $_POST['payment_status'] : '';
 
-// Validate input
+// Kiểm tra dữ liệu đầu vào hợp lệ
 if ($orderId && $paymentStatus) {
-    // Prepare SQL query to update payment status
+    // Câu truy vấn cập nhật trạng thái thanh toán trong bảng orders
     $updateQuery = "UPDATE orders SET payment_status = ? WHERE order_id = ?";
     
     $stmt = $conn->prepare($updateQuery);
     $stmt->bind_param('si', $paymentStatus, $orderId);
     
-    // Execute the query
+    // Thực thi truy vấn và phản hồi
     if ($stmt->execute()) {
-        echo "Success";
+        echo "Success"; // Thành công
     } else {
-        echo "Error updating payment status.";
+        echo "Lỗi khi cập nhật trạng thái thanh toán.";
     }
     
     $stmt->close();
 } else {
-    echo "Invalid order ID or payment status.";
+    echo "Thiếu mã đơn hàng hoặc trạng thái thanh toán.";
 }
 
+// Đóng kết nối cơ sở dữ liệu
 $conn->close();
 ?>

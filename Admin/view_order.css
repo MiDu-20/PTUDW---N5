@@ -1,3 +1,4 @@
+/* Định dạng CSS cho trang chi tiết đơn hàng */
 *{
   margin: 0;
   padding: 0;
@@ -10,12 +11,11 @@ body {
 .content{
   margin-bottom: 40px;
 }
- /* Order Details Container */
- .order-details {
+/* Khung chứa chi tiết đơn hàng */
+.order-details {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  /* Add space between items */
   margin-bottom: 20px;
   margin-left: 30px;
   margin-right: 30px;
@@ -23,7 +23,6 @@ body {
 
 .order-items {
   flex: 60%;
-  /* Takes 60% of the space */
   border-radius: 6px;
   background-color: #fce9e2;
   padding: 10px;
@@ -31,13 +30,12 @@ body {
 
 .order-summary {
   flex: 40%;
-  /* Takes 40% of the space */
   background-color: #fce9e2;
   padding: 10px;
   border-radius: 6px;
 }
 
-/* Flex Layout for Titles and Values */
+/* Layout linh hoạt cho các dòng dữ liệu */
 .order-items .list-group-item {
   display: flex;
   justify-content: space-between;
@@ -83,7 +81,7 @@ body {
 }
 
 #statusbtn {
-  padding: 4px 6px 4px 6px;
+  padding: 4px 6px;
   width: 100%;
   font-size: 16px;
   border-radius: 4px;
@@ -101,7 +99,7 @@ body {
   color: #fb4a36;
 }
 
-/* Customer Details */
+/* Thông tin khách hàng */
 .customer {
   margin-top: 20px;
   background-color: #fce9e2;
@@ -116,49 +114,43 @@ body {
   margin-right: 30px;
 }
 
-/* Responsive Design */
+/* Giao diện phản hồi cho các kích thước màn hình khác nhau */
 @media (max-width: 1024px) {
   .content {
     margin-left: 0;
-    /* Adjust content margin for smaller screens */
   }
 
   .order-details {
     flex-direction: column;
-    margin: 0 0 0 0;
+    margin: 0;
   }
 
   .order-items,
   .order-summary,
   .customer {
     flex: 100%;
-    /* Full width for medium screens */
   }
 
   .customer{
     margin: 20px 0 0 0;
-   
   }
 }
 
 @media (max-width: 768px) {
   .order-summary {
     font-size: 14px;
-    /* Adjust font size for small screens */
   }
 }
 
 @media (max-width: 576px) {
   .order-summary {
     font-size: 12px;
-    /* Adjust font size for very small screens */
   }
 }
 
 @media screen and (max-width: 800px) {
   .close-sidebar {
     display: block;
-    /* Show close button on small screens */
   }
 
   .sidebar {
@@ -237,7 +229,7 @@ img {
   margin-right: 13px;
 }
 
-/* Make price x quantity stay in one line on small screens */
+/* Hiển thị giá x số lượng trên cùng một dòng khi màn hình nhỏ */
 @media (max-width: 576px) {
   .order-items .list-group-item .d-flex div {
     white-space: nowrap;
@@ -246,12 +238,11 @@ img {
     margin-left: 10px;
   }
   body{
- padding-bottom: 150px;
-}
+    padding-bottom: 150px;
+  }
 }
 a{
   text-decoration: none;
-
 }
 .button {
   background-color: #fb4a36;
