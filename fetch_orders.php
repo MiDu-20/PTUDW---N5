@@ -1,57 +1,62 @@
 <?php
 session_start();
-include 'db_connection.php'; // Ensure you have a db_connection.php file to connect to your database
+include 'db_connection.php'; // --Kết nối cơ sở dữ liệu
 
+// --Lấy email người dùng từ session
 $email = $_SESSION['email'];
-$orderStatus = isset($_GET['status']) ? $_GET['status'] : 'All';
 
-// Modify the query to include review information using a LEFT JOIN
+// --Lấy trạng thái đơn hàng từ tham số GET, mặc định là 'All' (tất cả)
+$trang_thai_don = isset($_GET['status']) ? $_GET['status'] : 'All';
+
+// --Truy vấn đơn hàng và thông tin đánh giá (nếu có) bằng LEFT JOIN
 $query = "SELECT orders.*, reviews.review_text, reviews.response 
           FROM orders 
           LEFT JOIN reviews ON orders.order_id = reviews.order_id 
           WHERE orders.email = ?";
-if ($orderStatus !== 'All') {
+if ($trang_thai_don !== 'All') {
     $query .= " AND orders.order_status = ?";
 }
 
+// --Chuẩn bị truy vấn với các điều kiện phù hợp
 $stmt = $conn->prepare($query);
-if ($orderStatus === 'All') {
+if ($trang_thai_don === 'All') {
     $stmt->bind_param('s', $email);
 } else {
-    $stmt->bind_param('ss', $email, $orderStatus);
+    $stmt->bind_param('ss', $email, $trang_thai_don);
 }
 
 $stmt->execute();
 $result = $stmt->get_result();
-$orders = [];
+$don_hang = [];
 
-while ($order = $result->fetch_assoc()) {
-    $orderId = $order['order_id'];
+while ($don = $result->fetch_assoc()) {
+    $ma_don = $don['order_id'];
     
-    // Fetch the order items
-    $itemsQuery = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
-    $itemsQuery->bind_param('i', $orderId);
-    $itemsQuery->execute();
-    $itemsResult = $itemsQuery->get_result();
-    $order['items'] = $itemsResult->fetch_all(MYSQLI_ASSOC);
-    $itemsQuery->close();
+    // --Lấy danh sách sản phẩm trong đơn hàng
+    $truyvan_sp = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
+    $truyvan_sp->bind_param('i', $ma_don);
+    $truyvan_sp->execute();
+    $ketqua_sp = $truyvan_sp->get_result();
+    $don['items'] = $ketqua_sp->fetch_all(MYSQLI_ASSOC);
+    $truyvan_sp->close();
 
-    // Include the cancellation reason if the order is cancelled
-    if ($order['order_status'] === 'Cancelled') {
-        $cancelQuery = $conn->prepare("SELECT cancel_reason FROM orders WHERE order_id = ?");
-        $cancelQuery->bind_param('i', $orderId);
-        $cancelQuery->execute();
-        $cancelResult = $cancelQuery->get_result();
-        $cancelData = $cancelResult->fetch_assoc();
-        $order['cancel_reason'] = $cancelData['cancel_reason'];
-        $cancelQuery->close();
+    // --Nếu đơn hàng bị hủy thì lấy lý do hủy từ bảng orders
+    if ($don['order_status'] === 'Cancelled') {
+        $truyvan_huy = $conn->prepare("SELECT cancel_reason FROM orders WHERE order_id = ?");
+        $truyvan_huy->bind_param('i', $ma_don);
+        $truyvan_huy->execute();
+        $ketqua_huy = $truyvan_huy->get_result();
+        $dulieu_huy = $ketqua_huy->fetch_assoc();
+        $don['cancel_reason'] = $dulieu_huy['cancel_reason'];
+        $truyvan_huy->close();
     }
 
-    // Review information is already included in the main query, no need for extra fetch here
-    $orders[] = $order;
+    // --Thông tin đánh giá đã có sẵn trong truy vấn chính, không cần lấy lại
+    $don_hang[] = $don;
 }
 
-echo json_encode($orders);
+// --Trả về danh sách đơn hàng ở dạng JSON
+echo json_encode($don_hang);
 
 $stmt->close();
 $conn->close();
