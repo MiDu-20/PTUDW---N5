@@ -1,28 +1,26 @@
 <?php
-// admin_dashboard.php
+// Bắt đầu phiên làm việc và kiểm tra xem admin đã đăng nhập chưa
 session_start();
-
-// Check if admin is logged in
 if (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
     header('Location: ../login.php');
     exit;
 }
 
-// Database connection
+// Kết nối cơ sở dữ liệu
 $host = 'localhost';
 $dbname = 'restaurant';
 $username = 'root';
 $password = '';
 $conn = new mysqli($host, $username, $password, $dbname);
 
-// Check connection
+// Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+// Thiết lập múi giờ
 date_default_timezone_set('Asia/Colombo');
 
-// Function to calculate earnings
+// Hàm tính tổng doanh thu giữa 2 mốc thời gian
 function calculateEarnings($conn, $dateColumn, $startDate, $endDate)
 {
     $query = "SELECT SUM(grand_total) AS total FROM orders WHERE $dateColumn BETWEEN ? AND ? AND payment_status = 'successful'";
@@ -34,7 +32,7 @@ function calculateEarnings($conn, $dateColumn, $startDate, $endDate)
     return $row['total'] ?? 0; // Return 0 if null
 }
 
-// Function to calculate total orders for a given period
+// Hàm tính tổng đơn hàng trong một khoảng thời gian
 function calculateTotalOrders($conn, $startDate, $endDate)
 {
     $query = "SELECT COUNT(*) AS total_orders FROM orders WHERE order_date BETWEEN ? AND ?";
@@ -46,7 +44,7 @@ function calculateTotalOrders($conn, $startDate, $endDate)
     return $row['total_orders'] ?? 0; // Return 0 if null
 }
 
-// Function to calculate total users
+// Hàm tính tổng người dùng
 function calculateTotalUsers($conn)
 {
     $query = "SELECT COUNT(*) AS total_users FROM users";
@@ -55,7 +53,7 @@ function calculateTotalUsers($conn)
     return $row['total_users'] ?? 0; // Return 0 if null
 }
 
-// Function to calculate total reservations
+// Hàm tính tổng số lượt đặt bàn
 function calculateTotalReservations($conn)
 {
     $query = "SELECT COUNT(*) AS total_reservations FROM reservations";
@@ -64,56 +62,53 @@ function calculateTotalReservations($conn)
     return $row['total_reservations'] ?? 0; // Return 0 if null
 }
 
-// Function to calculate percentage change
+// Hàm tính phần trăm thay đổi giữa hai giá trị
 function calculateChange($current, $previous)
 {
-    // Calculate percentage change
+    // Tính phần trăm thay đổi
     $change = $previous ? (($current - $previous) / $previous) * 100 : 0;
 
-    // Constrain the value between -100 and 100
+    // Rành buộc giá trị giữa -100 và 100
     if ($change < -100) {
         return -100;
     } elseif ($change > 100) {
         return 100;
     }
 
-    // Return the formatted change with two decimal points
+    // Trả về thay đổi format 
     return number_format($change, 2);
 }
 
-
-// Get total earnings from the beginning of time to today
+// Tính toán % thay đổi cho các chỉ số
 $totalEarning = calculateEarnings($conn, 'order_date', '1970-01-01 00:00:00', date('Y-m-d') . ' 23:59:59');
 
-// Get earnings for today
+// Tính số tiền kiếm được hôm nay
 $todaysEarning = calculateEarnings($conn, 'order_date', date('Y-m-d') . ' 00:00:00', date('Y-m-d') . ' 23:59:59');
 
-// Get total orders for today and yesterday
+// Tính tổng đơn hàng hôm nay và hôm qua
 $todaysOrders = calculateTotalOrders($conn, date('Y-m-d') . ' 00:00:00', date('Y-m-d') . ' 23:59:59');
 $yesterdaysOrders = calculateTotalOrders($conn, date('Y-m-d', strtotime('-1 day')) . ' 00:00:00', date('Y-m-d', strtotime('-1 day')) . ' 23:59:59');
 
-// Get total orders for the current period
+// Tính tổng đơn hàng giai đoạn hiện tại
 $currentStartDate = '1970-01-01 00:00:00'; // Or any appropriate start date
 $currentEndDate = date('Y-m-d') . ' 23:59:59';
 $totalOrders = calculateTotalOrders($conn, $currentStartDate, $currentEndDate);
 
-// Get total orders for the previous period
+// Tính tổng đơn hàng giai đoạn hiện tại
 $previousStartDate = date('Y-m-d', strtotime('-1 month')) . ' 00:00:00';
 $previousEndDate = date('Y-m-d', strtotime('-1 day')) . ' 23:59:59';
 $previousTotalOrders = calculateTotalOrders($conn, $previousStartDate, $previousEndDate);
 
-// Get total users
+// Đảm bảo biến đã được khởi tạo
 $totalUsers = calculateTotalUsers($conn);
 $previousTotalUsers = calculateTotalUsers($conn) - 100; // Example: 50 users ago; adjust as needed
-
-// Get total reservations
 $totalReservations = calculateTotalReservations($conn);
 $previousTotalReservations = calculateTotalReservations($conn) - 100;
 
 
 
 
-// Calculate percentage changes
+// Tính phần trăm thay đổi
 $totalEarningChange = calculateChange($totalEarning, calculateEarnings($conn, 'order_date', '1970-01-01 00:00:00', date('Y-m-d', strtotime('-1 month')) . ' 23:59:59')); // Previous month earnings
 $todaysEarningChange = calculateChange($todaysEarning, calculateEarnings($conn, 'order_date', date('Y-m-d', strtotime('-1 day')) . ' 00:00:00', date('Y-m-d', strtotime('-1 day')) . ' 23:59:59')); // Previous day earnings
 $totalOrdersChange = calculateChange($totalOrders, $previousTotalOrders);
@@ -121,7 +116,7 @@ $totalUsersChange = calculateChange($totalUsers, $previousTotalUsers);
 $totalReservationsChange = calculateChange($totalReservations, $previousTotalReservations);
 $todaysOrdersChange = calculateChange($todaysOrders, $yesterdaysOrders);
 
-// Ensure variables are defined
+// Đảm bảo các biến đã được khởi tạo
 $todaysOrders = isset($todaysOrders) ? $todaysOrders : 0;
 $todaysOrdersChange = isset($todaysOrdersChange) ? $todaysOrdersChange : 0;
 $totalEarningChange = isset($totalEarningChange) ? $totalEarningChange : 0;
@@ -130,7 +125,7 @@ $totalOrdersChange = isset($totalOrdersChange) ? $totalOrdersChange : 0;
 $totalUsersChange = isset($totalUsersChange) ? $totalUsersChange : 0;
 $totalReservationsChange = isset($totalReservationsChange) ? $totalReservationsChange : 0;
 
-// Function to get the count of orders by status
+// Hàm đếm số lượng đơn hàng theo từng trạng thái
 function getOrderStatusCounts($conn)
 {
     $statuses = ['Pending', 'Processing', 'On the Way', 'Completed', 'Cancelled'];
@@ -150,7 +145,7 @@ function getOrderStatusCounts($conn)
     return $statusCounts;
 }
 
-// Get the status counts
+// Gọi hàm để lấy dữ liệu đếm đơn hàng theo trạng thái
 $statusCounts = getOrderStatusCounts($conn);
 
 // Close connection
@@ -168,7 +163,7 @@ include 'sidebar.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!--poppins-->
+    <!-- Nhúng font và thư viện cần thiết -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
@@ -184,11 +179,11 @@ include 'sidebar.php';
 
 <body>
 
-    <!-- sidebar -->
+    <!-- Sidebar (thanh bên trái) -->
     <div class="sidebar">
         <button class="close-sidebar" id="closeSidebar">&times;</button>
 
-        <!-- Profile Section -->
+        <!-- Phần thông tin người dùng -->
         <div class="profile-section">
             <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Picture">
             <div class="info">
@@ -197,7 +192,7 @@ include 'sidebar.php';
             </div>
         </div>
 
-        <!-- Navigation Items -->
+        <!-- Menu điều hướng -->
 
         <ul>
             <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i> Overview</a></li>
@@ -211,7 +206,7 @@ include 'sidebar.php';
             <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>
-
+    <!-- Nội dung chính của trang -->
     <div class="content">
         <div class="header">
             <button id="toggleSidebar" class="toggle-button">
@@ -220,7 +215,7 @@ include 'sidebar.php';
             <h2><i class="fas fa-chart-line"></i> Overview</h2>
         </div>
         <div class="container">
-            <!-- Total Earning Card -->
+        <!-- Các thẻ thống kê tổng quan -->
             <div class="card" data-color="purple">
 
                 <div class="card-content">
@@ -234,7 +229,7 @@ include 'sidebar.php';
                 <canvas id="chart1"></canvas>
             </div>
 
-            <!-- Today's Earning Card -->
+            <!-- Doanh thu hôm nay -->
             <div class="card" data-color="orange">
                 <div class="card-content">
                     <h4>Today's Earning</h4>
@@ -247,7 +242,7 @@ include 'sidebar.php';
                 <canvas id="chart2"></canvas>
             </div>
 
-            <!-- Total Orders Card -->
+            <!-- Tổng đơn hàng -->
             <div class="card" data-color="l-blue">
                 <div class="card-content">
                     <h4>Total Orders</h4>
@@ -260,7 +255,7 @@ include 'sidebar.php';
                 <canvas id="chart5"></canvas>
             </div>
 
-            <!-- Today's Orders Card -->
+            <!-- Đơn hàng hôm nay -->
             <div class="card" data-color="pink">
                 <div class="card-content">
                     <h4>Today's Orders</h4>
@@ -273,7 +268,7 @@ include 'sidebar.php';
                 <canvas id="chart6"></canvas>
             </div>
 
-            <!-- Total User Card -->
+            <!-- Tổng người dùng -->
             <div class="card" data-color="blue">
                 <div class="card-content">
                     <h4>Total Users</h4>
@@ -286,7 +281,7 @@ include 'sidebar.php';
                 <canvas id="chart3"></canvas>
             </div>
 
-            <!-- Reservations Card -->
+            <!-- Tổng đặt bàn -->
             <div class="card" data-color="green">
                 <div class="card-content">
                     <h4>Total Reservations</h4>
@@ -300,11 +295,11 @@ include 'sidebar.php';
             </div>
 
         </div>
-
+        <!-- Bảng đơn hàng gần nhất và biểu đồ trạng thái -->
         <div class="table-chart">
             <div class="table">
                 <?php
-                // Database connection (update with your actual connection details)
+                // Kết nối database
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
@@ -312,19 +307,19 @@ include 'sidebar.php';
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
 
-                // Check connection
+                // Kiểm tra kết nối
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                // SQL query to get the latest 5 orders
+                // Truy vấn sql lấy 5 đơn hàng gần nhất
                 $sql = "SELECT order_id, firstName, lastName, order_status, grand_total 
         FROM orders 
         ORDER BY order_date DESC 
         LIMIT 6";
                 $result = $conn->query($sql);
 
-                // Check if there are results
+                // Kiểm tra nếu có  kết quả
                 if ($result->num_rows > 0) {
                     echo '<div class="latest-orders">';
                     echo '<h2>Latest Orders</h2>';
@@ -340,7 +335,7 @@ include 'sidebar.php';
                     echo '</thead>';
                     echo '<tbody>';
 
-                    // Output data for each row
+                    // Output data cho mỗi hàng
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr>';
                         echo '<td>' . htmlspecialchars($row["order_id"]) . '</td>';
@@ -485,7 +480,7 @@ include 'sidebar.php';
             }
         };
 
-        // Total Earning Chart
+        // Biểu đồ tổng tiền kiếm được
         var ctx1 = document.getElementById('chart1').getContext('2d');
         new Chart(ctx1, {
             type: "line",
@@ -501,7 +496,7 @@ include 'sidebar.php';
             options: chartOptions
         });
 
-        // Monthly Earning Chart
+        // Biểu đồ tiền kiếm đựơc hàng tháng
         var ctx2 = document.getElementById('chart2').getContext('2d');
         new Chart(ctx2, {
             type: "line",
@@ -517,7 +512,7 @@ include 'sidebar.php';
             options: chartOptions
         });
 
-        // Weekly Earning Chart
+        // Biểu đồ tiền kiếm được hàng tuần
         var ctx3 = document.getElementById('chart3').getContext('2d');
         new Chart(ctx3, {
             type: "line",
@@ -533,7 +528,7 @@ include 'sidebar.php';
             options: chartOptions
         });
 
-        // Today's Earning Chart
+        // Biểu đồ tổng tiền kiếm được
         var ctx4 = document.getElementById('chart4').getContext('2d');
         new Chart(ctx4, {
             type: "line",
@@ -549,7 +544,7 @@ include 'sidebar.php';
             options: chartOptions
         });
 
-        // Total orders Chart
+        // Biểu đồ tổng đơn hàng
         var ctx4 = document.getElementById('chart5').getContext('2d');
         new Chart(ctx4, {
             type: "line",
@@ -565,7 +560,7 @@ include 'sidebar.php';
             options: chartOptions
         });
 
-        // Today's order Chart
+        // Biểu đồ tổng đơn hàng hôm nay
         var ctx4 = document.getElementById('chart6').getContext('2d');
         new Chart(ctx4, {
             type: "line",
@@ -584,14 +579,14 @@ include 'sidebar.php';
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Data from PHP
+            // Data từ PHP
             const statusCounts = <?php echo json_encode($statusCounts); ?>;
 
-            // Prepare data
+            // Chuẩn bị data
             const labels = Object.keys(statusCounts);
             const data = Object.values(statusCounts);
 
-            // Create the bar chart
+            // Tạo biểu đồ thanh
             const ctx = document.getElementById('orderStatusChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
@@ -630,11 +625,11 @@ include 'sidebar.php';
         });
     </script>
     <script>
-        // Fetch review data from the PHP script
+        // Fetch review data từ  PHP script
         fetch('fetch_reviews.php')
             .then(response => response.json())
             .then(data => {
-                // Process data for Chart.js
+                // Xử lý data cho Chart.js
                 const labels = [...new Set(data.map(item => item.review_date))]; // Extract unique dates
                 const ratings = [1, 2, 3, 4, 5]; // Rating categories
                 const datasets = ratings.map(rating => {
@@ -651,7 +646,7 @@ include 'sidebar.php';
                     };
                 });
 
-                // Create the line chart
+                // Tạo biểu đồ đường
                 const ctx = document.getElementById('ratingsLineChart').getContext('2d');
                 new Chart(ctx, {
                     type: 'line',
@@ -686,7 +681,7 @@ include 'sidebar.php';
             })
             .catch(error => console.error('Error fetching review data:', error));
 
-        // Function to get color for each rating
+        // Hàm lấy màu trên mỗi rating
         function getColorForRating(rating, opacity = 1) {
             const colors = {
                 1: 'rgba(255, 99, 132, ',
