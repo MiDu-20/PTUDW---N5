@@ -1,64 +1,64 @@
 <?php
-// Database configuration
+//--Cấu hình thông tin kết nối cơ sở dữ liệu
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "restaurant";
 
-// Enable error reporting (optional, for debugging)
+//--Bật hiển thị lỗi (phục vụ việc debug trong quá trình phát triển)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Establishing connection to the database
+//--Tạo kết nối đến cơ sở dữ liệu
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+//-- Kiểm tra kết nối có thành công không
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handling form submission
+//--Xử lý khi người dùng gửi form (phương thức POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collecting form data
+    // Lấy dữ liệu từ form người dùng nhập
     $email = $_POST['email'];
     $name = $_POST['name'];
     $contact = $_POST['contact'];
     $noOfGuests = $_POST['noOfGuests'];
-    $reservedTime = $_POST['reservedTime']; // Input format is 'HH:MM'
-    $reservedDate = $_POST['reservedDate']; // Input format is 'YYYY-MM-DD'
+    $reservedTime = $_POST['reservedTime']; // Định dạng nhập vào: 'HH:MM'
+    $reservedDate = $_POST['reservedDate']; //Định dạng nhập vào: 'YYYY-MM-DD'
 
-    // Debug: Check the raw reservedTime input
+    // Debug: Hiển thị giờ đặt chỗ gốc (người dùng nhập)
     echo "Raw Reserved Time: " . htmlspecialchars($reservedTime) . "<br>";
 
-    // Process reservedTime to ensure it includes seconds
+    // Xử lý định dạng giờ để bổ sung thêm giây (chuẩn hóa về 'HH:MM:SS')
     $reservedTimeWithSeconds = date('H:i:s', strtotime($reservedTime));
     
-    // Debug: Check the processed reservedTime
+    // Debug: Hiển thị giờ đặt chỗ sau khi xử lý
     echo "Processed Reserved Time: " . htmlspecialchars($reservedTimeWithSeconds) . "<br>";
 
-    // Prepare SQL statement to insert data into reservations table
+    // Chuẩn bị câu lệnh SQL để thêm dữ liệu vào bảng reservations
     $sql = "INSERT INTO reservations (email, name, contact, noOfGuests, reservedTime, reservedDate) 
             VALUES (?, ?, ?, ?, ?, ?)";
 
-    // Prepare and bind parameters
+    // Chuẩn bị và gán giá trị cho các tham số
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
         die("Prepare failed: " . $conn->error);
     }
     $stmt->bind_param("sssiis", $email, $name, $contact, $noOfGuests, $reservedTimeWithSeconds, $reservedDate);
 
-    // Execute the statement
+    // Thực thi câu lệnh
     if ($stmt->execute()) {
         echo '<script>alert("Reservation successful!"); window.location.href="reservations.php";</script>';
     } else {
         echo "Error: " . $stmt->error;
     }
 
-    // Close statement
+    // Đóng câu lệnh
     $stmt->close();
 }
 
-// Close connection
+// Đóng kết nối cơ sở dữ liệu
 $conn->close();
 ?>
