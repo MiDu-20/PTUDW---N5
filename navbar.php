@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  
+//-- Nhiều CSS nội tuyến - ISSUE: Nên tách thành tệp CSS riêng
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
   <title>Navbar</title>
   <style>
-  -- Nhiều CSS nội tuyến - ISSUE: Nên tách thành tệp CSS riêng
+  
     * {
       margin: 0;
       padding: 0;
