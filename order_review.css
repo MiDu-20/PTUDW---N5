@@ -1,107 +1,110 @@
+/* Đặt lại margin và padding mặc định cho tất cả các phần tử */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* Thêm khoảng trống phía trên thân trang để tránh đè lên header */
 body {
   padding-top: 90px;
 }
 
+/* Phần tiêu đề trang */
 .title {
-  display: flex;
-  align-items: center;
-  /* Center horizontally */
-  text-align: center;
-  /* Center text within the container */
-  background-color: #fcc1b1;
-  /* Background color */
-  padding: 20px;
-  border-radius: 8px;
-  /* Optional: Rounded corners */
-  margin: 0 auto;
-  /* Center the container horizontally if it's in a wider container */
-  max-width: fit-content;
-  /* Ensure background only covers content */
-
-
+  display: flex; /* Sắp xếp nội dung theo hàng ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  text-align: center; /* Căn giữa nội dung văn bản */
+  background-color: #fcc1b1; /* Màu nền cho khối tiêu đề */
+  padding: 20px; /* Khoảng cách bên trong khối */
+  border-radius: 8px; /* Bo tròn góc */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
+  max-width: fit-content; /* Độ rộng vừa với nội dung */
 }
 
+/* Hình ảnh trong mỗi mục đơn hàng */
 .order-item img {
   width: 65px;
   height: 65px;
-  object-fit: cover;
+  object-fit: cover; /* Cắt và căn chỉnh ảnh vừa khung */
 }
 
+/* Hộp chứa mỗi mục đơn hàng */
 .order-item {
   margin-bottom: 10px;
-  background: #fcafa7;
+  background: #fcafa7; /* Màu nền */
   padding: 5px;
   border-radius: 5px;
   font-size: 1.1rem;
 }
 
+/* Khối chính chứa phần tóm tắt đơn hàng và phí đơn hàng */
 .main {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: flex; /* Hiển thị các phần tử con theo hàng ngang */
+  justify-content: space-between; /* Dàn đều khoảng cách */
+  gap: 20px; /* Khoảng cách giữa các khối */
   margin: 0 50px 30px 30px;
-  margin-bottom: 60px;
-
-
+  margin-bottom: 60px; /* Ghi đè margin dưới */
 }
 
+/* Phần tóm tắt đơn hàng và phí */
 .order-summary,
 .order-fee {
   padding: 20px 20px 15px 20px;
-  background: #fdd9c9;
-
+  background: #fdd9c9; /* Màu nền */
   border-radius: 6px;
-
 }
 
+/* Tóm tắt đơn hàng chiếm 40% chiều ngang */
 .order-summary {
   flex: 0 0 40%;
 }
 
+/* Phí đơn hàng chiếm 60% chiều ngang */
 .order-fee {
   flex: 0 0 60%;
-
 }
 
+/* Nhãn trong phần phí đơn hàng */
 .order-fee label {
   font-size: 1.2rem;
 }
 
+/* Nhóm ô nhập liệu theo hàng ngang và hỗ trợ xuống dòng */
 .form-group.row {
   display: flex;
   flex-wrap: wrap;
-
 }
 
+/* Cột trong form */
 .form-group.row .col {
-  flex: 1;
+  flex: 1; /* Mỗi cột chiếm phần bằng nhau */
   margin-right: 1rem;
 }
 
+/* Cột cuối không có khoảng cách bên phải */
 .form-group.row .col:last-child {
   margin-right: 0;
 }
 
+/* Bo góc cho hình ảnh trong danh sách đơn hàng */
 .order-items img {
   border-radius: 3px;
 }
 
+/* Hiển thị chi tiết phí (từng dòng phí) */
 .fee-details {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Khoảng cách đều hai bên */
   margin-bottom: 5px;
   font-size: 1.1rem;
 }
 
+/* In đậm thông tin phí */
 .fee-details strong {
   font-weight: 600;
 }
 
+/* Nút đặt hàng */
 .main .order-btn {
   background-color: #fb4a36;
   color: white;
@@ -112,19 +115,20 @@ body {
   transition: all 0.3s ease;
   font-size: 1.2rem;
   width: 100%;
-
 }
 
+/* Hiệu ứng khi rê chuột vào nút */
 .main .order-btn:hover {
   background-color: green;
   border: 2px solid green;
-
 }
 
+/* Đường kẻ phân chia */
 .main hr {
   border: 1px solid orangered;
 }
 
+/* Style cho ô input và textarea trong phần phí */
 .order-fee input,
 .order-fee textarea {
   background-color: rgba(255, 99, 132, 0.1);
@@ -133,27 +137,25 @@ body {
   font-size: 1rem;
 }
 
+/* Khi ô input/textarea được focus */
 .order-fee input:focus,
 .order-fee textarea:focus {
   outline: none;
-  /* Removes the default outline */
   box-shadow: none;
-  /* Removes any default box shadow */
   border-color: rgba(255, 99, 132, 0.7);
-  /* Resets border color to its initial state */
   background-color: rgba(255, 99, 132, 0.3);
-  /* Resets background color to its initial state */
 }
 
+/* Nếu input chỉ đọc (readonly) */
 .order-fee input:read-only {
   background-color: rgba(255, 99, 132, 0.1);
   border: 2px solid rgba(255, 99, 132, 0.5);
   color: #1d1d1d;
   font-size: 1.1rem;
-  cursor: not-allowed;
+  cursor: not-allowed; /* Hiệu ứng chuột */
 }
 
-
+/* Nút button kiểu hiện đại */
 .Button {
   width: 100%;
   height: 40px;
@@ -172,14 +174,15 @@ body {
   transition-duration: .3s;
 }
 
+/* Icon SVG trong nút */
 .svgIcon {
   width: 16px;
 }
-
 .svgIcon path {
   fill: white;
 }
 
+/* Hiệu ứng gợn sóng khi hover */
 .Button::before {
   width: calc(100% + 40px);
   aspect-ratio: 1/1;
@@ -194,19 +197,22 @@ body {
   mix-blend-mode: difference;
 }
 
+/* Khi hover nút, hiệu ứng lan ra */
 .Button:hover::before {
   transform: translate(0, -50%);
 }
 
+/* Hiệu ứng nhấn nút */
 .Button:active {
   transform: translateY(4px);
   transition-duration: .3s;
 }
 
+/* Responsive: Nếu màn hình nhỏ hơn 1150px */
 @media screen and (max-width: 1150px) {
   .main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Chuyển sang dọc */
   }
 
   .order-fee,
@@ -215,6 +221,7 @@ body {
   }
 }
 
+/* Responsive: Nếu màn hình nhỏ hơn 650px */
 @media screen and (max-width: 650px) {
   .main {
     margin: 0 20px 10px 20px !important;
@@ -222,7 +229,7 @@ body {
 
   .form-group {
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column !important; /* Chuyển form thành dạng dọc */
   }
 
   .form-group label {
@@ -236,9 +243,10 @@ body {
   }
 }
 
+/* Responsive: Nếu màn hình nhỏ hơn 450px */
 @media screen and (max-width: 450px) {
   .order-item {
-    font-size: 13px;
+    font-size: 13px; /* Giảm kích cỡ chữ */
   }
 
   .main {
@@ -247,6 +255,6 @@ body {
 
   .order-fee,
   .order-summary {
-    width: 360px !important;
+    width: 360px !important; /* Cố định chiều rộng */
   }
 }
