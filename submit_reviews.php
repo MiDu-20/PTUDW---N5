@@ -2,7 +2,7 @@
 session_start();
 include 'db_connection.php'; // Ensure you have a db_connection.php file to connect to your database
 
--- Không có xác thực đầu vào
+//-- Không có xác thực đầu vào
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orderId = $_POST['orderId'];
     $reviewText = $_POST['reviewText'];
@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $emailQuery->execute();
     $emailResult = $emailQuery->get_result();
     if ($emailResult->num_rows === 0) {
-        die('Error: The email does not exist in the users table.'); --Hiển thị thông báo lỗi trực tiếp
+        die('Error: The email does not exist in the users table.'); //--Hiển thị thông báo lỗi trực tiếp
     }
     $emailQuery->close();
 
     // Insert or update review
     $stmt = $conn->prepare("INSERT INTO reviews (order_id, email, rating, review_text, response) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE review_text = VALUES(review_text)");
-    $stmt->bind_param('isiss', $orderId, $email, $rating, $reviewText, $reviewResponse);--Biến $reviewResponse không được khai báo
+    $stmt->bind_param('isiss', $orderId, $email, $rating, $reviewText, $reviewResponse);//--Biến $reviewResponse không được khai báo
 
     if ($stmt->execute()) {
         echo '<script>alert("Review submitted successfully!");</script>';
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->close();
     $conn->close();
-    -- Không có xử lý cho trường hợp không phải POST
-    -- Không kiểm tra xem đơn hàng có thuộc về người dùng không
+    //-- Không có xử lý cho trường hợp không phải POST
+    //-- Không kiểm tra xem đơn hàng có thuộc về người dùng không
 }
 ?>
