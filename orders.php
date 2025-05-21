@@ -331,19 +331,22 @@ include 'db_connection.php';
 
 <body>
     <?php
-    include_once("nav-logged.php");
+    include_once("nav-logged.php"); 
+    // --vấn đề: include thanh điều hướng khi người dùng đã đăng nhập
     ?>
     <div class="main-container">
         <div class="container-div">
             <div class="tabs">
-                <div class="tab active" data-status="All">All</div>
-                <div class="tab" data-status="Pending">Pending</div>
-                <div class="tab" data-status="Processing">Processing</div>
-                <div class="tab" data-status="On the way">On the way</div>
-                <div class="tab" data-status="Completed">Completed</div>
-                <div class="tab" data-status="Cancelled">Cancelled</div>
+                <div class="tab active" data-status="All">Tất cả</div> 
+                <!-- --vấn đề: Các tab để lọc trạng thái đơn hàng -->
+                <div class="tab" data-status="Pending">Đang chờ</div>
+                <div class="tab" data-status="Processing">Đang xử lý</div>
+                <div class="tab" data-status="On the way">Đang giao</div>
+                <div class="tab" data-status="Completed">Hoàn thành</div>
+                <div class="tab" data-status="Cancelled">Đã hủy</div>
             </div>
             <div id="orders">
+                <!-- --vấn đề: Các vùng nội dung tương ứng từng tab, mặc định chỉ tab 'Tất cả' hiển thị -->
                 <div class="tab-content active" id="all-orders"></div>
                 <div class="tab-content" id="pending-orders"></div>
                 <div class="tab-content" id="processing-orders"></div>
@@ -354,142 +357,158 @@ include 'db_connection.php';
         </div>
     </div>
 
-
-    <!-- Cancel Reason Modal -->
+    <!-- Modal lý do hủy đơn -->
     <div id="cancelModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Cancel Order</h2>
-            <textarea id="cancelReason" placeholder="Enter reason for cancellation..."></textarea>
-            <button id="cancelOrderBtn">Cancel Order</button>
+            <h2>Hủy đơn hàng</h2>
+            <textarea id="cancelReason" placeholder="Nhập lý do hủy đơn..."></textarea>
+            <button id="cancelOrderBtn">Hủy đơn</button>
         </div>
     </div>
 
-    <!-- Review Modal -->
+    <!-- Modal đánh giá sản phẩm -->
     <div id="reviewModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <h2>Submit Your Review</h2>
+            <h2>Gửi đánh giá của bạn</h2>
             <form id="reviewForm" action="submit_reviews.php" method="POST">
 
-                <input type="hidden" name="email" value="<?php echo $userEmail; ?>"> <!-- Hidden email field -->
-                <input type="hidden" id="reviewOrderId" name="orderId">
-                <!-- Display Stars -->
+                <input type="hidden" name="email" value="<?php echo $userEmail; ?>"> 
+                <!-- --vấn đề: trường ẩn chứa email người dùng, dùng để gửi thông tin đánh giá -->
+                <input type="hidden" id="reviewOrderId" name="orderId"> 
+                <!-- --vấn đề: trường ẩn chứa mã đơn hàng đang đánh giá -->
+
+                <!-- Hiển thị sao đánh giá -->
                 <div class="star-rating">
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="5 stars">&#9733;</label>
+                    <label for="star5" title="5 sao">&#9733;</label>
                     <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4" title="4 stars">&#9733;</label>
+                    <label for="star4" title="4 sao">&#9733;</label>
                     <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3" title="3 stars">&#9733;</label>
+                    <label for="star3" title="3 sao">&#9733;</label>
                     <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2" title="2 stars">&#9733;</label>
+                    <label for="star2" title="2 sao">&#9733;</label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="1 star">&#9733;</label>
+                    <label for="star1" title="1 sao">&#9733;</label>
                 </div>
                 <br>
-                <label for="reviewText">Review:</label>
+                <label for="reviewText">Nội dung đánh giá:</label>
                 <textarea id="reviewText" name="reviewText" rows="4" cols="50"></textarea>
                 <br>
 
                 <br>
-                <button type="submit" id="submitReviewBtn" class="review-btn">Submit Review</button>
+                <button type="submit" id="submitReviewBtn" class="review-btn">Gửi đánh giá</button>
             </form>
         </div>
     </div>
    
     <?php
-include_once ('footer.html');
-?>
+    include_once ('footer.html');
+    // --vấn đề: thêm footer trang
+    ?>
 
-    <!-- Bootstrap JS -->
+    <!-- Thư viện Bootstrap JS và jQuery -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <script>
+        // --vấn đề: Khi trang tải xong, gọi hàm load_cart_item_number để cập nhật số lượng sản phẩm trong giỏ hàng trên giao diện
         $(document).ready(function() {
-            console.log('Page is ready. Calling load_cart_item_number.');
+            console.log('Trang đã sẵn sàng, gọi hàm load_cart_item_number.');
             load_cart_item_number();
 
             function load_cart_item_number() {
                 $.ajax({
-                    url: 'action.php',
+                    url: 'action.php', // file xử lý lấy số lượng giỏ hàng
                     method: 'get',
                     data: {
-                        cartItem: "cart_item"
+                        cartItem: "cart_item" // gửi tham số yêu cầu lấy số lượng sản phẩm giỏ hàng
                     },
                     success: function(response) {
-                        $("#cart-item").html(response);
+                        $("#cart-item").html(response); // hiển thị số lượng sản phẩm trong giỏ hàng lên thẻ có id="cart-item"
                     }
                 });
             }
         });
     </script>
+
     <script>
+        // --vấn đề: lắng nghe sự kiện chọn sao đánh giá
         document.addEventListener('DOMContentLoaded', function() {
             const stars = document.querySelectorAll('.star-rating input[type="radio"]');
 
             stars.forEach(star => {
                 star.addEventListener('change', function() {
                     const rating = this.value;
-                    console.log('Selected rating:', rating);
-                    // You can send this rating value to your server via AJAX or form submission
+                    console.log('Đánh giá được chọn:', rating);
+                    // Có thể gửi rating này lên server qua AJAX hoặc form submit
                 });
             });
         });
     </script>
+
     <script>
+        // --vấn đề: xử lý sự kiện click chuyển tab trạng thái đơn hàng
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
+                // Xóa lớp active trên tab hiện tại
                 document.querySelector('.tab.active').classList.remove('active');
-                this.classList.add('active');
+                this.classList.add('active'); // Thêm active vào tab vừa click
 
-                const status = this.getAttribute('data-status');
+                const status = this.getAttribute('data-status'); // lấy trạng thái đơn hàng của tab
+                // Ẩn nội dung tab đang active
                 document.querySelector('.tab-content.active').classList.remove('active');
+                // Hiển thị nội dung tab theo trạng thái đã chọn, đổi chuỗi sang dạng id
                 document.getElementById(`${status.toLowerCase().replace(/ /g, '-')}-orders`).classList.add('active');
 
-                fetchOrders(status);
+                fetchOrders(status); // gọi hàm lấy dữ liệu đơn hàng theo trạng thái
             });
         });
 
+        // --vấn đề: hàm lấy dữ liệu đơn hàng từ server theo trạng thái
         function fetchOrders(status) {
-            fetch(`fetch_orders.php?status=${status}`)
+            fetch(`fetch_orders.php?status=${status}`) // gửi trạng thái lấy đơn hàng
                 .then(response => response.json())
                 .then(data => {
-                    data.sort((a, b) => new Date(b.order_date) - new Date(a.order_date)); // Sort orders in descending order based on order_date
+                    // Sắp xếp đơn hàng theo ngày mới nhất trước
+                    data.sort((a, b) => new Date(b.order_date) - new Date(a.order_date)); 
 
+                    // Lấy thẻ chứa danh sách đơn hàng theo trạng thái
                     const ordersContainer = document.getElementById(`${status.toLowerCase().replace(/ /g, '-')}-orders`);
+                    // Hiển thị các đơn hàng lên giao diện
                     ordersContainer.innerHTML = data.map(order => `
                         <div class="order container" style="padding: 20px 30px;">
                             <div class="order-header" style="font-size: 1.3rem;">
-                                <div>Order ID: #${order.order_id}</div>
-                                <div class="status ${getStatusClass(order.order_status)}">Status: <span class="status-text">${order.order_status}</span></div>
+                                <div>Mã đơn hàng: #${order.order_id}</div>
+                                <div class="status ${getStatusClass(order.order_status)}">Trạng thái: <span class="status-text">${order.order_status}</span></div>
                             </div>
                             <div class="order-details">
                                 <div class="customer-details">
-                                    <div><p><strong>Name: </strong></p></div>
+                                    <div><p><strong>Họ tên: </strong></p></div>
                                     <div><p>${order.firstName} ${order.lastName}</p></div>
                                 </div>
                                 <div class="customer-details">
-                                    <div><p><strong>Address: </strong></p></div>
+                                    <div><p><strong>Địa chỉ: </strong></p></div>
                                     <div><p>${order.address}</p></div>
                                 </div>
                                 <div class="customer-details">
-                                    <div><p><strong>Contact: </strong></p></div>
+                                    <div><p><strong>Liên hệ: </strong></p></div>
                                     <div><p>${order.phone}</p></div>
                                 </div>
                                 <div class="customer-details">
-                                    <div><p><strong>Payment Method: </strong></p></div>
+                                    <div><p><strong>Phương thức thanh toán: </strong></p></div>
                                     <div><p>${order.pmode}</p></div>
                                 </div>
                                 <div class="customer-details">
-                                    <div><p><strong>Order Date: </strong></p></div>
+                                    <div><p><strong>Ngày đặt hàng: </strong></p></div>
                                     <div><p>${new Date(order.order_date).toLocaleString()}</p></div>
                                 </div>
                                 <div class="customer-details">
-                                    <div><p><strong>Order Note: </strong></p></div>
-                                    <div><p>${order.note || 'Null'}</p></div>
+                                    <div><p><strong>Ghi chú đơn hàng: </strong></p></div>
+                                    <div><p>${order.note || 'Không có'}</p></div>
                                 </div>
                             </div>
                             <div class="order-items" style="font-size: 1.1rem;">
@@ -499,26 +518,26 @@ include_once ('footer.html');
                                         <div>${item.total_price}</div>
                                     </div>
                                 `).join('')}
-                                 <div class="order-total">Grand Total: ${order.grand_total}</div>
+                                 <div class="order-total">Tổng tiền: ${order.grand_total}</div>
                         ${order.order_status === 'Cancelled' ? `
                         <div class="review mt-3">
-                        <div><p><strong>Cancellation Reason: </strong></div>
+                        <div><p><strong>Lý do hủy: </strong></p></div>
                         <div><p>${order.cancel_reason}</p></div>
                         </div>` : ''}
                     </div>
-                   ${order.order_status !== 'Completed' && order.order_status !== 'Cancelled' ? `<button class="cancel-btn" onclick="openCancelModal(${order.order_id})">Cancel Order</button>` : ''}
+                   ${order.order_status !== 'Completed' && order.order_status !== 'Cancelled' ? `<button class="cancel-btn" onclick="openCancelModal(${order.order_id})">Hủy đơn</button>` : ''}
                     ${(order.order_status === 'Completed' || order.order_status === 'Cancelled') && !order.review_text ? `
-                        <button class="review-btn" onclick="openReviewModal(${order.order_id})">Write a Review</button>
+                        <button class="review-btn" onclick="openReviewModal(${order.order_id})">Viết đánh giá</button>
                     ` : ''}
                     ${(order.order_status === 'Completed' || order.order_status === 'Cancelled') && order.review_text ? `
                         <div class="review-section">
-                         <div class=" review">
-                            <div><p><strong>Your Review: </strong></p></div>
+                         <div class="review">
+                            <div><p><strong>Đánh giá của bạn: </strong></p></div>
                             <div><p><span>${order.review_text}</span></p></div>
                          </div>
                             ${order.response ? `
-                            <div class=" review">
-                              <div><p><strong>Response: </strong></p></div>
+                            <div class="review">
+                              <div><p><strong>Phản hồi: </strong></p></div>
                               <div><p><span>${order.response}</span></p></div>
                             </div>` : ''}
                         </div>
@@ -526,116 +545,90 @@ include_once ('footer.html');
                 </div>
             `).join('');
                 })
-                .catch(error => console.error('Error fetching orders:', error));
+                .catch(error => console.error('Lỗi khi lấy dữ liệu đơn hàng:', error));
         }
 
+        // --vấn đề: hàm trả về tên lớp CSS tương ứng với trạng thái đơn hàng để style màu sắc phù hợp
         function getStatusClass(status) {
             switch (status) {
                 case 'Pending':
-                    return 'status-pending';
+                    return 'status-pending'; // màu cho đơn chờ
                 case 'Processing':
-                    return 'status-processing';
+                    return 'status-processing'; // màu cho đơn đang xử lý
                 case 'On the way':
-                    return 'status-on-the-way';
+                    return 'status-on-the-way'; // màu cho đơn đang giao
                 case 'Completed':
-                    return 'status-completed';
+                    return 'status-completed'; // màu cho đơn hoàn thành
                 case 'Cancelled':
-                    return 'status-cancelled';
+                    return 'status-cancelled'; // màu cho đơn đã hủy
                 default:
                     return '';
             }
         }
 
-
-
-
-        // Load all orders by default
+        // --vấn đề: tự động load danh sách đơn hàng trạng thái "Tất cả" khi vào trang
         fetchOrders('All');
     </script>
 
     <script>
-        // Function to open Cancel Modal
+        // --vấn đề: mở modal hủy đơn khi nhấn nút Hủy
         function openCancelModal(orderId) {
             document.getElementById("cancelModal").setAttribute("data-order-id", orderId);
-            document.getElementById("cancelModal").style.display = "block";
+            document.getElementById("cancelModal").style.display = "block"; // hiển thị modal hủy đơn
         }
 
-
-
-        // Close Cancel Modal
+        // --vấn đề: đóng modal khi nhấn nút đóng (dấu x)
         document.querySelector(".modal-close").onclick = function() {
             document.getElementById("cancelModal").style.display = "none";
         };
 
-        // Handle Cancel Order button click
+        // --vấn đề: xử lý nút Hủy đơn trong modal
         document.getElementById("cancelOrderBtn").onclick = function() {
             var cancelReason = document.getElementById("cancelReason").value;
             var orderId = document.getElementById("cancelModal").getAttribute("data-order-id");
 
             if (cancelReason.trim() === "") {
-                alert("Please enter a reason for cancellation.");
+                alert("Vui lòng nhập lý do hủy đơn.");
                 return;
             }
 
+            // Gửi yêu cầu hủy đơn lên server bằng AJAX
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "cancel_order.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    alert("Order has been cancelled.");
-                    window.location.href = "orders.php"; // Redirect after cancellation
+                    alert("Đơn hàng đã được hủy thành công.");
+                    location.reload(); // tải lại trang để cập nhật trạng thái đơn hàng
                 } else {
-                    alert("Failed to cancel the order. Please try again.");
+                    alert("Có lỗi xảy ra. Vui lòng thử lại.");
                 }
             };
-            xhr.onerror = function() {
-                console.error("Request failed.");
-            };
-            xhr.send("orderId=" + encodeURIComponent(orderId) + "&reason=" + encodeURIComponent(cancelReason));
-
-            document.getElementById("cancelModal").style.display = "none";
+            xhr.send("orderId=" + encodeURIComponent(orderId) + "&cancelReason=" + encodeURIComponent(cancelReason));
         };
 
-        // Open Review Modal
+        // --vấn đề: mở modal đánh giá khi nhấn nút Viết đánh giá
         function openReviewModal(orderId) {
-            document.getElementById("reviewOrderId").value = orderId; // Set the hidden order ID field
-            document.getElementById("reviewModal").style.display = "block"; // Show the modal
+            document.getElementById("reviewModal").style.display = "block";
+            document.getElementById("reviewOrderId").value = orderId; // gán mã đơn hàng vào form đánh giá
         }
 
-        // Close Review Modal
-        function closeReviewModal() {
-            document.getElementById("reviewModal").style.display = "none"; // Hide the modal
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            var modal = document.getElementById("reviewModal");
-            if (event.target === modal) { // Check if the click is outside the modal content
-                closeReviewModal();
-            }
+        // --vấn đề: đóng modal đánh giá khi nhấn dấu x
+        document.querySelectorAll(".modal-close")[1].onclick = function() {
+            document.getElementById("reviewModal").style.display = "none";
         };
 
-        // Optional: Close modal when clicking on the close button inside the modal
-        document.querySelector(".modal-close").addEventListener("click", closeReviewModal);
-
-
-        // Close modals when clicking outside
+        // --vấn đề: đóng modal khi click ngoài vùng modal
         window.onclick = function(event) {
-            if (event.target == document.getElementById("cancelModal")) {
-                document.getElementById("cancelModal").style.display = "none";
-            } else if (event.target == document.getElementById("reviewModal")) {
-                closeReviewModal();
+            var cancelModal = document.getElementById("cancelModal");
+            var reviewModal = document.getElementById("reviewModal");
+            if (event.target == cancelModal) {
+                cancelModal.style.display = "none";
+            }
+            if (event.target == reviewModal) {
+                reviewModal.style.display = "none";
             }
         };
-
-        // Load all orders by default
-        fetchOrders('All');
     </script>
 
-
-
-
-
 </body>
-
-</html>
