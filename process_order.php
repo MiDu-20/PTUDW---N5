@@ -2,88 +2,99 @@
 session_start();
 require 'db_connection.php';
 
-// Check if user is logged in
+// --vấn đề: Kiểm tra xem người dùng đã đăng nhập chưa
+// Nếu chưa đăng nhập thì chuyển hướng về trang login để bắt buộc đăng nhập mới đặt hàng được
 if (!isset($_SESSION['userloggedin']) || $_SESSION['userloggedin'] !== true) {
     header('Location: login.php');
     exit;
 }
 
-// Retrieve form data
-$firstName = $_POST['firstName'] ?? '';
-$lastName = $_POST['lastName'] ?? '';
+// --vấn đề: Lấy dữ liệu gửi lên từ form đặt hàng bằng phương thức POST
+// Sử dụng toán tử null coalescing để tránh lỗi khi biến không tồn tại
+$hoTenDem = $_POST['firstName'] ?? '';
+$hoTen = $_POST['lastName'] ?? '';
 $email = $_POST['email'] ?? '';
-$address = $_POST['address'] ?? '';
-$contact = $_POST['contact'] ?? '';
-$orderNote = $_POST['order_note'] ?? '';
-$paymentMode = $_POST['payment_mode'] ?? '';
-$total = $_POST['total'] ?? 0;
-$subtotal = $_POST['subtotal'] ?? 0;
-$selectedItems = json_decode($_POST['selected_items'], true) ?? [];
+$diaChi = $_POST['address'] ?? '';
+$sdt = $_POST['contact'] ?? '';
+$ghiChuDonHang = $_POST['order_note'] ?? '';
+$hinhThucThanhToan = $_POST['payment_mode'] ?? '';
+$tongTien = $_POST['total'] ?? 0;
+$tongTienTamTinh = $_POST['subtotal'] ?? 0;
+// Mảng các mặt hàng đã chọn, giải mã JSON thành mảng PHP, nếu không có thì trả về mảng rỗng
+$danhSachMatHang = json_decode($_POST['selected_items'], true) ?? [];
 
-// Ensure the payment mode is not "card"
-if ($paymentMode === 'card') {
+// --vấn đề: Kiểm tra hình thức thanh toán
+// Nếu người dùng chọn thanh toán bằng thẻ (card) thì chuyển về trang xem lại đơn hàng (order_review.php)
+if ($hinhThucThanhToan === 'card') {
     header('Location: order_review.php');
     exit;
 }
 
-// Begin transaction
+// --vấn đề: Bắt đầu transaction để đảm bảo tính toàn vẹn dữ liệu khi lưu đơn hàng và chi tiết đơn hàng
 $conn->begin_transaction();
 
 try {
-    // Insert order details
+    // --vấn đề: Chuẩn bị câu lệnh SQL chèn thông tin đơn hàng vào bảng orders
     $stmt = $conn->prepare('INSERT INTO orders (firstName, lastName, email, phone, address, sub_total, grand_total, pmode, note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
     if ($stmt === false) {
-        throw new Exception('Failed to prepare order insertion statement: ' . $conn->error);
+        throw new Exception('Không chuẩn bị được câu lệnh chèn đơn hàng: ' . $conn->error);
     }
-    $stmt->bind_param('sssssddss', $firstName, $lastName, $email, $contact, $address, $subtotal, $total, $paymentMode, $orderNote);
+    // Gán tham số cho câu lệnh chèn đơn hàng
+    $stmt->bind_param('sssssddss', $hoTenDem, $hoTen, $email, $sdt, $diaChi, $tongTienTamTinh, $tongTien, $hinhThucThanhToan, $ghiChuDonHang);
     $stmt->execute();
-    $orderId = $stmt->insert_id;
 
-    // Prepare statement for inserting order items
+    // Lấy ID đơn hàng vừa được tạo để dùng cho bảng chi tiết đơn hàng
+    $maDonHang = $stmt->insert_id;
+
+    // --vấn đề: Chuẩn bị câu lệnh SQL chèn từng mặt hàng trong đơn vào bảng order_items
     $stmt = $conn->prepare('INSERT INTO order_items (order_id, itemName, quantity, price, total_price, image) VALUES (?, ?, ?, ?, ?, ?)');
     if ($stmt === false) {
-        throw new Exception('Failed to prepare order items insertion statement: ' . $conn->error);
+        throw new Exception('Không chuẩn bị được câu lệnh chèn chi tiết đơn hàng: ' . $conn->error);
     }
     
-    foreach ($selectedItems as $item) {
-        $itemId = $item['id'] ?? 0;
-        $itemQuantity = $item['quantity'] ?? 0;
+    // --vấn đề: Duyệt qua từng mặt hàng trong danh sách chọn của khách
+    foreach ($danhSachMatHang as $matHang) {
+        $maMatHang = $matHang['id'] ?? 0;
+        $soLuong = $matHang['quantity'] ?? 0;
 
-        // Fetch item details from the cart
+        // --vấn đề: Lấy chi tiết mặt hàng từ bảng giỏ hàng theo ID và email người dùng
         $itemStmt = $conn->prepare('SELECT * FROM cart WHERE id=? AND email=?');
-        $itemStmt->bind_param('is', $itemId, $email);
+        $itemStmt->bind_param('is', $maMatHang, $email);
         $itemStmt->execute();
         $itemResult = $itemStmt->get_result();
-        $itemDetails = $itemResult->fetch_assoc();
+        $chiTietMatHang = $itemResult->fetch_assoc();
 
-        if ($itemDetails === null) {
-            throw new Exception('Item not found in cart.');
+        if ($chiTietMatHang === null) {
+            throw new Exception('Không tìm thấy mặt hàng trong giỏ.');
         }
 
-        $itemName = $itemDetails['itemName'];
-        $itemPrice = $itemDetails['price'];
-        $totalPrice = $itemPrice * $itemQuantity;
-        $itemImage = $itemDetails['image'];
+        // Lấy thông tin chi tiết mặt hàng để chèn vào bảng order_items
+        $tenMatHang = $chiTietMatHang['itemName'];
+        $giaMatHang = $chiTietMatHang['price'];
+        $tongGia = $giaMatHang * $soLuong;
+        $anhMatHang = $chiTietMatHang['image'];
 
-        $stmt->bind_param('issdds', $orderId, $itemName, $itemQuantity, $itemPrice, $totalPrice, $itemImage);
+        // Gán tham số và chèn chi tiết đơn hàng
+        $stmt->bind_param('issdds', $maDonHang, $tenMatHang, $soLuong, $giaMatHang, $tongGia, $anhMatHang);
         $stmt->execute();
 
-        // Remove each item from the cart
+        // --vấn đề: Xóa mặt hàng đã đặt ra khỏi giỏ hàng để tránh đặt lại
         $deleteStmt = $conn->prepare('DELETE FROM cart WHERE id=? AND email=?');
-        $deleteStmt->bind_param('is', $itemId, $email);
+        $deleteStmt->bind_param('is', $maMatHang, $email);
         $deleteStmt->execute();
     }
 
-    // Commit transaction
+    // --vấn đề: Nếu tất cả bước trên thành công, commit transaction để lưu vào database
     $conn->commit();
 
-    // Redirect to confirmation page with the order ID
-    header('Location: order_confirm.php?order_id=' . $orderId);
+    // --vấn đề: Chuyển hướng đến trang xác nhận đơn hàng kèm theo ID đơn hàng mới tạo
+    header('Location: order_confirm.php?order_id=' . $maDonHang);
     exit;
 
 } catch (Exception $e) {
-    // Rollback transaction in case of error
+    // --vấn đề: Nếu có lỗi xảy ra trong quá trình lưu đơn hàng, rollback để không lưu dữ liệu lỗi
     $conn->rollback();
-    echo 'Error: ' . $e->getMessage();
+    // Hiển thị lỗi để debug (có thể thay bằng logging khi deploy)
+    echo 'Lỗi: ' . $e->getMessage();
 }
 ?>
