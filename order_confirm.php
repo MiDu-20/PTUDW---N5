@@ -1,31 +1,36 @@
 <?php
+// Bắt đầu phiên làm việc
 session_start();
+
+// Kết nối tới cơ sở dữ liệu
 require 'db_connection.php';
 
-// Check if user is logged in
+// Kiểm tra nếu người dùng chưa đăng nhập thì chuyển hướng sang trang đăng nhập
 if (!isset($_SESSION['userloggedin']) || $_SESSION['userloggedin'] !== true) {
     header('Location: login.php');
     exit;
 }
 
-// Get the order_id from the URL parameter
+// Lấy order_id từ tham số URL nếu có, ngược lại gán = 0
 $orderId = isset($_GET['order_id']) ? intval($_GET['order_id']) : 0;
 
-// Fetch order details
+// Truy vấn thông tin đơn hàng dựa trên order_id
 $stmt = $conn->prepare('SELECT * FROM orders WHERE order_id=?');
 if ($stmt === false) {
+    // Hiển thị lỗi nếu không thể chuẩn bị truy vấn
     die('Failed to prepare order details statement: ' . $conn->error);
 }
-$stmt->bind_param('i', $orderId);
+$stmt->bind_param('i', $orderId);  // Gán tham số vào câu truy vấn
 $stmt->execute();
 $orderResult = $stmt->get_result();
-$order = $orderResult->fetch_assoc();
+$order = $orderResult->fetch_assoc();  // Lấy dòng dữ liệu đơn hàng
 
+// Nếu không tìm thấy đơn hàng thì dừng chương trình
 if ($order === null) {
     die('Order not found.');
 }
 
-// Fetch order items
+// Truy vấn các mặt hàng trong đơn hàng
 $stmt = $conn->prepare('SELECT * FROM order_items WHERE order_id=?');
 if ($stmt === false) {
     die('Failed to prepare order items statement: ' . $conn->error);
@@ -34,24 +39,28 @@ $stmt->bind_param('i', $orderId);
 $stmt->execute();
 $orderItemsResult = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Các file CSS dùng Bootstrap & FontAwesome -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
-    <!--Bootstrap CSS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
     <title>Order Confirmation</title>
+
+    <!-- Phần CSS tùy chỉnh cho hiệu ứng và bố cục -->
     <style>
         body {
             padding-top: 120px;
             padding-bottom: 50px;
         }
 
+        /* Các hiệu ứng hoạt hình cho phần thông báo đơn hàng */
         .card h1,
         .card p {
             animation: translate-y-100 300ms cubic-bezier(0.165, 0.84, 0.44, 1.2) forwards;
@@ -71,6 +80,7 @@ $orderItemsResult = $stmt->get_result();
             animation-delay: 1150ms;
         }
 
+        /* Nút điều hướng */
         .card .cta-row {
             display: flex;
             justify-content: center;
@@ -81,47 +91,26 @@ $orderItemsResult = $stmt->get_result();
         }
 
         .card a button {
-            position: relative;
             height: 36px;
             width: 200px;
             border: 0;
             border-radius: 5px;
-            line-height: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: #46a758;
-            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset,
-                0 1px 3px 0 rgba(24, 25, 22, 0.1), 0 1px 2px -1px rgba(24, 25, 22, 0.1);
-            border: 1px solid #2a7e3b;
             color: #ffffff;
             font-size: 15px;
             font-weight: 500;
             padding: 0.5rem 1rem;
-            transition: transform 200ms cubic-bezier(0.165, -0.84, 0.44, 2),
-                opacity 200ms ease, background-color 100ms ease;
             cursor: pointer;
+            transition: transform 200ms ease, background-color 100ms ease;
         }
 
         .card a button:hover {
             background: #2a7e3b;
         }
 
-        .card a button:active {
-            transform: scale(0.98);
-            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04) inset;
-        }
-
-        .card a button:active:before {
-            opacity: 0.4;
-        }
-
         .card a button.secondary {
-            color: #fff;
             background: #fb4a36;
-            box-shadow: var(--box-shadow);
             border: 1px solid #fb4a36;
-            transition: all 0.3s ease;
         }
 
         .card a button.secondary:hover {
@@ -129,174 +118,95 @@ $orderItemsResult = $stmt->get_result();
             color: #fb4a36;
         }
 
-        .card a button.secondary:active {
-            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04) inset;
-        }
-
+        /* Phong cách của thẻ hiển thị đơn hàng */
         .card {
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 448px;
             padding: 32px;
             border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .card:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01), 0 2px 4px rgba(0, 0, 0, 0.04);
-            border-radius: 5px;
-            clip-path: inset(0px -4px 0px -4px);
-        }
-
-        .card:nth-of-type(3):before {
-            clip-path: inset(0px -4px -4px -4px);
-        }
-
-        .card:first-of-type {
-            animation: translate-y-100 500ms 1000ms cubic-bezier(0.19, 1, 0.22, 1.2) forwards;
-            opacity: 0;
-            z-index: 0;
+            position: relative;
         }
 
         .card .icon {
             width: 64px;
             height: 64px;
-            border: 2px solid #ffffff;
-            border-radius: 9999px;
             background: linear-gradient(to top, #f2f2f280, #e0e0e080);
-            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06) inset;
+            border-radius: 9999px;
             display: grid;
             place-content: center;
             margin-bottom: 1rem;
         }
 
         .card .icon:before {
-            content: "\2713";
+            content: "\2713"; /* Biểu tượng dấu tích */
             display: grid;
             place-items: center;
             width: 56px;
             height: 56px;
             border-radius: 9999px;
             background-color: #ffffff;
-            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03);
-            font-family: "arial";
             font-size: 32px;
             color: #46a758;
         }
 
-        .card:not(:first-of-type) {
-            transform-origin: top;
-            animation: unfold 500ms 1700ms cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-            -webkit-transform: perspective(500px) rotateX(-0.25turn);
-            z-index: 1;
-            opacity: 0.9;
-        }
-
-        .card:nth-of-type(3) {
-            animation-delay: 1950ms;
-            animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 1.4);
-            z-index: 2;
-        }
-
-        .card:not(:first-of-type):after {
-            position: absolute;
-            top: -0.5px;
-            left: 1%;
-            content: "";
-            width: 98%;
-            height: 1px;
-            border-top: 1px #d7dad7 dashed;
-        }
-
         .card ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin: 0;
             padding: 0;
             width: 100%;
         }
 
-        .card ul>li {
-            width: 100%;
+        .card ul > li {
             display: flex;
             justify-content: space-between;
         }
 
-        .card ul>li span {
+        .card ul > li span {
             font-size: 16px;
             font-weight: 500;
-            color: #212121;
         }
 
-        .card ul>li span:first-of-type {
-            color: black;
-        }
-
+        /* Hiệu ứng animation */
         @keyframes translate-y-100 {
-            0% {
-                transform: scale(0.9) translateY(0.5rem);
-            }
-
-            100% {
-                opacity: 1;
-            }
+            0% { transform: scale(0.9) translateY(0.5rem); }
+            100% { opacity: 1; }
         }
 
-        @keyframes unfold {
-            to {
-                transform: none;
-                opacity: 1;
-            }
-        }
-
-        #wrapper {
-            margin-bottom: 50px;
-        }
-
-        .card a {
-            text-decoration: none;
-        }
-
-        .card a:hover {
-            text-decoration: none;
-        }
         @media screen and (max-width: 500px) {
             .card {
-               width: 350px !important;
-               padding: 32px 20px !important;
-               margin: 0 20px 0 20px !important;
+                width: 350px !important;
+                padding: 32px 20px !important;
+                margin: 0 20px;
             }
+
             .card ul>li span {
                 font-size: 14px !important;
             }
-           
-            .card a button{
+
+            .card a button {
                 width: 140px;
             }
         }
-        
     </style>
 </head>
 
+
 <body>
+    <!-- Thanh điều hướng -->
     <?php include('nav-logged.php'); ?>
+
+    <!-- Phần nội dung xác nhận đơn hàng -->
     <div class="title d-flex justify-content-center align-items-center">
         <div id="wrapper">
+            <!-- Thẻ cảm ơn -->
             <div class="card" style="background: rgba(255, 99, 132, 0.3);">
                 <div class="icon"></div>
                 <h3>Thank You for Your Order!</h3>
                 <p>Your order has been successfully placed.</p>
             </div>
+
+            <!-- Thẻ hiển thị chi tiết đơn hàng -->
             <div class="card" style="background: rgba(255, 99, 132, 0.3);">
                 <ul>
                     <li>
@@ -315,6 +225,7 @@ $orderItemsResult = $stmt->get_result();
                         <span><strong>Order Items:</strong></span>
                         <span>
                             <ul>
+                                <!-- Hiển thị từng mặt hàng trong đơn hàng -->
                                 <?php while ($item = $orderItemsResult->fetch_assoc()) : ?>
                                     <li><?= htmlspecialchars($item['itemName']) ?> - <?= htmlspecialchars($item['quantity']) ?></li>
                                 <?php endwhile; ?>
@@ -331,46 +242,43 @@ $orderItemsResult = $stmt->get_result();
                     </li>
                 </ul>
             </div>
+
+            <!-- Thẻ chứa các nút điều hướng -->
             <div class="card" style="background: rgba(255, 99, 132, 0.3);">
                 <div class="cta-row">
                     <a href="menu.php">
-                        <button class="secondary">
-                            Back To Menu
-                        </button>
+                        <button class="secondary">Back To Menu</button>
                     </a>
                     <a href="orders.php">
-                        <button>
-                            Track Order
-                        </button>
+                        <button>Track Order</button>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php
-include_once ('footer.html');
-?>
+    <!-- Footer -->
+    <?php include_once ('footer.html'); ?>
 
-<script>
-    $(document).ready(function() {
-      console.log('Page is ready. Calling load_cart_item_number.');
-      load_cart_item_number();
+    <!-- Script để tải lại số lượng sản phẩm trong giỏ hàng -->
+    <script>
+        $(document).ready(function () {
+            console.log('Page is ready. Calling load_cart_item_number.');
+            load_cart_item_number();
 
-      function load_cart_item_number() {
-        $.ajax({
-          url: 'action.php',
-          method: 'get',
-          data: {
-            cartItem: "cart_item"
-          },
-          success: function(response) {
-            $("#cart-item").html(response);
-          }
+            function load_cart_item_number() {
+                $.ajax({
+                    url: 'action.php',
+                    method: 'get',
+                    data: {
+                        cartItem: "cart_item"
+                    },
+                    success: function (response) {
+                        $("#cart-item").html(response);
+                    }
+                });
+            }
         });
-      }
-    });
-  </script>
+    </script>
 </body>
-
 </html>
