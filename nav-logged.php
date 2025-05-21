@@ -14,7 +14,7 @@ $sql = "SELECT profile_image FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 
 if (empty($useremail)) {
-  die("User email not found in session."); --Hiển thị thông báo lỗi trực tiếp
+  die("User email not found in session."); //--Hiển thị thông báo lỗi trực tiếp
 }
 
 // Function to retrieve admin information
