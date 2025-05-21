@@ -6,7 +6,8 @@ include 'db_connection.php';
 
 // Check if database connection was successful
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error()); --Hiển thị thông báo lỗi trực tiếp
+  // Hiển thị thông báo lỗi trực tiếp
+  die("Connection failed: " . mysqli_connect_error());
 }
 
 // Prepare query to fetch popular items
