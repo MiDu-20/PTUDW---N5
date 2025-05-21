@@ -5,7 +5,7 @@ session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
 
--- Biến $password bị ghi đè - sử dụng cùng tên biến cho hai mục đích khác nhau
+//-- Biến $password bị ghi đè - sử dụng cùng tên biến cho hai mục đích khác nhau
 // Establish a connection to the database
 $servername = "localhost";
 $username = "root";
@@ -23,12 +23,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
--- Lấy email và password từ POST hai lần - mã lặp lại
+//-- Lấy email và password từ POST hai lần - mã lặp lại
 // Retrieve the email and password from the form
 $email = $_POST['email'];
 $password = $_POST['password'];
 
--- So sánh mật khẩu văn bản thuần túy - không an toàn, nên sử dụng password_verify() 
+//-- So sánh mật khẩu văn bản thuần túy - không an toàn, nên sử dụng password_verify() 
 // Check if the email and password match an admin or user
 // Prepare the SQL query for users table
 $sql_users = "SELECT * FROM users WHERE email = ? AND password = ?";
@@ -37,7 +37,7 @@ $stmt_users->bind_param("ss", $email, $password);
 $stmt_users->execute();
 $result_users = $stmt_users->get_result();
 
--- So sánh mật khẩu văn bản thuần túy - không an toàn, nên sử dụng password_verify()
+//-- So sánh mật khẩu văn bản thuần túy - không an toàn, nên sử dụng password_verify()
 // Prepare the SQL query for staff table
 $sql_staff = "SELECT * FROM staff WHERE email = ? AND password = ?";
 $stmt_staff = $conn->prepare($sql_staff);
@@ -81,8 +81,8 @@ try {
     exit();
 }
 
--- Không có bảo vệ chống tấn công brute force - không giới hạn số lần đăng nhập thất bại
--- Không có bảo vệ CSRF - không có token xác thực
--- Không tạo lại ID phiên khi đăng nhập thành công - dễ bị tấn công session fixation
+//-- Không có bảo vệ chống tấn công brute force - không giới hạn số lần đăng nhập thất bại
+//-- Không có bảo vệ CSRF - không có token xác thực
+//-- Không tạo lại ID phiên khi đăng nhập thành công - dễ bị tấn công session fixation
 // Close the connection
 $conn->close();
