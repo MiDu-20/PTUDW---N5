@@ -27,7 +27,7 @@ if ($result = $conn->query($sql)) {
   $result->close();
 } else {
   // Display error message if query fails
-  echo "Error: " . $sql . "<br>" . $conn->error; --Hiển thị thông báo lỗi SQL trực tiếp
+  echo "Error: " . $sql . "<br>" . $conn->error; // Hiển thị thông báo lỗi SQL trực tiếp
 }
 
 // Close database connection
