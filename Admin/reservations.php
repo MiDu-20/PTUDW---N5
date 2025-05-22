@@ -1,57 +1,63 @@
 <?php
+// Bắt đầu phiên làm việc
 session_start();
+// Kiểm tra xem admin đã đăng nhập chưa, nếu chưa thì chuyển hướng về trang đăng nhập
 if (!isset($_SESSION['adminloggedin'])) {
   header("Location: ../login.php");
   exit();
 }
+// Kết nối cơ sở dữ liệu
 include 'db_connection.php';
 
+// Đặt múi giờ mặc định là Colombo
 date_default_timezone_set('Asia/Colombo');
-// Fetch total reservations count
+// Lấy tổng số lượt đặt bàn
 $sql_total = "SELECT COUNT(*) AS total FROM reservations";
 $result_total = $conn->query($sql_total);
 $row_total = $result_total->fetch_assoc();
 $totalReservations = $row_total['total'];
 
-// Fetch today's reservations count
+// Lấy số lượt đặt bàn trong ngày hôm nay
 $sql_today = "SELECT COUNT(*) AS today FROM reservations WHERE DATE(reservedDate) = CURDATE()";
 $result_today = $conn->query($sql_today);
 $row_today = $result_today->fetch_assoc();
 $todaysReservations = $row_today['today'];
 
-// Fetch upcoming reservations count excluding cancelled reservations
+// Lấy số lượt đặt bàn sắp tới (loại trừ các trạng thái huỷ, hoàn tất hoặc đang xử lý)
 $sql_upcoming = "SELECT COUNT(*) AS upcoming FROM reservations WHERE reservedDate > CURDATE() AND status != 'Cancelled' AND status != 'Completed' AND status != 'On Process'";
 $result_upcoming = $conn->query($sql_upcoming);
 $row_upcoming = $result_upcoming->fetch_assoc();
 $upcomingReservations = $row_upcoming['upcoming'];
 
-// Fetch cancelled reservations count
+// Lấy số lượt đặt bàn đã bị huỷ
 $sql_cancelled = "SELECT COUNT(*) AS cancelled FROM reservations WHERE status = 'Cancelled'";
 $result_cancelled = $conn->query($sql_cancelled);
 $row_cancelled = $result_cancelled->fetch_assoc();
 $cancelledReservations = $row_cancelled['cancelled'];
 
-
+// Lấy dữ liệu từ các bộ lọc (ngày và trạng thái) nếu có
 $dateFilter = isset($_GET['dateFilter']) ? $_GET['dateFilter'] : '';
 $statusFilter = isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '';
 
+// Tạo câu lệnh SQL chính để truy vấn danh sách đặt bàn
 $query = "SELECT * FROM reservations";
 $conditions = [];
 
+// Nếu có lọc theo ngày, thêm điều kiện vào câu lệnh
 if (!empty($dateFilter)) {
   $conditions[] = "reservedDate = '$dateFilter'";
 }
-
+// Nếu có lọc theo trạng thái, thêm điều kiện vào câu lệnh
 if (!empty($statusFilter)) {
   $conditions[] = "status = '$statusFilter'";
 }
-
+// Nếu có điều kiện, nối vào câu truy vấn
 if (!empty($conditions)) {
   $query .= " WHERE " . implode(' AND ', $conditions);
 }
-
+// Sắp xếp kết quả theo ngày đặt bàn giảm dần (mới nhất trước)
 $query .= " ORDER BY reservedDate DESC";
-
+// Thực thi truy vấn và lưu kết quả
 $result = $conn->query($query);
 
 
@@ -363,7 +369,7 @@ include 'sidebar.php';
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
           if (xhr.readyState == 4 && xhr.status == 200) {
-            // Refresh the entire page
+            // Tải lại trang sau khi cập nhật
             location.reload();
           }
         };
@@ -372,7 +378,7 @@ include 'sidebar.php';
 
 
 
-      // Function to delete reservation
+      // Xóa đặt bàn
       function deleteItem(reservation_id) {
         if (confirm('Are you sure you want to delete this reservation?')) {
           var xhr = new XMLHttpRequest();
@@ -387,7 +393,7 @@ include 'sidebar.php';
         }
       }
 
-      // Make sure the modal functionality is correctly applied
+      // Bật/tắt modal
       const modal = document.querySelector('.modal');
       const buttons = document.querySelectorAll('.toggleButton');
 
@@ -410,10 +416,10 @@ include 'sidebar.php';
         window.location.href = 'reservations.php?statusFilter=' + encodeURIComponent(statusFilter) + '&dateFilter=' + encodeURIComponent(dateFilter);
       }
 
-      // Set the date filter input value
+      // Gán lại giá trị bộ lọc ngày
       document.getElementById('dateFilter').value = "<?= isset($_GET['dateFilter']) ? $_GET['dateFilter'] : '' ?>";
 
-      // Set the status filter select value
+     // Gán lại giá trị bộ lọc trạng thái
       document.getElementById('statusFilter').value = "<?= isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '' ?>";
 
       function clearFilter() {
@@ -423,7 +429,7 @@ include 'sidebar.php';
 
     
       function openEditReservationModal(button) {
-  // Get user data from data attributes
+  // Lấy thông tin từ thuộc tính data-
   const reservation_id = button.getAttribute('data-id');
   const email = button.getAttribute('data-email');
   const name = button.getAttribute('data-name');
@@ -433,7 +439,7 @@ include 'sidebar.php';
   const reservedTime = button.getAttribute('data-reservedTime');
   const status = button.getAttribute('data-status');
 
-  // Set the values in the editReservationForm
+  // Gán giá trị vào form chỉnh sửa
   document.getElementById('editEmail').value = email;
   document.getElementById('editName').value = name;
   document.getElementById('editContact').value = contact;
@@ -441,7 +447,7 @@ include 'sidebar.php';
   document.getElementById('editReservedDate').value = reservedDate;
   document.getElementById('editReservedTime').value = reservedTime;
 
-  // Optionally, you can set a hidden input for reservation_id if you need it for submission
+  // Gán hoặc tạo input ẩn chứa reservation_id
   const form = document.getElementById('editReservationForm');
   const hiddenIdInput = form.querySelector('input[name="reservation_id"]');
   if (!hiddenIdInput) {
@@ -455,7 +461,7 @@ include 'sidebar.php';
     hiddenIdInput.value = reservation_id;
   }
 
-  // Open the edit reservation modal
+  // Mở modal chỉnh sửa
   document.getElementById('editReservationModal').classList.add('open');
 }
 
