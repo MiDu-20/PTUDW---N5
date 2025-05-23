@@ -1,18 +1,18 @@
 <?php
-session_start();
+session_start(); // Bắt đầu phiên làm việc
 
-// Retrieve the email and password from the form
+// Lấy email và mật khẩu từ form đăng nhập
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 //-- Biến $password bị ghi đè - sử dụng cùng tên biến cho hai mục đích khác nhau
-// Establish a connection to the database
+// Thiết lập kết nối đến cơ sở dữ liệu
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "restaurant";
 
-// Enable error reporting
+// Bật báo cáo lỗi
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -24,13 +24,13 @@ if ($conn->connect_error) {
 }
 
 //-- Lấy email và password từ POST hai lần - mã lặp lại
-// Retrieve the email and password from the form
+// Lấy email và mật khẩu từ form đăng nhập
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 //-- So sánh mật khẩu văn bản thuần túy - không an toàn, nên sử dụng password_verify() 
-// Check if the email and password match an admin or user
-// Prepare the SQL query for users table
+// Kiểm tra email và mật khẩu có khớp với người dùng hoặc quản trị viên không
+// Chuẩn bị truy vấn SQL cho bảng users
 $sql_users = "SELECT * FROM users WHERE email = ? AND password = ?";
 $stmt_users = $conn->prepare($sql_users);
 $stmt_users->bind_param("ss", $email, $password);
@@ -38,7 +38,7 @@ $stmt_users->execute();
 $result_users = $stmt_users->get_result();
 
 //-- So sánh mật khẩu văn bản thuần túy - không an toàn, nên sử dụng password_verify()
-// Prepare the SQL query for staff table
+// Chuẩn bị truy vấn SQL cho bảng staff
 $sql_staff = "SELECT * FROM staff WHERE email = ? AND password = ?";
 $stmt_staff = $conn->prepare($sql_staff);
 $stmt_staff->bind_param("ss", $email, $password);
@@ -46,37 +46,37 @@ $stmt_staff->execute();
 $result_staff = $stmt_staff->get_result();
 
 try {
-    // Check if the login details are correct for users
+    // Kiểm tra thông tin đăng nhập cho người dùng thông thường
     if ($result_users->num_rows > 0) {
-        // Store user email in session
+        // Lưu email người dùng vào phiên làm việc
         $_SESSION['email'] = $email;
         $_SESSION['userloggedin'] = true;
 
         echo '<script>alert("User is logged in!"); window.location.href="menu.php";</script>';
         exit();
     } 
-    // Check if the login details are correct for staff (admin or superadmin)
+    // Kiểm tra thông tin đăng nhập cho nhân viên (admin hoặc superadmin)
     else if ($result_staff->num_rows > 0) {
         $staff = $result_staff->fetch_assoc();
         if ($staff['role'] === 'superadmin' || $staff['role'] === 'admin') {
-            // Store admin email in session
+            // Lưu email admin vào phiên làm việc
             $_SESSION['email'] = $email;
             $_SESSION['adminloggedin'] = true;
 
             echo '<script>alert("Admin is logged in!"); window.location.href="Admin/index.php";</script>';
             exit();
         } else {
-            // If the role is not admin or superadmin, redirect to the login page with an error
+            // Nếu vai trò không phải admin hoặc superadmin, chuyển hướng đến trang đăng nhập với thông báo lỗi
             header('Location: login.php?error=not_authorized');
             exit();
         }
     } else {
-        // Redirect to the login page with an error message
+        // Chuyển hướng đến trang đăng nhập với thông báo lỗi
         header('Location: login.php?error');
         exit();
     }
 } catch (Exception $e) {
-    // Handle the error (e.g., log the error)
+    // Xử lý lỗi (ví dụ: ghi nhật ký lỗi)
     header('Location: login.php?error');
     exit();
 }
@@ -84,5 +84,5 @@ try {
 //-- Không có bảo vệ chống tấn công brute force - không giới hạn số lần đăng nhập thất bại
 //-- Không có bảo vệ CSRF - không có token xác thực
 //-- Không tạo lại ID phiên khi đăng nhập thành công - dễ bị tấn công session fixation
-// Close the connection
+// Đóng kết nối
 $conn->close();
