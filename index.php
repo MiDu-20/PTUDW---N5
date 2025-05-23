@@ -1,42 +1,43 @@
 <?php
 session_start();
 
-// Include database connection file
+// Bao gồm file kết nối cơ sở dữ liệu
 include 'db_connection.php';
 
-// Check if database connection was successful
+// Kiểm tra kết nối cơ sở dữ liệu thành công chưa
 if (!$conn) {
   // Hiển thị thông báo lỗi trực tiếp
   die("Connection failed: " . mysqli_connect_error());
 }
 
-// Prepare query to fetch popular items
+// Chuẩn bị truy vấn để lấy các món ăn phổ biến
 $sql = "SELECT itemName, image, price FROM menuitem WHERE is_popular = 1";
 
-// Check if query was successful
+// Kiểm tra truy vấn thành công chưa
 if ($result = $conn->query($sql)) {
-  // Initialize array to store popular items
+  // Khởi tạo mảng để lưu trữ các món ăn phổ biến
   $popularItems = [];
 
-  // Fetch and store query results
+  // Lấy và lưu trữ kết quả truy vấn
   while ($row = $result->fetch_assoc()) {
     $popularItems[] = $row;
   }
 
-  // Close query result
+  // Đóng kết quả truy vấn
   $result->close();
 } else {
-  // Display error message if query fails
+  // Hiển thị thông báo lỗi nếu truy vấn thất bại
   echo "Error: " . $sql . "<br>" . $conn->error; // Hiển thị thông báo lỗi SQL trực tiếp
 }
 
-// Close database connection
+// Đóng kết nối cơ sở dữ liệu
 $conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Các thẻ meta và liên kết CSS -->  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--Bootstrap CSS-->
@@ -67,6 +68,7 @@ $conn->close();
 
 <body>
   <?php
+  // Bao gồm thanh điều hướng phù hợp dựa trên trạng thái đăng nhập
   if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
     include 'nav-logged.php';
   } else {
@@ -74,10 +76,13 @@ $conn->close();
   }
   ?>
 
+  <!-- Phần chính của trang -->
   <div class="main">
     <section>
+      <!-- Banner chính -->
       <div class="container mt-3">
         <div class="row d-flex justify-content-start align-items-start main-container">
+          <!-- Nội dung chào mừng -->
           <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" data-aos="fade-up">
             <h2>Welcome to <span style="color: #fb4a36;"> Grill 'N' Chill,</span></h2>
             <h4 style="color: gray; font-weight: 450;">"Where Hot Flavors Meet Cool Comfort."</h4>
@@ -88,7 +93,9 @@ $conn->close();
               special occasion, our vibrant dishes will leave a lasting
               impression.
             </p>
+            <!-- Các nút hành động -->
             <div class="buttondiv">
+              <!-- Nút đặt hàng -->
               <div>
                 <a href="login.php">
                   <button class="button">
@@ -99,6 +106,7 @@ $conn->close();
                   </button>
                 </a>
               </div>
+              <!-- Nút khám phá menu -->
               <div>
                 <a class="button1" href="menu.php">
                   <span class="button__icon-wrapper">
@@ -114,12 +122,13 @@ $conn->close();
               </div>
             </div>
           </div>
+          <!-- Hình ảnh chính -->
           <div class="col-md-7 col-sm-12 col-lg-7 d-flex justify-content-center align-items-start slide-in-right main-image">
             <img src="images/Pizza.png" class="img" style=" width: 85%; height: 80%;">
           </div>
         </div>
         <div class="row">
-          <!-- Menu Section -->
+          <!-- Phần menu -->
           <section>
             <div class="menu-section">
               <div class="container-fluid">
@@ -127,8 +136,11 @@ $conn->close();
                   <div class="row d-flex justify-content-center align-items-center mb-4 font-weight-bold" id="text">
                     <h1>OUR <span>MENU</span></h1>
                   </div>
+                  <!-- Các danh mục menu -->
                   <div class="col-lg-3 col-md-6 mb-4">
+                    <!-- Danh mục Appetizer -->
                     <div class="category-card" style="background-image: url('images/appe-index.avif');" data-aos="fade-up">
+                      <!-- Nội dung overlay -->
                       <div class="card-overlay">
                         <div class="overlay-content">
                           <h3>Appetizer</h3>
@@ -144,6 +156,7 @@ $conn->close();
                       </div>
                     </div>
                   </div>
+                  <!-- Các danh mục khác: Pizza, Burger, Beverage -->
                   <div class="col-lg-3 col-md-6 mb-4">
                     <div class="category-card" style="background-image: url('images/index-pizza.jpg');" data-aos="fade-up">
                       <div class="card-overlay">
@@ -204,8 +217,9 @@ $conn->close();
     </section>
   </div>
 
-  <!-- Why Choose Us Section  -->
+  <!-- Phần "Why Choose Us" -->
   <section class="why-choose-us" id="why-choose-us">
+    <!-- Nội dung phần "Why Choose Us" -->
     <div class="container">
       <div class="row why-us-content">
         <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12 mt-5 reveal d-flex justify-content-start align-items-start" data-aos="fade-up">
