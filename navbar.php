@@ -3,6 +3,7 @@
   
 //-- Nhiều CSS nội tuyến - ISSUE: Nên tách thành tệp CSS riêng
 <head>
+  <!-- Các thẻ meta và liên kết CSS -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--Bootstrap CSS-->
@@ -20,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
   <title>Navbar</title>
   <style>
-  
+  /* CSS cho thanh điều hướng */
     * {
       margin: 0;
       padding: 0;
@@ -237,16 +238,17 @@
 
 <body>
   <?php
-  // Get the current page name
+  // Lấy tên trang hiện tại
   $current_page = basename($_SERVER['PHP_SELF']);
   ?>
 
-  <!-- Navbar -->
+  <!-- Thanh điều hướng -->
   <div>
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid nav-container">
         <a class="navbar-brand me-auto logo" href="index.php">Grill 'N' Chill</a>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <!-- Nội dung offcanvas -->
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
               Flavour Fiesta
@@ -255,6 +257,7 @@
           </div>
           <div class="offcanvas-body text-center">
             <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <!-- Các mục menu -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" aria-current="page" href="index.php">Home</a>
               </li>
