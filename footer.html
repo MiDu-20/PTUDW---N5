@@ -6,15 +6,15 @@
   <title>Footer</title>
   <style>
    .site-footer {
-    background-color: #333;
-    color: #ddd;
+    background-color: #333; /* Màu nền chân trang */
+    color: #ddd; /* Màu nền chân trang */
     padding: 10px 0;
-    position: fixed; /*Footer cố định có thể che nội dung trang*/
+    position: fixed; /* Cố định chân trang ở dưới cùng */ /*Footer cố định có thể che nội dung trang*/
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
-    z-index: 1000;
+    z-index: 1000; /* Đảm bảo chân trang hiển thị trên các phần tử khác */
 }
 
 .footer-container {
@@ -40,6 +40,7 @@
     color: #fff;
 }
 
+/* Responsive design cho màn hình nhỏ */
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
@@ -48,7 +49,7 @@
     }
 
     .footer-divider {
-        display: none; /* Hide the divider on small screens */
+        display: none; /* Ẩn dấu phân cách trên màn hình nhỏ */
     }
 }
 
