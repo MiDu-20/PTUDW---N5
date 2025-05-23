@@ -1,15 +1,15 @@
 <?php
-session_start();
-include 'db_connection.php'; // Ensure you have a db_connection.php file to connect to your database
+session_start(); // Bắt đầu phiên làm việc
+include 'db_connection.php'; // Đảm bảo bạn có file db_connection.php để kết nối đến cơ sở dữ liệu
 
 //-- Không có xác thực đầu vào
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $orderId = $_POST['orderId'];
-    $reviewText = $_POST['reviewText'];
-    $rating = $_POST['rating'];
-    $email = $_SESSION['email']; // Ensure this email is valid and exists in the users table
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Kiểm tra nếu phương thức yêu cầu là POST
+    $orderId = $_POST['orderId']; // Lấy ID đơn hàng từ form
+    $reviewText = $_POST['reviewText']; // Lấy nội dung đánh giá từ form
+    $rating = $_POST['rating']; // Lấy số sao đánh giá từ form
+    $email = $_SESSION['email']; // Lấy email từ phiên làm việc (đảm bảo email này hợp lệ và tồn tại trong bảng users)
 
-    // Validate email
+    // Xác thực email
     $emailQuery = $conn->prepare("SELECT email FROM users WHERE email = ?");
     $emailQuery->bind_param('s', $email);
     $emailQuery->execute();
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $emailQuery->close();
 
-    // Insert or update review
+    // Chèn hoặc cập nhật đánh giá
     $stmt = $conn->prepare("INSERT INTO reviews (order_id, email, rating, review_text, response) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE review_text = VALUES(review_text)");
     $stmt->bind_param('isiss', $orderId, $email, $rating, $reviewText, $reviewResponse);//--Biến $reviewResponse không được khai báo
 
