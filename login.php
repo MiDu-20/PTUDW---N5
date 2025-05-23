@@ -6,13 +6,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Import Font Awesome icons -->
+  <!-- Nhúng thư viện Font Awesome (icon) -->
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="login.css" />
   <title>Login/Register</title>
   <style>
-    /* Icon toggle mật khẩu */
+    /* Icon ẩn/hiện mật khẩu */
     .input-field .fa-eye,
     .input-field .fa-eye-slash {
       position: absolute;
@@ -32,11 +33,11 @@
 <body>
 
   <?php
-  // Gọi thanh navbar vào trang login
+  // Gọi thanh điều hướng (navbar) vào trang login
   include_once("navbar.php");
   ?>
 
-  <!-- Container tổng thể -->
+  <!-- Container toàn trang -->
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
@@ -55,7 +56,7 @@
           <input type="submit" value="Login" class="submit solid" id="loginButton" />
 
           <?php
-          // Nếu có lỗi truyền từ URL, hiển thị cảnh báo sai email/mật khẩu
+           // Nếu có lỗi từ URL, hiển thị thông báo sai tài khoản/mật khẩu
           if (isset($_GET['error'])) {
             echo ('<div class="alert alert-danger" id="alertbox" role="alert">
               Email or Password is incorrect.
@@ -93,7 +94,7 @@
       </div>
     </div>
 
-    <!-- Phần panel trái/phải -->
+    <!-- Khu vực panel giới thiệu -->
     <div class="panels-container">
       <!-- Panel bên trái: dành cho người mới -->
       <div class="panel left-panel">
@@ -123,7 +124,7 @@
 
   <!-- JS xử lý hiện/ẩn mật khẩu -->
   <script>
-    // Toggle password visibility for login form
+    // Toggle mật khẩu form đăng nhập
     const toggleLoginPassword = document.querySelector('#toggleLoginPassword');
     const loginPassword = document.querySelector('#loginPassword');
 
@@ -134,7 +135,7 @@
       this.classList.toggle('fa-eye-slash');
     });
 
-    // Toggle password visibility for register form
+    // Toggle mật khẩu form đăng ký
     const toggleRegisterPassword = document.querySelector('#toggleRegisterPassword');
     const registerPassword = document.querySelector('#registerPassword');
 
@@ -146,7 +147,7 @@
     });
   </script>
 
-  <!-- JS xử lý chuyển form đăng ký/đăng nhập -->
+  <!-- JS: Chuyển đổi giữa form đăng nhập và đăng ký -->
   <script>
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
@@ -161,7 +162,7 @@
     });
   </script>
 
-  <!-- JS ẩn thông báo lỗi khi nhập -->
+  <!-- JS: Ẩn thông báo lỗi khi người dùng nhập lại -->
   <script>
     function hideAlertBox() {
       const alertBox = document.getElementById('alertbox');
