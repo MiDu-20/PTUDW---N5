@@ -13,7 +13,7 @@ if (!isset($_SESSION['userloggedin']) || !$_SESSION['userloggedin']) {
 $user_email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
 if (empty($user_email)) {
-  die("Không tìm thấy email người dùng trong session.");
+  die("Không tìm thấy email người dùng.");
 }
 
 // -- Kết nối cơ sở dữ liệu
