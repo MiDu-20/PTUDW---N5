@@ -1,5 +1,3 @@
-
-
 <?php
 // Thiết lập kết nối đến cơ sở dữ liệu
 $servername = "localhost";
@@ -32,3 +30,6 @@ $conn->close();
 header('Content-Type: application/json');
 echo json_encode(['totalItems' => $totalItems]);
 ?>
+
+
+

@@ -6,7 +6,7 @@
 
 /* Thiết lập giao diện nền và font */
 body {
-  background: #fef0e8;
+  background: #FEF9E1;
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
@@ -87,8 +87,8 @@ body {
   box-shadow: 2px 2px 5px rgba(60, 142, 245, 0.7);
 }
 
-.card[data-color="orange"] {
-  background-color: rgba(253, 108, 77, 0.1);
+.card[data-color="#FF9D23"] {
+  background-color: #FF9D23(253, 108, 77, 0.1);
   border-color: rgba(253, 108, 77, 0.5);
   box-shadow: 2px 2px 5px rgba(253, 108, 77, 0.7);
 }

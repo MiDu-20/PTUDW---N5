@@ -5,7 +5,6 @@ if (!isset($_SESSION['adminloggedin']) || !$_SESSION['adminloggedin']) {
     header('Location: ../login.php');
     exit;
 }
-
 // Kết nối cơ sở dữ liệu
 $host = 'localhost';
 $dbname = 'restaurant';
