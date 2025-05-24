@@ -6,7 +6,7 @@
 
 /* Cài đặt nền và font cho body */
 body {
-  background: #fef0e8;
+  background: #FEF9E1; /* Nền chung */
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
@@ -98,6 +98,9 @@ body {
 .modal-footer {
   flex: 0 0 10%;
   padding: 10px 30px;
+  background-color: #C14600; /* Nền header, footer */
+  color: white;
+  border: none;
 }
 .modal-header {
   display: flex;
@@ -117,11 +120,12 @@ body {
   flex: 1;
   overflow: auto;
   padding: 25px;
+  background-color: #E5D0AC;  /* Nền form */
 }
 .modal-content::-webkit-scrollbar {
   width: 10px;
   height: 8px;
-  background-color: #fff;
+  background-color: #E5D0AC; /* Nền form */
 }
 .modal-content::-webkit-scrollbar-thumb {
   background-color: rgba(37, 37, 37, 0.788);
@@ -131,6 +135,7 @@ body {
 .close-icon {
   font-size: 40px;
   cursor: pointer;
+  color: white;  /* cho nổi trên nền #C14600 */
 }
 
 /* Nhóm input (label nổi) */
@@ -147,6 +152,7 @@ body {
   font-size: 18px;
   text-align: center;
   margin-bottom: 15px;
+  background-color: #E5D0AC; /* Nền form */
 }
 .label {
   position: absolute;
@@ -165,7 +171,7 @@ body {
 .input:focus ~ .label,
 .input:valid ~ .label {
   transform: translateX(-10px) translateY(-50%) scale(0.8);
-  background-color: #fff;
+  background-color: #E5D0AC;
   padding: 0.2em;
 }
 
@@ -186,32 +192,33 @@ body {
 /* BẢNG - bảng hiển thị dữ liệu */
 table {
   width: 100%;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #FF9D23; /* Block */
   font-size: 17px;
   text-align: center;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 5px; 
+  background-color: #FF9D23;  /* Block */
 }
 table th,
 table td {
   padding: 12px 15px;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #FF9D23; /* Block */
   border-radius: 5px;
 }
 table th {
-  background-color: #fdd9c9;
+  background-color: #FFC966; /* tone sáng hơn block cho header */
 }
 table tr:nth-of-type(even) {
-  background-color: #fce9e2;
+  background-color: #FFE7B3; /* tone sáng hơn block */
 }
 table tr:hover {
-  background-color: #fdd9c9;
+  background-color: #FFC966;
 }
 
 /* HEADER */
 .header {
   padding: 10px;
-  background-color: #fbdac7;
+  background-color: #C14600; /* Nền header */
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -227,12 +234,12 @@ table tr:hover {
 
 /* Button tìm kiếm */
 .search-bar button {
-  background-color: #fb4a36;
+  background-color: #C14600; /* Nền header/footer */
   border: none;
   padding: 13px;
 }
 .search-bar button:hover {
-  background-color: #fbdac7;
+  background-color: #FF9D23; /* Block */
   color: #fb4a36;
 }
 
@@ -264,16 +271,16 @@ table tr:hover {
   margin-right: 10px;
   font-size: 1.2rem;
   border-radius: 5px;
-  border: 2px solid #f4a178;
+  border: 2px solid #FF9D23;
   cursor: pointer;
   outline: none;
 }
 
 /* Nút bấm chung */
 button {
-  background-color: #fb4a36;
+  background-color: #C14600;  /* Nền header/footer */
   color: white;
-  border: 2px solid #fb4a36;
+  border: 2px solid #C14600;
   padding: 13px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -281,28 +288,28 @@ button {
   font-size: 1.2rem;
 }
 button:hover {
-  background-color: #fbdac7;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  background-color: #FF9D23;  /* Block */
+  color: #FF9D23;
+  border: 2px solid #FF9D23;
 }
 
 /* Nút phụ dạng bo tròn nhỏ */
 .button {
   padding: 10px 30px;
   border-radius: 20px;
-  background-color: #fbdac7;
+  background-color: #FF9D23;  /* Block */
   margin-left: 10px;
   font-size: 16px;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  color: #FF9D23;
+  border: 2px solid #FF9D23;
   font-weight: 450;
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease;
 }
 .button:hover {
-  background-color: #fb4a36;
-  color: #fbdac7;
+  background-color: #C14600;  /* Nền header/footer */
+  color: white;
 }
 
 /* Nút gạt chuyển trạng thái */
