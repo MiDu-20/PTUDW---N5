@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="login.css" />
-  <title>Login/Register</title>
+  <title>Đăng nhập/Đăng ký</title>
   <style>
     /* Icon ẩn/hiện mật khẩu */
     .input-field .fa-eye,
@@ -43,23 +43,23 @@
       <div class="signin-signup">
         <!-- Form đăng nhập -->
         <form action="dblogin.php" class="sign-in-form" method="POST">
-          <h2 class="title">Sign in</h2>
+          <h2 class="title">Đăng nhập</h2>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
             <input type="email" placeholder="Email" name="email" required onkeyup="hideAlertBox()" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" id="loginPassword" placeholder="Password" name="password" required onkeyup="hideAlertBox()" />
+            <input type="password" id="loginPassword" placeholder="Mật khẩu" name="password" required onkeyup="hideAlertBox()" />
             <i class="fas fa-eye-slash" id="toggleLoginPassword" style="cursor: pointer;"></i>
           </div>
-          <input type="submit" value="Login" class="submit solid" id="loginButton" />
+          <input type="submit" value="Đăng nhập" class="submit solid" id="loginButton" />
 
           <?php
            // Nếu có lỗi từ URL, hiển thị thông báo sai tài khoản/mật khẩu
           if (isset($_GET['error'])) {
             echo ('<div class="alert alert-danger" id="alertbox" role="alert">
-              Email or Password is incorrect.
+              Email hoặc mật khẩu không đúng.
             </div>');
           }
           ?>
@@ -67,14 +67,14 @@
 
         <!-- Form đăng ký -->
         <form action="dbregister.php" class="sign-up-form" method="POST" id="registerForm">
-          <h2 class="title">Sign up</h2>
+          <h2 class="title">Đăng ký</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="First Name" name="firstName" onkeyup="hideAlertBox()" required />
+            <input type="text" placeholder="Họ" name="firstName" onkeyup="hideAlertBox()" required />
           </div>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Last Name" name="lastName" onkeyup="hideAlertBox()" required />
+            <input type="text" placeholder="Tên" name="lastName" onkeyup="hideAlertBox()" required />
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
@@ -82,14 +82,14 @@
           </div>
           <div class="input-field">
             <i class="fas fa-phone" style="transform: rotate(90deg);"></i>
-            <input type="text" placeholder="Contact No" name="contact" onkeyup="hideAlertBox()" required />
+            <input type="text" placeholder="Số điện thoại" name="contact" onkeyup="hideAlertBox()" required />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" id="registerPassword" placeholder="Password" name="password" required onkeyup="hideAlertBox()" />
+            <input type="password" id="registerPassword" placeholder="Mật khẩu" name="password" required onkeyup="hideAlertBox()" />
             <i class="fas fa-eye-slash" id="toggleRegisterPassword" style="cursor: pointer;"></i>
           </div>
-          <input type="submit" class="submit" value="Sign up" id="registerButton" />
+          <input type="submit" class="submit" value="Đăng ký" id="registerButton" />
         </form>
       </div>
     </div>
@@ -99,11 +99,11 @@
       <!-- Panel bên trái: dành cho người mới -->
       <div class="panel left-panel">
         <div class="content">
-          <h3>New to Our Restaurant?</h3>
+          <h3>Lần đầu đến với nhà hàng?</h3>
           <p>
-            Join us today and enjoy the convenience of online ordering. Get exclusive offers and track your orders easily.
+            Hãy đăng ký ngay hôm nay để trải nghiệm đặt món trực tuyến tiện lợi. Nhận ưu đãi độc quyền và theo dõi đơn hàng dễ dàng.
           </p>
-          <button class="btn transparent" id="sign-up-btn">Sign up</button>
+          <button class="btn transparent" id="sign-up-btn">Đăng ký</button>
         </div>
         <img src="images/form-pic.png" class="image" alt="" />
       </div>
@@ -111,11 +111,11 @@
       <!-- Panel bên phải: dành cho khách hàng cũ -->
       <div class="panel right-panel">
         <div class="content">
-          <h3>Our Customer?</h3>
+          <h3>Quý khách đã từng đặt món?</h3>
           <p>
-            Sign in to continue enjoying our delicious meals and manage your orders seamlessly.
+            Hãy đăng nhập để tiếp tục thưởng thức các món ăn hấp dẫn và quản lý đơn hàng của bạn một cách tiện lợi.
           </p>
-          <button class="btn transparent" id="sign-in-btn">Sign in</button>
+          <button class="btn transparent" id="sign-in-btn">Đăng nhập</button>
         </div>
         <img src="images/form-pic2.png" class="image" alt="" style="margin-bottom: 400px" />
       </div>
