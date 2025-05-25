@@ -3,25 +3,31 @@
   
 //-- Nhiều CSS nội tuyến - ISSUE: Nên tách thành tệp CSS riêng
 <head>
-  <!-- Các thẻ meta và liên kết CSS -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!--Bootstrap CSS-->
+  
+  <!-- Bootstrap CSS - Framework CSS để tạo giao diện responsive -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <!--Lexend font for navbar-->
+  
+  <!-- Font Lexend cho navbar - Font chữ đẹp và dễ đọc -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome - Thư viện icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!--Icon-->
+
+  <!-- Material Icons - Thư viện icon Google -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <!-- Chewy Font -->
+
+  <!-- Font Chewy - Font vui nhộn cho logo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+  
   <title>Navbar</title>
   <style>
-  /* CSS cho thanh điều hướng */
+    /* RESET CSS - Xóa margin và padding mặc định */
     * {
       margin: 0;
       padding: 0;
@@ -36,7 +42,7 @@
 
     a {
       color: white;
-      text-decoration: none;
+      text-decoration: none; /* Bỏ gạch chân */
     }
 
     .navbar-brand,
@@ -57,6 +63,7 @@
       padding-left: 13px;
     }
 
+    /* THIẾT LẬP NÚT ĐĂNG NHẬP - Hiệu ứng mở rộng khi hover */
     .Btn {
       display: flex;
       align-items: center;
@@ -73,7 +80,7 @@
       background-color: #fb4a36;
     }
 
-    /* plus sign */
+    /* ICON TRONG NÚT */
     .sign {
       width: 100%;
       transition-duration: 0.3s;
@@ -90,7 +97,7 @@
       fill: #1d1818;
     }
 
-    /* text */
+    /* TEXT TRONG NÚT - Ban đầu ẩn */
     .text {
       position: absolute;
       right: 0%;
@@ -102,7 +109,7 @@
       transition-duration: 0.3s;
     }
 
-    /* hover effect on button width */
+    /* HIỆU ỨNG HOVER - Mở rộng nút */
     .Btn:hover {
       width: 125px;
       border-radius: 40px;
@@ -116,7 +123,7 @@
       padding-right: 8px;
     }
 
-    /* hover effect button's text */
+    /* HIỆU ỨNG HOVER - Hiện text */
     .Btn:hover .text {
       opacity: 1;
       width: 70%;
@@ -124,7 +131,7 @@
       padding-right: 10px;
     }
 
-    /* button click effect*/
+    /* HIỆU ỨNG CLICK - Tạo cảm giác nhấn */
     .Btn:active {
       transform: translate(2px, 2px);
     }
@@ -134,6 +141,7 @@
       font-size: 1.25rem;
     }
 
+    /* THIẾT LẬP NÚT TOGGLE MENU MOBILE */
     .navbar-toggler:focus,
     .btn-close:focus {
       box-shadow: none;
@@ -148,7 +156,6 @@
       font-optical-sizing: auto;
       font-weight: 480;
       font-style: light;
-
     }
 
     .dropdown-menu {
@@ -159,7 +166,6 @@
       margin-top: -5px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
 
     .dropdown-item {
       color: #212529;
@@ -174,14 +180,13 @@
       color: #fb4a36;
     }
 
-
-
-
+    /* THIẾT LẬP ICON HAMBURGER MENU */
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='gray' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
       padding-left: 22px;
     }
-
+    
+    /* HIỆU ỨNG HOVER VÀ ACTIVE CHO NAV LINK */
     .nav-link:hover,
     .nav-link.active {
       color: #fb4a36;
@@ -197,21 +202,21 @@
       background-color: #ffbda1;
     }
 
-
+    /* HIỆU ỨNG HOVER CHO DROPDOWN - Hiện menu khi hover */
     .nav-item.dropdown:hover .dropdown-menu {
       display: block;
     }
-
 
     .logo:hover {
       color: white;
     }
 
+    /* THIẾT LẬP NAVBAR CHÍNH */
     .navbar {
       border-bottom-left-radius: 80px;
       border-bottom-right-radius: 80px;
       padding: 5px 0px 0px 0px;
-      background-color: #ffbda1;
+      background-color: #ffbda1; /* Màu nền navbar */
     }
 
     .cart {
@@ -229,7 +234,6 @@
     }
 
     .navbar .active {
-
       color: #fb4a36;
       font-weight: 700;
     }
@@ -239,6 +243,8 @@
 <body>
   <?php
   // Lấy tên trang hiện tại
+  // Thuật toán: Sử dụng basename() để lấy tên file từ đường dẫn hiện tại
+  // $_SERVER['PHP_SELF'] chứa đường dẫn đầy đủ, basename() chỉ lấy tên file
   $current_page = basename($_SERVER['PHP_SELF']);
   ?>
 
@@ -247,20 +253,25 @@
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid nav-container">
         <a class="navbar-brand me-auto logo" href="index.php">Grill 'N' Chill</a>
+
+        <!-- OFFCANVAS MENU (Menu trượt từ bên phải trên mobile) -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <!-- Nội dung offcanvas -->
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
               Flavour Fiesta
             </h5>
             <button type="button" class="btn-close btn-close-red" aria-label="Close" id="closeOffcanvas"></button>
           </div>
+          
           <div class="offcanvas-body text-center">
             <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-              <!-- Các mục menu -->
+              <!-- MENU TRANG CHỦ -->
               <li class="nav-item">
+                <!-- Thuật toán: So sánh trang hiện tại với 'index.php' để thêm class 'active' -->
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" aria-current="page" href="index.php">Home</a>
               </li>
+
+              <!-- MENU DROPDOWN -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mx-lg-2 <?php echo $current_page == 'menu.php' ? 'active' : ''; ?>" href="menu.php" role="button" aria-haspopup="true" aria-expanded="false">
                   Menu
@@ -272,30 +283,42 @@
                   <li><a class="dropdown-item" href="menu.php#beverage">Beverages</a></li>
                 </ul>
               </li>
+
+              <!-- MENU ĐẶT BÀN -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#Reservation' ? 'active' : ''; ?>" href="index.php#Reservation">Reservation</a>
               </li>
+
+              <!-- MENU VỀ CHÚNG TÔI -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#About-Us' ? 'active' : ''; ?>" href="index.php#About-Us">About Us</a>
               </li>
+
+              <!-- MENU ĐÁNH GIÁ -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == '#review' ? 'active' : ''; ?>" href="#review">Review</a>
               </li>
             </ul>
           </div>
         </div>
+
+        <!-- ICON GIỎ HÀNG -->
         <a class="nav-link cart <?php echo $current_page == 'cart.php' ? 'active' : ''; ?>" href="cart.php"><i class="fas fa-shopping-cart"></i> <span id="cart-item" class="badge badge-danger"></span></a>
 
+        <!-- NÚT ĐĂNG NHẬP VỚI HIỆU ỨNG ĐẶC BIỆT -->
         <a href="login.php">
           <button class="Btn ms-3">
             <div class="text">LOGIN</div>
             <div class="sign">
+              <!-- SVG ICON MŨI TÊN -->
               <svg viewBox="0 0 512 512">
                 <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path>
               </svg>
             </div>
           </button>
         </a>
+        
+        <!-- NÚT TOGGLE CHO MOBILE MENU -->
         <button class="navbar-toggler" type="button" aria-label="Toggle navigation" id="toggleOffcanvas">
           <span class="navbar-toggler-icon" style="color: #f9f6e8"></span>
         </button>
@@ -303,47 +326,50 @@
     </nav>
   </div>
 
-
-
-
-
+  <!-- BOOTSTRAP JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-  <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-
-
   <script>
+    // XỬ LÝ OFFCANVAS MENU
+    // Thuật toán: Sử dụng Bootstrap Offcanvas API để điều khiển menu trượt
     const closeOffcanvasBtn = document.getElementById("closeOffcanvas");
     const toggleOffcanvasBtn = document.getElementById("toggleOffcanvas");
     const offcanvasNavbar = new bootstrap.Offcanvas(
       document.getElementById("offcanvasNavbar")
     );
 
+    // Sự kiện đóng menu
     closeOffcanvasBtn.addEventListener("click", function() {
       offcanvasNavbar.hide();
     });
 
+    // Sự kiện mở menu
     toggleOffcanvasBtn.addEventListener("click", function() {
       offcanvasNavbar.show();
     });
   </script>
+  
   <script>
+    // XỬ LÝ HIGHLIGHT MENU DỰA TRÊN SCROLL VÀ TRANG HIỆN TẠI
+    // Thuật toán: Theo dõi vị trí scroll và highlight menu tương ứng
     document.addEventListener("DOMContentLoaded", function() {
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
       const currentPage = window.location.pathname.split("/").pop(); // Get the current page name
 
+      // Hàm xóa tất cả class active
       function removeActiveClasses() {
         navLinks.forEach(link => {
           link.classList.remove("active");
         });
       }
 
+      // Hàm thêm class active dựa trên scroll
       function addActiveClassOnScroll() {
-        let currentSection = "Home"; // Default to Home if on index.php
+        let currentSection = "Home"; // Mặc định là Home nếu đang ở index.php
 
-        // Check if the current page is index.php
+        // Kiểm tra nếu trang hiện tại là index.php
         if (currentPage === "index.php") {
           sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -354,20 +380,21 @@
 
           removeActiveClasses();
 
+          // Highlight menu tương ứng với section đang xem
           if (currentSection === "Reservation" || currentSection === "About-Us" || currentSection === "review") {
             const activeLink = document.querySelector(`.navbar-nav a[href*="${currentSection}"]`);
             if (activeLink) {
               activeLink.classList.add("active");
             }
           } else {
-            // Default to highlighting Home when on index.php
+            // Mặc định highlight Home khi ở index.php
             const homeLink = document.querySelector(`.navbar-nav a[href="index.php"]`);
             if (homeLink) {
               homeLink.classList.add("active");
             }
           }
         } else {
-          // Highlight the current page if it's not index.php
+          // Highlight trang hiện tại nếu không phải index.php
           const activeLink = document.querySelector(`.navbar-nav a[href="${currentPage}"]`);
           if (activeLink) {
             removeActiveClasses();
@@ -376,13 +403,11 @@
         }
       }
 
+      // Lắng nghe sự kiện scroll
       window.addEventListener("scroll", addActiveClassOnScroll);
-      addActiveClassOnScroll(); // Call it initially to set the correct tab on page load
+      addActiveClassOnScroll(); // Gọi ngay khi tải trang để set đúng tab
     });
   </script>
 
-
-
 </body>
-
 </html>
