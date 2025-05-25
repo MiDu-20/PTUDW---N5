@@ -1,12 +1,12 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Include database connection
+  // Kết nối đến cơ sở dữ liệu
   include 'db_connection.php';
 
   $reservation_id = $_POST['reservation_id'];
   $status = $_POST['status'];
 
-  // Prepare and execute the update query
+  //Chuẩn bị và thực thi câu truy vấn cập nhật
   $stmt = $conn->prepare("UPDATE reservations SET status = ? WHERE reservation_id = ?");
   $stmt->bind_param("si", $status, $reservation_id);
 
