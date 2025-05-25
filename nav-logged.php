@@ -1,23 +1,27 @@
 <?php
 
+// KẾT NỐI DATABASE VÀ KIỂM TRA PHIÊN ĐĂNG NHẬP
 include 'db_connection.php';
 
-// Check if admin is logged in
+// Kiểm tra xem người dùng đã đăng nhập chưa
+// Thuật toán bảo mật: Redirect về trang login nếu chưa đăng nhập
 if (!isset($_SESSION['userloggedin']) || !$_SESSION['userloggedin']) {
   header('Location: login.php');
   exit;
 }
 
-// Fetch user profile image
+// Lấy ảnh đại diện của người dùng từ database
 $useremail = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $sql = "SELECT profile_image FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 
+// Kiểm tra email có tồn tại trong session không
 if (empty($useremail)) {
   die("User email not found in session."); //--Hiển thị thông báo lỗi trực tiếp
 }
 
-// Function to retrieve admin information
+// Hàm lấy thông tin người dùng từ database
+// Thuật toán: Sử dụng Prepared Statement để tránh SQL Injection
 function get_UserInfo($email)
 {
   global $conn;
@@ -27,14 +31,14 @@ function get_UserInfo($email)
   $stmt->bind_result($profile_image);
   $stmt->fetch();
   $stmt->close();
+  // Trả về thông tin với ảnh mặc định nếu không có
   return [
     'profile_image' => $profile_image ?: 'default.jpg'
   ];
 }
 
 $userinfo = get_UserInfo($useremail);
-// Close the statement and connection
-
+// Đóng kết nối database
 ?>
 
 <!DOCTYPE html>
@@ -43,19 +47,24 @@ $userinfo = get_UserInfo($useremail);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <!--Bootstrap CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <!--Lexend font for navbar-->
+  
+  <!-- Font Lexend cho navbar -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!--Icon-->
+  
+  <!-- Font Awesome cho icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <!-- Chewy Font -->
+  
+  <!-- Font Chewy cho logo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+  
   <title>Navbar</title>
   <style>
     * {
@@ -109,7 +118,7 @@ $userinfo = get_UserInfo($useremail);
       background-color: #fb4a36;
     }
 
-    /* plus sign */
+    /* THIẾT LẬP NÚT (Giữ nguyên cho tương thích) */
     .sign {
       width: 100%;
       transition-duration: 0.3s;
@@ -126,7 +135,7 @@ $userinfo = get_UserInfo($useremail);
       fill: #1d1818;
     }
 
-    /* text */
+    /* TEXT TRONG NÚT */
     .text {
       position: absolute;
       right: 0%;
@@ -138,7 +147,7 @@ $userinfo = get_UserInfo($useremail);
       transition-duration: 0.3s;
     }
 
-    /* hover effect on button width */
+    /* HIỆU ỨNG HOVER CHO NÚT */
     .Btn:hover {
       width: 125px;
       border-radius: 40px;
@@ -152,7 +161,7 @@ $userinfo = get_UserInfo($useremail);
       padding-right: 8px;
     }
 
-    /* hover effect button's text */
+    /* HIỆU ỨNG CLICK */
     .Btn:hover .text {
       opacity: 1;
       width: 70%;
@@ -160,7 +169,7 @@ $userinfo = get_UserInfo($useremail);
       padding-right: 10px;
     }
 
-    /* button click effect*/
+    /* THIẾT LẬP NAVBAR TOGGLER */
     .Btn:active {
       transform: translate(2px, 2px);
     }
@@ -176,6 +185,7 @@ $userinfo = get_UserInfo($useremail);
       outline: none;
     }
 
+    /* THIẾT LẬP NAV LINK */
     .nav-link {
       color: black;
       font-weight: 500;
@@ -246,16 +256,12 @@ $userinfo = get_UserInfo($useremail);
       color: green;
       font-size: 25px;
       cursor: pointer;
-
     }
 
-
-
-    /* Profile icon hover effect */
+    /* HIỆU ỨNG HOVER CHO PROFILE */
     .nav-item.dropdown .nav-link:hover {
       color: #fb4a36;
     }
-
 
     .dropdown-item {
       color: #212529;
@@ -268,7 +274,7 @@ $userinfo = get_UserInfo($useremail);
 
     .dropdown-menu .dropdown-item i {
       margin-right: 8px;
-      /* Space between icon and text */
+      /* Khoảng cách giữa icon và text */
       color: #212529;
       /* Icon color */
     }
@@ -276,9 +282,9 @@ $userinfo = get_UserInfo($useremail);
     .dropdown-menu .dropdown-item {
       display: flex;
       align-items: center;
-      /* Center items vertically */
+      /* Căn giữa theo chiều dọc */
       justify-content: center;
-      /* Center items horizontally */
+      /* Căn giữa theo chiều ngang */
     }
 
     .nav-profile {
@@ -310,7 +316,7 @@ $userinfo = get_UserInfo($useremail);
 
 <body>
   <?php
-  // Get the current page name
+  // Lấy tên trang hiện tại
   $current_page = basename($_SERVER['PHP_SELF']);
   ?>
 
@@ -319,6 +325,8 @@ $userinfo = get_UserInfo($useremail);
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid nav-container">
         <a class="navbar-brand me-auto logo" href="index.php">Grill 'N' Chill</a>
+
+        <!-- OFFCANVAS MENU -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
@@ -326,11 +334,15 @@ $userinfo = get_UserInfo($useremail);
             </h5>
             <button type="button" class="btn-close btn-close-red" aria-label="Close" id="closeOffcanvas"></button>
           </div>
+
           <div class="offcanvas-body text-center">
             <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <!-- MENU TRANG CHỦ -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" aria-current="page" href="index.php">Home</a>
               </li>
+
+              <!-- MENU THỰC ĐƠN -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mx-lg-2 <?php echo $current_page == 'menu.php' ? 'active' : ''; ?>" href="menu.php" role="button" aria-haspopup="true" aria-expanded="false">
                   Menu
@@ -342,25 +354,38 @@ $userinfo = get_UserInfo($useremail);
                   <li><a class="dropdown-item" href="menu.php#beverage">Beverages</a></li>
                 </ul>
               </li>
+
+              <!-- MENU ĐẶT BÀN -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#Reservation' ? 'active' : ''; ?>" href="index.php#Reservation">Reservation</a>
               </li>
+
+              <!-- MENU VỀ CHÚNG TÔI -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#About-Us' ? 'active' : ''; ?>" href="index.php#About-Us">About Us</a>
               </li>
+
+              <!-- MENU ĐÁNH GIÁ -->
               <li class="nav-item">
                 <a class="nav-link mx-lg-2 <?php echo $current_page == '#review' ? 'active' : ''; ?>" href="#review">Review</a>
               </li>
             </ul>
           </div>
         </div>
+
+        <!-- ICON GIỎ HÀNG -->
         <a class="nav-link cart <?php echo $current_page == 'cart.php' ? 'active' : ''; ?>" href="cart.php"><i class="fas fa-shopping-cart"></i>
           <span id="cart-item" class="badge badge-danger"></span></a>
-        <!-- Profile Icon with Dropdown Menu -->
+        
+        <!-- DROPDOWN PROFILE NGƯỜI DÙNG - TÍNH NĂNG MỚI -->
+        <!-- Thuật toán: Thay thế nút LOGIN bằng ảnh profile và menu dropdown -->
         <li class="nav-item dropdown ms-3" style="list-style: none; ">
           <a href="#" class="dropdown-toggle" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- Hiển thị ảnh profile từ database với xử lý bảo mật -->
             <img src="uploads/<?php echo htmlspecialchars($userinfo['profile_image']); ?>" alt="Profile Picture" class="nav-profile">
           </a>
+
+          <!-- MENU DROPDOWN PROFILE -->
           <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="margin-left: -50px;">
             <li><a class="dropdown-item" href="profile.php"><i class="fas fa-user-circle dropdown-icon"></i> Profile</a></li>
             <li><a class="dropdown-item" href="orders.php"><i class="fas fa-box dropdown-icon"></i> Orders</a></li>
@@ -368,7 +393,7 @@ $userinfo = get_UserInfo($useremail);
           </ul>
         </li>
 
-
+        <!-- NÚT TOGGLE CHO MOBILE -->
         <button class="navbar-toggler" type="button" aria-label="Toggle navigation" id="toggleOffcanvas">
           <span class="navbar-toggler-icon" style="color: #f9f6e8"></span>
         </button>
@@ -376,17 +401,12 @@ $userinfo = get_UserInfo($useremail);
     </nav>
   </div>
 
-
-
-
-
+  <!-- BOOTSTRAP JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-  <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-
-
   <script>
+    // XỬ LÝ OFFCANVAS MENU
     const closeOffcanvasBtn = document.getElementById("closeOffcanvas");
     const toggleOffcanvasBtn = document.getElementById("toggleOffcanvas");
     const offcanvasNavbar = new bootstrap.Offcanvas(
@@ -401,7 +421,9 @@ $userinfo = get_UserInfo($useremail);
       offcanvasNavbar.show();
     });
   </script>
+  
   <script>
+    // XỬ LÝ HIGHLIGHT MENU DỰA TRÊN SCROLL
     document.addEventListener("DOMContentLoaded", function() {
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
@@ -453,9 +475,5 @@ $userinfo = get_UserInfo($useremail);
       addActiveClassOnScroll(); // Call it initially to set the correct tab on page load
     });
   </script>
-
-
-
 </body>
-
 </html>
