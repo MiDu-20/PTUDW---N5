@@ -324,3 +324,9 @@ canvas {
     height: 300px;
   }
 }
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+
