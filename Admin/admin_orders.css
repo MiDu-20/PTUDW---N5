@@ -5,7 +5,7 @@
 }
 
 body {
-  background: #fef0e8; /* Nền màu kem nhạt */
+  background: #FEF9E1; /* Nền chung */
   font-family: "Poppins", sans-serif; 
   margin: 0;
 }
@@ -36,16 +36,16 @@ body {
   padding: 15px;
   font-size: 1rem;
   border-radius: 5px;
-  border: 2px solid #f4a178;
+  border: 2px solid #FF9D23; /* Block */
   cursor: pointer;
   outline: none;
 }
 
 /* Nút chung */
 button {
-  background-color: #fb4a36;
+  background-color: #C14600; /* Header/footer */
   color: white;
-  border: 2px solid #fb4a36;
+  border: 2px solid #C14600;
   padding: 13px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -54,15 +54,15 @@ button {
 }
 
 button:hover {
-  background-color: #fbdac7;
+  background-color: #FF9D23; /* Block */
   color: #fb4a36;
-  border: 2px solid #fb4a36;
+  border: 2px solid #FF9D23;
 }
 
 /* SIDEBAR - MENU TRÁI */
 .sidebar {
   width: 250px;
-  background-color: #ffbda1;
+  background-color: #FF9D23; /* Block */
   color: #1d1818;
   overflow: auto;
   position: relative;
@@ -79,11 +79,11 @@ button:hover {
 }
 
 .sidebar ul li a.active {
-  background-color: #ee7149; /* Màu cam đậm khi active */
+  background-color: #C14600; /* Header/footer đậm khi active */
 }
 
 .sidebar ul li a:hover {
-  background-color: #f4a178; /* Màu hover */
+  background-color: #FF9D23; /* Block, Màu hover */
 }
 
 /* Các trạng thái đơn hàng */
@@ -104,36 +104,37 @@ button:hover {
 /* Bảng hiển thị danh sách đơn hàng */
 table {
   width: 100%;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #FF9D23;
   border-radius: 5px;
   font-size: 17px;
   text-align: center;
   cursor: pointer;
+  background-color: #FF9D23; /* Block */
 }
 
 table th,
 table td {
   padding: 12px 15px;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #FF9D23; /* Block */;
   border-radius: 5px;
 }
 
 table th {
-  background-color: #fdd9c9; /* Header màu cam nhạt */
+  background-color: #FFC966; /* Header màu cam nhạt */
 }
 
 table tr:nth-of-type(even) {
-  background-color: #fce9e2; /* Zebra striping: dòng chẵn */
+  background-color: #FFE7B3; /* Zebra striping: dòng chẵn */
 }
 
 table tr:hover {
-  background-color: #fdd9c9; /* Hover trên dòng */
+  background-color: #FFC966; /* Hover trên dòng */
 }
 
 /* HEADER TRÊN CÙNG */
 .header {
   padding: 10px;
-  background-color: #fbdac7;
+  background-color: #C14600;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -153,22 +154,22 @@ table tr:hover {
   margin-right: 10px;
   font-size: 16px;
   border-radius: 5px;
-  border: 2px solid #fdd9c9;
+  border: 2px solid #FEF9E1;
   cursor: pointer;
   outline: none;
 }
 
 /* Nút tìm kiếm */
 .search-bar button {
-  background-color: #fb4a36;
+  background-color: #C14600;
   border: none;
   transition: all 0.3s ease;
 }
 
 .search-bar button:hover {
-  background-color: #fbdac7;
-  color: #fb4a36;
-  border: 1px solid #fb4a36;
+  background-color: #FEF9E1;
+  color: #C14600;
+  border: 1px solid #C14600;
 }
 
 /* Nút view đơn */
@@ -176,9 +177,9 @@ table tr:hover {
   padding: 4px 6px;
   font-size: 16px;
   border-radius: 4px;
-  background-color: #fbdac7;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  background-color: #FEF9E1;
+  color: #C14600;
+  border: 2px solid #C14600;
   font-weight: 450;
   cursor: pointer;
   outline: none;
@@ -187,9 +188,9 @@ table tr:hover {
 
 /* NÚT LÀM MỚI */
 #refreshButton {
-  color: #fbdac7;
-  background-color: #fb4a36;
-  border: 2px solid #fb4a36;
+  color: #FEF9E1;
+  background-color: #C14600;
+  border: 2px solid #C14600;
   cursor: pointer;
   padding: 11px;
   font-size: 1.4rem;
@@ -198,8 +199,8 @@ table tr:hover {
 }
 
 #refreshButton:hover {
-  background: #fbdac7;
-  color: #fb4a36;
+  background: #FF9D23;
+  color: #C14600;
 }
 
 /* ====================== */
@@ -277,6 +278,8 @@ table tr:hover {
 .modal-footer {
   flex: 0 0 10%;
   padding: 10px 30px;
+  background-color: #C14600; /* Header/footer */
+  color: white;
 }
 
 .modal-header {
@@ -298,13 +301,14 @@ table tr:hover {
   flex: 1;
   overflow: auto;
   padding: 25px;
+  background-color: #E5D0AC; /* Form */
 }
 
 /* SCROLLBAR TRONG MODAL */
 .modal-content::-webkit-scrollbar {
   width: 10px;
   height: 8px;
-  background-color: #fff;
+  background-color: #E5D0AC;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
@@ -332,6 +336,8 @@ table tr:hover {
   font-size: 18px;
   text-align: center;
   margin-bottom: 15px;
+  background-color: #E5D0AC; /* Form */
+}
 }
 
 /* LABEL FLOATING EFFECT */
@@ -355,7 +361,7 @@ table tr:hover {
 .input:focus ~ .label,
 .input:valid ~ .label {
   transform: translateX(-10px) translateY(-50%) scale(0.8);
-  background-color: #fff;
+  background-color: #E5D0AC; /* Form */
   padding: 0.2em;
 }
 

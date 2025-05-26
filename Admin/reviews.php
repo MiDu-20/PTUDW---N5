@@ -1,10 +1,12 @@
 <?php
+// Bắt đầu phiên làm việc (session) để kiểm tra đăng nhập admin
 session_start();
+// Kiểm tra nếu admin chưa đăng nhập thì chuyển hướng về trang đăng nhập
 if (!isset($_SESSION['adminloggedin'])) {
   header("Location: ../login.php");
   exit();
 }
-
+// Kết nối đến cơ sở dữ liệu
 include 'db_connection.php';
 ?>
 <?php
@@ -89,17 +91,17 @@ include 'sidebar.php';
         </thead>
         <tbody>
           <?php
-          // Include the database connection
+          // Kết nối đến cơ sở dữ liệu
           include 'db_connection.php';
 
-          // Query to fetch all reviews
+          // Truy vấn lấy toàn bộ review
           $sql = "SELECT * FROM reviews";
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
-            // If there are rows, display them
+            //Nếu có review thì hiển thị
             while ($row = mysqli_fetch_assoc($result)) {
-              // Convert rating to stars
+              // Chuyển rating thành biểu tượng sao
               $ratingStars = str_repeat('&#9733;', $row['rating']) . str_repeat('&#9734;', 5 - $row['rating']);
 
               echo "<tr>
@@ -123,11 +125,11 @@ include 'sidebar.php';
                       </tr>";
             }
           } else {
-            // If no rows, display the "No Reviews" message
+            //Nếu không có review, hiển thị thông báo 
             echo "<tr><td colspan='6' style='text-align: center;'>No Reviews</td></tr>";
           }
 
-          // Close the database connection
+          // Đóng kết nối với cơ sở dữ liệu
           mysqli_close($conn);
           ?>
         </tbody>
@@ -192,12 +194,12 @@ include 'sidebar.php';
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      // Check if the response indicates success
+      // Kiểm tra phản hồi thành công
       if (xhr.responseText.trim() === "Status updated successfully") {
-        // Optionally, display a success message
+        // Hiển thị thông báo thành công
         alert("Status updated successfully");
       } else {
-        // Display an error message
+        // Hiển thị thông báo lỗi
         alert("Error updating status: " + xhr.responseText);
       }
     }
@@ -208,9 +210,9 @@ include 'sidebar.php';
 
 
     function deleteReview(orderId, email) {
-      // Confirm and handle review deletion
+      // Xác nhận xoá review
       if (confirm('Are you sure you want to delete this review?')) {
-        // Send delete request to server
+        // Gửi yêu cầu xoá lên server
         fetch('delete_review.php', {
             method: 'POST',
             headers: {
@@ -225,7 +227,7 @@ include 'sidebar.php';
           .then(data => {
             if (data.success) {
               alert('Review deleted successfully');
-              location.reload(); // Reload the page to see the updated list
+              location.reload(); // Tải lại trang để cập nhật danh sách
             } else {
               alert('Error deleting review');
             }
@@ -234,48 +236,49 @@ include 'sidebar.php';
     }
 
     function openEditReviewModal(button) {
-      // Get user data from data attributes
+      // Lấy dữ liệu review từ thuộc tính data
       const order_id = button.getAttribute('data-id');
       const email = button.getAttribute('data-email');
       const review_text = button.getAttribute('data-review_text');
       const rating = button.getAttribute('data-rating');
       const response = button.getAttribute('data-response');
 
-      // Set the values in the editReviewForm
+      // Đưa dữ liệu vào form chỉnh sửa
       document.getElementById('editOrder_id').value = order_id;
       document.getElementById('editEmail').value = email;
       document.getElementById('editReview_text').value = review_text;
       document.getElementById('editRating').value = rating;
       document.getElementById('editResponse').value = response;
 
-      // Open the edit review modal
+      // Mở modal chỉnh sửa review
       document.getElementById('editReviewModal').classList.add('open');
     }
 
     function closeEditReviewModal() {
+      // Đóng modal chỉnh sửa review
       document.getElementById('editReviewModal').classList.remove('open');
     }
 
     function filterByStatus() {
-    // Get the selected status from the dropdown
+    // Lấy trạng thái được chọn trong dropdown
     const status = document.getElementById('statusFilter').value;
 
-    // Create an XMLHttpRequest object
+    // Tạo đối tượng XMLHttpRequest
     var xhr = new XMLHttpRequest();
 
-    // Set up the request
+    // Thiết lập yêu cầu POST tới file xử lý lọc trạng thái
     xhr.open('POST', 'fetch_review_status.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    // Define what happens on successful data submission
+    // Xử lý khi nhận được phản hồi
     xhr.onload = function() {
         if (xhr.status === 200) {
-            // Update the table with the filtered results
+            // Cập nhật nội dung bảng với dữ liệu trả về
             document.querySelector('#reviewTable tbody').innerHTML = xhr.responseText;
         }
     };
 
-    // Send the request with the selected status
+    // Gửi dữ liệu trạng thái lên server
     xhr.send('status=' + encodeURIComponent(status));
 }
 

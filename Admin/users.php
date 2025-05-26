@@ -1,18 +1,24 @@
 <?php
+// Bắt đầu session để sử dụng các biến phiên (session variables)
 session_start();
+// Kiểm tra nếu biến session 'adminloggedin' chưa được thiết lập, nghĩa là admin chưa đăng nhập
 if (!isset($_SESSION['adminloggedin'])) {
+  // Chuyển hướng người dùng đến trang đăng nhập và dừng chương trình
   header("Location: ../login.php");
   exit();
 }
+// Kết nối cơ sở dữ liệu bằng cách include file db_connection.php
 include 'db_connection.php';
-// Initialize search variable
+// Khởi tạo biến $search rỗng để sử dụng cho tìm kiếm
 $search = '';
+// Kiểm tra nếu có yêu cầu gửi lên từ form bằng phương thức POST và trường 'search' có tồn tại
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
   $search = $conn->real_escape_string($_POST['search']);
 }
 
 ?>
 <?php
+// Bao gồm file sidebar (giao diện menu bên trái)
 include 'sidebar.php';
 ?>
 
@@ -102,15 +108,19 @@ include 'sidebar.php';
       </thead>
       <tbody>
         <?php
-        // Modify the SQL query to include search functionality
+       // Câu truy vấn SQL để lấy tất cả dữ liệu từ bảng users
         $sql = "SELECT * FROM users";
+// Nếu người dùng có nhập từ khóa tìm kiếm, thì thêm điều kiện tìm kiếm vào truy vấn
         if (!empty($search)) {
+          // Tìm theo email, họ hoặc tên có chứa từ khóa
           $sql .= " WHERE email LIKE '%$search%' OR firstName LIKE '%$search%' OR lastName LIKE '%$search%'";
         }
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           $counter = 1;
+          // Lặp qua từng dòng kết quả trả về
           while ($row = $result->fetch_assoc()) {
+            // Ẩn mật khẩu bằng cách thay bằng dấu *
             $passwordMasked = str_repeat('*', strlen($row['password']));
             echo "<tr>
                       <td>{$counter}</td>
@@ -132,8 +142,10 @@ include 'sidebar.php';
             $counter++;
           }
         } else {
+          // Nếu không có người dùng nào khớp với tìm kiếm, hiển thị dòng thông báo
           echo "<tr><td colspan='8' style='text-align: center;'>No Users Found</td></tr>";
         }
+// Đóng kết nối cơ sở dữ liệu sau khi truy vấn xong
         $conn->close();
         ?>
       </tbody>

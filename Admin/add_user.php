@@ -1,26 +1,27 @@
 <?php
-// Database configuration
+// Cấu hình kết nối cơ sở dữ liệu
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "restaurant";
 
-// Enable error reporting (optional, for debugging)
+// Bật chế độ hiển thị lỗi (giúp debug trong quá trình phát triển, có thể tắt khi chạy thực tế)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL); // Hiển thị tất cả lỗi
 
-// Establishing connection to the database
+// Tạo kết nối đến cơ sở dữ liệu bằng MySQLi
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Kiểm tra xem kết nối có thành công không
 if ($conn->connect_error) {
+    // Nếu thất bại, dừng chương trình và hiển thị lỗi
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handling form submission
+// Kiểm tra nếu form được gửi lên bằng phương thức POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collecting form data
+    // Lấy dữ liệu người dùng nhập từ form
     $email = $_POST['email'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
@@ -29,28 +30,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 
 
-    // Prepare SQL statement to insert data into reservations table
+    // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào bảng `users`
     $sql = "INSERT INTO users (email, firstName, lastName, contact, password) 
             VALUES (?, ?, ?, ?, ?)";
 
-    // Prepare and bind parameters
+    // Chuẩn bị statement và gán dữ liệu vào
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
+        // Nếu có lỗi khi chuẩn bị statement, hiển thị lỗi và dừng lại
         die("Prepare failed: " . $conn->error);
     }
+    // Gán giá trị vào các placeholder ? trong câu SQL theo đúng thứ tự
+    // sssss: tương ứng 5 chuỗi (string)
     $stmt->bind_param("sssss", $email, $firstName, $lastName, $contact, $password);
 
-    // Execute the statement
+    // Thực thi câu lệnh SQL đã chuẩn bị
     if ($stmt->execute()) {
+        // Nếu thành công, hiển thị thông báo và chuyển hướng về trang users.php
         echo '<script>alert("User Added successfully!"); window.location.href="users.php";</script>';
     } else {
+        // Nếu thất bại, hiển thị lỗi chi tiết
         echo "Error: " . $stmt->error;
     }
 
-    // Close statement
+    // Đóng statement sau khi sử dụng xong
     $stmt->close();
 }
 
-// Close connection
+// Đóng kết nối cơ sở dữ liệu sau khi hoàn tất
 $conn->close();
 ?>

@@ -1,15 +1,17 @@
+/* RESET CSS - Xóa margin và padding mặc định */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* THIẾT LẬP BODY CHÍNH */
 body {
   padding-top: 95px;
   background: #feead4;
 }
 
+/* SECTION HERO CHÍNH */
 .main {
-
   background-image: url('images/main-bg.png') !important; //-- Sử dụng !important
   background-size: cover;
   /* Ensures the image covers the whole element */
@@ -19,6 +21,7 @@ body {
   margin-bottom: 50px;
 }
 
+/* NÚT CHÍNH VỚI GRADIENT VÀ HIỆU ỨNG */
 .button {
   width: 180px;
   height: 40px;
@@ -38,10 +41,12 @@ body {
   font-size: 16px;
 }
 
+/* HIỆU ỨNG HOVER - Phóng to nút */
 .button:hover {
   transform: scale(1.1);
 }
 
+/* THIẾT LẬP ICON GIỎ HÀNG TRONG NÚT */
 .cartIcon {
   width: 14px;
   height: fit-content;
@@ -51,12 +56,14 @@ body {
   fill: white;
 }
 
+/* HIỆU ỨNG ACTIVE - Tạo cảm giác nhấn */
 .button:active {
   transform: translate(2px, 0px);
   box-shadow: 0px 1px 0px #fb4a36;
   padding-bottom: 1px;
 }
 
+/* NÚT PHỤ VỚI VIỀN VÀ HIỆU ỨNG ICON */
 .button1 {
   line-height: 1;
   text-decoration: none;
@@ -74,9 +81,9 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all .3s ease;
-
 }
 
+/* WRAPPER CHO ICON TRONG NÚT */
 .button__icon-wrapper {
   flex-shrink: 0;
   width: 25px;
@@ -90,6 +97,7 @@ body {
   overflow: hidden;
 }
 
+/* HIỆU ỨNG HOVER CHO NÚT PHỤ */
 .button1:hover {
   background-color: #f33520;
   color: white;
@@ -99,6 +107,7 @@ body {
   color: #000;
 }
 
+/* HIỆU ỨNG ANIMATION CHO ICON */
 .button__icon-svg--copy {
   position: absolute;
   transform: translate(-150%, 150%);
@@ -114,7 +123,7 @@ body {
   transform: translate(0);
 }
 
-
+/* CONTAINER CHO CÁC NÚT */
 .buttondiv {
   display: flex;
   align-items: center;
@@ -122,6 +131,7 @@ body {
 
 }
 
+/* THIẾT LẬP LINK TRONG CONTAINER */
 .container a {
   text-decoration: none;
 
@@ -136,11 +146,7 @@ body {
   margin-top: -50px;
 }
 
-
-
-
-
-
+/* CARD DANH MỤC VỚI HIỆU ỨNG OVERLAY */
 .category-card {
   position: relative;
   width: 100%;
@@ -150,18 +156,19 @@ body {
   border-radius: 15px;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-
 }
 
 .category-card:hover {
   background-position: center;
 }
 
+/* HIỆU ỨNG HOVER CHO CATEGORY CARD */
 .category-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* OVERLAY HIỆN KHI HOVER */
 .card-overlay {
   position: absolute;
   top: 0;
@@ -181,6 +188,7 @@ body {
   opacity: 1;
 }
 
+/* NỘI DUNG TRONG OVERLAY */
 .overlay-content {
   color: #fff;
   text-align: center;
@@ -204,6 +212,7 @@ body {
   font-size: 16px;
 }
 
+/* NÚT KHÁM PHÁ TRONG OVERLAY */
 .explore-btn {
   padding: 10px 20px;
   border: none;
@@ -219,6 +228,7 @@ body {
   background-color: #ff4500;
 }
 
+/* PHẦN DƯỚI CARD */
 .card-bottom {
   position: absolute;
   bottom: 0;
@@ -230,7 +240,7 @@ body {
 }
 
 .category-card:hover .card-bottom {
-  opacity: 0;
+  opacity: 0; /* Ẩn khi hover để hiện overlay */
 }
 
 .card-bottom h3 {
@@ -245,6 +255,7 @@ body {
   margin-top: 10px;
 }
 
+/* SECTION MENU */
 .menu-section #text {
   font-size: 3rem;
   margin-top: -10px;
@@ -255,13 +266,7 @@ body {
   color: #fb4a36;
 }
 
-
-
-
-
-
-
-/* Why Choose Us Section */
+/* SECTION TẠI SAO CHỌN CHÚNG TÔI */
 .why-choose-us {
   padding: 60px 0;
   background-color: #ffe4c2;
@@ -280,15 +285,10 @@ body {
   color: #fb4a36;
 }
 
-
-
-
 .why-choose-us .delivery-img {
   max-width: 100%;
   height: auto;
 }
-
-
 
 .popular-items {
   padding: 20px 0;
@@ -300,8 +300,6 @@ body {
   height: 75%;
   padding-top: 45px;
 }
-
-
 
 .carousel-item {
   display: flex;
@@ -346,7 +344,6 @@ body {
   margin-bottom: 1.1rem;
 }
 
-
 .feature-content h4 {
   margin: 0;
   font-size: 1.2rem;
@@ -374,7 +371,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin: 5px 10px 0px 10px;
   padding-top: 40px;
 }
@@ -404,7 +400,6 @@ body {
   background-color: green;
   color: white;
 }
-
 
 .testimonial {
   padding: 40px 0 60px 0;
@@ -492,6 +487,7 @@ body {
   background-color: blueviolet;
 }
 
+/* RESPONSIVE CHO MOBILE NHỎ */
 @media only screen and (min-width: 360px) and (max-width: 479px) {
   .testimonial {
     padding: 70px 0 130px;
@@ -518,6 +514,7 @@ body {
   }
 }
 
+/* ANIMATION TRƯỢT VÀO TỪ TRÁI */
 @keyframes slideIn {
   from {
     transform: translateX(-100%);
@@ -550,29 +547,25 @@ body {
   animation: reveal 1s ease-out;
 }
 
-/* Define the slide-in animation from the right */
+/* ANIMATION TRƯỢT VÀO TỪ PHẢI */
 @keyframes slideInRight {
   from {
     opacity: 0;
     transform: translateX(100%);
-    /* Start from 100% to the right */
   }
 
   to {
     opacity: 1;
     transform: translateX(0);
-    /* End at the original position */
   }
 }
 
-/* Apply the animation to images */
 .slide-in-right {
   opacity: 0;
-  /* Initially hidden */
   animation: slideInRight 1s ease-out forwards;
-  /* Animation properties */
 }
 
+/* HỆ THỐNG THÔNG BÁO TOAST */
 .toast {
   visibility: hidden;
   min-width: 300px;
@@ -594,7 +587,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-right: 50px;
-  /* Space for the close button */
+  /* Khoảng trống cho nút exit */
 }
 
 .toast.show {
@@ -642,7 +635,7 @@ body {
   opacity: 0.8;
 }
 
-/* Footer Styles */
+/* FOOTER */
 footer {
   background-color: #333;
   color: #fff;
@@ -756,14 +749,6 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
-
 @media screen and (max-width: 766px) {
 .main .main-container{
   display: flex;
@@ -799,7 +784,7 @@ footer {
 }
 }
 
-/* Table reservation */
+/* SECTION ĐẶT BÀN */
 .table-reservation{
 padding-top: 50px;
 padding-bottom: 70px;
@@ -842,14 +827,11 @@ background: #f0e781;
 display: flex;
 justify-content: space-between;
 margin-bottom: 10px;
-
-
 }
 
 .form-group {
 flex: 1;
 margin-right: 10px;
-
 }
 
 .form-group:last-child {
@@ -882,7 +864,6 @@ color: #fff;
 border-radius: 4px;
 cursor: pointer;
 margin-top: 10px;
-/* Space between rows and button */
 }
 
 form button:hover {
@@ -899,7 +880,7 @@ margin-bottom: 10px;
 }
 }
 
-
+/* NÚT VỀ CHÚNG TÔI VỚI HIỆU ỨNG ĐẶC BIỆT */
 .about_btn i{
 font-size: 15px;
 margin-right: 8px;
@@ -941,8 +922,7 @@ bottom: 0;
 @media screen and (max-width: 765px) {
 .story-content{
   flex-direction: column-reverse !important;
-}
-
+  }
 }
 
 .story-text p{
@@ -950,4 +930,3 @@ font-size: 1.1rem;
 font-weight: 400;
 text-align: justify;
 }
-
