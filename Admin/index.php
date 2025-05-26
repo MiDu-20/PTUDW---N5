@@ -194,8 +194,8 @@ include 'sidebar.php';
         <!-- Menu điều hướng -->
 
         <ul>
-            <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i> Overview</a></li>
-            <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Menu Management</a></li>
+            <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Thống kê</a></li>
+            <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
             <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
             <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
             <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
