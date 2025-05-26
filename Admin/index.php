@@ -196,13 +196,13 @@ include 'sidebar.php';
         <ul>
             <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Thống kê</a></li>
             <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
-            <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
-            <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
-            <li><a href="reviews.php"><i class="fas fa-star"></i> Reviews</a></li>
-            <li><a href="staffs.php"><i class="fas fa-users"></i> Staffs</a></li>
-            <li><a href="profile.php"><i class="fas fa-user"></i> Profile Setting</a></li>
-            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàngs</a></li>
+            <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
+            <li><a href="users.php"><i class="fas fa-users"></i>Người dùng</a></li>
+            <li><a href="reviews.php"><i class="fas fa-star"></i>Đánh giá</a></li>
+            <li><a href="staffs.php"><i class="fas fa-users"></i>Nhân viên</a></li>
+            <li><a href="profile.php"><i class="fas fa-user"></i>Hồ sơ</a></li>
+            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuât</a></li>
         </ul>
     </div>
     <!-- Nội dung chính của trang -->
