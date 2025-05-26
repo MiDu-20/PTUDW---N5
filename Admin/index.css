@@ -75,11 +75,11 @@ body {
 
 /* Màu nền icon và border cho từng loại card */
 .card[data-color="blue"] .icon-top-right { background-color: rgba(60, 142, 245, 0.8); }
-.card[data-color="orange"] .icon-top-right { background-color: rgba(253, 108, 77, 0.8); }
+/* .card[data-color="orange"] .icon-top-right { background-color: rgba(253, 108, 77, 0.8); }
 .card[data-color="green"] .icon-top-right { background-color: rgba(80, 198, 168, 0.8); }
 .card[data-color="pink"] .icon-top-right { background-color: rgba(255, 99, 132, 0.7); }
 .card[data-color="l-blue"] .icon-top-right { background-color: rgba(54, 162, 235, 0.8); }
-.card[data-color="purple"] .icon-top-right { background-color: rgba(101, 116, 205, 0.8); }
+.card[data-color="purple"] .icon-top-right { background-color: rgba(101, 116, 205, 0.8); } */
 
 .card[data-color="blue"] {
   background-color: rgba(60, 142, 245, 0.2);
@@ -87,7 +87,7 @@ body {
   box-shadow: 2px 2px 5px rgba(60, 142, 245, 0.7);
 }
 
-.card[data-color="orange"] {
+/* .card[data-color="orange"] {
   background-color: #FF9D23(253, 108, 77, 0.1);
   border-color: rgba(253, 108, 77, 0.5);
   box-shadow: 2px 2px 5px rgba(253, 108, 77, 0.7);
@@ -115,7 +115,7 @@ body {
   background-color: rgba(101, 116, 205, 0.2);
   border-color: rgba(101, 116, 205, 0.5);
   box-shadow: 2px 2px 5px rgba(101, 116, 205, 0.7);
-}
+} */
 
 /* Màu hiển thị chỉ số tăng/giảm */
 .positive { color: #4caf50; }
@@ -169,17 +169,17 @@ canvas {
 .latest-orders table th,
 .latest-orders table td {
   padding: 12px;
-  border-bottom: 1px solid #FF9D23;
+  border-bottom: 1px solid rgba(60, 142, 245, 0.8);
   color: white; /* cho chữ nổi */
 }
 
 .latest-orders table th {
-  background-color: #C14600;
+  background-color: rgba(60, 142, 245, 0.8);
   color: #fff;
 }
 
 .latest-orders table tr:nth-child(even) {
-  background-color: #FF9D23;
+  background-color:rgba(60, 142, 245, 0.2);
 }
 
 .latest-orders table tr:hover {
@@ -278,7 +278,8 @@ canvas {
   background-color: rgba(80, 198, 168, 0.2);
 }
 #chartContainer {
-  background-color: rgba(253, 108, 77, 0.2);
+  background-color: rgba(60, 142, 245, 0.2);
+
 }
 
 .review-chart-container canvas,

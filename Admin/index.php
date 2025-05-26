@@ -215,7 +215,7 @@ include 'sidebar.php';
         </div>
         <div class="container">
         <!-- Các thẻ thống kê tổng quan -->
-            <div class="card" data-color="purple">
+            <div class="card" data-color="blue">
 
                 <div class="card-content">
                     <h4>Total Earning</h4>
@@ -229,7 +229,7 @@ include 'sidebar.php';
             </div>
 
             <!-- Doanh thu hôm nay -->
-            <div class="card" data-color="orange">
+            <div class="card" data-color="blue">
                 <div class="card-content">
                     <h4>Today's Earning</h4>
                     <h3>Rs <?php echo number_format($todaysEarning); ?></h3>
@@ -242,7 +242,7 @@ include 'sidebar.php';
             </div>
 
             <!-- Tổng đơn hàng -->
-            <div class="card" data-color="l-blue">
+            <div class="card" data-color="blue">
                 <div class="card-content">
                     <h4>Total Orders</h4>
                     <h3><?php echo number_format($totalOrders); ?></h3> <!-- Display total orders -->
@@ -255,7 +255,7 @@ include 'sidebar.php';
             </div>
 
             <!-- Đơn hàng hôm nay -->
-            <div class="card" data-color="pink">
+            <div class="card" data-color="blue">
                 <div class="card-content">
                     <h4>Today's Orders</h4>
                     <h3><?php echo number_format($todaysOrders); ?></h3> <!-- Display today's orders -->
@@ -281,7 +281,7 @@ include 'sidebar.php';
             </div>
 
             <!-- Tổng đặt bàn -->
-            <div class="card" data-color="green">
+            <div class="card" data-color="blue">
                 <div class="card-content">
                     <h4>Total Reservations</h4>
                     <h3><?php echo number_format($totalReservations); ?></h3> <!-- Display total reservations -->
@@ -387,57 +387,133 @@ include 'sidebar.php';
                 .then(response => response.json())
                 .then(data => {
                     const ctx = document.getElementById('earningsChart').getContext('2d');
-
-                    const dates = data.dates;
-                    const categories = data.categories;
-                    const earnings = data.earnings;
-
-                    const datasets = categories.map((category, index) => ({
-                        label: category,
-                        data: earnings[category],
-                        fill: true,
-                        borderColor: `hsl(${index * 360 / categories.length}, 70%, 50%)`,
-                        backgroundColor: `hsla(${index * 360 / categories.length}, 70%, 70%, 0.5)`,
-                        tension: 0.1
-                    }));
-
                     new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: dates,
-                            datasets: datasets
+                            labels: ['2024-08-09', '2024-08-11', '2024-08-12'],
+                            datasets: [
+                            {
+                            label: 'Appetizer',
+                            data: [5800, 10200, 5400],
+                            backgroundColor: 'rgba(193, 70, 0, 0.2)',   // #C14600 soft
+                            borderColor: '#C14600',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                            },
+                            {
+                                label: 'Burger',
+                                data: [5900, 7400, 0],
+                                backgroundColor: 'rgba(255, 157, 35, 0.2)', // #FF9D23
+                                borderColor: '#FF9D23',
+                                borderWidth: 2,
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: 'Beverage',
+                                data: [0, 10000, 1500],
+                                backgroundColor: 'rgba(229, 208, 172, 0.2)', // #E5D0AC
+                                borderColor: '#E5D0AC',
+                                borderWidth: 2,
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: 'Pizza',
+                                data: [0, 0, 3200],
+                                backgroundColor: 'rgba(142, 36, 170, 0.2)', // Tím dịu
+                                borderColor: '#8E24AA',
+                                borderWidth: 2,
+                                tension: 0.4,
+                                fill: true
+                            }
+                            ]
                         },
                         options: {
-                            scales: {
-                                x: {
-
-                                    stacked: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Date'
-                                    }
-                                },
-                                y: {
-                                    color: '#fff',
-                                    stacked: true,
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Earnings'
-                                    }
-                                }
-                            },
+                            responsive: true,
+                            maintainAspectRatio: false,
                             plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                tooltip: {
-                                    mode: 'index',
-                                    intersect: false,
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                backgroundColor: '#C14600',
+                                titleColor: '#fff',
+                                bodyColor: '#fff'
+                            },
+                            legend: {
+                                labels: {
+                                color: '#333',
+                                font: { size: 14 }
                                 }
+                            }
+                            },
+                            scales: {
+                            x: {
+                                ticks: { color: '#333' },
+                                grid: { display: false }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: { color: '#333' },
+                                grid: { color: '#f0e0d6' }
+                            }
                             }
                         }
                     });
+
+                    // const ctx = document.getElementById('earningsChart').getContext('2d');
+
+                    // const dates = data.dates;
+                    // const categories = data.categories;
+                    // const earnings = data.earnings;
+
+                    // const datasets = categories.map((category, index) => ({
+                    //     label: category,
+                    //     data: earnings[category],
+                    //     fill: true,
+                    //     borderColor: `hsl(${index * 360 / categories.length}, 70%, 50%)`,
+                    //     backgroundColor: `hsla(${index * 360 / categories.length}, 70%, 70%, 0.5)`,
+                    //     tension: 0.1
+                    // }));
+
+                    // new Chart(ctx, {
+                    //     type: 'line',
+                    //     data: {
+                    //         labels: dates,
+                    //         datasets: datasets
+                    //     },
+                    //     options: {
+                    //         scales: {
+                    //             x: {
+
+                    //                 stacked: true,
+                    //                 title: {
+                    //                     display: true,
+                    //                     text: 'Date'
+                    //                 }
+                    //             },
+                    //             y: {
+                    //                 color: '#fff',
+                    //                 stacked: true,
+                    //                 beginAtZero: true,
+                    //                 title: {
+                    //                     display: true,
+                    //                     text: 'Earnings'
+                    //                 }
+                    //             }
+                    //         },
+                    //         plugins: {
+                    //             legend: {
+                    //                 position: 'top',
+                    //             },
+                    //             tooltip: {
+                    //                 mode: 'index',
+                    //                 intersect: false,
+                    //             }
+                    //         }
+                    //     }
+                    // });
                 })
                 .catch(error => console.error('Error fetching data:', error));
         });
@@ -584,11 +660,11 @@ include 'sidebar.php';
             // Chuẩn bị data
             const labels = Object.keys(statusCounts);
             const data = Object.values(statusCounts);
-
+            
             // Tạo biểu đồ thanh
             const ctx = document.getElementById('orderStatusChart').getContext('2d');
             new Chart(ctx, {
-                type: 'bar',
+                type: 'doughnut',
                 data: {
                     labels: labels,
                     datasets: [{
@@ -621,6 +697,7 @@ include 'sidebar.php';
                     }
                 }
             });
+            
         });
     </script>
     <script>
