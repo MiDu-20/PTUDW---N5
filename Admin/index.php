@@ -196,13 +196,13 @@ include 'sidebar.php';
         <ul>
             <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Thống kê</a></li>
             <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
-            <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
-            <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
-            <li><a href="reviews.php"><i class="fas fa-star"></i> Reviews</a></li>
-            <li><a href="staffs.php"><i class="fas fa-users"></i> Staffs</a></li>
-            <li><a href="profile.php"><i class="fas fa-user"></i> Profile Setting</a></li>
-            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
+            <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
+            <li><a href="users.php"><i class="fas fa-users"></i>Người dùng</a></li>
+            <li><a href="reviews.php"><i class="fas fa-star"></i>Đánh giá</a></li>
+            <li><a href="staffs.php"><i class="fas fa-users"></i>Nhân viên</a></li>
+            <li><a href="profile.php"><i class="fas fa-user"></i>Hồ sơ</a></li>
+            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuât</a></li>
         </ul>
     </div>
     <!-- Nội dung chính của trang -->
@@ -321,15 +321,15 @@ include 'sidebar.php';
                 // Kiểm tra nếu có  kết quả
                 if ($result->num_rows > 0) {
                     echo '<div class="latest-orders">';
-                    echo '<h2>Latest Orders</h2>';
+                    echo '<h2>Các đơn hàng gần đây</h2>';
                     echo '<table>';
                     echo '<thead>';
                     echo '<tr>';
-                    echo '<th>Order ID</th>';
-                    echo '<th>Customer Name</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Total Amount</th>';
-                    echo '<th>Actions</th>';
+                    echo '<th>ID</th>';
+                    echo '<th>Khách hàng</th>';
+                    echo '<th>Trạng thái</th>';
+                    echo '<th>Thành tiền</th>';
+                    echo '<th>Chi tiết</th>';
                     echo '</tr>';
                     echo '</thead>';
                     echo '<tbody>';
