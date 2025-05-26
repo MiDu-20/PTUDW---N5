@@ -221,3 +221,11 @@ section h1 {
     max-width: 33.33% !important;
   }
 }
+/* ======== PHẦN THÊM HIỆU ỨNG HOVER ẢNH MÓN ĂN ======== */
+
+.card-img-top:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+ 
