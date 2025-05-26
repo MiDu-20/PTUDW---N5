@@ -128,94 +128,89 @@ $conn->close();
           </div>
         </div>
         <div class="row">
-          <!-- Phần menu -->
-          <section>
-            <div class="menu-section">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="row d-flex justify-content-center align-items-center mb-4 font-weight-bold" id="text">
-                    <h1>OUR <span>MENU</span></h1>
+      <!-- Phần menu -->
+      <section>
+        <div class="menu-section">
+          <div class="container-fluid">
+            <div class="row">
+              <h1>THỰC <span>ĐƠN</span></h1>
+            </div>
+            <!-- Các danh mục menu -->
+            <div class="col-lg-3 col-md-6 mb-4">
+              <!-- Danh mục Món Khai Vị -->
+              <div class="category-card" style="background-image: url('images/appe-index.avif');" data-aos="fade-up">
+                <!-- Nội dung overlay -->
+                <div class="card-overlay">
+                  <div class="overlay-content">
+                    <h3>Món Khai Vị</h3>
+                    <p>Bắt đầu bữa ăn với các món khai vị thơm ngon, tạo nên khởi đầu tuyệt vời cho trải nghiệm ẩm thực của bạn.</p>
+                    <a href="menu.php#appetizer">
+                      <button class="explore-btn">Khám Phá Thêm</button></a>
                   </div>
-                  <!-- Các danh mục menu -->
-                  <div class="col-lg-3 col-md-6 mb-4">
-                    <!-- Danh mục Appetizer -->
-                    <div class="category-card" style="background-image: url('images/appe-index.avif');" data-aos="fade-up">
-                      <!-- Nội dung overlay -->
-                      <div class="card-overlay">
-                        <div class="overlay-content">
-                          <h3>Appetizer</h3>
-                          <p>Start your meal with our delicious appetizers that set the tone for a delightful dining experience.</p>
-                          <a href="menu.php#appetizer">
-                            <button class="explore-btn">Explore Variety</button></a>
-                        </div>
-                      </div>
-                      <div class="card-bottom">
-                        <h3>Appetizer</h3>
-                        <a href="menu.php#appetizer">
-                          <button class="explore-btn">Explore Variety</button></a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Các danh mục khác: Pizza, Burger, Beverage -->
-                  <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/index-pizza.jpg');" data-aos="fade-up">
-                      <div class="card-overlay">
-                        <div class="overlay-content">
-                          <h3>Pizza</h3>
-                          <p>Indulge in our wide variety of pizzas, each crafted with the finest ingredients and baked to perfection.</p>
-                          <a href="menu.php#pizza">
-                            <button class="explore-btn">Explore Variety</button></a>
-                        </div>
-                      </div>
-                      <div class="card-bottom">
-                        <h3>Pizza</h3>
-                        <a href="menu.php#pizza">
-                          <button class="explore-btn">Explore Variety</button></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/index-burger.avif');" data-aos="fade-up">
-                      <div class="card-overlay">
-                        <div class="overlay-content">
-                          <h3>Burger</h3>
-                          <p>Savor our juicy burgers, loaded with fresh toppings and bursting with flavor in every bite.</p>
-                          <a href="menu.php#burger">
-                            <button class="explore-btn">Explore Variety</button></a>
-                        </div>
-                      </div>
-                      <div class="card-bottom">
-                        <h3>Burger</h3>
-                        <a href="menu.php#burger">
-                          <button class="explore-btn">Explore Variety</button></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/bev-index.jpeg');" data-aos="fade-up">
-                      <div class="card-overlay">
-                        <div class="overlay-content">
-                          <h3>Beverage</h3>
-                          <p>Quench your thirst with our selection of refreshing beverages, perfect for any meal.</p>
-                          <a href="menu.php#beverage">
-                            <button class="explore-btn">Explore Variety</button></a>
-                        </div>
-                      </div>
-                      <div class="card-bottom">
-                        <h3>Beverage</h3>
-                        <a href="menu.php#beverage">
-                          <button class="explore-btn">Explore Variety</button></a>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+                <div class="card-bottom">
+                  <h3>Món Khai Vị</h3>
+                  <a href="menu.php#appetizer">
+                    <button class="explore-btn">Khám Phá Thêm</button></a>
                 </div>
               </div>
             </div>
-          </section>
+            <!-- Các danh mục khác: Pizza, Burger, Đồ Uống -->
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="category-card" style="background-image: url('images/index-pizza.jpg');" data-aos="fade-up">
+                <div class="card-overlay">
+                  <div class="overlay-content">
+                    <h3>Pizza</h3>
+                    <p>Thưởng thức đa dạng các loại pizza được chế biến từ nguyên liệu tươi ngon và nướng hoàn hảo.</p>
+                    <a href="menu.php#pizza">
+                      <button class="explore-btn">Khám Phá Thêm</button></a>
+                  </div>
+                </div>
+                <div class="card-bottom">
+                  <h3>Pizza</h3>
+                  <a href="menu.php#pizza">
+                    <button class="explore-btn">Khám Phá Thêm</button></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="category-card" style="background-image: url('images/index-burger.avif');" data-aos="fade-up">
+                <div class="card-overlay">
+                  <div class="overlay-content">
+                    <h3>Burger</h3>
+                    <p>Thưởng thức những chiếc burger mọng nước, đầy ắp topping tươi ngon và hương vị đậm đà.</p>
+                    <a href="menu.php#burger">
+                      <button class="explore-btn">Khám Phá Thêm</button></a>
+                  </div>
+                </div>
+                <div class="card-bottom">
+                  <h3>Burger</h3>
+                  <a href="menu.php#burger">
+                    <button class="explore-btn">Khám Phá Thêm</button></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="category-card" style="background-image: url('images/bev-index.jpeg');" data-aos="fade-up">
+                <div class="card-overlay">
+                  <div class="overlay-content">
+                    <h3>Đồ Uống</h3>
+                    <p>Giải khát với lựa chọn đồ uống tươi mát, hoàn hảo cho mọi bữa ăn.</p>
+                    <a href="menu.php#beverage">
+                      <button class="explore-btn">Khám Phá Thêm</button></a>
+                  </div>
+                </div>
+                <div class="card-bottom">
+                  <h3>Đồ Uống</h3>
+                  <a href="menu.php#beverage">
+                    <button class="explore-btn">Khám Phá Thêm</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+
 
   <!-- Phần "Why Choose Us" -->
   <section class="why-choose-us" id="why-choose-us">

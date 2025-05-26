@@ -16,6 +16,9 @@ ini_set('display_errors', 1); //dòng này bị lặp lại
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Thêm dòng này để đặt charset cho kết nối
+$conn->set_charset("utf8mb4");
+
 // Kiểm tra kết nối
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error); //hiển thị thông tin lỗi chi tiết cho người dùng - nên ghi log thay vì hiển thị

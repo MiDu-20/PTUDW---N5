@@ -12,7 +12,7 @@ body {
 
 /* SECTION HERO CHÍNH */
 .main {
-  background-image: url('images/main-bg.png') !important; //-- Sử dụng !important
+  background-image: url('images/main-bg.png') !important; /*Sử dụng !important */
   background-size: cover;
   /* Ensures the image covers the whole element */
   background-position: center;
