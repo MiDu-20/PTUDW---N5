@@ -785,30 +785,32 @@ footer {
 }
 
 /* SECTION ĐẶT BÀN */
-.table-reservation{
-padding-top: 50px;
-padding-bottom: 70px;
-background: #ffe4c2;
-padding-right: 50px;
+.table-reservation {
+  padding: 50px;
+  background: #ffe4c2;
+}
+.text-center {
+  text-align: center;
+  margin-bottom: 20px;
 }
 .table {
-margin: 0 30px 0 30px;
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .reservation {
   display: flex;
   flex-direction: row;
   border: 4px solid black;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  height: 500px; 
+  max-width: 1000px;
+  width: 100%;
+  height: 500px;
   background-color: #feead4;
 }
 .reservation-image {
-  flex: 1;
+  width: 50%;
   height: 100%;
 }
 
@@ -819,24 +821,25 @@ align-items: center;
   display: block;
 }
 
-.reservation-section {
-  flex: 1;
-  padding: 20px;
+.reservation-form-container {
+  width: 50%;
+  height: 100%;
+  padding: 30px;
+  background-color: #feead4;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #feead4;
-  text-align: center;
-  color: black;
 }
 
 #reservation-form {
 background: none;
 }
 
-.reservation-section h2 {
-margin-bottom: 20px;
-background: #f0e781;
+.reservation-form-container h2 {
+  background-color: #f0e781;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .form-row {
@@ -858,12 +861,10 @@ margin-right: 0;
 }
 
 form label {
-display: block;
-margin-bottom: 5px;
-text-align: left;
-background: none;
-font-weight: 450;
-font-size: 1rem;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 form input {
@@ -871,19 +872,19 @@ width: 100%;
 padding: 8px;
 border: 1px solid black;
 border-radius: 4px;
-background: none;
+background: white;
 }
 
 form button {
-width: 100%;
-padding: 10px;
-background-color: #fb4a36;
-border: none;
-color: #fff;
-border-radius: 4px;
-cursor: pointer;
-margin-top: 10px;
-/* Space between rows and button */
+  width: 100%;
+  padding: 10px;
+  background-color: #fb4a36;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
 form button:hover {
