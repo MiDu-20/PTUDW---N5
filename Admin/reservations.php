@@ -102,15 +102,15 @@ include 'sidebar.php';
 
     <!-- Navigation Items -->
     <ul>
-            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Overview</a></li>
-            <li><a href="admin_menu.php" ><i class="fas fa-utensils"></i> Menu Management</a></li>
-            <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="reservations.php" class="active"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
-            <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
-            <li><a href="reviews.php"><i class="fas fa-star"></i> Reviews</a></li>
-            <li><a href="staffs.php" ><i class="fas fa-users"></i> Staffs</a></li>
-            <li><a href="profile.php"><i class="fas fa-user"></i> Profile Setting</a></li>
-            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Thống kê </a></li>
+            <li><a href="admin_menu.php" ><i class="fas fa-utensils"></i> Quản lý thực đơn </a></li>
+            <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng </a></li>
+            <li><a href="reservations.php" class="active"><i class="fas fa-calendar-alt"></i> Đặt bàn </a></li>
+            <li><a href="users.php"><i class="fas fa-users"></i> Người dùng </a></li>
+            <li><a href="reviews.php"><i class="fas fa-star"></i> Đánh giá </a></li>
+            <li><a href="staffs.php" ><i class="fas fa-users"></i> Nhân viên </a></li>
+            <li><a href="profile.php"><i class="fas fa-user"></i> Hồ sơ </a></li>
+            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
         </ul>
   </div>
   <div class="content">
@@ -118,7 +118,7 @@ include 'sidebar.php';
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i>
       </button>
-      <h2><i class="fas fa-calendar-alt"></i> Reservations</h2>
+      <h2><i class="fas fa-calendar-alt"></i> Đặt bàn </h2>
     </div>
     <div>
 
@@ -129,7 +129,7 @@ include 'sidebar.php';
             <i class="fas fa-calendar-check"></i>
           </div>
           <div class="stat-text">
-            <p>Total</p>
+            <p>Toàn bộ</p>
             <p><?php echo $totalReservations; ?></p>
           </div>
         </div>
@@ -138,7 +138,7 @@ include 'sidebar.php';
             <i class="fas fa-calendar-day"></i>
           </div>
           <div class="stat-text">
-            <p>Today</p>
+            <p>Hôm nay</p>
             <p><?php echo $todaysReservations; ?></p>
           </div>
         </div>
@@ -147,7 +147,7 @@ include 'sidebar.php';
             <i class="fas fa-calendar-alt"></i>
           </div>
           <div class="stat-text">
-            <p>Upcoming</p>
+            <p> Sắp tới </p>
             <p><?php echo $upcomingReservations; ?></p>
           </div>
         </div>
@@ -156,39 +156,39 @@ include 'sidebar.php';
             <i class="fas fa-calendar-times"></i>
           </div>
           <div class="stat-text">
-            <p>Cancelled</p>
+            <p> Đã hủy</p>
             <p><?php echo $cancelledReservations; ?></p>
           </div>
         </div>
       </div>
       <div class="buttons-container">
-        <button onclick="openaddReservationModal()"><i class="fas fa-calendar-plus"></i> &nbsp; Add Reservation</button>
+        <button onclick="openaddReservationModal()"><i class="fas fa-calendar-plus"></i> &nbsp; Thêm thông tin đặt bàn </button>
         <div class="actions">
           <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
-            <option value="">All</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="On Process">On Process</option>
-            <option value="Completed">Completed</option>
-            <option value="Cancelled">Cancelled</option>
+            <option value="">Tất cả</option>
+            <option value="Pending">Hoãn</option>
+            <option value="Approved">Xác nhận</option>
+            <option value="On Process">Đang xử lý</option>
+            <option value="Completed">Hoàn thành</option>
+            <option value="Cancelled">Hủy bỏ</option>
           </select>
           <input type="date" id="dateFilter" name="dateFilter" value="<?php echo htmlspecialchars($dateFilter); ?>" onchange="filterByDate()">
-          <button type="button" onclick="clearFilter()">Clear</button>
+          <button type="button" onclick="clearFilter()">Xóa</button>
         </div>
       </div>
       <table id="userTable">
         <thead>
           <tr>
-            <th>NO</th>
-            <th>Reserved At</th>
+            <th>STT</th>
+            <th>Đặt bàn lúc</th>
             <th>Email</th>
-            <th>Name</th>
-            <th>Contact</th>
-            <th>No Of Guests</th>
-            <th>Reserved Date</th>
-            <th>Reserved Time</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>Tên</th>
+            <th>Liên hệ</th>
+            <th>Số lượng khách</th>
+            <th>Ngày đặt bàn</th>
+            <th>Giờ đặt bàn</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -207,11 +207,11 @@ include 'sidebar.php';
       <td>{$row['reservedTime']}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
-          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Pending</option>
-          <option value='Approved' " . ($row['status'] == 'Approved' ? 'selected' : '') . ">Approved</option>
-          <option value='On Process' " . ($row['status'] == 'On Process' ? 'selected' : '') . ">On Process</option>
-          <option value='Completed' " . ($row['status'] == 'Completed' ? 'selected' : '') . ">Completed</option>
-          <option value='Cancelled' " . ($row['status'] == 'Cancelled' ? 'selected' : '') . ">Cancelled</option>
+          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Hoãn</option>
+          <option value='Approved' " . ($row['status'] == 'Approved' ? 'selected' : '') . ">Xác nhận</option>
+          <option value='On Process' " . ($row['status'] == 'On Process' ? 'selected' : '') . ">Đang xử lý</option>
+          <option value='Completed' " . ($row['status'] == 'Completed' ? 'selected' : '') . ">Hoàn thành</option>
+          <option value='Cancelled' " . ($row['status'] == 'Cancelled' ? 'selected' : '') . ">Hủy bỏ</option>
         </select>
       </td>
       <td>
@@ -236,7 +236,7 @@ include 'sidebar.php';
       <div class="modal-container">
         <form id="addReservationForm" method="POST" action="add_reservation.php">
           <div class="modal-header">
-            <h2>Add Reservation</h2>
+            <h2>Thêm thông tin đặt bàn</h2>
             <span class="close-icon" onclick="closeModal()">&times;</span>
           </div>
           <div class="modal-content">
@@ -249,41 +249,41 @@ include 'sidebar.php';
           <div class="modal-content">
             <div class="input-group">
               <input type="text" name="name" id="name" class="input" required>
-              <label for="name" class="label">Name</label>
+              <label for="name" class="label">Tên</label>
             </div>
           </div>
 
           <div class="modal-content">
             <div class="input-group">
               <input type="text" name="contact" id="contact" class="input" required>
-              <label for="contact" class="label">Contact</label>
+              <label for="contact" class="label">Liên hệ</label>
             </div>
           </div>
 
           <div class="modal-content">
             <div class="input-group">
               <input type="number" name="noOfGuests" id="noOfGuests" class="input" required>
-              <label for="noOfGuests" class="label">No Of Guest</label>
+              <label for="noOfGuests" class="label">Số lượng khách</label>
             </div>
           </div>
 
           <div class="modal-content">
             <div class="input-group">
               <input type="date" name="reservedDate" id="reservedDate" class="input" required>
-              <label for="reservedDate" class="label">Reserved Date</label>
+              <label for="reservedDate" class="label">Ngày đặt bàn</label>
             </div>
           </div>
 
           <div class="modal-content">
             <div class="input-group">
               <input type="time" name="reservedTime" id="reservedTime" class="input" required>
-              <label for="reservedTime" class="label">Reserved Time</label>
+              <label for="reservedTime" class="label">Giờ đặt bàn</label>
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="button" onclick="closeaddReservationModal()">Cancel</button>
-            <button type="submit" class="button">Save</button>
+            <button type="button" class="button" onclick="closeaddReservationModal()">Hủy bỏ</button>
+            <button type="submit" class="button"> Lưu </button>
           </div>
         </form>
       </div>
@@ -295,7 +295,7 @@ include 'sidebar.php';
   <div class="modal-container">
     <form id="editReservationForm" method="POST" action="edit_reservation.php">
       <div class="modal-header">
-        <h2>Edit Reservation</h2>
+        <h2>Chỉnh sửa thông tin đặt bàn</h2>
         <span class="close-icon" onclick="closeEditReservationModal()">&times;</span>
       </div>
       <div class="modal-content">
@@ -307,36 +307,36 @@ include 'sidebar.php';
       <div class="modal-content">
         <div class="input-group">
           <input type="text" name="name" id="editName" class="input" required>
-          <label for="editName" class="label">Name</label>
+          <label for="editName" class="label">Tên</label>
         </div>
       </div>
       <div class="modal-content">
         <div class="input-group">
           <input type="text" name="contact" id="editContact" class="input" required>
-          <label for="editContact" class="label">Contact</label>
+          <label for="editContact" class="label">Liên hệ</label>
         </div>
       </div>
       <div class="modal-content">
         <div class="input-group">
           <input type="number" name="noOfGuests" id="editNoOfGuests" class="input" required>
-          <label for="editNoOfGuests" class="label">No Of Guests</label>
+          <label for="editNoOfGuests" class="label">Số lượng khách</label>
         </div>
       </div>
       <div class="modal-content">
         <div class="input-group">
           <input type="date" name="reservedDate" id="editReservedDate" class="input" required>
-          <label for="editReservedDate" class="label">Reserved Date</label>
+          <label for="editReservedDate" class="label">Ngày đặt bàn</label>
         </div>
       </div>
       <div class="modal-content">
         <div class="input-group">
           <input type="time" name="reservedTime" id="editReservedTime" class="input" required>
-          <label for="editReservedTime" class="label">Reserved Time</label>
+          <label for="editReservedTime" class="label">Giờ đặt bàn</label>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="button" onclick="closeEditReservationModal()">Cancel</button>
-        <button type="submit" class="button">Save</button>
+        <button type="button" class="button" onclick="closeEditReservationModal()">Hủy bỏ</button>
+        <button type="submit" class="button">Lưu</button>
       </div>
     </form>
   </div>
@@ -380,7 +380,7 @@ include 'sidebar.php';
 
       // Xóa đặt bàn
       function deleteItem(reservation_id) {
-        if (confirm('Are you sure you want to delete this reservation?')) {
+        if (confirm('Bạn có chắc chắn bạn muốn xóa thông tin đặt bàn này không?')) {
           var xhr = new XMLHttpRequest();
           xhr.open("POST", "delete_reservation.php", true);
           xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

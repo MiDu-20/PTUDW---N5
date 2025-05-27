@@ -27,9 +27,9 @@ if (!$stmt) {
 $stmt->bind_param('is', $orderId, $email);
 // Thực thi câu lệnh xóa
 if ($stmt->execute()) {
-    echo json_encode(['success' => true, 'message' => 'Review deleted successfully']);
+    echo json_encode(['success' => true, 'message' => 'Xóa đánh giá thành công.']);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Error deleting review']);
+    echo json_encode(['success' => false, 'message' => 'Lỗi khi xóa đánh giá.']);
 }
 
 // Đóng statement và kết nối

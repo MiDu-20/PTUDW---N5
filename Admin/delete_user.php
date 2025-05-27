@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Thực thi câu truy vấn
     if ($stmt->execute()) {
-        echo 'User deleted successfully'; // Thông báo xóa thành công
+        echo 'Xóa người dùng thành công.'; // Thông báo xóa thành công
     } else {
         http_response_code(500);
-        echo 'Error deleting reservation'; // Thông báo lỗi
+        echo 'Lỗi khi thực hiện xóa người dùng.'; // Thông báo lỗi
     }
 
     // Đóng statement và kết nối

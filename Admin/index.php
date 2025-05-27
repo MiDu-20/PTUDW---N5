@@ -218,7 +218,7 @@ include 'sidebar.php';
             <div class="card" data-color="blue">
 
                 <div class="card-content">
-                    <h4>Total Earning</h4>
+                    <h4>Tổng doanh thu</h4>
                     <h3>Rs <?php echo number_format($totalEarning); ?></h3>
                     <p class="<?php echo $totalEarningChange > 0 ? 'positive' : 'negative'; ?>">
                         <?php echo $totalEarningChange > 0 ? '▲' : '▼'; ?> <?php echo abs($totalEarningChange); ?>%
@@ -231,7 +231,7 @@ include 'sidebar.php';
             <!-- Doanh thu hôm nay -->
             <div class="card" data-color="blue">
                 <div class="card-content">
-                    <h4>Today's Earning</h4>
+                    <h4>Doanh thu hôm nay</h4>
                     <h3>Rs <?php echo number_format($todaysEarning); ?></h3>
                     <p class="<?php echo $todaysEarningChange > 0 ? 'positive' : 'negative'; ?>">
                         <?php echo $todaysEarningChange > 0 ? '▲' : '▼'; ?> <?php echo abs($todaysEarningChange); ?>%
@@ -244,7 +244,7 @@ include 'sidebar.php';
             <!-- Tổng đơn hàng -->
             <div class="card" data-color="blue">
                 <div class="card-content">
-                    <h4>Total Orders</h4>
+                    <h4>Tổng đơn hàng</h4>
                     <h3><?php echo number_format($totalOrders); ?></h3> <!-- Display total orders -->
                     <p class="<?php echo $totalOrdersChange > 0 ? 'positive' : 'negative'; ?>">
                         <?php echo $totalOrdersChange > 0 ? '▲' : '▼'; ?> <?php echo abs($totalOrdersChange); ?>%
@@ -257,7 +257,7 @@ include 'sidebar.php';
             <!-- Đơn hàng hôm nay -->
             <div class="card" data-color="blue">
                 <div class="card-content">
-                    <h4>Today's Orders</h4>
+                    <h4>Tổng đơn hàng hôm nay</h4>
                     <h3><?php echo number_format($todaysOrders); ?></h3> <!-- Display today's orders -->
                     <p class="<?php echo $todaysOrdersChange > 0 ? 'positive' : 'negative'; ?>">
                         <?php echo $todaysOrdersChange > 0 ? '▲' : '▼'; ?> <?php echo abs($todaysOrdersChange); ?>%
@@ -270,7 +270,7 @@ include 'sidebar.php';
             <!-- Tổng người dùng -->
             <div class="card" data-color="blue">
                 <div class="card-content">
-                    <h4>Total Users</h4>
+                    <h4>Tổng khách hàng</h4>
                     <h3><?php echo number_format($totalUsers); ?></h3> <!-- Display total users -->
                     <p class="<?php echo $totalUsersChange > 0 ? 'positive' : 'negative'; ?>">
                         <?php echo $totalUsersChange > 0 ? '▲' : '▼'; ?> <?php echo abs($totalUsersChange); ?>%
@@ -283,7 +283,7 @@ include 'sidebar.php';
             <!-- Tổng đặt bàn -->
             <div class="card" data-color="blue">
                 <div class="card-content">
-                    <h4>Total Reservations</h4>
+                    <h4>Tổng đặt bàn</h4>
                     <h3><?php echo number_format($totalReservations); ?></h3> <!-- Display total reservations -->
                     <p class="<?php echo $totalReservationsChange > 0 ? 'positive' : 'negative'; ?>">
                         <?php echo $totalReservationsChange > 0 ? '▲' : '▼'; ?> <?php echo abs($totalReservationsChange); ?>%
@@ -725,7 +725,7 @@ include 'sidebar.php';
                 // Tạo biểu đồ đường
                 const ctx = document.getElementById('ratingsLineChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: labels,
                         datasets: datasets

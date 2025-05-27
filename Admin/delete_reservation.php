@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Kiểm tra kết quả thực thi
   if ($stmt->execute()) {
-    echo "Reservation deleted successfully";
+    echo "Xóa đặt bàn thành công.";
   } else {
-    echo "Error deleting reservation: " . $conn->error;
+    echo "Lỗi khi xóa đặt bàn: " . $conn->error;
   }
 
     // Đóng câu lệnh và kết nối

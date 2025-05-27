@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Thực thi câu lệnh
     if ($stmt->execute()) {
-        echo '<script>alert("Reservation successful!"); window.location.href="reservations.php";</script>';
+        echo '<script>alert("Đặt bàn thành công!"); window.location.href="reservations.php";</script>';
     } else {
         echo "Error: " . $stmt->error;
     }
