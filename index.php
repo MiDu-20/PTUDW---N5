@@ -349,7 +349,7 @@ $conn->close();
     <div class="table ms-4 me-5" data-aos="fade-up">
       <div class="reservation row reveal">
         <div class="reservation-image col-lg-7 col-md-6 col-sm-12" style="background: none !important; padding: 0 !important;">
-          <img src="images/table.jpg" alt="Reservation" style="background: none ; width: 100%; height: 100%; padding: 0 !important;" class=" w-100 h-100">
+          <img src="images/table.jpg" alt="Reservation" >
         </div>
         <div class="reservation-section col-lg-5 col-md-6 col-sm-12">
           <h2 style="background-color: #feead4;">Đặt ngay!</h2>
