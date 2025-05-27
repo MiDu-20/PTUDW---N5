@@ -252,7 +252,7 @@
   <div>
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid nav-container">
-        <a class="navbar-brand me-auto logo" href="index.php">Grill 'N' Chill</a>
+        <a class="navbar-brand me-auto logo" href="index.php">Chomp Chomp Fast Food</a>
 
         <!-- OFFCANVAS MENU (Menu trượt từ bên phải trên mobile) -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
