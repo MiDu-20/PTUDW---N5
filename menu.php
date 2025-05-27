@@ -38,7 +38,7 @@ while ($row = $categoryResult->fetch_assoc()) {
     <!-- Import file CSS tùy chỉnh -->
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="menu.css" />
-    <title>Menu</title>
+    <title>Thực đơn</title>
 
     <!-- Một số CSS tùy chỉnh trực tiếp -->
     <style>
@@ -70,8 +70,8 @@ if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
 ?>
 <!-- Tiêu đề và mô tả thực đơn -->
 <div class="heading">
-    <div class="row heading-title">Our Menu</div>
-    <div class="row heading-description">~Discover a feast of flavors with our exciting menu!</div>
+    <div class="row heading-title">MENU</div>
+    <div class="row heading-description">~Khám phá hương vị tuyệt vời qua thực đơn hấp dẫn của chúng tôi!</div>
 </div>
 
 <?php foreach ($categories as $category): ?>
@@ -120,9 +120,9 @@ if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
                                         <input type="hidden" class="pcode" value="<?= $row['catName'] ?>">
 
                                         <div class="button-container mt-2">
-                                            <p class="card-text text-center ">Rs <?= number_format($row['price']) ?>/-</p>
+                                            <p class="card-text text-center "><?= number_format($row['price']) ?> VNĐ</p>
                                             <button class="addItemBtn <?= $buttonClass ?>" type="button">
-                                                <i class="fas fa-cart-plus"></i> &nbsp;&nbsp;Add to cart
+                                                <i class="fas fa-cart-plus"></i> &nbsp;&nbsp;Thêm vào giỏ hàng
                                             </button>
                                         </div>
                                     </form>
@@ -139,8 +139,8 @@ if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
 <!-- Thông báo dạng Toast nếu người dùng chưa đăng nhập -->
 <div id="toast" class="toast" style="background: rgba(255, 182, 182, 0.9); border: 1px solid rgba(255, 182, 182, 1); font-size: 16px;">
     <button class="toast-btn toast-close">&times;</button>
-    <span class="pt-3"><strong>You must log in to add items to the cart.</strong></span><br>
-    <button class="toast-btn toast-ok">Okay</button>
+    <span class="pt-3"><strong>Bạn cần đăng nhập để thêm món vào giỏ hàng.</strong></span><br>
+    <button class="toast-btn toast-ok">Đồng ý</button>
 </div>
 
 <!-- Chân trang -->
@@ -171,7 +171,7 @@ $(document).ready(function() {
         return "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
     }
 
-    // -- Xử lý khi người dùng nhấn nút “Add to cart”
+    // -- Xử lý khi người dùng nhấn nút “Thêm vào giỏ hàng”
     $(".addItemBtn").click(function(e) {
         e.preventDefault();
 
