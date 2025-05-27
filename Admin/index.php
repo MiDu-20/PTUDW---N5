@@ -342,7 +342,7 @@ include 'sidebar.php';
                         echo '<td>' . htmlspecialchars($row["order_status"]) . '</td>';
                         echo '<td>Rs ' . htmlspecialchars($row["grand_total"]) . '</td>';
                         echo '<td>';
-                        echo '<button onclick=\'viewDetails(' . $row['order_id'] . ')\'>View Details</button>';
+                        echo '<button onclick=\'viewDetails(' . $row['order_id'] . ')\'>Xem</button>';
                         echo '</td>';
                         echo '</tr>';
                     }
@@ -365,11 +365,11 @@ include 'sidebar.php';
         </div>
         <div class="review-container">
             <div id="chartContainer">
-                <h2>Earnings</h2>
+                <h2>Doanh thu các món</h2>
                 <canvas id="earningsChart"></canvas>
             </div>
             <div class="review-chart-container">
-                <h2>Ratings</h2>
+                <h2>Đánh giá</h2>
                 <canvas id="ratingsLineChart"></canvas>
             </div>
         </div>

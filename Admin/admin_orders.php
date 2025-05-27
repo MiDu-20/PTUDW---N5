@@ -112,7 +112,7 @@ include 'sidebar.php';
             <div class="filter-orders">
                 <!-- Dropdown lọc theo trạng thái -->
                 <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
-                    <option value="">All Orders</option>
+                    <option value="">Tất cả đơn hàng</option>
                     <option value="Pending">Pending</option>
                     <option value="On Process">Process</option>
                     <option value="On Process">On the way </option>
@@ -120,7 +120,7 @@ include 'sidebar.php';
                     <option value="Cancelled">Cancelled</option>
                 </select>
                 <!-- Tìm kiếm theo mã đơn -->
-                <input type="text" id="searchOrderId" placeholder="Search by Order ID" oninput="searchByOrderId()">
+                <input type="text" id="searchOrderId" placeholder="Tìm kiếm ID đơn hàng" oninput="searchByOrderId()">
             </div>
         </div>
         <?php
@@ -165,7 +165,7 @@ include 'sidebar.php';
                     <td><span class='status $statusClass'>" . $row['order_status'] . "</span></td>
                     <td>" . $row['pmode'] . "</td>
                     <td>" . ($row['order_status'] == 'Cancelled' ? $row['cancel_reason'] : '-') . "</td>
-                    <td><button id='viewbtn' onclick=\"viewDetails(" . $row['order_id'] . ")\">View Details</button></td>
+                    <td><button id='viewbtn' onclick=\"viewDetails(" . $row['order_id'] . ")\">Xem</button></td>
                 </tr>";
             }
         } else {
