@@ -84,14 +84,14 @@ $conn->close();
         <div class="row d-flex justify-content-start align-items-start main-container">
           <!-- Nội dung chào mừng -->
           <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" data-aos="fade-up">
-            <h2>Welcome to <span style="color: #fb4a36;"> Grill 'N' Chill,</span></h2>
-            <h4 style="color: gray; font-weight: 450;">"Where Hot Flavors Meet Cool Comfort."</h4>
+            <h2>Chào mừng đến với <span style="color: #fb4a36;"> Grill 'N' Chill,</span></h2> 
+            <h4 style="color: gray; font-weight: 450;">"Nơi hương vị cay nồng hòa quyện cùng cảm giác mát dịu dễ chịu."</h4>
             <p style="font-size: 18px; text-align: justify;">
-              Dive into a culinary celebration where every dish bursts with
-              flavor. At Grill 'N' Chill, we believe in making every meal an
-              unforgettable experience. Whether you're here for a casual meal or a
-              special occasion, our vibrant dishes will leave a lasting
-              impression.
+              Hãy đắm chìm trong bữa tiệc ẩm thực nơi mỗi món ăn 
+              đều bùng nổ hương vị. Tại Grill 'N' Chill, chúng tôi tin rằng mỗi 
+              bữa ăn đều xứng đáng là một trải nghiệm khó quên. Dù bạn đến để dùng 
+              bữa thường ngày hay kỷ niệm dịp đặc biệt, những món ăn đầy sắc màu 
+              của chúng tôi chắc chắn sẽ để lại ấn tượng sâu sắc.
             </p>
             <!-- Các nút hành động -->
             <div class="buttondiv">
@@ -222,15 +222,15 @@ $conn->close();
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 d-flex flex-column justify-content-center reveal" data-aos="fade-up">
           <h1>WHY <span>CHOOSE US?</span></h1>
-          <p class="content">Our restaurant offers the best food delivery service with fresh and high-quality ingredients.</p>
+          <p class="content">Nhà hàng của chúng tôi cung cấp dịch vụ giao đồ ăn tốt nhất với nguyên liệu tươi ngon và chất lượng cao.</p>
           <ul class="why-choose-us-list">
             <li data-aos="fade-up">
               <div class="image-wrapper mt-1">
                 <img src="icons/delivery-man.png" alt="Fast Delivery">
               </div>
               <div class="feature-content">
-                <h4>Fast Delivery</h4>
-                <p>Enjoy prompt and reliable delivery to your doorstep.</p>
+                <h4>Giao Hàng Nhanh Chóng</h4>
+                <p>Tận hưởng dịch vụ giao hàng nhanh chóng và đáng tin cậy đến tận cửa nhà bạn.</p>
               </div>
             </li>
             <li data-aos="fade-up">
@@ -238,8 +238,8 @@ $conn->close();
                 <img src="icons/vegetables.png" alt="Fresh Ingredients">
               </div>
               <div class="feature-content">
-                <h4>Fresh Ingredients</h4>
-                <p>We use only the freshest and highest quality ingredients.</p>
+                <h4>Nguyên Liệu Tươi Ngon</h4>
+                <p>Chúng tôi chỉ sử dụng những nguyên liệu tươi ngon và chất lượng cao nhất.</p>
               </div>
             </li>
             <li data-aos="fade-up">
@@ -247,8 +247,8 @@ $conn->close();
                 <img src="icons/waiter (1).png" alt="Friendly Service" class="why-us-image">
               </div>
               <div class="feature-content">
-                <h4>Friendly Service</h4>
-                <p>Experience warm and welcoming customer service.</p>
+                <h4>Dịch Vụ Thân Thiện</h4>
+                <p>Trải nghiệm dịch vụ khách hàng thân thiện và nồng hậu.</p>
               </div>
             </li>
             <li data-aos="fade-up">
@@ -256,8 +256,8 @@ $conn->close();
                 <img src="icons/tasty.png" alt="Exceptional Taste">
               </div>
               <div class="feature-content">
-                <h4>Exceptional Taste</h4>
-                <p>Indulge in flavors that are truly exceptional.</p>
+                <h4>Hương Vị Tuyệt Hảo</h4>
+                <p>Thưởng thức những hương vị thật sự tuyệt hảo.</p>
               </div>
             </li>
           </ul>
@@ -267,14 +267,14 @@ $conn->close();
       <!-- Top picks section -->
       <div class="popular reveal" data-aos="fade-up">
         <h1 class="text-center mt-3">OUR <span>TOP PICKS</span></h1>
-        <P class="text-center" style="font-size: 1.3rem;">~Handpicked meals that are a hit with everyone.</P>
+        <P class="text-center" style="font-size: 1.3rem;">Những món ăn được chọn lọc kỹ lưỡng, khiến ai cũng mê.</P>
 
         <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000" data-aos="fade-up">
           <div class="carousel-inner">
 
             <div id="toast" class="toast">
               <button class="toast-btn toast-close">&times;</button>
-              <span class="pt-3"><strong>You must log in to add items to the cart.</strong></span>
+              <span class="pt-3"><strong>Bạn phải đăng nhập để thêm món ăn vào giỏ hàng..</strong></span>
               <button class="toast-btn toast-ok">Okay</button>
             </div>
             <?php
@@ -321,15 +321,15 @@ $conn->close();
       <div class="container ">
         <div class="row" data-aos="fade-up">
           <h1 style="text-align: center;"><span style="color: #fb4a36;">ABOUT </span>US</h1>
-          <h4 style="text-align: center;" class="mb-5">Crafting Memorable Meals!</h4>
+          <h4 style="text-align: center;" class="mb-5">Tạo Nên Những Bữa Ăn Khó Quên!</h4>
         </div>
         <div class="story-content row mb-2">
           <div class="story-text col-lg-6 col-md-6 col-sm-12 reveal mt-2" data-aos="fade-up" data-os-interval="300">
-            <p>At <strong>Grill 'N' Chill</strong>, we are passionate about celebrating food. Our chefs bring a touch of creativity to every dish, ensuring a feast for your senses. Join us for an extraordinary dining experience that celebrates flavor and joy.</p>
-            <p>Founded in [2020], Grill 'N' Chill has been at the forefront of culinary innovation. Our commitment to using the freshest ingredients, combined with our chefs' expertise, has earned us a reputation for excellence. We believe that dining is not just about eating; it's about experiencing the art of food.</p>
-            <p>Whether you're looking for a romantic dinner, a family gathering, or a place to celebrate special occasions, Grill 'N' Chill offers the perfect ambiance and exquisite cuisine to make your visit unforgettable. Come and experience the joy of flavor with us!</p>
+            <p>Tại <strong>Grill 'N' Chill</strong>, Chúng tôi đam mê tôn vinh ẩm thực. Các đầu bếp của chúng tôi luôn mang đến sự sáng tạo trong từng món ăn, tạo nên một bữa tiệc thỏa mãn mọi giác quan. Hãy đến và cùng trải nghiệm một hành trình ẩm thực tuyệt vời, nơi hương vị và niềm vui được tôn vinh.</p>
+            <p>Được thành lập vào năm [2020], Grill 'N' Chill đã tiên phong trong việc đổi mới ẩm thực. Cam kết sử dụng những nguyên liệu tươi ngon nhất cùng với tay nghề của các đầu bếp đã giúp chúng tôi xây dựng được danh tiếng về chất lượng vượt trội. Chúng tôi tin rằng việc dùng bữa không chỉ là ăn uống, mà là trải nghiệm nghệ thuật ẩm thực.</p>
+            <p>Dù bạn đang tìm kiếm một bữa tối lãng mạn, một buổi họp mặt gia đình hay một nơi để kỷ niệm những dịp đặc biệt, Grill 'N' Chill luôn mang đến không gian lý tưởng cùng ẩm thực tinh tế để biến chuyến ghé thăm của bạn trở nên khó quên. Hãy đến và cùng chúng tôi trải nghiệm niềm vui từ hương vị!</p>
             <a href="menu.php" class="about_btn">
-              <i class="fa-solid fa-burger"></i>Order Now
+              <i class="fa-solid fa-burger"></i>Đặt ngay
             </a>
           </div>
           <div class="story-image col-lg-6 col-md-6 col-sm-12 d-flex justify-content-end align-items-start slide-in-right" data-aos="fade-up">
@@ -343,8 +343,8 @@ $conn->close();
   <!-- Table Reservation -->
   <section class="table-reservation" id="Reservation">
     <div class="row text-center ms-4" data-aos="fade-up">
-      <h1 class="mb-2">TABLE <span style="color: #fb4a36;">RESERVATION</span></h1>
-      <h5 class="mb-5">Book your dining experience with us and enjoy a delightful meal.</h5>
+      <h1 class="mb-2">ĐẶT BÀN <span style="color: #fb4a36;">NGAY</span></h1>
+      <h5 class="mb-5">Đặt chỗ ngay để tận hưởng bữa ăn ngon miệng cùng chúng tôi.</h5>
     </div>
     <div class="table ms-4 me-5" data-aos="fade-up">
       <div class="reservation row reveal">
@@ -356,7 +356,7 @@ $conn->close();
           <form id="reservation-form" action="reservations.php" method="POST">
             <div class="form-row">
               <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Họ và tên:</label>
                 <input type="text" id="name" name="name" required>
               </div>
               <div class="form-group">
@@ -366,25 +366,25 @@ $conn->close();
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="phone">Contact:</label>
+                <label for="phone">Số điện thoại:</label>
                 <input type="tel" id="phone" name="contact" required>
               </div>
               <div class="form-group">
-                <label for="date">Date:</label>
+                <label for="date">Ngày:</label>
                 <input type="date" id="date" name="reservedDate" required>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="reservedTime">Time:</label>
+                <label for="reservedTime">Thời gian:</label>
                 <input type="time" id="time" name="reservedTime" required>
               </div>
               <div class="form-group">
-                <label for="guests">Number of Guests:</label>
+                <label for="guests">Số lượng người:</label>
                 <input type="number" id="guests" name="noOfGuests" required min="1">
               </div>
             </div>
-            <button type="submit" value="submit">Reserve Now</button>
+            <button type="submit" value="submit">Đặt bàn ngay</button>
           </form>
         </div>
       </div>
@@ -397,7 +397,7 @@ $conn->close();
       <div class="row">
         <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
           <div class="text-center mb-5" data-aos="fade-up">
-            <h1>Hear From Our <span>Happy Customers!</span></h1>
+            <h1>Lắng nghe cảm nhận từ <span>khách hàng của chúng tôi!</span></h1>
           </div>
         </div>
       </div>
@@ -406,30 +406,30 @@ $conn->close();
           <div class="single-box">
             <div class="img-area"><img alt="" class="img-fluid" src="uploads/user-girl.png"></div>
             <div class="content">
-              <p>"The food was fresh, and the flavors were incredible. I loved the variety on the menu. A great place for family dinners."</p>
-              <h4>-Ritika Singh</h4>
+              <p>"Món ăn rất tươi ngon, hương vị thì tuyệt vời. Tôi rất thích sự đa dạng trong thực đơn. Một địa điểm lý tưởng cho những bữa tối cùng gia đình."</p>
+              <h4>-Phương An</h4>
             </div>
           </div>
           <div class="single-box">
             <div class="img-area"><img alt="" class="img-fluid" src="uploads/user-boy.jpg"></div>
             <div class="content">
-              <p>"The online ordering process was seamless and easy to navigate. My food arrived hot and on time. The delivery service was very professional."</p>
-              <h4>-Zidnan</h4>
+              <p>"Quy trình đặt món trực tuyến rất mượt mà và dễ sử dụng. Món ăn được giao đến còn nóng hổi và đúng giờ. Dịch vụ giao hàng rất chuyên nghiệp."</p>
+              <h4>-Mỹ Linh</h4>
             </div>
           </div>
           <div class="single-box">
             <div class="img-area"><img alt="" class="img-fluid" src="uploads/default.jpg"></div>
             <div class="content">
-              <p>"Fantastic place! The burgers are juicy, and the pizzas are loaded with toppings. The staff is super friendly, and the service is quick. A new favorite spot!"</p>
-              <h4>-Dave Wood</h4>
+              <p>"Một nơi tuyệt vời! Bánh burger thì mọng nước, còn pizza thì ngập tràn topping. Nhân viên cực kỳ thân thiện và phục vụ nhanh chóng. Đây sẽ là địa điểm yêu thích mới của tôi!"</p>
+              <h4>-Khánh Huyền</h4>
             </div>
           </div>
           <div class="single-box">
             <div class="img-area"><img alt="" class="img-fluid" src="uploads/default.jpg"></div>
             <div class="content">
               <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i class="icofont-star"></i><i class="icofont-star"></i><i class="icofont-star"></i></span>
-              <p>"The online ordering system is fantastic. It’s easy to customize my order, and the delivery is always prompt. The food arrives hot and tasty every time."</p>
-              <h4>-jimmy kimmel</h4>
+              <p>"Hệ thống đặt món trực tuyến thật tuyệt vời. Tôi có thể dễ dàng tùy chỉnh đơn hàng của mình, và món ăn luôn được giao nhanh chóng. Mỗi lần nhận hàng, đồ ăn đều nóng hổi và thơm ngon."</p>
+              <h4>-Minh Thư</h4>
             </div>
           </div>
         </div>
@@ -442,13 +442,13 @@ $conn->close();
     <div class="footer-container">
       <div class="footer-row">
         <div class="footer-col" id="contact">
-          <h4>Contact Us</h4>
-          <p>123 Galle Road, Colombo 04</p>
-          <p>Email: info@grillnchill.com</p>
-          <p>Phone: +94 77 123 4567</p>
+          <h4>Thông tin liên lạc</h4>
+          <p>279 Nguyễn Tri Phương, P.8, Q.10</p>
+          <p>Email: nhom4@gmail.com</p>
+          <p>Phone: +0353 551 657</p>
         </div>
         <div class="footer-col">
-          <h4>Follow Us</h4>
+          <h4>Hãy theo dõi chúng tôi</h4>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -457,7 +457,7 @@ $conn->close();
           </div>
         </div>
         <div class="footer-col">
-          <h4>Subscribe</h4>
+          <h4>Đăng ký</h4>
           <form action="#">
             <input type="email" placeholder="Your email address" required style="background-color: #f9f9f9; color: #333; margin-top: 12px;">
             <button type="submit">Subscribe</button>
