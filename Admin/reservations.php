@@ -67,7 +67,7 @@ while ($row = $update_result->fetch_assoc()) {
     $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
 
     if ($interval_minutes >= 30) {
-        $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Canceled' WHERE reservation_id = ?");
+        $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Cancelled' WHERE reservation_id = ?");
         $update_stmt->bind_param("i", $row['reservation_id']);
         $update_stmt->execute();
         $update_stmt->close();
@@ -220,7 +220,7 @@ include 'sidebar.php';
         $note = "";
 
   // Nếu đã đến giờ và chưa xử lý
-   if ($interval_minutes >= 30 && $row['status'] == 'Canceled') {
+   if ($interval_minutes >= 30 && $row['status'] == 'Cancelled') {
             $highlight = 'style="background-color: #f8d7da;"';
             $note = 'Tự động hủy sau 30 phút trễ';
         } elseif ($interval_minutes > 0 && $row['status'] == 'Approved') {
