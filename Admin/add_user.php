@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Thực thi câu lệnh SQL đã chuẩn bị
     if ($stmt->execute()) {
         // Nếu thành công, hiển thị thông báo và chuyển hướng về trang users.php
-        echo '<script>alert("User Added successfully!"); window.location.href="users.php";</script>';
+        echo '<script>alert("Thêm người dùng thành công"); window.location.href="users.php";</script>';
     } else {
         // Nếu thất bại, hiển thị lỗi chi tiết
         echo "Error: " . $stmt->error;
