@@ -192,6 +192,7 @@ include 'sidebar.php';
             <th>Giờ đặt bàn</th>
             <th>Trạng thái</th>
             <th>Hành động</th>
+            <th>Ghi chú</th>
           </tr>
         </thead>
         <tbody>
@@ -199,7 +200,32 @@ include 'sidebar.php';
           
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              echo "<tr>
+              $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
+  $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
+  $status = $row['status'];
+  $highlight = "";
+  $note = "";
+
+  // Nếu đã đến giờ và chưa xử lý
+  if ($interval_minutes > 0 && $status == 'Approved') {
+      if ($interval_minutes >= 30) {
+          // Cập nhật trạng thái nếu cần
+          $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Cancelled' WHERE reservation_id = ?");
+          $update_stmt->bind_param("i", $row['reservation_id']);
+          $update_stmt->execute();
+          $update_stmt->close();
+          $status = 'Cancelled';
+          $highlight = 'style="background-color: #f8d7da;"'; // đỏ
+          $note = "Tự động hủy sau 30 phút trễ";
+      } else {
+          $highlight = 'style="background-color: #fff3cd;"'; // vàng
+          $note = "Khách chưa đến, vui lòng kiểm tra";
+      }
+  } elseif ($interval_minutes < 0 && $status == 'Approved') {
+      $highlight = 'style="background-color: #d1e7dd;"'; // xanh
+      $note = "Sắp đến giờ đặt bàn";
+  }
+              echo "<tr $highlight>
       <td>{$row['reservation_id']}</td>
       <td>{$row['reservedAt']}</td>
       <td>{$row['email']}</td>
@@ -208,6 +234,7 @@ include 'sidebar.php';
       <td>{$row['noOfGuests']}</td>
       <td>{$row['reservedDate']}</td>
       <td>{$row['reservedTime']}</td>
+      <td>{$note}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
           <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Hoãn</option>
