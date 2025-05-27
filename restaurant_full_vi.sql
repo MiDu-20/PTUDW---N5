@@ -188,6 +188,10 @@ CREATE TABLE `reservations` (
   `status` enum('Đang chờ xử lý','Đang xử lý','Đã hoàn tất','Đã hủy') NOT NULL DEFAULT 'Đang chờ xử lý',
   `reservation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Lỗi thiếu status Approved
+ALTER TABLE reservations 
+MODIFY status ENUM('Pending','Approved','On Process','Completed','Cancelled') 
+NOT NULL DEFAULT 'Pending';
 
 --
 -- Dumping data for table `reservations`
