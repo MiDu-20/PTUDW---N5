@@ -361,7 +361,7 @@ $conn->close();
               </div>
               <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" name="email" placeholder="example@gmail.com" pattern=".+@gmail\.com" required>
               </div>
             </div>
             <div class="form-row">
