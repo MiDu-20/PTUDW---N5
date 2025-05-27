@@ -13,60 +13,6 @@ include 'db_connection.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Thời điểm hiện tại
 $current_time = new DateTime();
-// Mở HTML giao diện admin
-echo '<h2>Danh sách đặt bàn</h2>';
-echo '<table border="1" cellpadding="10" cellspacing="0">';
-echo '<tr>
-        <th>ID</th>
-        <th>Khách hàng</th>
-        <th>Liên hệ</th>
-        <th>Số khách</th>
-        <th>Ngày</th>
-        <th>Giờ</th>
-        <th>Trạng thái</th>
-        <th>Ghi chú</th>
-      </tr>';
-
-while ($row = $result->fetch_assoc()) {
-    $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
-    $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
-    $status = $row['status'];
-    $highlight = "";
-    $note = "";
-
-    // Nếu đơn đã đến giờ và chưa xử lý
-    if ($interval_minutes > 0 && $status == 'Approved') {
-        if ($interval_minutes >= 30) {
-            // Tự động chuyển trạng thái sang Canceled
-            $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Canceled' WHERE reservation_id = ?");
-            $update_stmt->bind_param("i", $row['reservation_id']);
-            $update_stmt->execute();
-            $update_stmt->close();
-            $status = 'Canceled';
-            $highlight = 'style="background-color: #f8d7da;"'; // đỏ
-            $note = "Tự động hủy sau 30 phút trễ";
-        } else {
-            $highlight = 'style="background-color: #fff3cd;"'; // vàng
-            $note = "Khách chưa đến, vui lòng kiểm tra";
-        }
-    } elseif ($interval_minutes < 0 && $status == 'Approved') {
-        $highlight = 'style="background-color: #d1e7dd;"'; // xanh lá: sắp tới giờ
-        $note = "Sắp đến giờ đặt bàn";
-    }
-
-    echo "<tr $highlight>
-            <td>{$row['reservation_id']}</td>
-            <td>{$row['name']}</td>
-            <td>{$row['contact']}</td>
-            <td>{$row['noOfGuests']}</td>
-            <td>{$row['reservedDate']}</td>
-            <td>{$row['reservedTime']}</td>
-            <td>{$status}</td>
-            <td>{$note}</td>
-          </tr>";
-}
-
-echo '</table>';
 
 // Lấy tổng số lượt đặt bàn
 $sql_total = "SELECT COUNT(*) AS total FROM reservations";
