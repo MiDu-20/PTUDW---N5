@@ -397,7 +397,7 @@ $conn->close();
       <div class="row">
         <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
           <div class="text-center mb-5" data-aos="fade-up">
-            <h1>Lắng nghe cảm nhận từ <span>khách hàng của chúng tôi!</span></h1>
+            <h1>Lắng nghe cảm nhận từ <span>khách hàng!</span></h1>
           </div>
         </div>
       </div>
