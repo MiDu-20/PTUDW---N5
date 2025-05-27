@@ -343,7 +343,7 @@ $conn->close();
   <!-- Table Reservation -->
   <section class="table-reservation" id="Reservation">
     <div class="row text-center ms-4" data-aos="fade-up">
-      <h1 class="mb-2">ĐẶT BÀN <span style="color: #fb4a36;">NGAY</span></h1>
+      <h1 class="mb-2">ĐẶT <span style="color: #fb4a36;">BÀN</span></h1>
       <h5 class="mb-5">Đặt chỗ ngay để tận hưởng bữa ăn ngon miệng cùng chúng tôi.</h5>
     </div>
     <div class="table ms-4 me-5" data-aos="fade-up">
