@@ -129,7 +129,7 @@ include 'sidebar.php';
             <i class="fas fa-calendar-check"></i>
           </div>
           <div class="stat-text">
-            <p>Total</p>
+            <p>Toàn bộ</p>
             <p><?php echo $totalReservations; ?></p>
           </div>
         </div>
@@ -170,10 +170,10 @@ include 'sidebar.php';
             <option value="Approved">Xác nhận</option>
             <option value="On Process">Đang xử lý</option>
             <option value="Completed">Hoàn thành</option>
-            <option value="Cancelled">Hủy</option>
+            <option value="Cancelled">Hủy bỏ</option>
           </select>
           <input type="date" id="dateFilter" name="dateFilter" value="<?php echo htmlspecialchars($dateFilter); ?>" onchange="filterByDate()">
-          <button type="button" onclick="clearFilter()">Clear</button>
+          <button type="button" onclick="clearFilter()">Xóa</button>
         </div>
       </div>
       <table id="userTable">
@@ -207,11 +207,11 @@ include 'sidebar.php';
       <td>{$row['reservedTime']}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
-          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Pending</option>
-          <option value='Approved' " . ($row['status'] == 'Approved' ? 'selected' : '') . ">Approved</option>
-          <option value='On Process' " . ($row['status'] == 'On Process' ? 'selected' : '') . ">On Process</option>
-          <option value='Completed' " . ($row['status'] == 'Completed' ? 'selected' : '') . ">Completed</option>
-          <option value='Cancelled' " . ($row['status'] == 'Cancelled' ? 'selected' : '') . ">Cancelled</option>
+          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Hoãn</option>
+          <option value='Approved' " . ($row['status'] == 'Approved' ? 'selected' : '') . ">Xác nhận</option>
+          <option value='On Process' " . ($row['status'] == 'On Process' ? 'selected' : '') . ">Đang xử lý</option>
+          <option value='Completed' " . ($row['status'] == 'Completed' ? 'selected' : '') . ">Hoàn thành</option>
+          <option value='Cancelled' " . ($row['status'] == 'Cancelled' ? 'selected' : '') . ">Hủy bỏ</option>
         </select>
       </td>
       <td>
