@@ -785,6 +785,7 @@ footer {
 }
 
 /* SECTION ĐẶT BÀN */
+/* SECTION ĐẶT BÀN */
 .table-reservation{
 padding-top: 50px;
 padding-bottom: 70px;
@@ -799,19 +800,28 @@ align-items: center;
 }
 
 .reservation {
-border: 4px solid #feead4;
-
+  display: flex;
+  flex-wrap: nowrap;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  height: auto; /* hoặc auto nếu cần responsive */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.reservation-image img {
+  height: auto;
+  object-fit: cover;
 }
 
 .reservation-section {
 background-color: #feead4;
 padding: 20px;
-border-left: 4px solid #feead4;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-width: 600px;
-/* Adjusted width to fit two fields per row */
-text-align: center;
-color: #fff;
+width: 100%;
+border: 2px solid black;
+border-radius: 0 12px 12px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #reservation-form {
@@ -869,16 +879,25 @@ margin-top: 10px;
 form button:hover {
 background-color: #f71900;
 }
-@media screen and (max-width: 455px) {
-.form-row {
-flex-direction: column;
-}
+@media (max-width: 768px) {
+  .reservation {
+    flex-direction: column;
+  }
+  .reservation-section {
+    border-radius: 0 0 12px 12px;
+    border-top: none;
+  }
+  .reservation-image img {
+    height: auto;
+  }
+
 
 .form-group {
 margin-right: 0;
 margin-bottom: 10px;
 }
 }
+
 
 /* NÚT VỀ CHÚNG TÔI VỚI HIỆU ỨNG ĐẶC BIỆT */
 .about_btn i{
