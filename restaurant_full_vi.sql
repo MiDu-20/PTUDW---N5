@@ -36,9 +36,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `itemName`, `price`, `image`, `quantity`, `catName`, `email`, `total_price`) VALUES
-(1, 'French Fries', 760, 'fries.jpg', 1, 'Appetizer', 'asna@gmail.com', '760'),
-(2, 'BBQ Chicken Pizza', 1000, 'bbq-pizza.jpg', 1, 'Pizza', 'zidnan@gmail.com', '1000'),
-(3, 'Strawberry Mocktail', 550, 'strawberry-drink.png', 2, 'Beverage', 'zidnan@gmail.com', '1100');
+(1, 'Khoai tây chiên', 760, 'fries.jpg', 1, 'Món khai vị', 'asna@gmail.com', '760'),
+(2, 'Pizza Gà Nướng BBQ', 1000, 'bbq-pizza.jpg', 1, 'Pizza', 'zidnan@gmail.com', '1000'),
+(3, 'Mocktail Dâu Tây', 550, 'strawberry-drink.png', 2, 'Đồ uống', 'zidnan@gmail.com', '1100');
 
 -- --------------------------------------------------------
 
@@ -57,10 +57,10 @@ CREATE TABLE `menucategory` (
 --
 
 INSERT INTO `menucategory` (`catId`, `catName`, `dateCreated`) VALUES
-(1, 'Appetizer', '2024-07-26 12:31:55'),
+(1, 'Món khai vị', '2024-07-26 12:31:55'),
 (2, 'Burger', '2024-07-26 12:31:55'),
 (3, 'Pizza', '2024-07-26 12:33:18'),
-(4, 'Beverage', '2024-07-26 12:33:18');
+(4, 'Đồ uống', '2024-07-26 12:33:18');
 
 -- --------------------------------------------------------
 
@@ -86,22 +86,22 @@ CREATE TABLE `menuitem` (
 --
 
 INSERT INTO `menuitem` (`itemId`, `itemName`, `catName`, `price`, `status`, `description`, `image`, `dateCreated`, `updatedDate`, `is_popular`) VALUES
-(3, 'French Fries', 'Appetizer', '760', 'Unavailable', ' Crispy, golden-brown fries seasoned to perfection, served with your choice of dipping sauces.', 'fries.jpg', '2024-07-26 09:09:35', '2024-07-26 14:39:35', 0),
-(5, 'Veggie Supreme Pizza', 'Pizza', '800', 'Available', 'Our Veggie Supreme Pizza, is loaded with a colorful array of seasonal vegetables, rich tomato sauce, and a generous layer of gooey cheese.', 'veggie-pizza.jpg', '2024-07-26 09:10:36', '2024-07-26 14:40:36', 1),
-(6, 'Prawn Pizza', 'Pizza', '1200', 'Available', 'Dive into our Prawn Pizza, topped with succulent, seasoned prawns, tangy tomato sauce, and a blend of melted cheeses.', 'prawn-piza.jpg', '2024-07-26 09:12:03', '2024-07-26 14:42:03', 0),
-(7, 'Cheese Pizza', 'Pizza', '800', 'Unavailable', 'Indulge in the classic simplicity of our Cheese Pizza, topped with a generous layer of gooey mozzarella and a perfectly seasoned tomato sauce.', 'cheese-pizza.jpg', '2024-07-26 09:13:09', '2024-07-26 14:43:09', 1),
-(8, 'BBQ Chicken Pizza', 'Pizza', '1000', 'Available', 'Savor the smoky goodness of our BBQ Chicken Pizza, featuring tender chicken pieces smothered in barbecue sauce.', 'bbq-pizza.jpg', '2024-07-26 09:13:45', '2024-07-26 14:43:45', 0),
-(9, 'Firebird Burger', 'Burger', '2100', 'Available', 'Crispy fried chicken breast, shredded iceberg lettuce, melted white cheddar, topped with our spicy mayo and sauces on a toasted bun.', 'firebird-burger.jpeg', '2024-08-03 14:37:51', '2024-08-03 16:37:09', 0),
-(10, 'Hybrid Burger', 'Burger', '1800', 'Available', 'Crispy chicken breast, melted white cheddar, char-grilled beef patty, chicken bacon with our signature sauces on a toasted bun.', 'hybrid-burger.jpeg', '2024-08-03 15:07:32', '2024-08-03 17:07:01', 1),
-(11, 'BBQ Chicken Burger', 'Burger', '1900', 'Available', 'Char-grilled beef patty, iceberg lettuce, red onions, melted white cheddar, BBQ sauce topped with our sauces on a toasted bun. ', 'bbq-burger.jpeg', '2024-08-03 15:09:50', '2024-08-03 17:07:34', 1),
-(12, 'Crispy Chicken Burger', 'Burger', '1900', 'Unavailable', 'Marinated crispy fried chicken breast, cheddar cheese, shredded iceberg lettuce topped with our signature mayo and sauces on a toasted bun', 'crispy-burger.jpeg', '2024-08-03 15:21:27', '2024-08-03 17:20:42', 0),
-(13, 'Strawberry Mocktail', 'Beverage', '550', 'Available', 'Refreshingly sweet and tangy, this Strawberry Mocktail blends ripe strawberries with a splash of citrus, creating a vibrant.', 'strawberry-drink.png', '2024-08-03 14:18:11', '2024-08-03 16:09:51', 0),
-(14, 'Orange Sizzler', 'Beverage', '350', 'Available', 'Enjoy the zing of our Orange Sizzler, a mix of fresh orange juice with a fizzy twist, perfect for adding a burst of to your day.', 'orange-drink.png', '2024-08-03 14:24:49', '2024-08-03 16:24:05', 1),
-(15, 'Dragon Fruit Mojito', 'Beverage', '760', 'Available', 'Experience a tropical twist with our Dragon Fruit Mojito, featuring exotic dragon fruit, mint, and lime, all muddled together.', 'Dragon-fruit-drink.png', '2024-08-03 14:25:57', '2024-08-03 16:24:54', 0),
-(16, 'Watermelon Smoothie', 'Beverage', '400', 'Available', 'A blend of juicy watermelon and a hint of lime, delivering a hydrating and deliciously fruity escape from the heat.', 'watermelon-drink.png', '2024-08-03 14:26:56', '2024-08-03 16:26:00', 0),
-(33, 'Garlic Bread', 'Appetizer', '350', 'Available', 'Golden, toasted bread topped with buttery garlic and herbs. Crispy and savory, perfect for starting your meal.', 'garlic-bread.avif', '2024-08-08 16:37:43', '2024-08-08 22:07:43', 1),
-(34, 'Chicken Wing', 'Appetizer', '480', 'Available', 'Tender, juicy chicken wings tossed in your choice of flavorful sauces. Perfectly crispy on the outside and succulent on the inside.', 'chicken-wing.avif', '2024-08-08 16:43:59', '2024-08-08 22:13:59', 0),
-(35, 'Samosa', 'Appetizer', '120', 'Available', 'Crispy, golden-brown samosas filled with a savory blend of spiced potatoes and peas.', 'samosa.avif', '2024-08-08 16:45:44', '2024-08-08 22:15:44', 0);
+(3, 'Khoai tây chiên', 'Món khai vị', '760', 'Unavailable', ' Crispy, golden-brown fries seasoned to perfection, served with your choice of dipping sauces.', 'fries.jpg', '2024-07-26 09:09:35', '2024-07-26 14:39:35', 0),
+(5, 'Pizza Rau Củ Thập Cẩm', 'Pizza', '800', 'Available', 'Pizza rau củ với nhiều loại rau theo mùa, sốt cà chua và phô mai béo ngậy.', 'veggie-pizza.jpg', '2024-07-26 09:10:36', '2024-07-26 14:40:36', 1),
+(6, 'Pizza Tôm', 'Pizza', '1200', 'Available', 'Pizza phủ tôm tươi tẩm gia vị, sốt cà chua và hỗn hợp phô mai tan chảy.', 'prawn-piza.jpg', '2024-07-26 09:12:03', '2024-07-26 14:42:03', 0),
+(7, 'Pizza Phô Mai', 'Pizza', '800', 'Unavailable', 'Pizza phô mai cổ điển với lớp phô mai mozzarella dày và sốt cà chua đậm vị.', 'cheese-pizza.jpg', '2024-07-26 09:13:09', '2024-07-26 14:43:09', 1),
+(8, 'Pizza Gà Nướng BBQ', 'Pizza', '1000', 'Available', 'Pizza gà nướng sốt BBQ thơm lừng với miếng gà mềm và đậm đà.', 'bbq-pizza.jpg', '2024-07-26 09:13:45', '2024-07-26 14:43:45', 0),
+(9, 'Burger Gà Cay Lửa', 'Burger', '2100', 'Available', 'Ức gà chiên giòn, xà lách và phô mai trắng, rưới sốt cay đặc trưng.', 'firebird-burger.jpeg', '2024-08-03 14:37:51', '2024-08-03 16:37:09', 0),
+(10, 'Burger Lai Đặc Biệt', 'Burger', '1800', 'Available', 'Gà chiên giòn, phô mai, thịt bò nướng và thịt xông khói cùng sốt đặc trưng.', 'hybrid-burger.jpeg', '2024-08-03 15:07:32', '2024-08-03 17:07:01', 1),
+(11, 'Burger Gà Nướng BBQ', 'Burger', '1900', 'Available', 'Thịt bò nướng, xà lách, hành tím, phô mai trắng và sốt BBQ.', 'bbq-burger.jpeg', '2024-08-03 15:09:50', '2024-08-03 17:07:34', 1),
+(12, 'Burger Gà Giòn', 'Burger', '1900', 'Unavailable', 'Gà chiên giòn, phô mai cheddar, xà lách và sốt đặc trưng.', 'crispy-burger.jpeg', '2024-08-03 15:21:27', '2024-08-03 17:20:42', 0),
+(13, 'Mocktail Dâu Tây', 'Đồ uống', '550', 'Available', 'Dâu tây chín kết hợp với chanh và vị ngọt thanh mát.', 'strawberry-drink.png', '2024-08-03 14:18:11', '2024-08-03 16:09:51', 0),
+(14, 'Cam Sủi Bọt', 'Đồ uống', '350', 'Available', 'Nước cam tươi pha với soda nhẹ tạo cảm giác sảng khoái.', 'orange-drink.png', '2024-08-03 14:24:49', '2024-08-03 16:24:05', 1),
+(15, 'Mojito Thanh Long', 'Đồ uống', '760', 'Available', 'Thanh long, bạc hà và chanh hòa quyện tạo vị nhiệt đới tươi mát.', 'Dragon-fruit-drink.png', '2024-08-03 14:25:57', '2024-08-03 16:24:54', 0),
+(16, 'Sinh Tố Dưa Hấu', 'Đồ uống', '400', 'Available', 'Dưa hấu tươi xay nhuyễn cùng một chút chanh mát lạnh.', 'watermelon-drink.png', '2024-08-03 14:26:56', '2024-08-03 16:26:00', 0),
+(33, 'Bánh Mì Bơ Tỏi', 'Món khai vị', '350', 'Available', 'Bánh mì nướng giòn với bơ tỏi và rau thơm.', 'garlic-bread.avif', '2024-08-08 16:37:43', '2024-08-08 22:07:43', 1),
+(34, 'Cánh Gà Chiên', 'Món khai vị', '480', 'Available', 'Cánh gà giòn rụm, tẩm sốt đậm đà, mềm mọng bên trong.', 'chicken-wing.avif', '2024-08-08 16:43:59', '2024-08-08 22:13:59', 0),
+(35, 'Bánh Samosa', 'Món khai vị', '120', 'Available', 'Bánh samosa giòn nhân khoai tây và đậu Hà Lan tẩm gia vị.', 'samosa.avif', '2024-08-08 16:45:44', '2024-08-08 22:15:44', 0);
 
 -- --------------------------------------------------------
 
@@ -116,12 +116,12 @@ CREATE TABLE `orders` (
   `lastName` varchar(255) NOT NULL,
   `phone` varchar(10) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `pmode` enum('Cash','Card','Takeaway','') NOT NULL DEFAULT 'Cash',
-  `payment_status` enum('Pending','Successful','Rejected','') NOT NULL DEFAULT 'Pending',
+  `pmode` enum('Tiền mặt','Thẻ','Mang đi','') NOT NULL DEFAULT 'Tiền mặt',
+  `payment_status` enum('Đang chờ xử lý','Thành công','Từ chối','') NOT NULL DEFAULT 'Đang chờ xử lý',
   `sub_total` decimal(10,2) NOT NULL,
   `grand_total` decimal(10,2) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `order_status` enum('Pending','Completed','Cancelled','Processing','On the way') NOT NULL DEFAULT 'Pending',
+  `order_status` enum('Đang chờ xử lý','Đã hoàn tất','Đã hủy','Processing','Đang giao hàng') NOT NULL DEFAULT 'Đang chờ xử lý',
   `cancel_reason` varchar(255) DEFAULT NULL,
   `note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -131,11 +131,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `email`, `firstName`, `lastName`, `phone`, `address`, `pmode`, `payment_status`, `sub_total`, `grand_total`, `order_date`, `order_status`, `cancel_reason`, `note`) VALUES
-(54, 'preethi@gmail.com', 'Preethi', 'Suresh', '9999999999', 'Galle Road', 'Cash', 'Pending', 1910.00, 2040.00, '2024-08-11 18:00:04', 'Processing', '', 'Add extra cheese'),
-(55, 'zidnan@gmail.com', 'Zidnan', 'Ahamad', '2222222222', 'Kolonnawa', 'Cash', 'Pending', 7420.00, 7550.00, '2024-08-10 18:02:26', 'On the way', '', 'Please make the Burger extra spicy'),
-(56, 'zidnan@gmail.com', 'Mohamed', 'Muhadh', '0000000000', 'Kolonnawa', 'Takeaway', 'Successful', 1150.00, 1150.00, '2024-08-11 18:04:16', 'Completed', '', ''),
-(57, 'jhon@gmail.com', 'Jhon', 'Paul', '7777777777', 'Colombo 15', 'Takeaway', 'Successful', 5720.00, 5720.00, '2024-08-08 18:05:26', 'Completed', '', ''),
-(58, 'zidnan@gmail.com', 'Zidnan', 'Ahamad', '4444444444', 'Colombo 12', 'Takeaway', 'Pending', 2700.00, 2700.00, '2024-08-10 20:12:14', 'Cancelled', 'Waiting time is too long.', '');
+(54, 'preethi@gmail.com', 'Preethi', 'Suresh', '9999999999', 'Galle Road', 'Tiền mặt', 'Đang chờ xử lý', 1910.00, 2040.00, '2024-08-11 18:00:04', 'Processing', '', 'Thêm phô mai'),
+(55, 'zidnan@gmail.com', 'Zidnan', 'Ahamad', '2222222222', 'Kolonnawa', 'Tiền mặt', 'Đang chờ xử lý', 7420.00, 7550.00, '2024-08-10 18:02:26', 'Đang giao hàng', '', 'Làm burger cay hơn'),
+(56, 'zidnan@gmail.com', 'Mohamed', 'Muhadh', '0000000000', 'Kolonnawa', 'Mang đi', 'Thành công', 1150.00, 1150.00, '2024-08-11 18:04:16', 'Đã hoàn tất', '', ''),
+(57, 'jhon@gmail.com', 'Jhon', 'Paul', '7777777777', 'Colombo 15', 'Mang đi', 'Thành công', 5720.00, 5720.00, '2024-08-08 18:05:26', 'Đã hoàn tất', '', ''),
+(58, 'zidnan@gmail.com', 'Zidnan', 'Ahamad', '4444444444', 'Colombo 12', 'Mang đi', 'Đang chờ xử lý', 2700.00, 2700.00, '2024-08-10 20:12:14', 'Đã hủy', 'Thời gian chờ quá lâu.', '');
 
 -- --------------------------------------------------------
 
@@ -158,18 +158,18 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `itemName`, `image`, `quantity`, `price`, `total_price`) VALUES
-(122, 54, 'Garlic Bread', 'garlic-bread.avif', 1, 350, 350.00),
-(123, 54, 'French Fries', 'fries.jpg', 1, 760, 760.00),
-(124, 54, 'Cheese Pizza', 'cheese-pizza.jpg', 1, 800, 800.00),
-(125, 55, 'Dragon Fruit Mojito', 'Dragon-fruit-drink.png', 1, 760, 760.00),
-(126, 55, 'BBQ Chicken Burger', 'bbq-burger.jpeg', 3, 1900, 5700.00),
-(127, 55, 'Chicken Wing', 'chicken-wing.avif', 2, 480, 960.00),
-(128, 56, 'Garlic Bread', 'garlic-bread.avif', 1, 350, 350.00),
-(129, 56, 'Cheese Pizza', 'cheese-pizza.jpg', 1, 800, 800.00),
-(130, 57, 'French Fries', 'fries.jpg', 2, 760, 1520.00),
-(131, 57, 'Firebird Burger', 'firebird-burger.jpeg', 2, 2100, 4200.00),
-(132, 58, 'Garlic Bread', 'garlic-bread.avif', 3, 350, 1050.00),
-(133, 58, 'Strawberry Mocktail', 'strawberry-drink.png', 3, 550, 1650.00);
+(122, 54, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 1, 350, 350.00),
+(123, 54, 'Khoai tây chiên', 'fries.jpg', 1, 760, 760.00),
+(124, 54, 'Pizza Phô Mai', 'cheese-pizza.jpg', 1, 800, 800.00),
+(125, 55, 'Mojito Thanh Long', 'Dragon-fruit-drink.png', 1, 760, 760.00),
+(126, 55, 'Burger Gà Nướng BBQ', 'bbq-burger.jpeg', 3, 1900, 5700.00),
+(127, 55, 'Cánh Gà Chiên', 'chicken-wing.avif', 2, 480, 960.00),
+(128, 56, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 1, 350, 350.00),
+(129, 56, 'Pizza Phô Mai', 'cheese-pizza.jpg', 1, 800, 800.00),
+(130, 57, 'Khoai tây chiên', 'fries.jpg', 2, 760, 1520.00),
+(131, 57, 'Burger Gà Cay Lửa', 'firebird-burger.jpeg', 2, 2100, 4200.00),
+(132, 58, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 3, 350, 1050.00),
+(133, 58, 'Mocktail Dâu Tây', 'strawberry-drink.png', 3, 550, 1650.00);
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,7 @@ CREATE TABLE `reservations` (
   `reservedTime` time NOT NULL,
   `reservedDate` date NOT NULL,
   `reservedAt` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('Pending','On Process','Completed','Cancelled') NOT NULL DEFAULT 'Pending',
+  `status` enum('Đang chờ xử lý','Đang xử lý','Đã hoàn tất','Đã hủy') NOT NULL DEFAULT 'Đang chờ xử lý',
   `reservation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -194,10 +194,10 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`email`, `name`, `contact`, `noOfGuests`, `reservedTime`, `reservedDate`, `reservedAt`, `status`, `reservation_id`) VALUES
-('asna@gmail.com', 'Asna Assalam', '0000000000', 6, '12:00:00', '2024-07-31', '2024-07-29 15:35:05', 'Completed', 1),
-('zidnan@gmail.com', 'Zidnan', '1111111111', 5, '10:00:07', '2024-08-11', '2024-08-10 18:14:55', 'Pending', 2),
-('preethi@gmail.com', 'Preethi Suresh', '5555555', 2, '06:30:59', '2024-08-10', '2024-08-03 18:15:54', 'On Process', 3),
-('jhon@gmail.com', 'Jhon Paul', '334455', 9, '20:45:59', '2024-08-09', '2024-08-05 18:16:38', 'Cancelled', 4);
+('asna@gmail.com', 'Asna Assalam', '0000000000', 6, '12:00:00', '2024-07-31', '2024-07-29 15:35:05', 'Đã hoàn tất', 1),
+('zidnan@gmail.com', 'Zidnan', '1111111111', 5, '10:00:07', '2024-08-11', '2024-08-10 18:14:55', 'Đang chờ xử lý', 2),
+('preethi@gmail.com', 'Preethi Suresh', '5555555', 2, '06:30:59', '2024-08-10', '2024-08-03 18:15:54', 'Đang xử lý', 3),
+('jhon@gmail.com', 'Jhon Paul', '334455', 9, '20:45:59', '2024-08-09', '2024-08-05 18:16:38', 'Đã hủy', 4);
 
 -- --------------------------------------------------------
 
@@ -221,8 +221,8 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`review_id`, `email`, `order_id`, `rating`, `review_text`, `review_date`, `status`, `response`) VALUES
-(1, 'zidnan@gmail.com', 56, 5, 'The food was absolutely delicious! I\'ll definitely be ordering again!', '2024-08-10', 'approved', 'Thank you for your feedback.'),
-(2, 'jhon@gmail.com', 57, 3, '\"The burger was tasty, but it arrived a bit cold. The fries were also soggy. I hope this can be improved next time.\"', '2024-08-11', 'pending', NULL);
+(1, 'zidnan@gmail.com', 56, 5, 'Món ăn rất ngon! Tôi chắc chắn sẽ đặt lại lần nữa!', '2024-08-10', 'approved', 'Cảm ơn bạn đã phản hồi.'),
+(2, 'jhon@gmail.com', 57, 3, '\"Burger ngon, nhưng đến nơi hơi nguội. Khoai tây cũng bị mềm. Hy vọng lần sau sẽ tốt hơn.\"', '2024-08-11', 'pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -236,7 +236,7 @@ CREATE TABLE `staff` (
   `lastName` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `contact` varchar(15) DEFAULT NULL,
-  `role` enum('superadmin','admin','delivery boy','waiter') NOT NULL,
+  `role` enum('quản trị cao cấp','quản trị viên','nhân viên giao hàng','phục vụ') NOT NULL,
   `password` varchar(255) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -248,9 +248,9 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `firstName`, `lastName`, `email`, `contact`, `role`, `password`, `createdAt`, `updatedAt`, `profile_image`) VALUES
-(2, 'Akshaya', 'Rohit', 'ak@gmail.com', '8877669955', 'superadmin', 'AkRohit', '2024-08-02 19:45:36', '2024-08-10 15:30:48', 'user-girl.png'),
-(3, 'Ravi', 'Kumar', 'ravi@gmail.com', '9876543210', 'delivery boy', 'ravi123', '2024-08-02 19:46:10', '2024-08-02 19:46:10', 'default.jpg'),
-(5, 'Demo', 'Admin', 'admin@gmail.com', '0000000000', 'admin', 'admin2024', '2024-08-04 06:51:20', '2024-08-04 06:51:38', 'default.jpg');
+(2, 'Akshaya', 'Rohit', 'ak@gmail.com', '8877669955', 'quản trị cao cấp', 'AkRohit', '2024-08-02 19:45:36', '2024-08-10 15:30:48', 'user-girl.png'),
+(3, 'Ravi', 'Kumar', 'ravi@gmail.com', '9876543210', 'nhân viên giao hàng', 'ravi123', '2024-08-02 19:46:10', '2024-08-02 19:46:10', 'default.jpg'),
+(5, 'Demo', 'Admin', 'admin@gmail.com', '0000000000', 'quản trị viên', 'admin2024', '2024-08-04 06:51:20', '2024-08-04 06:51:38', 'default.jpg');
 
 -- --------------------------------------------------------
 
