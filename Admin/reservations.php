@@ -129,7 +129,7 @@ include 'sidebar.php';
             <i class="fas fa-calendar-check"></i>
           </div>
           <div class="stat-text">
-            <p>Total</p>
+            <p>Toàn bộ</p>
             <p><?php echo $totalReservations; ?></p>
           </div>
         </div>
