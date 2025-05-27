@@ -86,7 +86,7 @@ $conn->close();
       <div class="container mt-3">
         <div class="row d-flex justify-content-start align-items-start main-container">
           <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" data-aos="fade-up">
-            <h1>Welcome to <span style="color: #fb4a36;"> Chomp Chomp Fast Food,</span></h1>
+            <h1>Welcome to <span> Chomp Chomp Fast Food,</span></h1>
             <h4 style="color: gray; font-weight: 450;">"Ngon là Nhai!"</h4>
             <p style="font-size: 24px; text-align: justify;">
             Thiên đường thức ăn nhanh với burger mềm thơm, khoai tây chiên giòn rụm và salad mọng nước, được chế biến từ nguyên liệu tươi ngon. Không gian trẻ trung, sôi động sẽ mang đến cho bạn trải nghiệm ẩm thực nhanh gọn nhưng tràn đầy hứng khởi.
@@ -313,7 +313,7 @@ $conn->close();
   <!-- Table Reservation -->
   <section class="table-reservation" id="Reservation">
     <div class="row text-center ms-4" data-aos="fade-up">
-      <h1 class="mb-2">ĐẶT <span style="color: #fb4a36;">BÀN</span></h1>
+      <h1 class="mb-2">ĐẶT <span style="color: #ff9d23;">BÀN</span></h1>
       <h5 class="mb-5">Hãy đặt trải nghiệm ẩm thực cùng chúng tôi để tận hưởng bữa ăn ngon miệng.</h5>
     </div>
     <div class="table ms-4 me-5" data-aos="fade-up">
@@ -367,7 +367,7 @@ $conn->close();
     <section class="our-story-section p-5">
       <div class="container ">
         <div class="row" data-aos="fade-up">
-          <h1 style="text-align: center;">VỀ <span style="color: #fb4a36;">CHÚNG TÔI</span></h1>
+          <h1 style="text-align: center;">VỀ <span style="color: #ff9d23;">CHÚNG TÔI</span></h1>
           <h4 style="text-align: center;" class="mb-5">Tạo dựng những bữa ăn khó quên!</h4>
         </div>
         <div class="row d-flex align-items-center">

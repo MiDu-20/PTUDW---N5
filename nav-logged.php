@@ -74,9 +74,11 @@ $userinfo = get_UserInfo($useremail);
 
     body {
       background-color: #feead4;
-      font-family: "Poppins", sans-serif;
+      font-family: "Baloo 2", sans-serif;
       font-weight: 300;
       font-style: normal;
+      font-size:large;
+      padding-top: 1px;
     }
 
     a {
@@ -86,7 +88,7 @@ $userinfo = get_UserInfo($useremail);
 
     .navbar-brand,
     .offcanvas-header {
-      color: #fb4a36;
+      color: #ff9d23;
       font-family: "Chewy", system-ui;
       font-optical-sizing: auto;
       font-weight: 500;
@@ -115,7 +117,7 @@ $userinfo = get_UserInfo($useremail);
       overflow: hidden;
       transition-duration: 0.3s;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-      background-color: #fb4a36;
+      background-color: #ff9d23;
     }
 
     /* THIẾT LẬP NÚT (Giữ nguyên cho tương thích) */
@@ -201,7 +203,7 @@ $userinfo = get_UserInfo($useremail);
       border: none;
       margin-left: -50px !important;
       text-align: center;
-      background-color: #ffbda1;
+      background-color: #c14600;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
@@ -212,7 +214,7 @@ $userinfo = get_UserInfo($useremail);
     }
 
     .dropdown-toggle:hover {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     .navbar-toggler-icon {
@@ -222,17 +224,17 @@ $userinfo = get_UserInfo($useremail);
 
     .nav-link:hover,
     .nav-link.active {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     .navbar-nav .nav-link.active,
     .navbar-nav .nav-link:hover,
     .navbar-nav .nav-link:focus {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     .offcanvas-header {
-      background-color: #ffbda1;
+      background-color: #c14600;
     }
 
 
@@ -249,7 +251,7 @@ $userinfo = get_UserInfo($useremail);
       border-bottom-left-radius: 80px;
       border-bottom-right-radius: 80px;
       padding: 5px 0px 0px 0px;
-      background-color: #ffbda1;
+      background-color: #c14600;
     }
 
     .cart {
@@ -260,7 +262,7 @@ $userinfo = get_UserInfo($useremail);
 
     /* HIỆU ỨNG HOVER CHO PROFILE */
     .nav-item.dropdown .nav-link:hover {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     .dropdown-item {
@@ -268,7 +270,7 @@ $userinfo = get_UserInfo($useremail);
     }
 
     .dropdown-item:hover {
-      background-color: #fb4a36;
+      background-color: #ff9d23;
       color: white;
     }
 
@@ -295,11 +297,11 @@ $userinfo = get_UserInfo($useremail);
     }
 
     .offcanvas-body {
-      background: #ffbda1;
+      background: #c14600;
     }
 
     .offcanvas-header {
-      border-bottom: 1px solid #fb4a36;
+      border-bottom: 1px solid #ff9d23;
     }
 
     .btn-close {
@@ -308,7 +310,7 @@ $userinfo = get_UserInfo($useremail);
 
     .navbar .active {
 
-      color: #fb4a36;
+      color: #ff9d23;
       font-weight: 700;
     }
   </style>
@@ -324,7 +326,7 @@ $userinfo = get_UserInfo($useremail);
   <div>
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid nav-container">
-        <a class="navbar-brand me-auto logo" href="index.php">Grill 'N' Chill</a>
+        <a class="navbar-brand me-auto logo" href="index.php">Chomp Chomp</a>
 
         <!-- OFFCANVAS MENU -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -339,35 +341,35 @@ $userinfo = get_UserInfo($useremail);
             <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
               <!-- MENU TRANG CHỦ -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" aria-current="page" href="index.php">Home</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php' ? 'active' : ''; ?>" aria-current="page" href="index.php">Trang chủ</a>
               </li>
 
               <!-- MENU THỰC ĐƠN -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mx-lg-2 <?php echo $current_page == 'menu.php' ? 'active' : ''; ?>" href="menu.php" role="button" aria-haspopup="true" aria-expanded="false">
-                  Menu
+                  Thực đơn
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="menu.php#appetizer">Appetizers</a></li>
+                  <li><a class="dropdown-item" href="menu.php#appetizer">Khai vị</a></li>
                   <li><a class="dropdown-item" href="menu.php#pizza">Pizza</a></li>
                   <li><a class="dropdown-item" href="menu.php#burger">Burger</a></li>
-                  <li><a class="dropdown-item" href="menu.php#beverage">Beverages</a></li>
+                  <li><a class="dropdown-item" href="menu.php#beverage">Thức uống</a></li>
                 </ul>
               </li>
 
               <!-- MENU ĐẶT BÀN -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#Reservation' ? 'active' : ''; ?>" href="index.php#Reservation">Reservation</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#Reservation' ? 'active' : ''; ?>" href="index.php#Reservation">Đặt bàn</a>
               </li>
 
               <!-- MENU VỀ CHÚNG TÔI -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#About-Us' ? 'active' : ''; ?>" href="index.php#About-Us">About Us</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#About-Us' ? 'active' : ''; ?>" href="index.php#About-Us">Về chúng tôi</a>
               </li>
 
               <!-- MENU ĐÁNH GIÁ -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == '#review' ? 'active' : ''; ?>" href="#review">Review</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == '#review' ? 'active' : ''; ?>" href="#review">Đánh giá</a>
               </li>
             </ul>
           </div>
