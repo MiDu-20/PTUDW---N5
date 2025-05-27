@@ -119,15 +119,15 @@ table td {
 }
 
 table th {
-  background-color: #fdd9c9; /* Header màu cam nhạt */
+  background-color: rgba(60, 142, 245, 0.7); /* Header màu xanh đậm */
 }
 
 table tr:nth-of-type(even) {
-  background-color: #fce9e2; /* Zebra striping: dòng chẵn */
+  background-color: rgba(60, 142, 245, 0.2); /* Zebra striping: dòng chẵn */
 }
 
 table tr:hover {
-  background-color: #fdd9c9; /* Hover trên dòng */
+  background-color: rgba(60, 142, 245, 0.2); /* Hover trên dòng */
 }
 
 /* HEADER TRÊN CÙNG */

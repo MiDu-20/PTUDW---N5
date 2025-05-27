@@ -5,7 +5,6 @@ $username = "root"; // Tên người dùng cơ sở dữ liệu
 $password = ""; // Mật khẩu cơ sở dữ liệu (trống)
 $dbname = "restaurant"; // Tên cơ sở dữ liệu
 
-// Hiển thị lỗi được bật trong môi trường sản xuất - có thể lộ thông tin nhạy cảm
 // Bật báo cáo lỗi để dễ dàng gỡ lỗi
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
