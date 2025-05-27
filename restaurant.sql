@@ -211,7 +211,7 @@ CREATE TABLE `reviews` (
   `order_id` int(11) DEFAULT NULL,
   `rating` int(11) NOT NULL,
   `review_text` text DEFAULT NULL,
-  `review_date` date DEFAULT current_timestamp(),
+  `review_date` datetime DEFAULT current_timestamp(),
   `status` enum('approved','pending','rejected') DEFAULT 'pending',
   `response` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
