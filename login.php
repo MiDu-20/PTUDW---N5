@@ -105,7 +105,7 @@
           </p>
           <button class="btn transparent" id="sign-up-btn">Đăng ký</button>
         </div>
-        <img src="images/form-pic.png" class="image" alt="" />
+        <img src="images/form-pic1.png" class="image" alt="" />
       </div>
 
       <!-- Panel bên phải: dành cho khách hàng cũ -->

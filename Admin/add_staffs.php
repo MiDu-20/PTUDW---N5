@@ -1,57 +1,88 @@
 <?php
-// Database configuration
+// Cấu hình kết nối database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "restaurant";
 
-// Enable error reporting (optional, for debugging)
+// Bật chế độ hiển thị lỗi để debug (bạn có thể tắt khi đưa lên production)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Establishing connection to the database
+// Kết nối database
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Handling form submission
+// Hàm kiểm tra và lọc dữ liệu đầu vào
+function validate_input($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collecting form data
-    $email = $_POST['email'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $contact = $_POST['contact'];
-    $role = $_POST['role'];
-    $password = $_POST['password'];
-   
+    // Lấy và xử lý dữ liệu đầu vào
+    $email = validate_input($_POST['email']);
+    $firstName = validate_input($_POST['firstName']);
+    $lastName = validate_input($_POST['lastName']);
+    $contact = validate_input($_POST['contact']);
+    $role = validate_input($_POST['role']);
+    $password_raw = $_POST['password']; // Lấy mật khẩu thô để hash
 
+    $errors = [];
 
-    // Prepare SQL statement to insert data into reservations table
+    // Kiểm tra dữ liệu hợp lệ
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Email không hợp lệ hoặc để trống.";
+    }
+    if (empty($firstName)) {
+        $errors[] = "Tên không được để trống.";
+    }
+    if (empty($lastName)) {
+        $errors[] = "Họ không được để trống.";
+    }
+    if (empty($contact)) {
+        $errors[] = "Liên hệ không được để trống.";
+    }
+    if (empty($role)) {
+        $errors[] = "Chức vụ không được để trống.";
+    }
+    if (empty($password_raw)) {
+        $errors[] = "Mật khẩu không được để trống.";
+    }
+
+    if (count($errors) > 0) {
+        // Hiển thị lỗi nếu có
+        foreach ($errors as $error) {
+            echo "<p style='color:red;'>$error</p>";
+        }
+        exit; // Dừng xử lý nếu có lỗi
+    }
+
+    // Mã hóa mật khẩu trước khi lưu
+    $password = password_hash($password_raw, PASSWORD_DEFAULT);
+
+    // Chuẩn bị câu truy vấn
     $sql = "INSERT INTO staff (email, firstName, lastName, contact, role, password) 
             VALUES (?, ?, ?, ?, ?, ?)";
-
-    // Prepare and bind parameters
     $stmt = $conn->prepare($sql);
+
     if ($stmt === false) {
-        die("Prepare failed: " . $conn->error);
+        die("Lỗi chuẩn bị câu truy vấn: " . $conn->error);
     }
+
     $stmt->bind_param("ssssss", $email, $firstName, $lastName, $contact, $role, $password);
 
-    // Execute the statement
+    // Thực thi và kiểm tra
     if ($stmt->execute()) {
-        echo '<script>alert("Staff Added successfully!"); window.location.href="staffs.php";</script>';
+        echo '<script>alert("Thêm nhân viên thành công!"); window.location.href="staffs.php";</script>';
     } else {
-        echo "Error: " . $stmt->error;
+        echo "<p style='color:red;'>Lỗi: " . $stmt->error . "</p>";
     }
 
-    // Close statement
     $stmt->close();
 }
 
-// Close connection
 $conn->close();
 ?>

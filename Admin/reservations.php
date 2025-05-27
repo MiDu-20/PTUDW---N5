@@ -10,7 +10,10 @@ if (!isset($_SESSION['adminloggedin'])) {
 include 'db_connection.php';
 
 // Đặt múi giờ mặc định là Colombo
-date_default_timezone_set('Asia/Colombo');
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+// Thời điểm hiện tại
+$current_time = new DateTime();
+
 // Lấy tổng số lượt đặt bàn
 $sql_total = "SELECT COUNT(*) AS total FROM reservations";
 $result_total = $conn->query($sql_total);
@@ -55,11 +58,25 @@ if (!empty($statusFilter)) {
 if (!empty($conditions)) {
   $query .= " WHERE " . implode(' AND ', $conditions);
 }
-// Sắp xếp kết quả theo ngày đặt bàn giảm dần (mới nhất trước)
-$query .= " ORDER BY reservedDate DESC";
-// Thực thi truy vấn và lưu kết quả
-$result = $conn->query($query);
+// Bước 1: Cập nhật trạng thái các đơn quá 30 phút
+$update_sql = "SELECT reservation_id, reservedDate, reservedTime, status FROM reservations WHERE status = 'Approved'";
+$update_result = $conn->query($update_sql);
 
+while ($row = $update_result->fetch_assoc()) {
+    $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
+    $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
+
+    if ($interval_minutes >= 30) {
+        $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Cancelled' WHERE reservation_id = ?");
+        $update_stmt->bind_param("i", $row['reservation_id']);
+        $update_stmt->execute();
+        $update_stmt->close();
+    }
+}
+// Bước 2: Truy vấn lại để hiển thị danh sách đã cập nhật
+$sql = "SELECT * FROM reservations ORDER BY CONCAT(reservedDate, ' ', reservedTime) ASC";
+// Thực thi truy vấn và lưu kết quả
+$result = $conn->query($sql);
 
 ?>
 <?php
@@ -189,6 +206,7 @@ include 'sidebar.php';
             <th>Giờ đặt bàn</th>
             <th>Trạng thái</th>
             <th>Hành động</th>
+            <th>Ghi chú</th>
           </tr>
         </thead>
         <tbody>
@@ -196,7 +214,24 @@ include 'sidebar.php';
           
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              echo "<tr>
+             $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
+        $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
+        $highlight = "";
+        $note = "";
+
+  // Nếu đã đến giờ và chưa xử lý
+   if ($interval_minutes >= 30 && $row['status'] == 'Cancelled') {
+            $highlight = 'style="background-color: #f8d7da;"';
+            $note = 'Tự động hủy sau 30 phút trễ';
+        } elseif ($interval_minutes > 0 && $row['status'] == 'Approved') {
+            $highlight = 'style="background-color: #fff3cd;"';
+            $note = 'Khách chưa đến, vui lòng kiểm tra';
+        } elseif ($interval_minutes < 0 && $row['status'] == 'Approved') {
+            $highlight = 'style="background-color: #d1e7dd;"';
+            $note = 'Sắp đến giờ đặt bàn';
+        }
+
+              echo "<tr $highlight>
       <td>{$row['reservation_id']}</td>
       <td>{$row['reservedAt']}</td>
       <td>{$row['email']}</td>
@@ -218,10 +253,11 @@ include 'sidebar.php';
         <button id='editbtn' onclick='openEditReservationModal(this)' data-id='{$row['reservation_id']}' data-email='{$row['email']}' data-name='{$row['name']}' data-contact='{$row['contact']}' data-reservedDate='{$row['reservedDate']}' data-reservedTime='{$row['reservedTime']}' data-noOfGuests='{$row['noOfGuests']}' data-status='{$row['status']}'><i class='fas fa-edit'></i></button>
         <button id='deletebtn' onclick=\"deleteItem('{$row['reservation_id']}')\"><i class='fas fa-trash'></i></button>
       </td>
+      <td>{$note}</td>
     </tr>";
             }
           } else {
-            echo "<tr><td colspan='10' style='text-align: center;'>No Reservations Found</td></tr>";
+            echo "<tr><td colspan='10' style='text-align: center;'>Không có đơn đặt bàn nào được tìm thấy.</td></tr>";
           }
           ?>
         </tbody>
