@@ -342,17 +342,17 @@ $conn->close();
 
   <!-- Table Reservation -->
   <section class="table-reservation" id="Reservation">
-    <div class="row text-center ms-4" data-aos="fade-up">
-      <h1 class="mb-2">ĐẶT <span style="color: #fb4a36;">BÀN</span></h1>
-      <h5 class="mb-5">Đặt chỗ ngay để tận hưởng bữa ăn ngon miệng cùng chúng tôi.</h5>
-    </div>
-    <div class="table ms-4 me-5" data-aos="fade-up">
-      <div class="reservation">
-  <div class="reservation-image">
-    <img src="images/table.jpg" alt="Reservation">
+    <div class="text-center">
+    <h1>ĐẶT <span style="color: #fb4a36;">BÀN</span></h1>
+    <h5>Đặt chỗ ngay để tận hưởng bữa ăn ngon miệng cùng chúng tôi.</h5>
   </div>
-       <div class="reservation-section">
-    <h2>Đặt ngay!</h2>
+   <div class="table">
+    <div class="reservation">
+      <div class="reservation-image">
+        <img src="images/table.jpg" alt="Reservation">
+      </div>
+        <div class="reservation-form-container">
+        <h2>Đặt ngay!</h2>
     <form id="reservation-form" action="reservations.php" method="POST">
             <div class="form-row">
               <div class="form-group">
