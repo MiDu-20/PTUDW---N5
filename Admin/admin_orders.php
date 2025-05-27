@@ -81,15 +81,15 @@ include 'sidebar.php';
     <!-- Menu điều hướng -->
 
     <ul>
-            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Overview</a></li>
-            <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Menu Management</a></li>
-            <li><a href="admin_orders.php" class="active"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
-            <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
-            <li><a href="reviews.php"><i class="fas fa-star"></i> Reviews</a></li>
-            <li><a href="staffs.php" ><i class="fas fa-users"></i> Staffs</a></li>
-            <li><a href="profile.php"><i class="fas fa-user"></i> Profile Setting</a></li>
-            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="index.php" ><i class="fas fa-chart-line"></i>Tổng quan</a></li>
+            <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
+            <li><a href="admin_orders.php" class="active"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
+            <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
+            <li><a href="users.php"><i class="fas fa-users"></i>Nhân viên</a></li>
+            <li><a href="reviews.php"><i class="fas fa-star"></i>Đánh giá</a></li>
+            <li><a href="staffs.php" ><i class="fas fa-users"></i>Người dùng</a></li>
+            <li><a href="profile.php"><i class="fas fa-user"></i>Hồ sơ</a></li>
+            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
         </ul>
     </div>
     <div class="content">
@@ -127,14 +127,14 @@ include 'sidebar.php';
         /// Hiển thị dữ liệu đơn hàng dưới dạng bảng
         echo "<table>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Contact</th>
-                    <th>Total</th>
-                    <th>Order Status</th>
-                    <th>Payment Mode</th>
-                    <th>Cancel Reason</th>
-                    <th>Action</th>
+                    <th>ID đơn hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Liên hệ</th>
+                    <th>Tổng đơn</th>
+                    <th>Trạng thái</th>
+                    <th>Cách thanh toán</th>
+                    <th>Lý do hủy</th>
+                    <th>Chi tiết</th>
                 </tr>";
         // Nếu có kết quả thì hiển thị từng dòng
         if ($result && $result->num_rows > 0) {
