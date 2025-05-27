@@ -84,11 +84,11 @@ $conn->close();
         <div class="row d-flex justify-content-start align-items-start main-container">
           <!-- Nội dung chào mừng -->
           <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" data-aos="fade-up">
-            <h2>Chào mừng đến với <span style="color: #fb4a36;"> Grill 'N' Chill,</span></h2> 
+            <h2>Chào mừng đến với <span style="color: #fb4a36;"> Chomp Chomp Fast Food,</span></h2> 
             <h4 style="color: gray; font-weight: 450;">"Nơi hương vị cay nồng hòa quyện cùng cảm giác mát dịu dễ chịu."</h4>
             <p style="font-size: 18px; text-align: justify;">
               Hãy đắm chìm trong bữa tiệc ẩm thực nơi mỗi món ăn 
-              đều bùng nổ hương vị. Tại Grill 'N' Chill, chúng tôi tin rằng mỗi 
+              đều bùng nổ hương vị. Tại Chomp Chomp Fast Food, chúng tôi tin rằng mỗi 
               bữa ăn đều xứng đáng là một trải nghiệm khó quên. Dù bạn đến để dùng 
               bữa thường ngày hay kỷ niệm dịp đặc biệt, những món ăn đầy sắc màu 
               của chúng tôi chắc chắn sẽ để lại ấn tượng sâu sắc.
@@ -325,9 +325,9 @@ $conn->close();
         </div>
         <div class="story-content row mb-2">
           <div class="story-text col-lg-6 col-md-6 col-sm-12 reveal mt-2" data-aos="fade-up" data-os-interval="300">
-            <p>Tại <strong>Grill 'N' Chill</strong>, Chúng tôi đam mê tôn vinh ẩm thực. Các đầu bếp của chúng tôi luôn mang đến sự sáng tạo trong từng món ăn, tạo nên một bữa tiệc thỏa mãn mọi giác quan. Hãy đến và cùng trải nghiệm một hành trình ẩm thực tuyệt vời, nơi hương vị và niềm vui được tôn vinh.</p>
+            <p>Tại <strong>Chomp Chomp Fast Food</strong>, Chúng tôi đam mê tôn vinh ẩm thực. Các đầu bếp của chúng tôi luôn mang đến sự sáng tạo trong từng món ăn, tạo nên một bữa tiệc thỏa mãn mọi giác quan. Hãy đến và cùng trải nghiệm một hành trình ẩm thực tuyệt vời, nơi hương vị và niềm vui được tôn vinh.</p>
             <p>Được thành lập vào năm [2020], Grill 'N' Chill đã tiên phong trong việc đổi mới ẩm thực. Cam kết sử dụng những nguyên liệu tươi ngon nhất cùng với tay nghề của các đầu bếp đã giúp chúng tôi xây dựng được danh tiếng về chất lượng vượt trội. Chúng tôi tin rằng việc dùng bữa không chỉ là ăn uống, mà là trải nghiệm nghệ thuật ẩm thực.</p>
-            <p>Dù bạn đang tìm kiếm một bữa tối lãng mạn, một buổi họp mặt gia đình hay một nơi để kỷ niệm những dịp đặc biệt, Grill 'N' Chill luôn mang đến không gian lý tưởng cùng ẩm thực tinh tế để biến chuyến ghé thăm của bạn trở nên khó quên. Hãy đến và cùng chúng tôi trải nghiệm niềm vui từ hương vị!</p>
+            <p>Dù bạn đang tìm kiếm một bữa tối lãng mạn, một buổi họp mặt gia đình hay một nơi để kỷ niệm những dịp đặc biệt, Chomp Chomp Fast Food luôn mang đến không gian lý tưởng cùng ẩm thực tinh tế để biến chuyến ghé thăm của bạn trở nên khó quên. Hãy đến và cùng chúng tôi trải nghiệm niềm vui từ hương vị!</p>
             <a href="menu.php" class="about_btn">
               <i class="fa-solid fa-burger"></i>Đặt ngay
             </a>
@@ -352,7 +352,7 @@ $conn->close();
           <img src="images/table.jpg" alt="Reservation" style="background: none ; width: 100%; height: 100%; padding: 0 !important;" class=" w-100 h-100">
         </div>
         <div class="reservation-section col-lg-5 col-md-6 col-sm-12">
-          <h2 style="background-color: #feead4;">Reserve Now!</h2>
+          <h2 style="background-color: #feead4;">Đặt ngay!</h2>
           <form id="reservation-form" action="reservations.php" method="POST">
             <div class="form-row">
               <div class="form-group">
@@ -444,7 +444,7 @@ $conn->close();
         <div class="footer-col" id="contact">
           <h4>Thông tin liên lạc</h4>
           <p>279 Nguyễn Tri Phương, P.8, Q.10</p>
-          <p>Email: nhom4@gmail.com</p>
+          <p>Email: ChompChompFastFood@gmail.com</p>
           <p>Phone: +0353 551 657</p>
         </div>
         <div class="footer-col">
@@ -465,7 +465,7 @@ $conn->close();
         </div>
       </div>
       <div class="footer-bottom">
-        <h4>&copy; 2024 Authored by Asna Assalam. All Rights Reserved.</h4>
+        <h4>&copy; Chomp Chomp Fast Food </h4>
       </div>
     </div>
   </footer>
