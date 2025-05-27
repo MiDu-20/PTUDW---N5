@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Thực thi câu lệnh và kiểm tra kết quả
   if ($stmt->execute()) {
-    echo "Cập nhật phản hồi thành công.";
+    echo "Review updated successfully.";
   } else {
-    echo "Lỗi khi cập nhật phản hồi: " . $stmt->error;
+    echo "Error Updating Reservation: " . $stmt->error;
   }
 
   // Đóng kết nối
