@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //-- Thực thi truy vấn (chèn dữ liệu vào bảng)
     if ($stmt->execute()) {
         //-- Nếu thành công thì hiện thông báo và chuyển hướng về trang chính
-        echo '<script>alert("Reservation successful!"); window.location.href="index.php";</script>';
+        echo '<script>alert("Đặt bàn thành công"); window.location.href="index.php";</script>';
     } else {
         //-- Nếu có lỗi khi thực thi thì in ra lỗi
         echo "Error: " . $stmt->error;
