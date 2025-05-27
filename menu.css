@@ -6,54 +6,54 @@
   box-sizing: border-box;
 }
 
-/* Thiết lập nền và font chung cho toàn bộ trang */
+/* ---------- Toàn bộ thiết lập nền và font chữ cho trang ---------- */
 body {
   margin: 0;
   padding: 0;
-  padding-top: 100px; /* Để không bị che bởi navbar cố định phía trên */
-  background-color: #feead4;
+  padding-top: 100px;
+  background-color: #FEF9E1;
   font-family: "poppins", sans-serif;
   overflow-x: hidden;
 }
 
-/* Định dạng cho thẻ <a> (liên kết) */
+/* ---------- Liên kết (a): giữ màu trắng, không gạch chân ---------- */
 a {
   color: white;
   text-decoration: none;
 }
 
-/* Canh giữa nội dung của thẻ có class card-title hoặc card-text */
+/* ---------- Canh giữa tiêu đề và nội dung mô tả món ăn ---------- */
 .card-title,
 .card-text {
   text-align: center;
 }
 
-/* Padding cho section (mỗi danh mục món ăn) */
+/* ---------- Khoảng cách padding chung cho từng danh mục ---------- */
 section {
   padding: 10px 16px 60px 16px;
 }
 
-/* Màu nền xen kẽ cho section (odd = lẻ) */
+/* ---------- Màu nền xen kẽ cho section lẻ ---------- */
 section:nth-child(odd) {
-  background-color: #ffe4c2;
+  background-color: #E5D0AC;
 }
 
-/* Màu nền xen kẽ cho section (even = chẵn) */
+/* ---------- Màu nền xen kẽ cho section chẵn ---------- */
 section:nth-child(even) {
-  background-color: #feead4;
+  background-color: #FEF9E1;
 }
 
-/* Định dạng giá tiền món ăn */
+/* ---------- Định dạng hiển thị giá tiền món ăn ---------- */
 .button-container p {
   font-size: 20px;
   margin-left: 15px;
   font-weight: 400;
-  color: #d92420;
+  color: #C14600;
 }
 
-/* Nút thêm vào giỏ hàng */
+/* ---------- Nút 'Thêm vào giỏ hàng' ---------- */
 .addItemBtn {
-  background-color: #fb4a36;
+  background-color: #C14600;
   border: none;
   color: white;
   text-align: center;
@@ -63,7 +63,7 @@ section:nth-child(even) {
   cursor: pointer;
 }
 
-/* Khi món ăn không có sẵn thì nút bị disable */
+/* ---------- Khi món ăn không còn hàng ---------- */
 .disabled-button {
   background-color: gray;
   color: white;
@@ -73,29 +73,29 @@ section:nth-child(even) {
   color: white;
 }
 
-/* Phần nội dung của card món ăn */
-.card-body {
+.card-/* ---------- Toàn bộ thiết lập nền và font chữ cho trang ---------- */
+body {
   position: relative;
-  height: 300px; /* Giới hạn chiều cao cố định */
-  padding-bottom: 20px; /* Chừa chỗ cho nút thêm vào giỏ */
-  border-top: #fcc1ba 1px solid;
+  height: 300px;
+  padding-bottom: 20px;
+  border-top: #FF9D23 1px solid;
 }
 
-/* Trạng thái món ăn (ví dụ: Unavailable) */
+/* ---------- Dòng chữ 'Unavailable' màu đỏ ---------- */
 .card-status {
   color: red;
   text-align: center;
   font-size: 1.3em;
 }
 
-/* Khối chứa nút và giá tiền trong mỗi món ăn */
+/* ---------- Khối chứa nút và giá tiền ---------- */
 .button-container {
   position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  background-color: #fcafa7;
+  background-color: #FF9D23;
   padding: 10px 8px;
   border-radius: 8px;
   gap: 15px;
@@ -105,40 +105,42 @@ section:nth-child(even) {
   left: 50%;
 }
 
-/* Phần heading (tiêu đề thực đơn) */
+/* ---------- Tiêu đề lớn của toàn bộ thực đơn ---------- */
 .heading {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #fcafa7;
+  background-color: #FF9D23;
   padding: 20px 40px 30px 40px;
   border-radius: 8px;
   margin: 0 auto;
   max-width: fit-content;
 }
 
+/* ---------- Font to cho dòng chữ MENU ---------- */
 .heading-title {
   font-size: 2.5em;
   font-weight: 600;
 }
 
+/* ---------- Mô tả dưới tiêu đề thực đơn ---------- */
 .heading-description {
   font-size: 1.8em;
   font-weight: 400;
   color: #1d1818;
 }
 
-/* Tiêu đề của mỗi danh mục món ăn */
+/* ---------- Tiêu đề của từng danh mục (Pizza, Burger...) ---------- */
 section h1 {
-  background-color: #fcc1b1;
+  background-color: #E5D0AC;
   border-radius: 5px;
   border: none;
   padding: 8px 0 8px 20px;
   text-align: left;
 }
 
-/* Giao diện toast thông báo */
+/* ---------- Giao diện thông báo (toast) ---------- */
 .toast {
   visibility: hidden;
   min-width: 300px;
@@ -159,19 +161,19 @@ section h1 {
   padding-right: 50px;
 }
 
-/* Toast khi hiển thị */
+/* ---------- Hiển thị toast ---------- */
 .toast.show {
   visibility: visible;
   opacity: 1;
 }
 
-/* Toast khi bị ẩn */
+/* ---------- Ẩn toast ---------- */
 .toast.hide {
   visibility: hidden;
   opacity: 0;
 }
 
-/* Định dạng nút trong toast */
+/* ---------- Nút trong thông báo toast ---------- */
 .toast-btn {
   background: none;
   border: none;
@@ -183,13 +185,13 @@ section h1 {
   border-radius: 3px;
 }
 
-/* Nút OK trong toast */
+/* ---------- Nút OK trong thông báo ---------- */
 .toast-btn.toast-ok {
   background-color: green;
   margin-top: 15px;
 }
 
-/* Nút đóng toast (X) */
+/* ---------- Nút đóng (X) trong toast ---------- */
 .toast-btn.toast-close {
   position: absolute;
   top: 0px;
@@ -203,29 +205,26 @@ section h1 {
   padding: 0;
 }
 
-/* Hover cho nút toast */
 .toast-btn.toast-close:hover,
 .toast-btn.toast-ok:hover {
   opacity: 0.8;
 }
 
-/* Giao diện responsive cho màn hình medium (tablet) */
+/* ---------- Responsive cho tablet ---------- */
 @media (min-width: 768px) and (max-width: 991px) {
-  /* Có thể thêm responsive riêng nếu cần */
 }
 
-/* Giao diện responsive cho màn hình từ 990px đến 1400px */
+/* ---------- Responsive cho màn hình lớn ---------- */
 @media screen and (min-width: 990px) and (max-width: 1400px) {
   .menu-item {
     flex: 0 0 33.33% !important;
     max-width: 33.33% !important;
   }
 }
-/* ======== PHẦN THÊM HIỆU ỨNG HOVER ẢNH MÓN ĂN ======== */
 
+/* ---------- Hiệu ứng khi hover ảnh món ăn ---------- */
 .card-img-top:hover {
   opacity: 0.8;
   transition: opacity 0.3s ease;
   cursor: pointer;
 }
- 
