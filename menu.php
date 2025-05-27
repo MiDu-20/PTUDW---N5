@@ -80,7 +80,7 @@ if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
         <div id="message"></div>
         <div class="container-fluid">
             <!-- Hiển thị tên danh mục -->
-            <h1 class="mt-1"> <?= strtoupper($category) ?> </h1>
+            <h1 class="mt-1"> <?= $category ?> </h1>
             <div class="row">
                 <?php
                 // -- Truy vấn danh sách món ăn thuộc danh mục hiện tại
