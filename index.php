@@ -470,6 +470,42 @@ $conn->close();
     </div>
   </footer>
 
+    <!-- Kiểm tra ngày đặt bàn -->
+  <script>
+  document.getElementById('reservation-form').addEventListener('submit', function(event) {
+    const now = new Date();
+
+    const inputDate = document.getElementById('date').value;
+    const inputTime = document.getElementById('time').value;
+
+    if (!inputDate || !inputTime) return;
+
+    const selectedDateTime = new Date(`${inputDate}T${inputTime}`);
+
+    // 1. Không cho đặt trong quá khứ
+    if (selectedDateTime < now) {
+      alert("Không thể đặt bàn trong quá khứ.");
+      event.preventDefault();
+      return;
+    }
+
+    // 2. Giới hạn giờ đặt trong khoảng mở cửa (10:00 - 21:00)
+    const hour = parseInt(inputTime.split(":")[0]);
+    if (hour < 9 || hour >= 21) {
+      alert("Chỉ nhận đặt bàn từ 9:00 đến 21:00.");
+      event.preventDefault();
+      return;
+    }
+
+    // 3. Nếu đặt trong hôm nay thì giờ phải lớn hơn giờ hiện tại
+    const today = now.toISOString().slice(0, 10); // YYYY-MM-DD
+    if (inputDate === today && inputTime <= now.toTimeString().slice(0, 5)) {
+      alert("Giờ đặt phải lớn hơn thời điểm hiện tại.");
+      event.preventDefault();
+      return;
+    }
+  });
+</script>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
@@ -581,6 +617,8 @@ $conn->close();
       });
     });
   </script>
+
+          
 
 
 </body>
