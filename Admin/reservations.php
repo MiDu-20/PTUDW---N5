@@ -234,7 +234,6 @@ include 'sidebar.php';
       <td>{$row['noOfGuests']}</td>
       <td>{$row['reservedDate']}</td>
       <td>{$row['reservedTime']}</td>
-      <td>{$note}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
           <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Hoãn</option>
@@ -248,6 +247,7 @@ include 'sidebar.php';
         <button id='editbtn' onclick='openEditReservationModal(this)' data-id='{$row['reservation_id']}' data-email='{$row['email']}' data-name='{$row['name']}' data-contact='{$row['contact']}' data-reservedDate='{$row['reservedDate']}' data-reservedTime='{$row['reservedTime']}' data-noOfGuests='{$row['noOfGuests']}' data-status='{$row['status']}'><i class='fas fa-edit'></i></button>
         <button id='deletebtn' onclick=\"deleteItem('{$row['reservation_id']}')\"><i class='fas fa-trash'></i></button>
       </td>
+      <td>{$note}</td>
     </tr>";
             }
           } else {
