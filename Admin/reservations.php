@@ -58,11 +58,25 @@ if (!empty($statusFilter)) {
 if (!empty($conditions)) {
   $query .= " WHERE " . implode(' AND ', $conditions);
 }
-// Truy vấn danh sách đặt bàn, sắp xếp theo ngày giờ gần nhất
+// Bước 1: Cập nhật trạng thái các đơn quá 30 phút
+$update_sql = "SELECT reservation_id, reservedDate, reservedTime, status FROM reservations WHERE status = 'Approved'";
+$update_result = $conn->query($update_sql);
+
+while ($row = $update_result->fetch_assoc()) {
+    $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
+    $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
+
+    if ($interval_minutes >= 30) {
+        $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Canceled' WHERE reservation_id = ?");
+        $update_stmt->bind_param("i", $row['reservation_id']);
+        $update_stmt->execute();
+        $update_stmt->close();
+    }
+}
+// Bước 2: Truy vấn lại để hiển thị danh sách đã cập nhật
 $sql = "SELECT * FROM reservations ORDER BY CONCAT(reservedDate, ' ', reservedTime) ASC";
 // Thực thi truy vấn và lưu kết quả
-$result = $conn->query($query);
-
+$result = $conn->query($sql);
 
 ?>
 <?php
@@ -200,31 +214,23 @@ include 'sidebar.php';
           
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
-  $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
-  $status = $row['status'];
-  $highlight = "";
-  $note = "";
+             $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
+        $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
+        $highlight = "";
+        $note = "";
 
   // Nếu đã đến giờ và chưa xử lý
-  if ($interval_minutes > 0 && $status == 'Approved') {
-      if ($interval_minutes >= 30) {
-          // Cập nhật trạng thái nếu cần
-          $update_stmt = $conn->prepare("UPDATE reservations SET status = 'Cancelled' WHERE reservation_id = ?");
-          $update_stmt->bind_param("i", $row['reservation_id']);
-          $update_stmt->execute();
-          $update_stmt->close();
-          $status = 'Cancelled';
-          $highlight = 'style="background-color: #f8d7da;"'; // đỏ
-          $note = "Tự động hủy sau 30 phút trễ";
-      } else {
-          $highlight = 'style="background-color: #fff3cd;"'; // vàng
-          $note = "Khách chưa đến, vui lòng kiểm tra";
-      }
-  } elseif ($interval_minutes < 0 && $status == 'Approved') {
-      $highlight = 'style="background-color: #d1e7dd;"'; // xanh
-      $note = "Sắp đến giờ đặt bàn";
-  }
+   if ($interval_minutes >= 30 && $row['status'] == 'Canceled') {
+            $highlight = 'style="background-color: #f8d7da;"';
+            $note = 'Tự động hủy sau 30 phút trễ';
+        } elseif ($interval_minutes > 0 && $row['status'] == 'Approved') {
+            $highlight = 'style="background-color: #fff3cd;"';
+            $note = 'Khách chưa đến, vui lòng kiểm tra';
+        } elseif ($interval_minutes < 0 && $row['status'] == 'Approved') {
+            $highlight = 'style="background-color: #d1e7dd;"';
+            $note = 'Sắp đến giờ đặt bàn';
+        }
+
               echo "<tr $highlight>
       <td>{$row['reservation_id']}</td>
       <td>{$row['reservedAt']}</td>
@@ -251,7 +257,7 @@ include 'sidebar.php';
     </tr>";
             }
           } else {
-            echo "<tr><td colspan='10' style='text-align: center;'>No Reservations Found</td></tr>";
+            echo "<tr><td colspan='10' style='text-align: center;'>Không có đơn đặt bàn nào được tìm thấy.</td></tr>";
           }
           ?>
         </tbody>
