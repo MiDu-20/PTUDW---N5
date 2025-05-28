@@ -194,7 +194,7 @@ include 'sidebar.php';
         <!-- Menu điều hướng -->
 
         <ul>
-            <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Thống kê</a></li>
+            <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Tổng quan</a></li>
             <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
             <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
             <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
@@ -211,7 +211,7 @@ include 'sidebar.php';
             <button id="toggleSidebar" class="toggle-button">
                 <i class="fas fa-bars"></i>
             </button>
-            <h2><i class="fas fa-chart-line"></i> Overview</h2>
+            <h2><i class="fas fa-chart-line"></i> Tổng quan</h2>
         </div>
         <div class="container">
         <!-- Các thẻ thống kê tổng quan -->
@@ -302,7 +302,7 @@ include 'sidebar.php';
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
-                $dbname = "restaurant_full_vi";
+                $dbname = "restaurant";
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
 

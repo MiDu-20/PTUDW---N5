@@ -48,15 +48,15 @@ include 'sidebar.php';
     <!-- Navigation Items -->
 
     <ul>
-      <li><a href="index.php"><i class="fas fa-chart-line"></i> Overview</a></li>
-      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Menu Management</a></li>
-      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
+      <li><a href="index.php"><i class="fas fa-chart-line"></i> Tổng quan </a></li>
+      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Quản lý thực đơn</a></li>
+      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Đặt bàn</a></li>
       <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
-      <li><a href="reviews.php" class="active"><i class="fas fa-star"></i> Reviews</a></li>
-      <li><a href="staffs.php"><i class="fas fa-users"></i> Staffs</a></li>
-      <li><a href="profile.php"><i class="fas fa-user"></i> Profile Setting</a></li>
-      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      <li><a href="reviews.php" class="active"><i class="fas fa-star"></i> Đánh giá</a></li>
+      <li><a href="staffs.php"><i class="fas fa-users"></i> Nhân viên</a></li>
+      <li><a href="profile.php"><i class="fas fa-user"></i> Hồ sơ</a></li>
+      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
     </ul>
   </div>
   <div class="content">
@@ -69,10 +69,10 @@ include 'sidebar.php';
 
     <div class="actions">
       <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
-        <option value="">All</option>
-        <option value="pending">Pending</option>
-        <option value="approved">Approved</option>
-        <option value="rejected">Rejected</option>
+        <option value="">Tất</option>
+        <option value="pending">Đang chờ</option>
+        <option value="approved">Xác nhận</option>
+        <option value="rejected">Từ chối</option>
       </select>
     </div>
 
@@ -80,13 +80,13 @@ include 'sidebar.php';
       <table id="reviewTable">
         <thead>
           <tr>
-            <th>Order ID</th>
+            <th>Mã đơn hàng</th>
             <th>Email</th>
-            <th>Review Text</th>
-            <th>Rating</th>
-            <th>Status</th>
-            <th>Response</th>
-            <th>Actions</th>
+            <th>Nhận xét</th>
+            <th>Đánh giá</th>
+            <th>Trạng thái</th>
+            <th>Phản hồi</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -111,9 +111,9 @@ include 'sidebar.php';
                         <td class='rating-stars'>{$ratingStars}</td>
                         <td>
                          <select id='status-{$row['order_id']}' onchange='updateStatus({$row['order_id']}, this.value)' class='status-select'>
-                         <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Pending</option>
-                         <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Approved</option>
-                         <option value='rejected' " . ($row['status'] == 'rejected' ? 'selected' : '') . ">Rejected</option>
+                         <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Đang chờ</option>
+                         <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Xác nhận</option>
+                         <option value='rejected' " . ($row['status'] == 'rejected' ? 'selected' : '') . ">Từ chối</option>
                          </select>
                         </td>
 
@@ -126,7 +126,7 @@ include 'sidebar.php';
             }
           } else {
             //Nếu không có review, hiển thị thông báo 
-            echo "<tr><td colspan='6' style='text-align: center;'>No Reviews</td></tr>";
+            echo "<tr><td colspan='6' style='text-align: center;'>Không có đánh giá nào.</td></tr>";
           }
 
           // Đóng kết nối với cơ sở dữ liệu
@@ -143,13 +143,13 @@ include 'sidebar.php';
     <div class="modal-container">
       <form id="editReviewForm" method="POST" action="edit_review.php">
         <div class="modal-header">
-          <h2>Edit Review</h2>
+          <h2>Chỉnh sửa đánh giá</h2>
           <span class="close-icon" onclick="closeEditReviewModal()">&times;</span>
         </div>
         <div class="modal-content">
           <div class="input-group">
             <input type="number" name="order_id" id="editOrder_id" class="input" readonly>
-            <label for="editOrder_id" class="label">Order ID</label>
+            <label for="editOrder_id" class="label">Mã đơn hàng</label>
           </div>
         </div>
         <div class="modal-content">
@@ -161,24 +161,24 @@ include 'sidebar.php';
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="review_text" id="editReview_text" class="input" readonly>
-            <label for="editReview_text" class="label">Review Text</label>
+            <label for="editReview_text" class="label">Nhận xét</label>
           </div>
         </div>
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="rating" id="editRating" class="input" readonly>
-            <label for="editRating" class="label">Rating</label>
+            <label for="editRating" class="label">Đánh giá</label>
           </div>
         </div>
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="response" id="editResponse" class="input" required>
-            <label for="editResponse" class="label">Response</label>
+            <label for="editResponse" class="label">Phản hồi</label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="button" onclick="closeEditReviewModal()">Cancel</button>
-          <button type="submit" class="button">Save</button>
+          <button type="button" class="button" onclick="closeEditReviewModal()">Hủy</button>
+          <button type="submit" class="button">Lưu</button>
         </div>
       </form>
     </div>
@@ -197,10 +197,10 @@ include 'sidebar.php';
       // Kiểm tra phản hồi thành công
       if (xhr.responseText.trim() === "Status updated successfully") {
         // Hiển thị thông báo thành công
-        alert("Status updated successfully");
+        alert("Cập nhật trạng thái đánh giá thành công.");
       } else {
         // Hiển thị thông báo lỗi
-        alert("Error updating status: " + xhr.responseText);
+        alert("Lỗi khi cập nhật trạng thái đánh giá: " + xhr.responseText);
       }
     }
   };
@@ -211,7 +211,7 @@ include 'sidebar.php';
 
     function deleteReview(orderId, email) {
       // Xác nhận xoá review
-      if (confirm('Are you sure you want to delete this review?')) {
+      if (confirm('Bạn có chắc chắn muốn xóa đánh giá này không?')) {
         // Gửi yêu cầu xoá lên server
         fetch('delete_review.php', {
             method: 'POST',
@@ -226,10 +226,10 @@ include 'sidebar.php';
           .then(response => response.json())
           .then(data => {
             if (data.success) {
-              alert('Review deleted successfully');
+              alert('Xóa đánh giá thành công.');
               location.reload(); // Tải lại trang để cập nhật danh sách
             } else {
-              alert('Error deleting review');
+              alert('Lỗi khi xóa đánh giá.');
             }
           });
       }

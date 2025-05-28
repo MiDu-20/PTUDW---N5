@@ -119,7 +119,7 @@ include 'sidebar.php';
 
     <!-- Navigation Items -->
     <ul>
-            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Thống kê </a></li>
+            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Tổng quan </a></li>
             <li><a href="admin_menu.php" ><i class="fas fa-utensils"></i> Quản lý thực đơn </a></li>
             <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng </a></li>
             <li><a href="reservations.php" class="active"><i class="fas fa-calendar-alt"></i> Đặt bàn </a></li>
