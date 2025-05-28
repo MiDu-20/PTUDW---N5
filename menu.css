@@ -15,27 +15,30 @@ body {
 }
 
 .heading {
-  text-align: center;
-  background-color: #FF9D23;
-  padding: 35px 40px;
+  background: linear-gradient(135deg, #FFA726, #FB8C00);
+  color: white;
+  padding: 40px 60px;
   border-radius: 20px;
-  margin: 0 auto 40px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 480px;
+  margin: 0 auto 60px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 400px;
 }
 
 .heading-title {
-  font-size: 2.6em;
-  font-weight: 700;
-  color: #8B2C00;
-  letter-spacing: 0.5px;
-}
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #4A2100;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
 
-.heading-description {
-  font-size: 1.2em;
-  color: #4d2e1e;
 }
+    .heading-description {
+      font-size: 18px;
+      font-weight: 400;
+      color: #4A2E00;
+    }
 
 .menu-container {
   display: flex;
@@ -167,3 +170,20 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+/* Thêm Section title */
+.section-title {
+  font-size: 30px;
+  letter-spacing: 0.5px;  
+  font-weight: 700;
+  color: #5A2E00;
+  margin: 60px auto 25px auto;
+  padding: 14px 32px;
+  border-left: 8px solid #f17223; /* đậm hơn, cam Jollibee */
+  background-color: #ffecd6;      /* nền sáng hơn, ấm */
+  border-radius: 10px;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+  max-width: 90%;
+}
+
+

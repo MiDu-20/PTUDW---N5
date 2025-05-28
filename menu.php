@@ -17,6 +17,9 @@ while ($row = $categoryResult->fetch_assoc()) {
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet"> <!-- Add Google Fonts for better typography -->
+  <link rel="stylesheet" href="style.css" />
+
   <link rel="stylesheet" href="menu.css" />
   <title>Thực đơn</title>
 </head>
@@ -32,7 +35,7 @@ while ($row = $categoryResult->fetch_assoc()) {
 <section id="<?= strtolower($category) ?>">
   <div id="message"></div>
   <div class="container-fluid">
-    <h1 class="mt-1"> <?= $category ?> </h1>
+  <h2 class="section-title"><?= $category ?></h2> <!--  Sửa lại tiêu đề món ăn -->
     <div class="row">
       <?php
       $stmt = $conn->prepare('SELECT * FROM menuitem WHERE catName = ?');
