@@ -258,3 +258,9 @@ body {
     width: 360px !important; /* Cố định chiều rộng */
   }
 }
+
+.username-highlight {
+  font-weight: bold;
+  color: #fb4a36; /* hoặc #fb4a36 nếu bạn muốn tô màu nổi bật */
+}
+

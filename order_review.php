@@ -44,6 +44,19 @@ foreach ($chiTietGioHang as $matHang) {
 $phiGiaoHang = ($_POST['payment_mode'] === 'Takeaway') ? 0 : 130;
 $tongCong = $tongPhu + $phiGiaoHang;
 
+// Bảng ánh xạ tiếng Anh sang tiếng Việt
+$paymentModes = [
+    'Cash' => 'Tiền mặt',
+    'Card' => 'Thẻ',
+    'Takeaway' => 'Mang đi'
+];
+
+// Lấy phương thức người dùng chọn
+$selectedMode = $_POST['payment_mode'] ?? '';
+
+// Hiển thị với giá trị tiếng Việt nếu tồn tại
+$displayMode = $paymentModes[$selectedMode] ?? 'Không xác định';
+
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +77,9 @@ $tongCong = $tongPhu + $phiGiaoHang;
 <body>
   <?php include('nav-logged.php'); ?>
   <div class="title mt-2">
-    <h3>Xin chào <?php echo $nguoiDung['firstName'] . " " . $nguoiDung['lastName']; ?>, vui lòng hoàn tất đơn hàng!</h3>
+    <h3>Xin chào <span class="username-highlight"><?php echo $nguoiDung['firstName'] . " " . $nguoiDung['lastName']; ?></span>, vui lòng hoàn tất đơn hàng!</h3>
   </div>
+
 
   <div class="main mt-4">
     <div class="order-fee">
@@ -129,10 +143,10 @@ $tongCong = $tongPhu + $phiGiaoHang;
                 <div>Số lượng: <?= htmlspecialchars($matHang['quantity']) ?></div>
               </div>
               <div class="col d-flex flex-column justify-content-center">
-                <div class="d-flex justify-content-end mt-2">Rs <?= htmlspecialchars($matHang['price'], 0) ?> x <?= htmlspecialchars($matHang['quantity']) ?></div>
+                <div class="d-flex justify-content-end mt-2">VNĐ <?= htmlspecialchars($matHang['price'], 0) ?> x <?= htmlspecialchars($matHang['quantity']) ?></div>
                 <div class="d-flex justify-content-end mb-2">
                   <span class="badge rounded-pill text-light p-2 mt-2 item-total-price" style="background-color: #fb4a36;">
-                    Rs <?= $matHang['total_price'] ?>
+                    VNĐ <?= $matHang['total_price'] ?>
                   </span>
                 </div>
               </div>
@@ -146,19 +160,19 @@ $tongCong = $tongPhu + $phiGiaoHang;
       <div class="summary-details">
         <div class="fee-details">
           <div><strong>Tạm tính:</strong></div>
-          <div>Rs <?= number_format($tongPhu) ?></div>
+          <div>VNĐ <?= number_format($tongPhu) ?></div>
         </div>
         <div class="fee-details">
           <div><strong>Hình thức thanh toán:</strong></div>
-          <div><?= htmlspecialchars($_POST['payment_mode']) ?></div>
+          <div><?= htmlspecialchars($displayMode) ?></div>
         </div>
         <div class="fee-details">
           <div><strong>Phí giao hàng:</strong></div>
-          <div>Rs <?= number_format($phiGiaoHang) ?></div>
+          <div>VNĐ <?= number_format($phiGiaoHang) ?></div>
         </div>
         <div class="fee-details">
           <div><strong>Tổng cộng:</strong></div>
-          <div>Rs <?= number_format($tongCong) ?></div>
+          <div>VNĐ <?= number_format($tongCong) ?></div>
         </div>
       </div>
       <hr>

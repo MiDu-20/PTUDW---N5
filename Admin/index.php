@@ -89,7 +89,7 @@ $todaysOrders = calculateTotalOrders($conn, date('Y-m-d') . ' 00:00:00', date('Y
 $yesterdaysOrders = calculateTotalOrders($conn, date('Y-m-d', strtotime('-1 day')) . ' 00:00:00', date('Y-m-d', strtotime('-1 day')) . ' 23:59:59');
 
 // Tính tổng đơn hàng giai đoạn hiện tại
-$currentStartDate = '1970-01-01 00:00:00'; // Or any appropriate start date
+$currentStartDate = '2024-01-01 00:00:00'; // Or any appropriate start date
 $currentEndDate = date('Y-m-d') . ' 23:59:59';
 $totalOrders = calculateTotalOrders($conn, $currentStartDate, $currentEndDate);
 
@@ -194,7 +194,7 @@ include 'sidebar.php';
         <!-- Menu điều hướng -->
 
         <ul>
-            <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Thống kê</a></li>
+            <li><a href="index.php" class="active"><i class="fas fa-chart-line"></i>Tổng quan</a></li>
             <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
             <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
             <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
@@ -211,7 +211,7 @@ include 'sidebar.php';
             <button id="toggleSidebar" class="toggle-button">
                 <i class="fas fa-bars"></i>
             </button>
-            <h2><i class="fas fa-chart-line"></i> Overview</h2>
+            <h2><i class="fas fa-chart-line"></i> Tổng quan</h2>
         </div>
         <div class="container">
         <!-- Các thẻ thống kê tổng quan -->

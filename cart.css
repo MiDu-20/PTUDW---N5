@@ -10,6 +10,12 @@ body {
   padding-top: 95px; /* --Để trống không gian cho header cố định */
 }
 
+.username-highlight {
+  font-weight: bold;
+  color: #fb4a36; /* hoặc #fb4a36 nếu bạn muốn tô màu nổi bật */
+}
+
+
 /* --Container chi tiết đơn hàng */
 .cart-details {
   display: flex;
@@ -62,3 +68,97 @@ body {
   align-items: center;
   margin-top: 5px;
 }
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity .minus-btn,
+.quantity .plus-btn {
+  background-color: #fb4a36;
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.quantity .itemQty {
+  width: 40px;
+  text-align: center;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+
+.item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.left-column {
+  display: flex;
+  align-items: center;
+}
+
+.middle-column {
+  flex-grow: 1;
+}
+
+.right-column {
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.price-line {
+  font-size: 15px;
+}
+
+.item-total-price {
+  background-color: #fb4a36;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.delete-icon {
+  position: absolute;
+  top: -10px;  /* đẩy lên trên item */
+  right: -10px;  /* đẩy ra ngoài lề phải */
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  color: #fb4a36;
+  border: 2px solid #fb4a36;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 10;
+}
+
+.delete-icon:hover {
+  background-color: #ffe9e5;
+}
+
+

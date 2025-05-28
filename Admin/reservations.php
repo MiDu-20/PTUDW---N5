@@ -119,7 +119,7 @@ include 'sidebar.php';
 
     <!-- Navigation Items -->
     <ul>
-            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Thống kê </a></li>
+            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Tổng quan </a></li>
             <li><a href="admin_menu.php" ><i class="fas fa-utensils"></i> Quản lý thực đơn </a></li>
             <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng </a></li>
             <li><a href="reservations.php" class="active"><i class="fas fa-calendar-alt"></i> Đặt bàn </a></li>
@@ -183,7 +183,7 @@ include 'sidebar.php';
         <div class="actions">
           <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
             <option value="">Tất cả</option>
-            <option value="Pending">Hoãn</option>
+            <option value="Pending">Đang chờ</option>
             <option value="Approved">Xác nhận</option>
             <option value="On Process">Đang xử lý</option>
             <option value="Completed">Hoàn thành</option>
@@ -242,7 +242,7 @@ include 'sidebar.php';
       <td>{$row['reservedTime']}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
-          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Hoãn</option>
+          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Đang chờ</option>
           <option value='Approved' " . ($row['status'] == 'Approved' ? 'selected' : '') . ">Xác nhận</option>
           <option value='On Process' " . ($row['status'] == 'On Process' ? 'selected' : '') . ">Đang xử lý</option>
           <option value='Completed' " . ($row['status'] == 'Completed' ? 'selected' : '') . ">Hoàn thành</option>
@@ -371,7 +371,7 @@ include 'sidebar.php';
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="button" onclick="closeEditReservationModal()">Hủy bỏ</button>
+        <button type="button" class="button" onclick="closeEditReservationModal()">Hủy</button>
         <button type="submit" class="button">Lưu</button>
       </div>
     </form>

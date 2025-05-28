@@ -38,6 +38,15 @@ if ($stmt === false) {
 $stmt->bind_param('i', $orderId);
 $stmt->execute();
 $orderItemsResult = $stmt->get_result();
+
+$paymentModes = [
+    'Cash' => 'Tiền mặt',
+    'Card' => 'Thẻ',
+    'Takeaway' => 'Mang đi'
+];
+
+$pmodeRaw = $order['pmode'] ?? '';
+$pmodeDisplay = $paymentModes[$pmodeRaw];
 ?>
 
 <!DOCTYPE html>
@@ -202,15 +211,15 @@ $orderItemsResult = $stmt->get_result();
             <!-- Thẻ cảm ơn -->
             <div class="card" style="background: rgba(255, 99, 132, 0.3);">
                 <div class="icon"></div>
-                <h3>Thank You for Your Order!</h3>
-                <p>Your order has been successfully placed.</p>
+                <h3>Cảm ơn bạn đã đặt hàng!</h3>
+                <p>Bạn đã đặt hàng thành công</p>
             </div>
 
             <!-- Thẻ hiển thị chi tiết đơn hàng -->
             <div class="card" style="background: rgba(255, 99, 132, 0.3);">
                 <ul>
                     <li>
-                        <span><strong>Order ID:</strong></span>
+                        <span><strong>ID Đơn hàng:</strong></span>
                         <span>#<?= htmlspecialchars($order['order_id'] ?? 'N/A') ?></span>
                     </li>
                     <li>
@@ -218,11 +227,11 @@ $orderItemsResult = $stmt->get_result();
                         <span><?= htmlspecialchars($order['email'] ?? 'N/A') ?></span>
                     </li>
                     <li>
-                        <span><strong>Payment Method:</strong></span>
-                        <span><?= htmlspecialchars($order['pmode'] ?? 'N/A') ?></span>
+                        <span><strong>Phương thức thanh toán:</strong></span>
+                        <span><?= htmlspecialchars($pmodeDisplay ?? 'N/A') ?></span>
                     </li>
                     <li>
-                        <span><strong>Order Items:</strong></span>
+                        <span><strong>Danh sách món ăn:</strong></span>
                         <span>
                             <ul>
                                 <!-- Hiển thị từng mặt hàng trong đơn hàng -->
@@ -233,11 +242,11 @@ $orderItemsResult = $stmt->get_result();
                         </span>
                     </li>
                     <li>
-                        <span><strong>Total:</strong></span>
+                        <span><strong>Tổng cộng:</strong></span>
                         <span>VNĐ <?= number_format($order['grand_total']) ?></span>
                     </li>
                     <li>
-                        <span><strong>Address:</strong></span>
+                        <span><strong>Địa chỉ:</strong></span>
                         <span><?= htmlspecialchars($order['address'] ?? 'N/A') ?></span>
                     </li>
                 </ul>
