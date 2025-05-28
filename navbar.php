@@ -11,7 +11,9 @@
   <!-- Font Lexend cho navbar - Font chữ đẹp và dễ đọc -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Font Awesome - Thư viện icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -153,7 +155,7 @@
       color: black;
       font-weight: 500;
       transition: 0.3s color ease;
-      font-family: "Lexend", sans-serif;
+      font-family: "Baloo 2", sans-serif;
       font-optical-sizing: auto;
       font-weight: 480;
       font-style: light;
@@ -352,62 +354,51 @@
   </script>
   
   <script>
-    // XỬ LÝ HIGHLIGHT MENU DỰA TRÊN SCROLL VÀ TRANG HIỆN TẠI
-    // Thuật toán: Theo dõi vị trí scroll và highlight menu tương ứng
-    document.addEventListener("DOMContentLoaded", function() {
-      const sections = document.querySelectorAll("section");
-      const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-      const currentPage = window.location.pathname.split("/").pop(); // Get the current page name
+  document.addEventListener('DOMContentLoaded', function() {
+    const OFFSET = 70; // chiều cao navbar cố định, điều chỉnh nếu cần
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-      // Hàm xóa tất cả class active
-      function removeActiveClasses() {
-        navLinks.forEach(link => {
-          link.classList.remove("active");
-        });
+    function activateOnScroll() {
+      const scrollPos = window.scrollY + OFFSET;
+      let found = false;
+
+      // 1. Kiểm tra các link có hash (các section trên index.php)
+      navLinks.forEach(link => {
+        const hash = link.hash; 
+        if (!hash) return;
+        const section = document.querySelector(hash);
+        if (section &&
+            section.offsetTop <= scrollPos &&
+            section.offsetTop + section.offsetHeight > scrollPos) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          found = true;
+        }
+      });
+
+      if (!found) {
+        // 2. Nếu không phải index.php hoặc không cuộn vào section nào,
+        //    lấy tên file hiện tại và tìm link tương ứng
+        const fileName = window.location.pathname.split('/').pop() || 'index.php';
+        const pageLink = document.querySelector(`.navbar-nav .nav-link[href$="${fileName}"]`);
+        if (pageLink) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          pageLink.classList.add('active');
+        } else {
+          // 3. Cuối cùng nếu vẫn không tìm được, highlight Home
+          const homeLink = document.querySelector('.navbar-nav .nav-link[href="index.php"]');
+          if (homeLink) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            homeLink.classList.add('active');
+          }
+        }
       }
-
-      // Hàm thêm class active dựa trên scroll
-      function addActiveClassOnScroll() {
-          // 1. Xác định section hiện tại (chỉ dùng khi đang ở index.php)
-  let currentSection = "Home";
-  if (currentPage === "index.php") {
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (window.pageYOffset >= sectionTop - 60) {
-        currentSection = section.getAttribute("id").toLowerCase();;
-      }
-    });
-  }
-
-  // 2. Xóa hết active cũ
-  removeActiveClasses();
-
-  // 3. Bật active dựa vào ngữ cảnh
-  if (currentPage === "index.php") {
-    // a) Nếu đang scroll đến một trong các section cụ thể
-    if (["reservation", "about-Us", "review"].includes(currentSection)) {
-      const link = document.querySelector(`.navbar-nav a[href*="#${currentSection}"]`);
-      if (link) link.classList.add("active");
     }
-    // b) Ngược lại (hoặc không có hash) thì Home active
-    else {
-      const homeLink = document.querySelector('.navbar-nav a[href="index.php"]');
-      if (homeLink) homeLink.classList.add("active");
-    }
-  } 
-  else {
-    // 4. Nếu không phải index.php (ví dụ about-us.html, reservation.html…)
-    //    thì highlight đúng link có href trùng currentPage
-    const link = document.querySelector(`.navbar-nav a[href*="${currentPage}"]`);
-    if (link) link.classList.add("active");
-  }
-      }
 
-      // Lắng nghe sự kiện scroll
-      window.addEventListener("scroll", addActiveClassOnScroll);
-      addActiveClassOnScroll(); // Gọi ngay khi tải trang để set đúng tab
-    });
-  </script>
+    window.addEventListener('scroll', activateOnScroll);
+    activateOnScroll(); // chạy ngay khi load trang để set đúng link
+  });
+</script>
 
 </body>
 </html>

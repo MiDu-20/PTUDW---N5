@@ -42,7 +42,7 @@ $userinfo = get_UserInfo($useremail);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8" />
@@ -54,7 +54,9 @@ $userinfo = get_UserInfo($useremail);
   <!-- Font Lexend cho navbar -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <!-- Font Awesome cho icons -->
@@ -78,7 +80,6 @@ $userinfo = get_UserInfo($useremail);
       font-weight: 300;
       font-style: normal;
       font-size:large;
-      padding-top: 1px;
     }
 
     a {
@@ -192,7 +193,7 @@ $userinfo = get_UserInfo($useremail);
       color: black;
       font-weight: 500;
       transition: 0.3s color ease;
-      font-family: "Lexend", sans-serif;
+      font-family: "Baloo 2", sans-serif;
       font-optical-sizing: auto;
       font-weight: 480;
       font-style: light;
@@ -326,7 +327,7 @@ $userinfo = get_UserInfo($useremail);
   <div>
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid nav-container">
-        <a class="navbar-brand me-auto logo" href="index.php">Chomp Chomp</a>
+        <a class="navbar-brand me-auto logo" href="index.php">Chomp Chomp Fast Food</a>
 
         <!-- OFFCANVAS MENU -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -425,57 +426,50 @@ $userinfo = get_UserInfo($useremail);
   </script>
   
   <script>
-    // XỬ LÝ HIGHLIGHT MENU DỰA TRÊN SCROLL
-    document.addEventListener("DOMContentLoaded", function() {
-      const sections = document.querySelectorAll("section");
-      const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-      const currentPage = window.location.pathname.split("/").pop(); // Get the current page name
+  document.addEventListener('DOMContentLoaded', function() {
+    const OFFSET = 70; // chiều cao navbar cố định, điều chỉnh nếu cần
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-      function removeActiveClasses() {
-        navLinks.forEach(link => {
-          link.classList.remove("active");
-        });
-      }
+    function activateOnScroll() {
+      const scrollPos = window.scrollY + OFFSET;
+      let found = false;
 
-      function addActiveClassOnScroll() {
-        let currentSection = "Home"; // Default to Home if on index.php
+      // 1. Kiểm tra các link có hash (các section trên index.php)
+      navLinks.forEach(link => {
+        const hash = link.hash; 
+        if (!hash) return;
+        const section = document.querySelector(hash);
+        if (section &&
+            section.offsetTop <= scrollPos &&
+            section.offsetTop + section.offsetHeight > scrollPos) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          found = true;
+        }
+      });
 
-        // Check if the current page is index.php
-        if (currentPage === "index.php") {
-          sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 60) {
-              currentSection = section.getAttribute("id");
-            }
-          });
-
-          removeActiveClasses();
-
-          if (currentSection === "Reservation" || currentSection === "About-Us" || currentSection === "review") {
-            const activeLink = document.querySelector(`.navbar-nav a[href*="${currentSection}"]`);
-            if (activeLink) {
-              activeLink.classList.add("active");
-            }
-          } else {
-            // Default to highlighting Home when on index.php
-            const homeLink = document.querySelector(`.navbar-nav a[href="index.php"]`);
-            if (homeLink) {
-              homeLink.classList.add("active");
-            }
-          }
+      if (!found) {
+        // 2. Nếu không phải index.php hoặc không cuộn vào section nào,
+        //    lấy tên file hiện tại và tìm link tương ứng
+        const fileName = window.location.pathname.split('/').pop() || 'index.php';
+        const pageLink = document.querySelector(`.navbar-nav .nav-link[href$="${fileName}"]`);
+        if (pageLink) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          pageLink.classList.add('active');
         } else {
-          // Highlight the current page if it's not index.php
-          const activeLink = document.querySelector(`.navbar-nav a[href="${currentPage}"]`);
-          if (activeLink) {
-            removeActiveClasses();
-            activeLink.classList.add("active");
+          // 3. Cuối cùng nếu vẫn không tìm được, highlight Home
+          const homeLink = document.querySelector('.navbar-nav .nav-link[href="index.php"]');
+          if (homeLink) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            homeLink.classList.add('active');
           }
         }
       }
+    }
 
-      window.addEventListener("scroll", addActiveClassOnScroll);
-      addActiveClassOnScroll(); // Call it initially to set the correct tab on page load
-    });
-  </script>
+    window.addEventListener('scroll', activateOnScroll);
+    activateOnScroll(); // chạy ngay khi load trang để set đúng link
+  });
+</script>
 </body>
 </html>

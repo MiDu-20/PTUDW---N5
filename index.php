@@ -34,7 +34,7 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -185,7 +185,7 @@ $conn->close();
           <img src="images/Why-Us.png" width="100%" height="auto" loading="lazy" alt="delivery boy" class="w-100 delivery-img" data-delivery-boy>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 d-flex flex-column justify-content-center reveal" data-aos="fade-up">
-          <h1>TẠI SAO <span>NÊN NHAI Ở CHOMP CHOMP?</span></h1>
+          <h1>TẠI SAO <span>NÊN NHAI NHAI Ở CHOMP CHOMP?</span></h1>
           <p class="content">Nhà hàng chúng tôi mang đến dịch vụ giao đồ ăn hàng đầu, sử dụng nguyên liệu tươi ngon và chất lượng thượng hạng.</p>
           <ul class="why-choose-us-list">
             <li data-aos="fade-up">
@@ -322,7 +322,7 @@ $conn->close();
           <img src="images/table.jpg" alt="Reservation" style="background: none ; width: 100%; height: 100%; padding: 0 !important;" class=" w-100 h-100">
         </div>
         <div class="reservation-section col-lg-5 col-md-6 col-sm-12">
-          <h2 style="background-color: #feead4;">Đặt bàn ngay!</h2>
+          <h2 style="text-align: center; background-color: #feead4;">Đặt bàn ngay!</h2>
           <form id="reservation-form" action="reservations.php" method="POST">
             <div class="form-row">
               <div class="form-group">

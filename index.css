@@ -790,9 +790,7 @@ padding-right: 50px;
 }
 
 .reservation {
-  display: flex;
-  align-items: stretch; /* Đảm bảo cả hai bên cao bằng nhau */
-  border: 4px solid black;
+  border: 4px solid #feead4;
   border-radius: 12px;
   overflow: hidden;
   max-width: 1000px;
