@@ -17,7 +17,7 @@ body {
 /* Bảng hiển thị danh sách đặt bàn*/
 table {
   width: 100%;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #78b8e8;
   font-size: 17px;
   text-align: center;
   cursor: pointer;
@@ -27,7 +27,7 @@ table {
 table th,
 table td {
   padding: 12px 15px;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #78b8e8;
   border-radius: 5px;
 
 }
@@ -37,7 +37,7 @@ table th {
 }
 
 table tr:nth-of-type(even) {
-  background-color: #fce9e2;
+  background-color: #a4d1e2;
 }
 
 table tr:hover {
@@ -59,8 +59,8 @@ table tr:hover {
 }
 
 .stats #total {
-  background: linear-gradient(to bottom, rgb(90, 254, 90), rgb(180, 250, 180));
-  border-bottom: 5px solid rgb(34, 180, 34);
+  background: linear-gradient(to bottom, rgb(153, 238, 153), rgb(179, 223, 179));
+  border-bottom: 5px solid rgb(91, 228, 91);
 }
 
 .stats #today {
@@ -139,7 +139,7 @@ table tr:hover {
 }
 
 .status-select {
-  border: 2px solid #f4a178;
+  border: 2px solid #78b8e8;
   padding: 5px 0px 5px 0;
   font-size: 16px;
   border-radius: 5px;
@@ -183,9 +183,9 @@ table tr:hover {
 
 
 button {
-  background-color: #fb4a36;
-  color: white;
-  border: 2px solid #fb4a36;
+  background-color: #0566db;
+  color: rgb(253, 253, 253);
+  border: 2px solid #b9d8ff;
   padding: 14px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -193,26 +193,26 @@ button {
   font-size: 1.2rem;
 }
 button:hover {
-  background-color: #fbdac7;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  background-color: #8ac2e7;
+  color: #000000;
+  border: 2px solid #b9d8ff;
 }
 .button{
   padding: 10px 30px;
   border-radius: 20px;
-  background-color: #fbdac7;
+  background-color: #b9d8ff;
   margin-left: 10px;
   font-size: 16px;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  color: #0566db;
+  border: 2px solid #0566db;
   font-weight: 450;
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease;
 }
 .button:hover{
-  background-color: #fb4a36;
-  color: #fbdac7;
+  background-color: #0566db;
+  color: #fffefe;
  
 }
 
@@ -230,7 +230,7 @@ button:hover {
   padding: 15px;
   font-size: 1rem;
   border-radius: 5px;
-  border: 2px solid #f4a178;
+  border: 2px solid #8ac2e7;
   cursor: pointer;
   outline: none;
 }
@@ -239,9 +239,9 @@ button:hover {
 
 
 button:hover {
-  background-color: #fbdac7;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  background-color: #b9d8ff;
+  color: #0566db;
+  border: 2px solid #0566db;
 }
 
 .modal {
