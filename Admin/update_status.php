@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt->bind_param("si", $status, $reservation_id);
 
   if ($stmt->execute()) {
-    echo "Status updated successfully";
+    echo "Cập nhật trạng thái đơn đặt bàn thành công!";
 
     // GỬI EMAIL nếu trạng thái được duyệt
     if ($status === 'Approved') {
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $info_stmt->close();
     }
 } else {
-    echo "Error updating status: " . $conn->error;
+    echo "Lỗi khi cập nhật trạng thái đơn đặt bàn: " . $conn->error;
 }
 
 $stmt->close();
