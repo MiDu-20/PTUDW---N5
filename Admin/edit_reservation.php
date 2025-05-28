@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Thực thi câu truy vấn và kiểm tra kết quả
   if ($stmt->execute()) {
-    echo "Reservation updated successfully."; // Thông báo khi thành công
+    echo "Cập nhật thông tin đặt bàn thành công."; // Thông báo khi thành công
   } else {
-    echo "Error Updating Reservation: " . $stmt->error; // Thông báo lỗi nếu thất bại
+    echo "Lỗi khi cập nhật thông tin đặt bàn: " . $stmt->error; // Thông báo lỗi nếu thất bại
   }
 
   // Đóng câu lệnh và kết nối cơ sở dữ liệu
