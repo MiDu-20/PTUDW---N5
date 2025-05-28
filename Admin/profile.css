@@ -1,3 +1,4 @@
+/* Đặt font chữ chính và màu nền cho toàn bộ trang */
 body {
   font-family: poppins, sans-serif;
   background-color: #fef0e8;
@@ -5,6 +6,7 @@ body {
   padding: 0;
 }
 
+/* Căn giữa form theo cả chiều ngang và dọc, cách top 60px */
 .wrapper {
   display: flex;
   justify-content: center;
@@ -12,6 +14,7 @@ body {
   margin-top: 60px;
 }
 
+/* Hộp chứa form: có nền cam nhạt, viền bo tròn và bóng đổ */
 .container {
   background-color: rgba(253, 108, 77, 0.1);
   border-color: rgba(253, 108, 77, 0.5);
@@ -22,22 +25,26 @@ body {
   width: 600px;
 }
 
+/* Một hàng input gồm nhiều nhóm nhập liệu */
 .form-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
+/* Một ô nhập liệu (input) với margin bên phải */
 .form-group {
   position: relative;
   flex: 1;
   margin-right: 10px;
 }
 
+/* Ô nhập liệu cuối cùng không có margin phải */
 .form-group:last-child {
   margin-right: 0;
 }
 
+/* Label hiển thị bên trong input, cố định ở vị trí nổi */
 .form-group label {
   position: absolute;
   top: 12px;
@@ -46,16 +53,15 @@ body {
   font-weight: bold;
   color: #333;
   transition: 0.2s;
-  pointer-events: none;
-  /* Allow clicking through the label */
+  pointer-events: none; /* Cho phép click xuyên qua label */
 }
 
+/* Style cho các ô input dạng text, email và file */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="file"] {
   width: 100%;
   padding: 15px 15px 15px 15px;
-  /* Extra padding to accommodate label */
   margin-bottom: 10px;
   border: 1px solid rgba(253, 108, 77, 0.8);
   background-color: rgba(253, 108, 77, 0.2);
@@ -66,10 +72,12 @@ body {
   font-size: 15px;
 }
 
+/* Giảm padding cho ô chọn file */
 .form-group input[type="file"] {
   padding: 13px 15px 13px 15px;
 }
 
+/* Nút gửi form: nền cam, chữ trắng, bo góc */
 form button {
   width: 100%;
   padding: 10px;
@@ -82,12 +90,14 @@ form button {
   transition: all 0.3s ease;
 }
 
+/* Hiệu ứng hover cho nút gửi */
 form button:hover {
   background-color: #fbdac7;
   color: #fb4a36;
   border: 2px solid #fb4a36;
 }
 
+/* Ảnh đại diện chính giữa form, tròn và vừa khung */
 .profile-image {
   display: block;
   margin: 0 auto 20px auto;
@@ -97,16 +107,15 @@ form button:hover {
   object-fit: cover;
 }
 
-/* Include styles directly for demonstration, adjust as needed */
+/* Phần thông tin hồ sơ phía trên, có viền dưới */
 .profile-section {
   padding: 20px 5px 20px 5px;
   display: flex;
   align-items: center;
   border-bottom: 2px solid rgba(253, 108, 77, 0.5);
-
- 
 }
 
+/* Ảnh nhỏ trong phần hồ sơ */
 .profile-section img {
   width: 50px;
   height: 50px;
@@ -114,26 +123,31 @@ form button:hover {
   margin-right: 15px;
 }
 
+/* Phần chứa thông tin tên và mô tả */
 .profile-section .info {
   flex-grow: 1;
 }
 
+/* Tên người dùng */
 .profile-section .info h3 {
   margin: 0;
   font-size: 17px;
   font-weight: 500;
 }
 
+/* Mô tả người dùng */
 .profile-section .info p {
   margin: 5px 0 0;
   font-size: 15px;
   color: #666;
 }
 
+/* Khoảng cách giữa icon và văn bản trong sidebar */
 .sidebar ul li a i {
   margin-right: 10px;
 }
 
+/* Làm nổi bật mục đang chọn trong sidebar */
 .sidebar ul li a.active {
   font-weight: bold;
 }

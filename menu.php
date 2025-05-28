@@ -70,8 +70,8 @@ if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
 ?>
 <!-- Tiêu đề và mô tả thực đơn -->
 <div class="heading">
-    <div class="row heading-title">MENU</div>
-    <div class="row heading-description">~Khám phá hương vị tuyệt vời qua thực đơn hấp dẫn của chúng tôi!</div>
+    <div class="row heading-title">Thực đơn</div>
+    <div class="row heading-description">Thưởng thức món ăn ngon</div>
 </div>
 
 <?php foreach ($categories as $category): ?>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   
-//-- Nhiều CSS nội tuyến - ISSUE: Nên tách thành tệp CSS riêng
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,9 +34,10 @@
 
     body {
       background-color: #feead4;
-      font-family: "Poppins", sans-serif;
+      font-family: "Baloo 2", sans-serif;
       font-weight: 300;
       font-style: normal;
+      font-size: large;
     }
 
     a {
@@ -47,7 +47,7 @@
 
     .navbar-brand,
     .offcanvas-header {
-      color: #fb4a36;
+      color: #ff9d23;
       font-family: "Chewy", system-ui;
       font-optical-sizing: auto;
       font-weight: 500;
@@ -77,7 +77,7 @@
       overflow: hidden;
       transition-duration: 0.3s;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-      background-color: #fb4a36;
+      background-color: #ff9d23;
     }
 
     /* ICON TRONG NÚT */
@@ -104,14 +104,14 @@
       width: 0%;
       opacity: 0;
       color: #1d1818;
-      font-size: 1.2em;
+      font-size: 18px;
       font-weight: 500;
       transition-duration: 0.3s;
     }
 
     /* HIỆU ỨNG HOVER - Mở rộng nút */
     .Btn:hover {
-      width: 125px;
+      width: 170px;
       border-radius: 40px;
       transition-duration: 0.3s;
     }
@@ -126,9 +126,10 @@
     /* HIỆU ỨNG HOVER - Hiện text */
     .Btn:hover .text {
       opacity: 1;
-      width: 70%;
+      width: 100%;
       transition-duration: 0.3s;
-      padding-right: 10px;
+      padding-left: 30px;
+      align: center;
     }
 
     /* HIỆU ỨNG CLICK - Tạo cảm giác nhấn */
@@ -162,7 +163,7 @@
       border: none;
       margin-left: -30px;
       text-align: center;
-      background-color: #fed9c7;
+      background-color: #c14600;
       margin-top: -5px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -172,12 +173,12 @@
     }
 
     .dropdown-item:hover {
-      background-color: #fb4a36;
+      background-color: #ff9d23;
       color: white;
     }
 
     .nav-item.dropdown .nav-link:hover {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     /* THIẾT LẬP ICON HAMBURGER MENU */
@@ -189,17 +190,17 @@
     /* HIỆU ỨNG HOVER VÀ ACTIVE CHO NAV LINK */
     .nav-link:hover,
     .nav-link.active {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     .navbar-nav .nav-link.active,
     .navbar-nav .nav-link:hover,
     .navbar-nav .nav-link:focus {
-      color: #fb4a36;
+      color: #ff9d23;
     }
 
     .offcanvas-header {
-      background-color: #ffbda1;
+      background-color: #c14600;
     }
 
     /* HIỆU ỨNG HOVER CHO DROPDOWN - Hiện menu khi hover */
@@ -216,7 +217,7 @@
       border-bottom-left-radius: 80px;
       border-bottom-right-radius: 80px;
       padding: 5px 0px 0px 0px;
-      background-color: #ffbda1; /* Màu nền navbar */
+      background-color: #c14600; /* Màu nền navbar */
     }
 
     .cart {
@@ -226,15 +227,15 @@
     }
 
     .offcanvas-body {
-      background: #ffbda1;
+      background: #c14600;
     }
 
     .offcanvas-header {
-      border-bottom: 1px solid #fb4a36;
+      border-bottom: 1px solid #ff9d23;
     }
 
     .navbar .active {
-      color: #fb4a36;
+      color: #ff9d23;
       font-weight: 700;
     }
   </style>
@@ -274,29 +275,29 @@
               <!-- MENU DROPDOWN -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle mx-lg-2 <?php echo $current_page == 'menu.php' ? 'active' : ''; ?>" href="menu.php" role="button" aria-haspopup="true" aria-expanded="false">
-                  Menu
+                  Thực đơn
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="menu.php#appetizer">Appetizers</a></li>
+                  <li><a class="dropdown-item" href="menu.php#appetizer">Khai vị</a></li>
                   <li><a class="dropdown-item" href="menu.php#pizza">Pizza</a></li>
                   <li><a class="dropdown-item" href="menu.php#burger">Burger</a></li>
-                  <li><a class="dropdown-item" href="menu.php#beverage">Beverages</a></li>
+                  <li><a class="dropdown-item" href="menu.php#beverage">Thức uống</a></li>
                 </ul>
               </li>
 
               <!-- MENU ĐẶT BÀN -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#Reservation' ? 'active' : ''; ?>" href="index.php#Reservation">Reservation</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#Reservation' ? 'active' : ''; ?>" href="index.php#Reservation">Đặt bàn</a>
               </li>
 
               <!-- MENU VỀ CHÚNG TÔI -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#About-Us' ? 'active' : ''; ?>" href="index.php#About-Us">About Us</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == 'index.php#About-Us' ? 'active' : ''; ?>" href="index.php#About-Us">Về chúng tôi</a>
               </li>
 
               <!-- MENU ĐÁNH GIÁ -->
               <li class="nav-item">
-                <a class="nav-link mx-lg-2 <?php echo $current_page == '#review' ? 'active' : ''; ?>" href="#review">Review</a>
+                <a class="nav-link mx-lg-2 <?php echo $current_page == '#review' ? 'active' : ''; ?>" href="#review">Đánh giá</a>
               </li>
             </ul>
           </div>
@@ -308,7 +309,7 @@
         <!-- NÚT ĐĂNG NHẬP VỚI HIỆU ỨNG ĐẶC BIỆT -->
         <a href="login.php">
           <button class="Btn ms-3">
-            <div class="text">LOGIN</div>
+            <div class="text">ĐĂNG NHẬP</div>
             <div class="sign">
               <!-- SVG ICON MŨI TÊN -->
               <svg viewBox="0 0 512 512">
@@ -367,40 +368,39 @@
 
       // Hàm thêm class active dựa trên scroll
       function addActiveClassOnScroll() {
-        let currentSection = "Home"; // Mặc định là Home nếu đang ở index.php
+          // 1. Xác định section hiện tại (chỉ dùng khi đang ở index.php)
+  let currentSection = "Home";
+  if (currentPage === "index.php") {
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (window.pageYOffset >= sectionTop - 60) {
+        currentSection = section.getAttribute("id").toLowerCase();;
+      }
+    });
+  }
 
-        // Kiểm tra nếu trang hiện tại là index.php
-        if (currentPage === "index.php") {
-          sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 60) {
-              currentSection = section.getAttribute("id");
-            }
-          });
+  // 2. Xóa hết active cũ
+  removeActiveClasses();
 
-          removeActiveClasses();
-
-          // Highlight menu tương ứng với section đang xem
-          if (currentSection === "Reservation" || currentSection === "About-Us" || currentSection === "review") {
-            const activeLink = document.querySelector(`.navbar-nav a[href*="${currentSection}"]`);
-            if (activeLink) {
-              activeLink.classList.add("active");
-            }
-          } else {
-            // Mặc định highlight Home khi ở index.php
-            const homeLink = document.querySelector(`.navbar-nav a[href="index.php"]`);
-            if (homeLink) {
-              homeLink.classList.add("active");
-            }
-          }
-        } else {
-          // Highlight trang hiện tại nếu không phải index.php
-          const activeLink = document.querySelector(`.navbar-nav a[href="${currentPage}"]`);
-          if (activeLink) {
-            removeActiveClasses();
-            activeLink.classList.add("active");
-          }
-        }
+  // 3. Bật active dựa vào ngữ cảnh
+  if (currentPage === "index.php") {
+    // a) Nếu đang scroll đến một trong các section cụ thể
+    if (["reservation", "about-Us", "review"].includes(currentSection)) {
+      const link = document.querySelector(`.navbar-nav a[href*="#${currentSection}"]`);
+      if (link) link.classList.add("active");
+    }
+    // b) Ngược lại (hoặc không có hash) thì Home active
+    else {
+      const homeLink = document.querySelector('.navbar-nav a[href="index.php"]');
+      if (homeLink) homeLink.classList.add("active");
+    }
+  } 
+  else {
+    // 4. Nếu không phải index.php (ví dụ about-us.html, reservation.html…)
+    //    thì highlight đúng link có href trùng currentPage
+    const link = document.querySelector(`.navbar-nav a[href*="${currentPage}"]`);
+    if (link) link.classList.add("active");
+  }
       }
 
       // Lắng nghe sự kiện scroll
