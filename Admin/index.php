@@ -302,7 +302,7 @@ include 'sidebar.php';
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
-                $dbname = "restaurant_full_vi";
+                $dbname = "restaurant";
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
 
