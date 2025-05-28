@@ -32,6 +32,12 @@ include 'sidebar.php';
   <link rel="stylesheet" href="admin_reservation.css">
   <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="admin_review.css">
+<!-- Áp dụng Baloo 2 làm font mặc định -->
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive !important;
+    }
+</style>
 </head>
 
 <body>
@@ -42,7 +48,7 @@ include 'sidebar.php';
     <div class="profile-section">
       <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Picture">
       <div class="info">
-        <h3>Welcome Back!</h3>
+        <h3>Chào mừng quay trở lại!</h3>
         <p><?php echo htmlspecialchars($admin_info['firstName']) . ' ' . htmlspecialchars($admin_info['lastName']); ?></p>
       </div>
     </div>
