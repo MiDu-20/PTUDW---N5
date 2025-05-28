@@ -7,8 +7,11 @@
 
 /* Thiết lập chung cho toàn bộ trang */
 body {
-  font-family: poppins, sans-serif; /* Font chữ chính */
-  background-color: #feead4;        /* Màu nền tổng thể */
+  font-family: 'Baloo 2', sans-serif; /* Font chữ chính */
+  background-image: url('images/profile-bg.png'); 
+  background-size: cover;           /* Phủ toàn bộ trang */
+  background-position: center;      /* Căn giữa ảnh */
+  background-repeat: no-repeat;
   margin: 0;
   padding-top: 100px;               /* Dành không gian phía trên (thường cho navbar) */
 }
@@ -130,3 +133,61 @@ h2 {
     margin: 40px 30px 40px 30px !important; /* Bo lề bên khi màn hình hẹp */
   }
 }
+/* Block này thêm vào để hiển thị thông báo lưu thông tin thành công */
+#successOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* overlay mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.success-popup {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 25px 30px;
+  border-radius: 10px;
+  border: 1px solid #c3e6cb;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  font-size: 18px;
+  max-width: 90%;
+  width: 400px;
+  position: relative;
+  animation: fadeInUp 0.3s ease-in-out;
+  text-align: center;
+}
+
+.success-popup p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #155724;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
