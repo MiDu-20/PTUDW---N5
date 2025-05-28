@@ -20,16 +20,24 @@ include 'sidebar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Review Management</title>
+  <title>Quản lý đánh giát</title>
 
-  <!--poppins-->
+  <!-- Baloo 2 font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="admin_reservation.css">
   <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="admin_review.css">
+<!-- Áp dụng Baloo 2 làm font mặc định -->
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive !important;
+    }
+</style>
 </head>
 
 <body>
@@ -40,7 +48,7 @@ include 'sidebar.php';
     <div class="profile-section">
       <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Picture">
       <div class="info">
-        <h3>Welcome Back!</h3>
+        <h3>Chào mừng quay trở lại!</h3>
         <p><?php echo htmlspecialchars($admin_info['firstName']) . ' ' . htmlspecialchars($admin_info['lastName']); ?></p>
       </div>
     </div>
@@ -48,15 +56,15 @@ include 'sidebar.php';
     <!-- Navigation Items -->
 
     <ul>
-      <li><a href="index.php"><i class="fas fa-chart-line"></i> Tổng quan </a></li>
-      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Quản lý thực đơn</a></li>
-      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
-      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Đặt bàn</a></li>
-      <li><a href="users.php"><i class="fas fa-users"></i> Người dùng</a></li>
-      <li><a href="reviews.php" class="active"><i class="fas fa-star"></i> Đánh giá</a></li>
-      <li><a href="staffs.php"><i class="fas fa-users"></i> Nhân viên</a></li>
-      <li><a href="profile.php"><i class="fas fa-user"></i> Hồ sơ</a></li>
-      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+      <li><a href="index.php"><i class="fas fa-chart-line"></i>Tổng quan</a></li>
+      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
+      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
+      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
+      <li><a href="users.php"><i class="fas fa-users"></i>Người dùng</a></li>
+      <li><a href="reviews.php" class="active"><i class="fas fa-star"></i>Đánh giá</a></li>
+      <li><a href="staffs.php"><i class="fas fa-users"></i>Nhân viên</a></li>
+      <li><a href="profile.php"><i class="fas fa-user"></i>Hồ sơ</a></li>
+      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
     </ul>
   </div>
   <div class="content">
@@ -64,7 +72,7 @@ include 'sidebar.php';
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i>
       </button>
-      <h2><i class="fas fa-star"></i> Đánh giá</h2>
+      <h2><i class="fas fa-star"></i>Đánh giá</h2>
     </div>
 
     <div class="actions">
@@ -86,7 +94,7 @@ include 'sidebar.php';
             <th>Đánh giá</th>
             <th>Trạng thái</th>
             <th>Phản hồi</th>
-            <th>Hành động</th>
+            <th>Chỉnh sửa</th>
           </tr>
         </thead>
         <tbody>

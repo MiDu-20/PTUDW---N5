@@ -14,7 +14,7 @@ $search = '';
 // Nếu có dữ liệu tìm kiếm gửi lên qua phương thức POST
 if (isset($_POST['search'])) {
     // Lấy giá trị tìm kiếm và lọc để tránh lỗi SQL Injection
-    $search = $conn->real_escape_string($_POST['search']);
+    $search = $conn->real_escape_string(trim($_POST['search']));
 }
 
 // Câu truy vấn SQL lấy tất cả dữ liệu từ bảng staff
@@ -22,11 +22,21 @@ $sql = "SELECT * FROM staff";
 
 // Nếu có giá trị tìm kiếm thì thêm điều kiện WHERE để lọc kết quả
 if (!empty($search)) {
-    $sql .= " WHERE id LIKE '%$search%' OR email LIKE '%$search%' OR firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR role LIKE '%$search%'";
+    $sql .= " WHERE 
+        `id` LIKE '%$search%' OR 
+        `email` LIKE '%$search%' OR 
+        `firstName` LIKE '%$search%' OR 
+        `lastName` LIKE '%$search%' OR 
+        CONCAT(`lastName`, ' ', `firstName`) LIKE '%$search%' OR 
+        `role` LIKE '%$search%'";
 }
 
 // Thực thi câu truy vấn
 $result = $conn->query($sql);
+
+if (!$result) {
+    die("Lỗi truy vấn SQL: " . $conn->error);
+}
 
 // Kiểm tra nếu có kết quả trả về
 if ($result->num_rows > 0) {
@@ -40,8 +50,7 @@ if ($result->num_rows > 0) {
                 <td>{$row['id']}</td>
                 <td>{$row['createdAt']}</td>
                 <td>{$row['email']}</td>
-                <td>{$row['firstName']}</td>
-                <td>{$row['lastName']}</td>
+                <td>{$row['lastName']} {$row['firstName']}</td>
                 <td>{$row['contact']}</td>
                 <td>{$row['role']}</td>
                 <td>

@@ -1,11 +1,9 @@
 /* Đặt font chữ chính và màu nền cho toàn bộ trang */
 body {
-  font-family: poppins, sans-serif;
-  background-color: #fef0e8;
+  background: #fef0e8;
+  font-family: "Baloo 2", cursive;
   margin: 0;
-  padding: 0;
 }
-
 /* Căn giữa form theo cả chiều ngang và dọc, cách top 60px */
 .wrapper {
   display: flex;

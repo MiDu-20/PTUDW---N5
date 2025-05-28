@@ -21,16 +21,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Thực thi câu lệnh SQL cập nhật
   if ($conn->query($sql) === TRUE) {
-    echo "Cập nhật nhân viên thành công."; // Thông báo cập nhật thành công (đã Việt hóa)
+    echo "<script>
+        alert('Đã cập nhật thành công');
+        window.location.href = 'staffs.php';
+    </script>";
+    exit();
   } else {
-    // Hiển thị lỗi nếu có
-    echo "Lỗi khi cập nhật nhân viên: " . $conn->error; // Thông báo lỗi (đã Việt hóa)
+
+    $conn->close(); // Đóng kết nối cơ sở dữ liệu
+
+    echo "<script>
+        alert('Lỗi khi cập nhật nhân viên: " . addslashes($conn->error) . "');
+        window.history.back();
+    </script>";
+    exit();
   }
 
-  $conn->close(); // Đóng kết nối cơ sở dữ liệu
-
   // Chuyển hướng về trang quản lý nhân viên
-  header("Location: staffs.php");
-  exit();
+  //header("Location: staffs.php");
+
 }
 ?>

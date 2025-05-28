@@ -36,10 +36,6 @@ table th {
   background-color: rgba(60, 142, 245, 0.7); /* Header màu xanh đậm */
 }
 
-table tr:nth-of-type(even) {
-  background-color: #a4d1e2;
-}
-
 table tr:hover {
  background-color: rgba(60, 142, 245, 0.2); /* Hover trên dòng */
 }

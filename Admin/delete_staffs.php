@@ -32,5 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     // Đóng kết nối cơ sở dữ liệu
     $conn->close();
+    
 }
 ?>

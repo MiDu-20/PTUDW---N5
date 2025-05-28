@@ -71,6 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Gọi hàm cập nhật thông tin admin
   updateAdminInfo($admin_email, $firstName, $lastName, $contact, $password, $profile_image);
 
+  // Gán thông báo thành công vào session
+  $_SESSION['success_message'] = "Thay đổi thành công";
+
   // Chuyển về lại trang hồ sơ sau khi cập nhật
   header('Location: profile.php');
   exit;
@@ -92,7 +95,9 @@ $admin_info = getAdminInfo($admin_email);
   <!-- Font Poppins từ Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Icon Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -119,15 +124,15 @@ $admin_info = getAdminInfo($admin_email);
 
     <!-- Danh sách điều hướng (menu admin) -->
     <ul>
-      <li><a href="index.php"><i class="fas fa-chart-line"></i> Overview</a></li>
-      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Menu Management</a></li>
-      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Reservations</a></li>
-      <li><a href="users.php"><i class="fas fa-users"></i> Users</a></li>
-      <li><a href="reviews.php"><i class="fas fa-star"></i> Reviews</a></li>
-      <li><a href="staffs.php"><i class="fas fa-users"></i> Staffs</a></li>
-      <li><a href="profile.php" class="active"><i class="fas fa-user"></i> Profile Setting</a></li>
-      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      <li><a href="index.php"><i class="fas fa-chart-line"></i>Tổng quan</a></li>
+      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
+      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
+      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
+      <li><a href="users.php"><i class="fas fa-users"></i>Người dùng</a></li>
+      <li><a href="reviews.php"><i class="fas fa-star"></i>Đánh giá</a></li>
+      <li><a href="staffs.php"><i class="fas fa-users"></i>Nhân viên</a></li>
+      <li><a href="profile.php" class="active"><i class="fas fa-user"></i>Hồ sơ</a></li>
+      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
     </ul>
   </div>
 
@@ -138,7 +143,7 @@ $admin_info = getAdminInfo($admin_email);
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i> <!-- Nút mở sidebar -->
       </button>
-      <h2><i class="fas fa-user"></i> Profile Setting</h2>
+      <h2><i class="fas fa-user"></i>Hồ sơ</h2>
     </div>
 
     <!-- Nội dung chỉnh sửa hồ sơ -->
@@ -147,19 +152,27 @@ $admin_info = getAdminInfo($admin_email);
         <!-- Hiển thị ảnh đại diện admin -->
         <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Image" class="profile-image">
 
+        <!-- Hiển thị thông báo -->
+        <?php if (isset($_SESSION['success_message'])): ?>
+          <div style="background-color: #d4edda; color: #155724; padding: 10px 20px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #c3e6cb;">
+            <i class="fas fa-check-circle"></i> <?php echo $_SESSION['success_message']; ?>
+          </div>
+          <?php unset($_SESSION['success_message']); ?>
+        <?php endif; ?>
+
         <!-- Form cập nhật thông tin -->
         <form action="profile.php" method="post" enctype="multipart/form-data">
           <div class="form-row">
             <!-- Họ -->
             <div class="form-group">
-              <input type="text" id="firstName" name="firstName" value="<?php echo htmlspecialchars($admin_info['firstName']); ?>" placeholder=" ">
-              <label for="firstName">First Name:</label>
+              <input type="text" id="lastName" name="lastName" value="<?php echo htmlspecialchars($admin_info['lastName']); ?>" placeholder=" ">
+              <label for="lastName">Họ:</label>
             </div>
 
             <!-- Tên -->
             <div class="form-group">
-              <input type="text" id="lastName" name="lastName" value="<?php echo htmlspecialchars($admin_info['lastName']); ?>" placeholder=" ">
-              <label for="lastName">Last Name:</label>
+              <input type="text" id="firstName" name="firstName" value="<?php echo htmlspecialchars($admin_info['firstName']); ?>" placeholder=" ">
+              <label for="firstName">Tên:</label>
             </div>
           </div>
 
@@ -173,7 +186,7 @@ $admin_info = getAdminInfo($admin_email);
             <!-- Số điện thoại -->
             <div class="form-group">
               <input type="text" id="contact" name="contact" value="<?php echo htmlspecialchars($admin_info['contact']); ?>" placeholder=" ">
-              <label for="contact">Contact Number:</label>
+              <label for="contact">Số liên lạc:</label>
             </div>
           </div>
 
@@ -181,7 +194,7 @@ $admin_info = getAdminInfo($admin_email);
             <!-- Mật khẩu (dạng text, cần cải thiện bảo mật) -->
             <div class="form-group">
               <input type="text" id="password" name="password" value="<?php echo htmlspecialchars($admin_info['password']); ?>" placeholder=" ">
-              <label for="password">Password:</label>
+              <label for="password">Mật khẩu:</label>
             </div>
 
             <!-- Tải ảnh đại diện mới -->
@@ -191,7 +204,7 @@ $admin_info = getAdminInfo($admin_email);
           </div>
 
           <!-- Nút gửi form -->
-          <button type="submit">Save Settings</button>
+          <button type="submit">Lưu thay đổi</button>
         </form>
       </div>
     </div>
