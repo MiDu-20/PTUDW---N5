@@ -89,14 +89,22 @@ include 'sidebar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reservations</title>
+  <title>Đặt bàn</title>
+   <!-- Baloo 2 font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="admin_reservation.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Áp dụng Baloo 2 làm font mặc định -->
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive !important;
+    }
+</style>
   <style>
   .content{
     margin-bottom: 40px;
@@ -112,14 +120,14 @@ include 'sidebar.php';
     <div class="profile-section">
       <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Picture">
       <div class="info">
-        <h3>Welcome Back!</h3>
+        <h3>Chào mừng quay trở lại!</h3>
         <p><?php echo htmlspecialchars($admin_info['firstName']) . ' ' . htmlspecialchars($admin_info['lastName']); ?></p>
       </div>
     </div>
 
     <!-- Navigation Items -->
     <ul>
-            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Thống kê </a></li>
+            <li><a href="index.php" ><i class="fas fa-chart-line"></i> Tổng quan </a></li>
             <li><a href="admin_menu.php" ><i class="fas fa-utensils"></i> Quản lý thực đơn </a></li>
             <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng </a></li>
             <li><a href="reservations.php" class="active"><i class="fas fa-calendar-alt"></i> Đặt bàn </a></li>
@@ -183,7 +191,7 @@ include 'sidebar.php';
         <div class="actions">
           <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
             <option value="">Tất cả</option>
-            <option value="Pending">Hoãn</option>
+            <option value="Pending">Đang chờ</option>
             <option value="Approved">Xác nhận</option>
             <option value="On Process">Đang xử lý</option>
             <option value="Completed">Hoàn thành</option>
@@ -242,7 +250,7 @@ include 'sidebar.php';
       <td>{$row['reservedTime']}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
-          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Hoãn</option>
+          <option value='Pending' " . ($row['status'] == 'Pending' ? 'selected' : '') . ">Đang chờ</option>
           <option value='Approved' " . ($row['status'] == 'Approved' ? 'selected' : '') . ">Xác nhận</option>
           <option value='On Process' " . ($row['status'] == 'On Process' ? 'selected' : '') . ">Đang xử lý</option>
           <option value='Completed' " . ($row['status'] == 'Completed' ? 'selected' : '') . ">Hoàn thành</option>
@@ -371,7 +379,7 @@ include 'sidebar.php';
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="button" onclick="closeEditReservationModal()">Hủy bỏ</button>
+        <button type="button" class="button" onclick="closeEditReservationModal()">Hủy</button>
         <button type="submit" class="button">Lưu</button>
       </div>
     </form>

@@ -36,9 +36,9 @@ if ($result->num_rows > 0) {
                 <!-- Cột chọn trạng thái với dropdown -->
                 <td>
                     <select id='status-{$row['order_id']}' onchange='updateStatus({$row['order_id']}, this.value)' class='status-select'>
-                        <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Pending</option>
-                        <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Approved</option>
-                        <option value='rejected' " . ($row['status'] == 'rejected' ? 'selected' : '') . ">Rejected</option>
+                        <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Đang chờ</option>
+                        <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Xác nhận</option>
+                        <option value='rejected' " . ($row['status'] == 'rejected' ? 'selected' : '') . ">Từ chối</option>
                     </select>
                 </td>
                 <!-- Cột hiển thị phản hồi từ admin -->
@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
     }
 } else {
     // Nếu không có bản ghi nào, hiển thị dòng thông báo
-    echo "<tr><td colspan='7' style='text-align: center;'>No Reviews</td></tr>";
+    echo "<tr><td colspan='7' style='text-align: center;'>Không có đánh giá nào.</td></tr>";
 }
 
 // Đóng kết nối với cơ sở dữ liệu

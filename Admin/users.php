@@ -63,15 +63,15 @@ include 'sidebar.php';
 
     <!-- Navigation Items -->
     <ul>
-      <li><a href="index.php"><i class="fas fa-chart-line" style="margin-right: 10px;"></i> Overview</a></li>
-      <li><a href="admin_menu.php" ><i class="fas fa-utensils" style="margin-right: 10px;"></i> Menu Management</a></li>
-      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart" style="margin-right: 10px;"></i> Orders</a></li>
-      <li><a href="reservations.php"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Reservations</a></li>
-      <li><a href="users.php" class="active"><i class="fas fa-users" style="margin-right: 10px;"></i> Users</a></li>
-      <li><a href="reviews.php"><i class="fas fa-star" style="margin-right: 10px;"></i> Reviews</a></li>
-      <li><a href="staffs.php" ><i class="fas fa-users" style="margin-right: 10px;"></i> Staffs</a></li>
-      <li><a href="profile.php"><i class="fas fa-user" style="margin-right: 10px;"></i> Profile Setting</a></li>
-      <li style="margin-right: 10px;"><a href="logout.php"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Logout</a></li>
+      <li><a href="index.php"><i class="fas fa-chart-line" style="margin-right: 10px;"></i> Tổng quan</a></li>
+      <li><a href="admin_menu.php" ><i class="fas fa-utensils" style="margin-right: 10px;"></i> Quản lý thực đơn</a></li>
+      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart" style="margin-right: 10px;"></i> Đơn hàng</a></li>
+      <li><a href="reservations.php"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Đặt bàn</a></li>
+      <li><a href="users.php" class="active"><i class="fas fa-users" style="margin-right: 10px;"></i> Người dùng</a></li>
+      <li><a href="reviews.php"><i class="fas fa-star" style="margin-right: 10px;"></i> Đánh giá</a></li>
+      <li><a href="staffs.php" ><i class="fas fa-users" style="margin-right: 10px;"></i> Nhân viên</a></li>
+      <li><a href="profile.php"><i class="fas fa-user" style="margin-right: 10px;"></i> Hồ sơ</a></li>
+      <li style="margin-right: 10px;"><a href="logout.php"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Đăng xuất</a></li>
     </ul>
   </div>
   <div class="content">
@@ -79,13 +79,13 @@ include 'sidebar.php';
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i>
       </button>
-      <h2><i class="fas fa-users"></i>&nbsp;User List</h2>
+      <h2><i class="fas fa-users"></i>&nbsp;Danh sách người dùng</h2>
     </div>
 
 
 
     <div class="actions">
-      <button onclick="openaddUserModal()"><i class="fas fa-user-plus"></i> &nbsp; Add User</button>
+      <button onclick="openaddUserModal()"><i class="fas fa-user-plus"></i> &nbsp; Thêm người dùng</button>
       <form method="POST" id="searchForm" class="search-bar">
         <input type="text" name="search" placeholder="Search..." value="<?php echo htmlspecialchars($search); ?>">
       </form>
@@ -96,14 +96,14 @@ include 'sidebar.php';
     <table id="userTable">
       <thead>
         <tr>
-          <th>NO</th>
-          <th>Date Created</th>
+          <th>STT</th>
+          <th>Ngày tạo</th>
           <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Contact</th>
-          <th>Password</th>
-          <th>Action</th>
+          <th>Họ</th>
+          <th>Tên</th>
+          <th>Liên hệ</th>
+          <th>Mật khẩu</th>
+          <th>Hành động</th>
         </tr>
       </thead>
       <tbody>
@@ -143,7 +143,7 @@ include 'sidebar.php';
           }
         } else {
           // Nếu không có người dùng nào khớp với tìm kiếm, hiển thị dòng thông báo
-          echo "<tr><td colspan='8' style='text-align: center;'>No Users Found</td></tr>";
+          echo "<tr><td colspan='8' style='text-align: center;'>Không tìm thấy người dùng nào.</td></tr>";
         }
 // Đóng kết nối cơ sở dữ liệu sau khi truy vấn xong
         $conn->close();
@@ -159,7 +159,7 @@ include 'sidebar.php';
     <div class="modal-container">
       <form id="addUserForm" method="POST" action="add_user.php">
         <div class="modal-header">
-          <h2>Add User</h2>
+          <h2>Thêm người dùng</h2>
           <span class="close-icon" onclick="closeaddUserModal()">&times;</span>
         </div>
         <div class="modal-content">
@@ -172,21 +172,21 @@ include 'sidebar.php';
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="firstName" id="firstName" class="input" required>
-            <label for="firstName" class="label">First Name</label>
+            <label for="firstName" class="label">Họ</label>
           </div>
         </div>
 
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="lastName" id="lastName" class="input" required>
-            <label for="lastName" class="label">last Name</label>
+            <label for="lastName" class="label">Tên</label>
           </div>
         </div>
 
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="contact" id="contact" class="input" required>
-            <label for="contact" class="label">Contact</label>
+            <label for="contact" class="label">Liên hệ</label>
           </div>
         </div>
 
@@ -196,13 +196,13 @@ include 'sidebar.php';
             <span class="toggle-password" onclick="togglePasswordVisibility()">
               <i class="fas fa-eye-slash" id="passwordIcon"></i>
             </span>
-            <label for="password" class="label">Password</label>
+            <label for="password" class="label">Mật khẩu</label>
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="button" onclick="closeaddUserModal()">Cancel</button>
-          <button type="submit" class="button">Save</button>
+          <button type="button" class="button" onclick="closeaddUserModal()">Hủy</button>
+          <button type="submit" class="button">Lưu</button>
         </div>
       </form>
     </div>
@@ -224,27 +224,27 @@ include 'sidebar.php';
           </div>
           <div class="input-group">
             <input type="text" name="firstName" id="editFirstName" class="input" required>
-            <label for="editFirstName" class="label">First Name</label>
+            <label for="editFirstName" class="label">Họ</label>
           </div>
           <div class="input-group">
             <input type="text" name="lastName" id="editLastName" class="input" required>
-            <label for="editLastName" class="label">Last Name</label>
+            <label for="editLastName" class="label">Tên</label>
           </div>
           <div class="input-group">
             <input type="text" name="contact" id="editContact" class="input" required>
-            <label for="editContact" class="label">Contact</label>
+            <label for="editContact" class="label">Liên hệ</label>
           </div>
           <div class="input-group">
             <input type="password" name="password" id="editPassword" class="input" required>
             <span class="toggle-password" onclick="toggleEditPasswordVisibility()">
               <i class="fas fa-eye-slash" id="editPasswordIcon"></i>
             </span>
-            <label for="editPassword" class="label">Password</label>
+            <label for="editPassword" class="label">Mật khẩu</label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="button" onclick="closeEditUserModal()">Cancel</button>
-          <button type="submit" class="button">Save</button>
+          <button type="button" class="button" onclick="closeEditUserModal()">Hủy</button>
+          <button type="submit" class="button">Lưu</button>
         </div>
       </form>
     </div>
@@ -330,7 +330,7 @@ include 'sidebar.php';
     });
 
     function deleteItem(email) {
-      if (confirm('Are you sure you want to delete this User?')) {
+      if (confirm('Bạn có chắc chắn muốn xóa người dùng này không?')) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "delete_user.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

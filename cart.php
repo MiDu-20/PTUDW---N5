@@ -31,10 +31,9 @@ $itemsResult = $stmt->get_result();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+ 
   <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+ 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Your Cart</title>
@@ -50,58 +49,54 @@ $itemsResult = $stmt->get_result();
   }
   ?>
   <div class="title mb-4">
-    <h3>Hi <?php echo $user['firstName'] . " " . $user['lastName']; ?>, Here's your cart!</h3>
+    <h3>Hi <span class="username-highlight"><?php echo $user['firstName'] . " " . $user['lastName']; ?></span>, Giỏ hàng của bạn đây!</h3>
   </div>
+
 
   <div class="cart-details ">
     <div class="cart-items">
-      <h4 class="mt-2">Cart Items</h4>
+      <h4 class="mt-2">Đơn trong giỏ hàng</h4>
       <hr>
       <ul class="list-group">
         <?php if ($itemsResult->num_rows > 0): ?>
           <?php while ($item = $itemsResult->fetch_assoc()) : ?>
-            <li class="d-flex justify-content-between align-items-center mb-3 list-group-item">
-              <div class="d-flex align-items-center">
-                <input type="checkbox" class="form-check-input ms-1 selection" style="width: 20px; height: 20px; border-radius: 50%; " data-price="<?= $item['price'] ?>" checked>
-                <?php
-                // Check if 'image' key exists and is not empty
-                if (!empty($item['image'])) {
-                  echo '<img src="uploads/' . htmlspecialchars($item['image']) . '" alt="Item Image" class="item-image ">';
-                } else {
-                  echo '<span>No image available</span>';
-                }
-                ?>
-                <div class="ms-3">
-                  <div class="mt-1"><?php echo $item['itemName']; ?></div>
-                  <div class="quantity mt-2 mb-1">
-                    <button class="minus-btn minus-quantity-btn" type="button" data-id="<?= $item['id'] ?>" data-price="<?= $item['price'] ?>" min="1">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <input type="text" class="itemQty" value="<?= $item['quantity'] ?>" min="1" data-id="<?= $item['id'] ?>" data-price="<?= $item['price'] ?>">
-                    <button class="plus-btn plus-quantity-btn" type="button" data-id="<?= $item['id'] ?>" data-price="<?= $item['price'] ?>">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                  </div>
+           <li class="d-flex justify-content-between align-items-center mb-3 list-group-item">
+              <!-- Cột trái -->
+              <div class="d-flex align-items-center left-column">
+                <input type="checkbox" class="form-check-input ms-1 selection" style="width: 20px; height: 20px; border-radius: 50%;" data-price="<?= $item['price'] ?>" checked>
+                <?php if (!empty($item['image'])): ?>
+                  <img src="uploads/<?= htmlspecialchars($item['image']) ?>" alt="Item Image" class="item-image ms-2">
+                <?php else: ?>
+                  <span>No image available</span>
+                <?php endif; ?>
+              </div>
+
+              <!-- Cột giữa -->
+              <div class="middle-column ms-3 me-auto">
+                <div class="mt-1 fw-bold"><?= $item['itemName']; ?></div>
+                <div class="quantity mt-2">
+                  <button class="minus-btn minus-quantity-btn" type="button" data-id="<?= $item['id'] ?>" data-price="<?= $item['price'] ?>"><i class="fas fa-minus"></i></button>
+                  <input type="text" class="itemQty" value="<?= $item['quantity'] ?>" min="1" data-id="<?= $item['id'] ?>" data-price="<?= $item['price'] ?>">
+                  <button class="plus-btn plus-quantity-btn" type="button" data-id="<?= $item['id'] ?>" data-price="<?= $item['price'] ?>"><i class="fas fa-plus"></i></button>
                 </div>
               </div>
-              <div class="mt-1">
-                <div class="d-flex flex-row justify-content-between align-items-start quantity-price">
-                  <div>
-                    VNĐ <span class="item-price"><?= $item['price'] ?></span> x <span class="item-quantity"><?= $item['quantity'] ?></span>
-                  </div>
+
+              <!-- Cột phải -->
+              <div class="right-column text-end">
+                <div>
+                  VNĐ <span class="item-price"><?= $item['price'] ?></span> x <span class="item-quantity"><?= $item['quantity'] ?></span>
                 </div>
-                <div class="d-flex flex-row justify-content-end align-items-end">
-                  <span class="badge rounded-pill text-light p-2 mt-2 item-total-price" style="background-color: #fb4a36;">VNĐ <?= $item['total_price'] ?></span>
+                <div class="d-flex align-items-center justify-content-end">
+                  <span class="badge item-total-price">VNĐ <?= $item['total_price'] ?></span>
+                  <button class="delete-icon ms-2" data-id="<?= $item['id'] ?>">&times;</button>
                 </div>
               </div>
-              <button class="delete-icon" data-id="<?= $item['id'] ?>">
-                &times;
-              </button>
             </li>
+
           <?php endwhile; ?>
         <?php else: ?>
           <li class="list-group-item">
-            Your cart is empty!
+            Giỏ hàng đang trống!
           </li>
         <?php endif; ?>
       </ul>
@@ -109,33 +104,33 @@ $itemsResult = $stmt->get_result();
 
 
     <div class="order-summary">
-      <h4 class="mt-2">Order Fee</h4>
+      <h4 class="mt-2">Thanh toán</h4>
       <hr class="mb-4">
       <div class="summary-details ">
-        <p><strong>Subtotal:</strong></p>
+        <p><strong>Tạm tính:</strong></p>
         <p> <span id="subtotal">0</span></p>
       </div>
       <div class="summary-details payment">
-        <p><strong>Payment Method:</strong></p>
+        <p><strong>Phương thức thanh toán:</strong></p>
         <div>
           <input type="radio" id="takeaway" name="payment_mode" value="Takeaway" checked>
-          <label for="Takeaway">Takeaway</label>
+          <label for="Takeaway">Mang đi</label>
         </div>
         <div>
           <input type="radio" id="cash" name="payment_mode" value="Cash">
-          <label for="Cash">Cash</label>
+          <label for="Cash">Tiền mặt</label>
         </div>
         <div>
           <input type="radio" id="card" name="payment_mode" value="Card" disabled style="cursor: not-allowed;">
-          <label for="Card">Card</label>
+          <label for="Card">Thẻ</label>
         </div>
       </div>
       <div class="summary-details">
-        <p><strong>Delivery Fee: </strong></p>
+        <p><strong>Phí vận chuyển: </strong></p>
         <p> <span id="delivery-fee">0</span></p>
       </div>
       <div class="summary-details mb-3">
-        <p><strong>Total:</strong></p>
+        <p><strong>Tổng cộng:</strong></p>
         <p><span id="total">0</span></p>
       </div>
       <hr>
@@ -143,7 +138,7 @@ $itemsResult = $stmt->get_result();
       <form id="checkout-form" action="order_review.php" method="post">
         <input type="hidden" id="selected-items" name="selected_items">
         <input type="hidden" id="payment-mode" name="payment_mode">
-        <button type="button" id="checkout-button">Checkout</button>
+        <button type="button" id="checkout-button">  Xác nhận thanh toán  </button>
       </form>
 
 

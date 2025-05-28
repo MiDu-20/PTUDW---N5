@@ -451,6 +451,15 @@ include 'db_connection.php';
     </script>
 
     <script>
+
+        // --ánh xạ phương thức thanh toán sang tiếng Việt
+        const paymentModeMap = {
+            'Cash': 'Tiền mặt',
+            'Card': 'Thẻ',
+            'Takeaway': 'Mang đi'
+        };
+
+
         // --vấn đề: xử lý sự kiện click chuyển tab trạng thái đơn hàng
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
@@ -500,7 +509,7 @@ include 'db_connection.php';
                                 </div>
                                 <div class="customer-details">
                                     <div><p><strong>Phương thức thanh toán: </strong></p></div>
-                                    <div><p>${order.pmode}</p></div>
+                                    <div><p>${paymentModeMap[order.pmode] || order.pmode}</p></div>
                                 </div>
                                 <div class="customer-details">
                                     <div><p><strong>Ngày đặt hàng: </strong></p></div>
@@ -548,6 +557,8 @@ include 'db_connection.php';
                 .catch(error => console.error('Lỗi khi lấy dữ liệu đơn hàng:', error));
         }
 
+        
+
         // --vấn đề: hàm trả về tên lớp CSS tương ứng với trạng thái đơn hàng để style màu sắc phù hợp
         function getStatusClass(status) {
             switch (status) {
@@ -569,6 +580,8 @@ include 'db_connection.php';
         // --vấn đề: tự động load danh sách đơn hàng trạng thái "Tất cả" khi vào trang
         fetchOrders('All');
     </script>
+    
+
 
     <script>
         // --vấn đề: mở modal hủy đơn khi nhấn nút Hủy

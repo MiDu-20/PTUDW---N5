@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
     }
 } else {
     // Nếu không có người dùng nào được tìm thấy
-    echo "<tr><td colspan='8' style='text-align: center;'>No Users Found</td></tr>";
+    echo "<tr><td colspan='8' style='text-align: center;'>Không tìm thấy người dùng nào</td></tr>";
 }
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
