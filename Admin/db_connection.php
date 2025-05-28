@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "restaurant_full_vi";
+$dbname = "restaurant";
 
 // Enable error reporting
 ini_set('display_errors', 1);
