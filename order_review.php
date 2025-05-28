@@ -64,8 +64,9 @@ $tongCong = $tongPhu + $phiGiaoHang;
 <body>
   <?php include('nav-logged.php'); ?>
   <div class="title mt-2">
-    <h3>Xin chào <?php echo $nguoiDung['firstName'] . " " . $nguoiDung['lastName']; ?>, vui lòng hoàn tất đơn hàng!</h3>
+    <h3>Xin chào <span class="username-highlight"><?php echo $nguoiDung['firstName'] . " " . $nguoiDung['lastName']; ?></span>, vui lòng hoàn tất đơn hàng!</h3>
   </div>
+
 
   <div class="main mt-4">
     <div class="order-fee">
@@ -132,7 +133,7 @@ $tongCong = $tongPhu + $phiGiaoHang;
                 <div class="d-flex justify-content-end mt-2">Rs <?= htmlspecialchars($matHang['price'], 0) ?> x <?= htmlspecialchars($matHang['quantity']) ?></div>
                 <div class="d-flex justify-content-end mb-2">
                   <span class="badge rounded-pill text-light p-2 mt-2 item-total-price" style="background-color: #fb4a36;">
-                    Rs <?= $matHang['total_price'] ?>
+                    VNĐ <?= $matHang['total_price'] ?>
                   </span>
                 </div>
               </div>
@@ -146,7 +147,7 @@ $tongCong = $tongPhu + $phiGiaoHang;
       <div class="summary-details">
         <div class="fee-details">
           <div><strong>Tạm tính:</strong></div>
-          <div>Rs <?= number_format($tongPhu) ?></div>
+          <div>VNĐ <?= number_format($tongPhu) ?></div>
         </div>
         <div class="fee-details">
           <div><strong>Hình thức thanh toán:</strong></div>
@@ -154,11 +155,11 @@ $tongCong = $tongPhu + $phiGiaoHang;
         </div>
         <div class="fee-details">
           <div><strong>Phí giao hàng:</strong></div>
-          <div>Rs <?= number_format($phiGiaoHang) ?></div>
+          <div>VNĐ <?= number_format($phiGiaoHang) ?></div>
         </div>
         <div class="fee-details">
           <div><strong>Tổng cộng:</strong></div>
-          <div>Rs <?= number_format($tongCong) ?></div>
+          <div>VNĐ <?= number_format($tongCong) ?></div>
         </div>
       </div>
       <hr>
