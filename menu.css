@@ -122,8 +122,20 @@ section:nth-child(even) {
   cursor: pointer;
   font-size: 14px;
 }
+/* Thêm hiệu ứng hover cho nút */
 .addItemBtn i {
   margin-right: 6px;
+}
+.addItemBtn {
+  background-color: #C14600;
+  color: white;
+  border-radius: 30px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-weight: 600;
+}
+.addItemBtn:hover {
+  background-color: #a93800;
+  transform: scale(1.03);
 }
 
 /* ---------- Nút disabled ---------- */
