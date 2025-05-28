@@ -42,31 +42,33 @@ while ($row = $categoryResult->fetch_assoc()) {
       while ($row = $result->fetch_assoc()):
         $buttonClass = $row['status'] == 'Unavailable' ? 'disabled-button' : '';
       ?>
-        <div class="col-md-6 col-lg-3 col-sm-12 menu-item slide-in">
-          <div class="card mt-4">
-            <img src="uploads/<?= $row['image'] ?>" alt="image" class="card-img-top">
-            <div class="card-body modern-card">
-              <h5 class="card-title text-center mt-3"> <?= $row['itemName'] ?> </h5>
-              <p class="description text-center"> <?= $row['description'] ?> </p>
+        <div class="col-md-6 col-lg-3 col-sm-12 menu-item col-xs-12 d-flex">
+          <div class="w-100 h-100 d-flex">
+            <div class="card w-100">
+              <img src="uploads/<?= $row['image'] ?>" alt="image" class="card-img-top">
+              <div class="card-body modern-card">
+                <h5 class="card-title text-center mt-3"> <?= $row['itemName'] ?> </h5>
+                <p class="description text-center"> <?= $row['description'] ?> </p>
 
-              <?php if ($row['status'] == 'Unavailable'): ?>
-                <div class="card-status">Hết hàng</div>
-              <?php endif; ?>
+                <?php if ($row['status'] == 'Unavailable'): ?>
+                  <div class="card-status">Hết hàng</div>
+                <?php endif; ?>
 
-              <form action="" class="form-submit">
-                <input type="hidden" class="pid" value='<?= $row['id'] ?>'>
-                <input type="hidden" class="pname" value="<?= $row['itemName'] ?>">
-                <input type="hidden" class="pprice" value="<?= $row['price'] ?>">
-                <input type="hidden" class="pimage" value="<?= $row['image'] ?>">
-                <input type="hidden" class="pcode" value="<?= $row['catName'] ?>">
+                <form action="" class="form-submit">
+                  <input type="hidden" class="pid" value='<?= $row['id'] ?>'>
+                  <input type="hidden" class="pname" value="<?= $row['itemName'] ?>">
+                  <input type="hidden" class="pprice" value="<?= $row['price'] ?>">
+                  <input type="hidden" class="pimage" value="<?= $row['image'] ?>">
+                  <input type="hidden" class="pcode" value="<?= $row['catName'] ?>">
 
-                <div class="button-container mt-2">
-                  <p><?= number_format($row['price']) ?> VNĐ</p>
-                  <button class="addItemBtn <?= $buttonClass ?>" type="button">
-                    <i class="fas fa-cart-plus"></i> Thêm vào giỏ
-                  </button>
-                </div>
-              </form>
+                  <div class="button-container mt-2">
+                    <p><?= number_format($row['price']) ?> VNĐ</p>
+                    <button class="addItemBtn <?= $buttonClass ?>" type="button">
+                      <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -134,6 +136,35 @@ $(document).ready(function() {
   }
   load_cart_item_number();
 });
+$(document).ready(function () {
+    function load_cart_item_number() {
+      $.ajax({
+        url: 'action.php', method: 'get',
+        data: { cartItem: "cart_item" },
+        success: response => $("#cart-item").html(response)
+      });
+    }
+    load_cart_item_number();
+
+    // Hiệu ứng xuất hiện từng món
+    const items = document.querySelectorAll(".menu-item");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // Chỉ hiệu ứng 1 lần
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    items.forEach(item => {
+      observer.observe(item);
+    });
+  });
 </script>
 </body>
 </html>
+    
