@@ -36,7 +36,7 @@ if (isset($_SESSION['email'])) {
             // Hiển thị thông báo thành công
             echo '<div class="alert alert-success alert-dismissible mt-2" style="width: 300px; position: fixed; top: 50%; right: 50%; transform: translate(50%, -50%); z-index: 9999; padding-top: 40px; padding-bottom: 40px; font-size: 17px; text-align: center;">
                       <button type="button" class="close" data-dismiss="alert">&times;</button>
-                      <strong>Item added to your cart!</strong>
+                      <strong>Món đã được thêm vào Giỏ hàng!</strong>
                     </div>';
         } else {
             //-- Không cập nhật số lượng nếu sản phẩm đã tồn tại, chỉ hiển thị thông báo lỗi
@@ -44,7 +44,7 @@ if (isset($_SESSION['email'])) {
             // Nếu sản phẩm đã có trong giỏ hàng, hiển thị thông báo
             echo '<div class="alert alert-danger alert-dismissible mt-2" style="width: 300px; position: fixed; top: 50%; right: 50%; transform: translate(50%, -50%); z-index: 9999; padding-top: 40px; padding-bottom: 40px; font-size: 17px; text-align: center;">
                       <button type="button" class="close" data-dismiss="alert">&times;</button>
-                      <strong>Item already exists in your cart!</strong>
+                      <strong>Món đã tồn tại trong Giỏ hàng!</strong>
                     </div>';
         }
     }
