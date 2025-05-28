@@ -228,14 +228,15 @@ include 'sidebar.php';
         $note = "";
 
   // Nếu đã đến giờ và chưa xử lý
+  // Nếu đã đến giờ và chưa xử lý
    if ($interval_minutes >= 30 && $row['status'] == 'Cancelled') {
-            $highlight = 'style="background-color: #f8d7da;"';
+            $highlight = 'style="background-color:rgb(244, 150, 158);"';
             $note = 'Tự động hủy sau 30 phút trễ';
         } elseif ($interval_minutes > 0 && $row['status'] == 'Approved') {
-            $highlight = 'style="background-color: #fff3cd;"';
+            $highlight = 'style="background-color:rgb(247, 233, 110);"';
             $note = 'Khách chưa đến, vui lòng kiểm tra';
         } elseif ($interval_minutes < 0 && $row['status'] == 'Approved') {
-            $highlight = 'style="background-color: #d1e7dd;"';
+            $highlight = 'style="background-color:rgb(185, 250, 221);"';
             $note = 'Sắp đến giờ đặt bàn';
         }
 
