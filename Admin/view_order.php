@@ -168,7 +168,7 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
           </div>
           <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
           <button type="submit" id="statusbtn">Cập nhật trạng thái</button>
-          <button type="button" class="update-btn" style="margin-top: 10px; background-color: #E67E22;" onclick="openInvoicePopup()">
+          <button type="button" class="update-btn" style="width:100%; margin-top: 10px; background-color: #E67E22;" onclick="openInvoicePopup()">
           🧾 Xuất hóa đơn</button>
         </form>
       </div>
@@ -242,14 +242,61 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
     return true;
   }
 </script>
-  <!-- Modal popup -->
-<div id="invoiceModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);">
-  <div style="background: #fff; padding: 20px; margin: 100px auto; width: 400px; border-radius: 8px; position: relative;">
-    <span id="closeInvoice" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer;">&times;</span>
-    <h3>Hóa đơn chi tiết</h3>
-    <p>Thông tin đơn hàng sẽ hiển thị tại đây...</p>
-    <!-- Bạn có thể thêm bảng/chi tiết tại đây -->
+  <!-- Popup xuất hóa đơn -->
+<div id="invoicePopup" class="invoice-popup-overlay" style="display:none;">
+  <div class="invoice-popup">
+    <button class="close-popup" id="closeInvoicePopup">&times;</button>
+    <h3>Hóa đơn đơn hàng #<?php echo $order['order_id']; ?></h3>
+    <p><strong>Khách hàng:</strong> <?php echo htmlspecialchars($order['firstName'] . ' ' . $order['lastName']); ?></p>
+    <p><strong>Địa chỉ:</strong> <?php echo htmlspecialchars($order['address']); ?></p>
+    <p><strong>Điện thoại:</strong> <?php echo htmlspecialchars($order['phone']); ?></p>
+    <hr>
+    <h4>Danh sách món</h4>
+    <ul>
+      <?php
+        // Vì $itemsResult đã dùng fetch hết khi hiển thị ở trên,
+        // bạn cần lấy lại dữ liệu item từ DB hoặc lưu trước đó.
+        // Giả sử bạn fetch lại items ở đây:
+        $itemsQuery = "SELECT itemName, quantity, price, total_price FROM order_items WHERE order_id = ?";
+        $stmtItems = $conn->prepare($itemsQuery);
+        $stmtItems->bind_param('i', $orderId);
+        $stmtItems->execute();
+        $itemsResultPopup = $stmtItems->get_result();
+        while ($item = $itemsResultPopup->fetch_assoc()) {
+          echo '<li>' . htmlspecialchars($item['itemName']) . ' - ' . $item['quantity'] . ' x ' . number_format($item['price']) . ' đ = ' . number_format($item['total_price']) . ' đ</li>';
+        }
+      ?>
+    </ul>
+    <hr>
+    <p><strong>Tạm tính:</strong> <?php echo number_format($order['sub_total']); ?> đ</p>
+    <p><strong>Phí vận chuyển:</strong> <?php echo number_format($deliveryFee); ?> đ</p>
+    <p><strong>Tổng cộng:</strong> <?php echo number_format($order['grand_total']); ?> đ</p>
+    <p><strong>Phương thức thanh toán:</strong> <?php echo htmlspecialchars($order['pmode']); ?></p>
   </div>
 </div>
+<script>
+function openInvoicePopup() {
+  document.getElementById('invoicePopup').style.display = 'flex';
+}
+
+document.getElementById('closeInvoicePopup').addEventListener('click', function() {
+  document.getElementById('invoicePopup').style.display = 'none';
+});
+
+// Ngoài ra bạn có thể đóng popup khi click ra ngoài popup
+document.getElementById('invoicePopup').addEventListener('click', function(e) {
+  if (e.target === this) {
+    this.style.display = 'none';
+  }
+});
+
+</script>
+
+
+
+
+
+
+
 </body>
 </html>
