@@ -10,7 +10,9 @@
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="login.css" />
+  
   <title>Đăng nhập/Đăng ký</title>
   <style>
     /* Icon ẩn/hiện mật khẩu */
@@ -99,23 +101,23 @@
       <!-- Panel bên trái: dành cho người mới -->
       <div class="panel left-panel">
         <div class="content">
-          <h3>Lần đầu đến với nhà hàng?</h3>
-          <p>
-            Hãy đăng ký ngay hôm nay để trải nghiệm đặt món trực tuyến tiện lợi. Nhận ưu đãi độc quyền và theo dõi đơn hàng dễ dàng.
+         <h2 style="font-family: 'Baloo 2', sans-serif;">Lần đầu đến với nhà hàng?</h2>
+          <p style="text-align: center; font-family: 'Baloo 2', sans-serif; width: 100%; margin: 0 auto; font-size: 1.1rem;">
+            Hãy đăng ký ngay hôm nay để trải nghiệm đặt món trực tuyến tiện lợi, nhận ưu đãi độc quyền và theo dõi đơn hàng dễ dàng.
           </p>
           <button class="btn transparent" id="sign-up-btn">Đăng ký</button>
         </div>
-        <img src="images/form-pic1.png" class="image" alt="" />
+        <img src="images/form-pic3.png" class="image" alt="" style="margin-bottom: 400px" />
       </div>
 
       <!-- Panel bên phải: dành cho khách hàng cũ -->
       <div class="panel right-panel">
         <div class="content">
-          <h3>Quý khách đã từng đặt món?</h3>
-          <p>
+          <h2 style="font-family: 'Baloo 2', sans-serif;">Quý khách đã từng đặt món?</h2>
+          <p style="font-family: 'Baloo 2', sans-serif; font-size: 1.1rem;">
             Hãy đăng nhập để tiếp tục thưởng thức các món ăn hấp dẫn và quản lý đơn hàng của bạn một cách tiện lợi.
           </p>
-          <button class="btn transparent" id="sign-in-btn">Đăng nhập</button>
+          <button class="btn transparent" id="sign-in-btn" style="font-family: 'Baloo 2', sans-serif;">Đăng nhập</button>
         </div>
         <img src="images/form-pic2.png" class="image" alt="" style="margin-bottom: 400px" />
       </div>

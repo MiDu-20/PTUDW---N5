@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Baloo 2', sans-serif;
 }
 
 /* Thiết lập nền và padding cho body */
@@ -20,7 +20,7 @@ body {
 /* Font mặc định cho thẻ input */
 body,
 input {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Baloo 2', sans-serif;
 }
 
 /* Container chính bao toàn bộ login page */
@@ -127,7 +127,7 @@ form.sign-in-form {
   font-weight: 500;
 }
 
-/* Nút submit */
+/* Nút đăng nhập */
 .submit {
   width: 150px;
   background-color: #FF9D23;
@@ -145,7 +145,7 @@ form.sign-in-form {
 
 /* Hover cho nút submit */
 .submit:hover {
-  background-color: #e68a0f;
+  background-color: #fef9e1;
 }
 
 /* Container chứa 2 panel trái/phải */
@@ -159,7 +159,7 @@ form.sign-in-form {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* Vòng tròn nền màu cam */
+/* Khung nền nền màu cam */
 .container:before {
   content: "";
   position: absolute;
@@ -176,10 +176,11 @@ form.sign-in-form {
 
 /* Ảnh minh hoạ */
 .image {
-  width: 100%;
+  width: 130%; /* Phóng to hơn khối chứa */
+  transform: translateX(80px); /* Di chuyển sang phải 80px */
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
-  margin-bottom: 270px;
+  margin-bottom: 800px;
 }
 
 /* Panel thông tin bên trái/phải */
@@ -221,19 +222,23 @@ form.sign-in-form {
 
 /* Nút trắng viền dùng để chuyển form */
 .btn.transparent {
-  margin: 0;
-  background: none;
+  width: 150px;
+  background-color: none;
   border: 2px solid #fff;
-  width: 130px;
-  height: 41px;
+  outline: none;
+  height: 49px;
+  border-radius: 4px;
+  color: #fff;
+  text-transform: uppercase;
   font-weight: 600;
-  font-size: 0.8rem;
-  transition: all 0.3s ease-in-out;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .btn.transparent:hover {
-  background: green;
-  border: 2px solid #fff;
+  background: #fef9e1;
+  border: 2px solid #fef9e1;
   color: white;
 }
 
@@ -241,13 +246,13 @@ form.sign-in-form {
 .right-panel .image,
 .right-panel .content {
   transform: translateX(800px);
-}
+} 
 
 /* ----------------- CHUYỂN ĐỔI ĐĂNG KÝ ------------------ */
 
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);
-  right: 52%;
+  right: 50%;
 }
 
 .container.sign-up-mode .left-panel .image,
