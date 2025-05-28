@@ -50,18 +50,18 @@ body {
   padding: 14px 10px;
   font-size: 16px;
   border-radius: 5px;
-  border: 2px solid #f4a178;
+  border: 2px solid #78b8e8;
   cursor: pointer;
   outline: none;
 }
 .search-bar button {
-  background-color: #fb4a36;
+  background-color: #0566db;
   border: none;
   padding: 14px;
 }
 .search-bar button:hover {
-  background-color: #fbdac7;
-  color: #fb4a36;
+  background-color: #b9d8ff;
+  color: #0566db;
 }
 
 
@@ -253,7 +253,7 @@ body {
 
 table {
   width: 100%;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #78b8e8;
   font-size: 17px;
   text-align: center;
   cursor: pointer;
@@ -263,27 +263,27 @@ table {
 table th,
 table td {
   padding: 12px 15px;
-  border: 2px solid #ffc9b3;
+  border: 2px solid #78b8e8;
   border-radius: 5px;
 
 }
 
 table th {
-  background-color: #fdd9c9;
+  background-color: rgba(60, 142, 245, 0.7);
 }
 
 table tr:nth-of-type(even) {
-  background-color: #fce9e2;
+  background-color: rgba(60, 142, 245, 0.2);
 }
 
 table tr:hover {
-  background-color: #fdd9c9;
+  background-color: rgba(60, 142, 245, 0.2);
 }
 
 button {
-  background-color: #fb4a36;
+  background-color: #0566db;
   color: white;
-  border: 2px solid #fb4a36;
+  border: 2px solid #b9d8ff;
   padding: 12px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -291,9 +291,9 @@ button {
   font-size: 1.2rem;
 }
 button:hover {
-  background-color: #fbdac7;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  background-color: #add7f3;
+  color: #0566db;
+  border: 2px solid #0566db;
 }
 .input-group .toggle-password {
   position: absolute;
@@ -317,19 +317,19 @@ button:hover {
 .button{
   padding: 10px 30px;
   border-radius: 20px;
-  background-color: #fbdac7;
+  background-color: #0566db;
   margin-left: 10px;
   font-size: 16px;
-  color: #fb4a36;
-  border: 2px solid #fb4a36;
+  color: #ffffff;
+  border: 2px solid #8ac2e7;
   font-weight: 450;
   cursor: pointer;
   outline: none;
   transition: all 0.3s ease;
 }
 .button:hover{
-  background-color: #fb4a36;
-  color: #fbdac7;
+  background-color: #add7f3;
+  color: #0566db;
  
 }
 #editbtn,
