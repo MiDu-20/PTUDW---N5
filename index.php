@@ -84,7 +84,7 @@ $conn->close();
   <div class="main">
     <section>
       <div class="container mt-3">
-        <div class="row d-flex justify-content-start align-items-start main-container">
+        <div class="row d-flex justify-content-start align-items-center main-container">
           <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" data-aos="fade-up">
             <h1>Welcome to <span> Chomp Chomp Fast Food,</span></h1>
             <h4 style="color: gray; font-weight: 450;">"Ngon là Nhai!"</h4>
@@ -118,7 +118,7 @@ $conn->close();
             </div>
           </div>
           <div class="col-md-7 col-sm-12 col-lg-7 d-flex justify-content-center align-items-start slide-in-right main-image">
-            <img src="images/Pizza.png" class="img" style=" width: 85%; height: 80%;">
+            <img src="images/tastyburger.png" class="img" style=" width: 85%; height: 80%;">
           </div>
         </div>
         <div class="row">
@@ -182,7 +182,7 @@ $conn->close();
     <div class="container">
       <div class="row why-us-content">
         <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12 mt-5 reveal d-flex justify-content-start align-items-start" data-aos="fade-up">
-          <img src="images/Why-Us.png" width="100%" height="auto" loading="lazy" alt="delivery boy" class="w-100 delivery-img" data-delivery-boy>
+          <img src="images/delivery.png" width="100%" height="auto" loading="lazy" alt="delivery boy" class="w-100 delivery-img" data-delivery-boy>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 d-flex flex-column justify-content-center reveal" data-aos="fade-up">
           <h1>TẠI SAO <span>NÊN NHAI NHAI Ở CHOMP CHOMP?</span></h1>
@@ -238,7 +238,7 @@ $conn->close();
                     <h1><span>MENU</span> CỦA CHÚNG TÔI</h1>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/appe-index.avif');" data-aos="fade-up">
+                    <div class="category-card" style="background-image: url('images/appe-index.jpg');" data-aos="fade-up">
                       <div class="card-overlay">
                         <div class="overlay-content">
                           <h3>Khai vị</h3>
@@ -255,7 +255,7 @@ $conn->close();
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/index-pizza.jpg');" data-aos="fade-up">
+                    <div class="category-card" style="background-image: url('images/pizza.jpg');" data-aos="fade-up">
                       <div class="card-overlay">
                         <div class="overlay-content">
                           <h3>Pizza</h3>
@@ -272,7 +272,7 @@ $conn->close();
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/index-burger.avif');" data-aos="fade-up">
+                    <div class="category-card" style="background-image: url('images/index-burger.jpg');" data-aos="fade-up">
                       <div class="card-overlay">
                         <div class="overlay-content">
                           <h3>Burger</h3>
@@ -289,7 +289,7 @@ $conn->close();
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="category-card" style="background-image: url('images/bev-index.jpeg');" data-aos="fade-up">
+                    <div class="category-card" style="background-image: url('images/beverage.jpg');" data-aos="fade-up">
                       <div class="card-overlay">
                         <div class="overlay-content">
                           <h3>Đồ uống</h3>
@@ -317,12 +317,12 @@ $conn->close();
       <h5 class="mb-5">Hãy đặt trải nghiệm ẩm thực cùng chúng tôi để tận hưởng bữa ăn ngon miệng.</h5>
     </div>
     <div class="table ms-4 me-5" data-aos="fade-up">
-      <div class="reservation row reveal">
+      <div class="reservation row reveal d-flex align-items-center" style="min-height: 60vh;">
         <div class="reservation-image col-lg-7 col-md-6 col-sm-12" style="background: none !important; padding: 0 !important;">
-          <img src="images/table.jpg" alt="Reservation" style="background: none ; width: 100%; height: 100%; padding: 0 !important;" class=" w-100 h-100">
+          <img src="images/reservation.jpg" alt="Reservation" style="background: none ; width: 100%; height: 100%; padding: 0 !important;" class=" w-100 h-100">
         </div>
-        <div class="reservation-section col-lg-5 col-md-6 col-sm-12">
-          <h2 style="text-align: center; background-color: #feead4;">Đặt bàn ngay!</h2>
+        <div class="reservation-section col-lg-5 col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+          <h2 class="text-center" style="background-color: #ffead4;">Đặt bàn ngay!</h2>
           <form id="reservation-form" action="reservations.php" method="POST">
             <div class="form-row">
               <div class="form-group">
@@ -362,7 +362,6 @@ $conn->close();
     </div>
   </section>
 
-
   <!-- About Us section -->
   <div class="aboutus" id="About-Us" style="background-image: url(images/about-bg.png); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <section class="our-story-section p-5">
@@ -375,7 +374,7 @@ $conn->close();
           <div class="story-text col-lg-6 col-md-6 col-sm-12 my-auto text-lg-start text-center" data-aos="fade-up" data-os-interval="300">
             <p>Tại <strong>Chomp Chomp Fast Food</strong>, chúng tôi đam mê tôn vinh nghệ thuật ẩm thực. Đội ngũ đầu bếp sáng tạo của chúng tôi thổi hồn vào từng món ăn, mang đến một bữa tiệc đầy xúc cảm cho các giác quan. Hãy cùng chúng tôi trải nghiệm hành trình ẩm thực độc đáo, nơi hương vị và niềm vui được nâng niu từng khoảnh khắc.</p>
             <p>Được thành lập vào năm 2021, Chomp Chomp luôn tiên phong trong đổi mới ẩm thực. Cam kết sử dụng nguyên liệu tươi ngon nhất cùng chuyên môn tài năng của đội ngũ đầu bếp đã mang lại cho chúng tôi danh tiếng xuất sắc. Chúng tôi tin rằng thưởng thức không chỉ là ăn; mà là trải nghiệm nghệ thuật ẩm thực.</p>
-            <p>Cho dù bạn đang tìm kiếm một bữa tối lãng mạn, buổi sum họp gia đình hay không gian lý tưởng để kỷ niệm những dịp đặc biệt, Grill ’N’ Chill luôn mang đến không gian hoàn hảo cùng ẩm thực tinh tế, giúp mỗi khoảnh khắc trở nên khó quên. Hãy đến và cảm nhận niềm vui của hương vị cùng chúng tôi!</p>
+            <p>Cho dù bạn đang tìm kiếm một bữa tối lãng mạn, buổi sum họp gia đình hay không gian lý tưởng để kỷ niệm những dịp đặc biệt, Chomp Chomp luôn mang đến không gian hoàn hảo cùng ẩm thực tinh tế, giúp mỗi khoảnh khắc trở nên khó quên. Hãy đến và cảm nhận niềm vui của hương vị cùng chúng tôi!</p>
             <div class="text-center mt-4">
               <a href="menu.php" class="about_btn">
                 <i class="fa-solid fa-burger"></i>Đặt ngay
@@ -383,7 +382,7 @@ $conn->close();
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12" data-aos="fade-up">
-            <img src="images/Burger.png" class="img-fluid" alt="Tạo nên bữa ăn đáng nhớ" style="width: 100%; height: auto;">
+            <img src="images/about.png" class="img-fluid" alt="Tạo nên bữa ăn đáng nhớ" style="width: 100%; height: auto;">
           </div>
         </div>
       </div>
@@ -464,7 +463,7 @@ $conn->close();
         </div>
       </div>
       <div class="footer-bottom">
-        <h4>&copy; 2025 . All Rights Reserved.</h4>
+        <h4>&copy; 2024 Authored by Asna Assalam. All Rights Reserved.</h4>
       </div>
     </div>
   </footer>

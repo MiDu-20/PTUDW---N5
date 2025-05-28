@@ -9,7 +9,6 @@ body {
 }
 
 .main {
-
   background-image: url('images/main-bg.png') !important;
   background-size: cover;
   /* Ensures the image covers the whole element */
@@ -259,7 +258,9 @@ body {
   /* gán màu nền cho container, ép container nằm giữa với max-width mặc định */
   background-color: #fef9e1;
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .why-choose-us .content {
@@ -758,6 +759,16 @@ footer {
   align-items: center;
 }
 }
+
+.reservation-section {
+  background-color: #feead4;
+  padding: 20px;
+  border-left: 4px solid #feead4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  /* Adjusted width to fit two fields per row */
+  color: #fff;
+  }
 
 @media screen and (max-width: 990px) and (min-width: 766px) {
 .main .main-container img{

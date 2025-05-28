@@ -165,7 +165,7 @@
       border: none;
       margin-left: -30px;
       text-align: center;
-      background-color: #c14600;
+      background-color: #e5d0ac;
       margin-top: -5px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
@@ -280,10 +280,10 @@
                   Thực đơn
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="menu.php#appetizer">Khai vị</a></li>
-                  <li><a class="dropdown-item" href="menu.php#pizza">Pizza</a></li>
-                  <li><a class="dropdown-item" href="menu.php#burger">Burger</a></li>
-                  <li><a class="dropdown-item" href="menu.php#beverage">Thức uống</a></li>
+                  <li style="font-size: large;"><a class="dropdown-item" href="menu.php#appetizer">Khai vị</a></li>
+                  <li style="font-size: large;"><a class="dropdown-item" href="menu.php#pizza">Pizza</a></li>
+                  <li style="font-size: large;"><a class="dropdown-item" href="menu.php#burger">Burger</a></li>
+                  <li style="font-size: large;"><a class="dropdown-item" href="menu.php#beverage">Thức uống</a></li>
                 </ul>
               </li>
 
