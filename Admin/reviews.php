@@ -48,15 +48,15 @@ include 'sidebar.php';
     <!-- Navigation Items -->
 
     <ul>
-      <li><a href="index.php"><i class="fas fa-chart-line"></i> Tổng quan </a></li>
-      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i> Quản lý thực đơn</a></li>
-      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
-      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i> Đặt bàn</a></li>
-      <li><a href="users.php"><i class="fas fa-users"></i> Người dùng</a></li>
-      <li><a href="reviews.php" class="active"><i class="fas fa-star"></i> Đánh giá</a></li>
-      <li><a href="staffs.php"><i class="fas fa-users"></i> Nhân viên</a></li>
-      <li><a href="profile.php"><i class="fas fa-user"></i> Hồ sơ</a></li>
-      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+      <li><a href="index.php"><i class="fas fa-chart-line"></i>Tổng quan</a></li>
+      <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
+      <li><a href="admin_orders.php"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
+      <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
+      <li><a href="users.php"><i class="fas fa-users"></i>Người dùng</a></li>
+      <li><a href="reviews.php" class="active"><i class="fas fa-star"></i>Đánh giá</a></li>
+      <li><a href="staffs.php"><i class="fas fa-users"></i>Nhân viên</a></li>
+      <li><a href="profile.php"><i class="fas fa-user"></i>Hồ sơ</a></li>
+      <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
     </ul>
   </div>
   <div class="content">
@@ -64,7 +64,7 @@ include 'sidebar.php';
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i>
       </button>
-      <h2><i class="fas fa-star"></i> Đánh giá</h2>
+      <h2><i class="fas fa-star"></i>Đánh giá</h2>
     </div>
 
     <div class="actions">
@@ -86,7 +86,7 @@ include 'sidebar.php';
             <th>Đánh giá</th>
             <th>Trạng thái</th>
             <th>Phản hồi</th>
-            <th>Hành động</th>
+            <th>Chỉnh sửa</th>
           </tr>
         </thead>
         <tbody>
