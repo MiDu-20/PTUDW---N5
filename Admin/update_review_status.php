@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("si", $status, $order_id);
 
     if ($stmt->execute()) {
-      echo "Status updated successfully";
+      echo "Cập nhật trạng thái đánh giá thành công.";
     } else {
-      echo "Error updating status: " . $conn->error;
+      echo "Lỗi khi cập nhật trạng thái đánh giá: " . $conn->error;
     }
 
     $stmt->close();
