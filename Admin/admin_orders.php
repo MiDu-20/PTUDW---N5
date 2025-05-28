@@ -113,11 +113,11 @@ include 'sidebar.php';
                 <!-- Dropdown lọc theo trạng thái -->
                 <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
                     <option value="">Tất cả đơn hàng</option>
-                    <option value="Pending">Pending</option>
-                    <option value="On Process">Process</option>
-                    <option value="On Process">On the way </option>
-                    <option value="Completed">Completed</option>
-                    <option value="Cancelled">Cancelled</option>
+                    <option value="Pending">Hoãn</option>
+                    <option value="On Process">Đang xử lý</option>
+                    <option value="On Process">Chờ xử lý</option>
+                    <option value="Completed">Hoàn thành</option>
+                    <option value="Cancelled">Hủy bỏ</option>
                 </select>
                 <!-- Tìm kiếm theo mã đơn -->
                 <input type="text" id="searchOrderId" placeholder="Tìm kiếm ID đơn hàng" oninput="searchByOrderId()">

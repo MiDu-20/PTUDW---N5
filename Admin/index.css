@@ -178,12 +178,12 @@ canvas {
 .latest-orders table td {
   padding: 12px;
   border-bottom: 1px solid rgba(60, 142, 245, 0.8);
-  color: white; /* cho chữ nổi */
+  color: rgb(54, 52, 52); /* cho chữ nổi */
 }
 
 .latest-orders table th {
   background-color: rgba(60, 142, 245, 0.8);
-  color: #fff;
+  color: #464444;
 }
 
 .latest-orders table tr:nth-child(even) {
