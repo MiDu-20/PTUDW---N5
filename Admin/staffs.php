@@ -108,7 +108,7 @@ include 'sidebar.php';
           <th>Email</th>
           <th>Họ và tên</th>
           <th>Số điện thoại</th>
-          <th>Vai trò</th>
+          <th>Chức vụ</th>
           <th>Mật khẩu</th>
           <th>Chỉnh sửa</th>
         </tr>
@@ -129,7 +129,7 @@ include 'sidebar.php';
                       <td>{$row['id']}</td>
                       <td>{$row['createdAt']}</td>
                       <td>{$row['email']}</td>
-                      <td>{$row['firstName']} {$row['lastName']}</td>
+                      <td>{$row['lastName']} {$row['firstName']}</td>
                       <td>{$row['contact']}</td>
                       <td>{$row['role']}</td>
                       <td>
@@ -192,7 +192,7 @@ include 'sidebar.php';
         <div class="modal-content">
           <div class="input-group">
             <select name="role" id="role" class="input" required>
-              <option value="">Vai trò</option>
+              <option value="">Chức vụ</option>
               <option value="admin">Admin</option>
               <option value="superadmin">Super Admin</option>
               <option value="delivery boy">Delivery Boy</option>
@@ -252,10 +252,11 @@ include 'sidebar.php';
 
           <div class="input-group" style="padding-bottom: 20px;">
             <select name="role" id="editRole" class="input" required>
-              <option value="">Vai trò</option>
+              <option value="">Chức vụ</option>
               <option value="admin">Admin</option>
               <option value="superadmin">Super Admin</option>
               <option value="delivery boy">Delivery Boy</option>
+              <option value="waiter">Waiter</option>
             </select>
             <label for="editRole" class="label"></label>
           </div>

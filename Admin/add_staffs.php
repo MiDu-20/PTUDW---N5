@@ -32,26 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $errors = [];
 
-    // Kiểm tra dữ liệu hợp lệ
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Email không hợp lệ hoặc để trống.";
-    }
-    if (empty($firstName)) {
-        $errors[] = "Tên không được để trống.";
-    }
-    if (empty($lastName)) {
-        $errors[] = "Họ không được để trống.";
-    }
-    if (empty($contact)) {
-        $errors[] = "Liên hệ không được để trống.";
-    }
-    if (empty($role)) {
-        $errors[] = "Chức vụ không được để trống.";
-    }
-    if (empty($password_raw)) {
-        $errors[] = "Mật khẩu không được để trống.";
-    }
-
     if (count($errors) > 0) {
         // Hiển thị lỗi nếu có
         foreach ($errors as $error) {
@@ -61,7 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Mã hóa mật khẩu trước khi lưu
-    $password = password_hash($password_raw, PASSWORD_DEFAULT);
+    //$password = password_hash($password_raw, PASSWORD_DEFAULT);
+
+    //Mật khẩu không cần Hash: Admin muốn xem mật khẩu (Tuỳ vào nhu cầu người dùng App)
+    $password = $password_raw;
 
     // Chuẩn bị câu truy vấn
     $sql = "INSERT INTO staff (email, firstName, lastName, contact, role, password) 
