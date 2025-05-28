@@ -234,7 +234,7 @@ $orderItemsResult = $stmt->get_result();
                     </li>
                     <li>
                         <span><strong>Total:</strong></span>
-                        <span>Rs <?= number_format($order['grand_total']) ?></span>
+                        <span>VNĐ <?= number_format($order['grand_total']) ?></span>
                     </li>
                     <li>
                         <span><strong>Address:</strong></span>

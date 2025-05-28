@@ -149,7 +149,7 @@ $conn->close();
                         echo '<img src="uploads/' . $item['image'] . '" class="card-img-top" alt="' . $item['itemName'] . '">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title text-center">' . $item['itemName'] . '</h5>';
-                        echo '<p class="card-text text-center">Rs ' . $item['price'] . '</p>';
+                        echo '<p class="card-text text-center">VNĐ ' . $item['price'] . '</p>';
                         echo '<a class="button-cart" onclick="addToCart()">Thêm vào giỏ hàng</a>';
                         echo '</div>';
                         echo '</div>';
@@ -464,7 +464,7 @@ $conn->close();
         </div>
       </div>
       <div class="footer-bottom">
-        <h4>&copy; 2024 Authored by Asna Assalam. All Rights Reserved.</h4>
+        <h4>&copy; 2025 . All Rights Reserved.</h4>
       </div>
     </div>
   </footer>
