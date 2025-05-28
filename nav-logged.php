@@ -190,14 +190,14 @@ $userinfo = get_UserInfo($useremail);
 
     /* THIẾT LẬP NAV LINK */
     .nav-link {
-      color: black;
+      color: white;
       font-weight: 500;
       transition: 0.3s color ease;
       font-family: "Baloo 2", sans-serif;
       font-optical-sizing: auto;
       font-weight: 480;
       font-style: light;
-
+      font-size: 1.6rem;
     }
 
     .dropdown-menu {
@@ -209,7 +209,7 @@ $userinfo = get_UserInfo($useremail);
     }
 
     .dropdown-toggle {
-      color: #1d1818;
+      color: white;
       text-decoration: none;
       transition: color 0.3s ease;
     }
@@ -251,14 +251,15 @@ $userinfo = get_UserInfo($useremail);
     .navbar {
       border-bottom-left-radius: 80px;
       border-bottom-right-radius: 80px;
-      padding: 5px 0px 0px 0px;
+      padding: 10px 0px 0px 0px;
       background-color: #c14600;
     }
 
     .cart {
-      color: green;
+      color: white;
       font-size: 25px;
       cursor: pointer;
+      padding: 5px 0px 0px 0px;
     }
 
     /* HIỆU ỨNG HOVER CHO PROFILE */

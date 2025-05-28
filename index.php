@@ -185,7 +185,7 @@ $conn->close();
           <img src="images/delivery.png" width="100%" height="auto" loading="lazy" alt="delivery boy" class="w-100 delivery-img" data-delivery-boy>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 d-flex flex-column justify-content-center reveal" data-aos="fade-up">
-          <h1>TẠI SAO <span>NÊN NHAI NHAI Ở CHOMP CHOMP?</span></h1>
+          <h1>TẠI SAO NÊN <span>NHAI NHAI Ở CHOMP CHOMP?</span></h1>
           <p class="content">Nhà hàng chúng tôi mang đến dịch vụ giao đồ ăn hàng đầu, sử dụng nguyên liệu tươi ngon và chất lượng thượng hạng.</p>
           <ul class="why-choose-us-list">
             <li data-aos="fade-up">
@@ -230,7 +230,7 @@ $conn->close();
   </section>
 
   <!-- Menu Section -->
-  <section class="menu" id="menu">
+  <section class="menu pb-5" id="menu">
             <div class="menu-section">
               <div class="container-fluid">
                 <div class="row">
@@ -313,7 +313,7 @@ $conn->close();
   <!-- Table Reservation -->
   <section class="table-reservation" id="Reservation">
     <div class="row text-center ms-4" data-aos="fade-up">
-      <h1 class="mb-2">ĐẶT <span style="color: #ff9d23;">BÀN</span></h1>
+      <h1 class="mb-2">ĐẶT <span style="color: #c14600;">BÀN</span></h1>
       <h5 class="mb-5">Hãy đặt trải nghiệm ẩm thực cùng chúng tôi để tận hưởng bữa ăn ngon miệng.</h5>
     </div>
     <div class="table ms-4 me-5" data-aos="fade-up">
@@ -367,7 +367,7 @@ $conn->close();
     <section class="our-story-section p-5">
       <div class="container ">
         <div class="row" data-aos="fade-up">
-          <h1 style="text-align: center;">VỀ <span style="color: #ff9d23;">CHÚNG TÔI</span></h1>
+          <h1 style="text-align: center;">VỀ <span style="color: #c14600;">CHÚNG TÔI</span></h1>
           <h4 style="text-align: center;" class="mb-5">Tạo dựng những bữa ăn khó quên!</h4>
         </div>
         <div class="row d-flex align-items-center">

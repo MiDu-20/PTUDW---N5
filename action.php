@@ -8,12 +8,12 @@ if (isset($_SESSION['email'])) {
 
     //-- Thêm sản phẩm vào bảng giỏ hàng
     if (isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pprice'])) {
-        $pid = $_POST['pid']; //--Không xác thực đầu vào 
-        $pname = $_POST['pname']; //--Không xác thực đầu vào 
-        $pprice = $_POST['pprice']; //--Không xác thực đầu vào 
-        $pimage = $_POST['pimage']; //--Không xác thực đầu vào 
-        $pcode = $_POST['pcode']; //--Không xác thực đầu vào 
-        $pqty = 1; //--Số lượng cố định là 1, không cho phép người dùng chọn số lượng
+        $pid = $_POST['pid']; 
+        $pname = $_POST['pname']; 
+        $pprice = $_POST['pprice']; 
+        $pimage = $_POST['pimage']; 
+        $pcode = $_POST['pcode'];
+        $pqty = 1; 
 
         $total_price = $pprice * $pqty;
 

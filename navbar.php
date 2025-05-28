@@ -63,6 +63,7 @@
       padding-bottom: 15px;
       padding-right: 13px;
       padding-left: 13px;
+      align-items: center;
     }
 
     /* THIẾT LẬP NÚT ĐĂNG NHẬP - Hiệu ứng mở rộng khi hover */
@@ -152,13 +153,12 @@
     }
 
     .nav-link {
-      color: black;
-      font-weight: 500;
+      color: white;
       transition: 0.3s color ease;
       font-family: "Baloo 2", sans-serif;
-      font-optical-sizing: auto;
       font-weight: 480;
       font-style: light;
+      font-size: 1.6rem;
     }
 
     .dropdown-menu {
@@ -216,16 +216,18 @@
 
     /* THIẾT LẬP NAVBAR CHÍNH */
     .navbar {
+      align-items: center;
       border-bottom-left-radius: 80px;
       border-bottom-right-radius: 80px;
-      padding: 5px 0px 0px 0px;
+      padding: 10px 0px 0px 0px;
       background-color: #c14600; /* Màu nền navbar */
     }
 
     .cart {
-      color: green;
+      color: white;
       font-size: 25px;
       cursor: pointer;
+      padding: 5px 0px 0px 0px;
     }
 
     .offcanvas-body {
