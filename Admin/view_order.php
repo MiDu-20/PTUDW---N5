@@ -168,6 +168,8 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
           </div>
           <input type="hidden" name="order_id" value="<?php echo $order['order_id']; ?>">
           <button type="submit" id="statusbtn">Cập nhật trạng thái</button>
+          <button type="button" class="update-btn" style="margin-top: 10px; background-color: #E67E22;" onclick="openInvoicePopup()">
+          🧾 Xuất hóa đơn</button>
         </form>
       </div>
     </div>
@@ -240,5 +242,14 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
     return true;
   }
 </script>
+  <!-- Modal popup -->
+<div id="invoiceModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);">
+  <div style="background: #fff; padding: 20px; margin: 100px auto; width: 400px; border-radius: 8px; position: relative;">
+    <span id="closeInvoice" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer;">&times;</span>
+    <h3>Hóa đơn chi tiết</h3>
+    <p>Thông tin đơn hàng sẽ hiển thị tại đây...</p>
+    <!-- Bạn có thể thêm bảng/chi tiết tại đây -->
+  </div>
+</div>
 </body>
 </html>

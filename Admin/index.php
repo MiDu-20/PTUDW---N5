@@ -89,7 +89,7 @@ $todaysOrders = calculateTotalOrders($conn, date('Y-m-d') . ' 00:00:00', date('Y
 $yesterdaysOrders = calculateTotalOrders($conn, date('Y-m-d', strtotime('-1 day')) . ' 00:00:00', date('Y-m-d', strtotime('-1 day')) . ' 23:59:59');
 
 // Tính tổng đơn hàng giai đoạn hiện tại
-$currentStartDate = '1970-01-01 00:00:00'; // Or any appropriate start date
+$currentStartDate = '2024-01-01 00:00:00'; // Or any appropriate start date
 $currentEndDate = date('Y-m-d') . ' 23:59:59';
 $totalOrders = calculateTotalOrders($conn, $currentStartDate, $currentEndDate);
 
@@ -302,7 +302,7 @@ include 'sidebar.php';
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
-                $dbname = "restaurant";
+                $dbname = "restaurant_full_vi";
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
 
