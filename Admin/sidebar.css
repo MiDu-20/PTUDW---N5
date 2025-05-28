@@ -5,10 +5,9 @@
   box-sizing: border-box;
 }
 
-/* Basic styling for layout and sidebar */
 body {
   background: #fef0e8;
-  font-family: "Poppins", sans-serif;
+  font-family: "Baloo 2", cursive;
   display: flex;
   flex-direction: row;
   margin: 0;
