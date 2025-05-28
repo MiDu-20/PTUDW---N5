@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 // Thực thi câu truy vấn và kiểm tra kết quả
   if ($conn->query($sql) === TRUE) {
-    echo "User updated successfully.";
+    echo "Cập nhật thông tin người dùng thành công.";
   } else {
-    echo "Error updating user: " . $conn->error;
+    echo "Lỗi khi cập nhật thông tin người dùng: " . $conn->error;
   }
 // Đóng kết nối đến cơ sở dữ liệu
   $conn->close();
