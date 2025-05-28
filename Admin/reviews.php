@@ -64,7 +64,7 @@ include 'sidebar.php';
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i>
       </button>
-      <h2><i class="fas fa-star"></i> Reviews</h2>
+      <h2><i class="fas fa-star"></i> Đánh giá</h2>
     </div>
 
     <div class="actions">
