@@ -87,11 +87,11 @@ $itemsResult = $stmt->get_result();
               <div class="mt-1">
                 <div class="d-flex flex-row justify-content-between align-items-start quantity-price">
                   <div>
-                    Rs <span class="item-price"><?= $item['price'] ?></span> x <span class="item-quantity"><?= $item['quantity'] ?></span>
+                    VNĐ <span class="item-price"><?= $item['price'] ?></span> x <span class="item-quantity"><?= $item['quantity'] ?></span>
                   </div>
                 </div>
                 <div class="d-flex flex-row justify-content-end align-items-end">
-                  <span class="badge rounded-pill text-light p-2 mt-2 item-total-price" style="background-color: #fb4a36;">Rs <?= $item['total_price'] ?></span>
+                  <span class="badge rounded-pill text-light p-2 mt-2 item-total-price" style="background-color: #fb4a36;">VNĐ <?= $item['total_price'] ?></span>
                 </div>
               </div>
               <button class="delete-icon" data-id="<?= $item['id'] ?>">
@@ -242,7 +242,7 @@ $itemsResult = $stmt->get_result();
         let itemTotalPrice = itemPrice * newQuantity;
         let itemContainer = quantityInput.closest('li');
         itemContainer.querySelector('.item-quantity').textContent = newQuantity;
-        itemContainer.querySelector('.item-total-price').textContent = 'Rs ' + itemTotalPrice;
+        itemContainer.querySelector('.item-total-price').textContent = 'VNĐ ' + itemTotalPrice;
 
         // Update quantity in the database
         let xhr = new XMLHttpRequest();
