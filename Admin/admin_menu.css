@@ -98,8 +98,8 @@ body {
 .modal-footer {
   flex: 0 0 10%;
   padding: 10px 30px;
-  background-color: #C14600; /* Nền header, footer */
-  color: white;
+  background-color: #FF9D23; /* Nền header, footer */
+  color: #1d1818; /* Màu chữ tiêu đề */
   border: none;
 }
 .modal-header {
@@ -135,7 +135,7 @@ body {
 .close-icon {
   font-size: 40px;
   cursor: pointer;
-  color: white;  /* cho nổi trên nền #C14600 */
+  color: #fff;  /* cho nổi trên nền #FF9D23 */
 }
 
 /* Nhóm input (label nổi) */
@@ -145,7 +145,7 @@ body {
 }
 .input {
   width: 100%;
-  border: solid 1.5px #000;
+  border: solid 1.5px #1d1818; /* Viền đen tối */
   border-radius: 7px;
   background: none;
   padding: 15px;
@@ -157,7 +157,7 @@ body {
 .label {
   position: absolute;
   left: 15px;
-  color: #000;
+  color: #1d1818;
   font-weight: 500;
   font-size: 18px;
   pointer-events: none;
@@ -192,7 +192,7 @@ body {
 /* BẢNG - bảng hiển thị dữ liệu */
 table {
   width: 100%;
-  border: 2px solid #FF9D23; /* Block */
+  border: 2px solid #FF9D23; /* Block nổi bật */
   font-size: 17px;
   text-align: center;
   cursor: pointer;
@@ -206,22 +206,25 @@ table td {
   border-radius: 5px;
 }
 table th {
-  background-color: #FFC966; /* tone sáng hơn block cho header */
+  background-color: #E5D0AC; /* tone sáng hơn */
+  color: #1d1818;
 }
 table tr:nth-of-type(even) {
-  background-color: #FFE7B3; /* tone sáng hơn block */
+  background-color: #FFE7B3; /* tone sáng hơn */
+  color: #1d1818;
 }
 table tr:hover {
-  background-color: #FFC966;
+  background-color: #FFC966; /* highlight hover */
 }
 
 /* HEADER */
 .header {
   padding: 10px;
-  background-color: #C14600; /* Nền header */
+  background-color: #FF9D23; /* Nền header */
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  color: #1d1818;
 }
 
 /* Hàng nằm trong modal (thường là filter hoặc control) */
@@ -234,13 +237,14 @@ table tr:hover {
 
 /* Button tìm kiếm */
 .search-bar button {
-  background-color: #C14600; /* Nền header/footer */
+  background-color: #C14600; /* Nền button */
   border: none;
   padding: 13px;
+  color: #fff;
 }
 .search-bar button:hover {
   background-color: #FF9D23; /* Block */
-  color: #fb4a36;
+  color: #1d1818;
 }
 
 /* Nút sửa và xóa (icon) */
@@ -254,10 +258,10 @@ table tr:hover {
   cursor: pointer;
 }
 #editbtn {
-  color: green;
+  color: #50ac5d; /* Xanh báo edit */
 }
 #deletebtn {
-  color: red;
+  color: #d7062a; /* Đỏ báo xóa */
 }
 #editbtn:hover,
 #deletebtn:hover {
@@ -274,11 +278,12 @@ table tr:hover {
   border: 2px solid #FF9D23;
   cursor: pointer;
   outline: none;
+  color: #1d1818;
 }
 
 /* Nút bấm chung */
 button {
-  background-color: #C14600;  /* Nền header/footer */
+  background-color: #C14600;  /* Nền button chính */
   color: white;
   border: 2px solid #C14600;
   padding: 13px 20px;
@@ -289,7 +294,7 @@ button {
 }
 button:hover {
   background-color: #FF9D23;  /* Block */
-  color: #FF9D23;
+  color: #1d1818;
   border: 2px solid #FF9D23;
 }
 
@@ -300,7 +305,7 @@ button:hover {
   background-color: #FF9D23;  /* Block */
   margin-left: 10px;
   font-size: 16px;
-  color: #FF9D23;
+  color: #1d1818;
   border: 2px solid #FF9D23;
   font-weight: 450;
   cursor: pointer;
@@ -308,7 +313,7 @@ button:hover {
   transition: all 0.3s ease;
 }
 .button:hover {
-  background-color: #C14600;  /* Nền header/footer */
+  background-color: #C14600;  /* Nền button */
   color: white;
 }
 
@@ -333,7 +338,7 @@ button:hover {
 .toggler label::after {
   display: block;
   border-radius: 100%;
-  background-color: #d7062a;
+  background-color: #d7062a; /* Màu đỏ khi off */
   content: '';
   animation-name: toggler-size;
   animation-duration: 0.15s;
@@ -351,7 +356,7 @@ button:hover {
   transition: left 0.15s ease-in-out, background-color 0.2s ease-out, width 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
 }
 .toggler input:checked + label::after {
-  background-color: #50ac5d;
+  background-color: #50ac5d; /* Màu xanh khi on */
   animation-name: toggler-size2;
 }
 .toggler input:checked + label::after,
@@ -396,7 +401,7 @@ button:hover {
   padding: 0 5px;
   outline: none;
   cursor: pointer;
-  color: red;
+  color: #d7062a;
 }
 #delete-btn:hover {
   transform: scale(1.3);

@@ -1,4 +1,3 @@
-
 /* Reset mặc định cho toàn bộ phần tử */
 * {
   margin: 0;
@@ -6,225 +5,136 @@
   box-sizing: border-box;
 }
 
-/* ---------- Toàn bộ thiết lập nền và font chữ cho trang ---------- */
+/* ---------- Toàn bộ trang ---------- */
 body {
-  margin: 0;
-  padding: 0;
-  padding-top: 100px;
   background-color: #FEF9E1;
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  padding-top: 100px;
   overflow-x: hidden;
 }
 
-/* ---------- Liên kết (a): giữ màu trắng, không gạch chân ---------- */
+/* ---------- Liên kết (a): trắng, không gạch chân ---------- */
 a {
   color: white;
   text-decoration: none;
 }
 
-/* ---------- Canh giữa tiêu đề và nội dung mô tả món ăn ---------- */
-.card-title,
-.card-text {
+/* ---------- Heading chính ---------- */
+.heading {
   text-align: center;
+  background-color: #FF9D23;
+  padding: 20px 30px;
+  border-radius: 8px;
+  margin: 0 auto 30px;
+  max-width: fit-content;
+}
+.heading-title {
+  font-size: 2.0em;
+  font-weight: 600;
+  color: #1d1818;
+}
+.heading-description {
+  font-size: 1.3em;
+  font-weight: 400;
+  color: #333;
 }
 
-/* ---------- Khoảng cách padding chung cho từng danh mục ---------- */
-section {
-  padding: 10px 16px 60px 16px;
+/* ---------- Tiêu đề danh mục ---------- */
+section h1 {
+  background-color: #E5D0AC;
+  color: #222;
+  padding: 12px 24px;
+  margin: 10px;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
-/* ---------- Màu nền xen kẽ cho section lẻ ---------- */
+/* ---------- Màu nền xen kẽ ---------- */
 section:nth-child(odd) {
   background-color: #E5D0AC;
 }
-
-/* ---------- Màu nền xen kẽ cho section chẵn ---------- */
 section:nth-child(even) {
   background-color: #FEF9E1;
 }
 
-/* ---------- Định dạng hiển thị giá tiền món ăn ---------- */
+/* ---------- Card body: cho nội dung không bị chồng ---------- */
+.card-body {
+  padding: 20px;
+  border-top: 2px solid #f4c78d;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 350px;
+}
+
+/* ---------- Mô tả ---------- */
+.card-body .description {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* ---------- Trạng thái hết hàng ---------- */
+.card-status {
+  color: red;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+/* ---------- Giá và nút ---------- */
+.button-container {
+  margin-top: auto;
+  background-color: #FF9D23;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .button-container p {
-  font-size: 20px;
-  margin-left: 15px;
-  font-weight: 400;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
   color: #C14600;
 }
-
-/* ---------- Nút 'Thêm vào giỏ hàng' ---------- */
 .addItemBtn {
   background-color: #C14600;
-  border: none;
   color: white;
-  text-align: center;
-  padding: 10px 15px;
-  font-size: 15px;
-  border-radius: 8px;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 14px;
+}
+.addItemBtn i {
+  margin-right: 6px;
 }
 
-/* ---------- Khi món ăn không còn hàng ---------- */
+/* ---------- Nút disabled ---------- */
 .disabled-button {
-  background-color: gray;
-  color: white;
+  background-color: gray !important;
+  color: white !important;
   cursor: not-allowed;
 }
 .disabled-button i {
-  color: white;
+  color: white !important;
 }
 
-.card-/* ---------- Toàn bộ thiết lập nền và font chữ cho trang ---------- */
-body {
-  position: relative;
-  height: 300px;
-  padding-bottom: 20px;
-  border-top: #FF9D23 1px solid;
-}
-
-/* ---------- Dòng chữ 'Unavailable' màu đỏ ---------- */
-.card-status {
-  color: red;
-  text-align: center;
-  font-size: 1.3em;
-}
-
-/* ---------- Khối chứa nút và giá tiền ---------- */
-.button-container {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  background-color: #FF9D23;
-  padding: 10px 8px;
-  border-radius: 8px;
-  gap: 15px;
-  bottom: 25px;
-  transform: translateX(-50%);
-  width: 90%;
-  left: 50%;
-}
-
-/* ---------- Tiêu đề lớn của toàn bộ thực đơn ---------- */
-.heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #FF9D23;
-  padding: 20px 40px 30px 40px;
-  border-radius: 8px;
-  margin: 0 auto;
-  max-width: fit-content;
-}
-
-/* ---------- Font to cho dòng chữ MENU ---------- */
-.heading-title {
-  font-size: 2.5em;
-  font-weight: 600;
-}
-
-/* ---------- Mô tả dưới tiêu đề thực đơn ---------- */
-.heading-description {
-  font-size: 1.8em;
-  font-weight: 400;
-  color: #1d1818;
-}
-
-/* ---------- Tiêu đề của từng danh mục (Pizza, Burger...) ---------- */
-section h1 {
-  background-color: #E5D0AC;
-  border-radius: 5px;
-  border: none;
-  padding: 8px 0 8px 20px;
-  text-align: left;
-}
-
-/* ---------- Giao diện thông báo (toast) ---------- */
-.toast {
-  visibility: hidden;
-  min-width: 300px;
-  text-align: center;
-  border-radius: 5px;
-  padding: 16px;
-  position: fixed;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18px;
-  transition: visibility 0s, opacity 0.5s ease-in-out;
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 50px;
-}
-
-/* ---------- Hiển thị toast ---------- */
-.toast.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-/* ---------- Ẩn toast ---------- */
-.toast.hide {
-  visibility: hidden;
-  opacity: 0;
-}
-
-/* ---------- Nút trong thông báo toast ---------- */
-.toast-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 10px;
-  padding: 5px 10px;
-  border-radius: 3px;
-}
-
-/* ---------- Nút OK trong thông báo ---------- */
-.toast-btn.toast-ok {
-  background-color: green;
-  margin-top: 15px;
-}
-
-/* ---------- Nút đóng (X) trong toast ---------- */
-.toast-btn.toast-close {
-  position: absolute;
-  top: 0px;
-  right: 10px;
-  font-size: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: red;
-  border: none;
-  padding: 0;
-}
-
-.toast-btn.toast-close:hover,
-.toast-btn.toast-ok:hover {
-  opacity: 0.8;
-}
-
-/* ---------- Responsive cho tablet ---------- */
-@media (min-width: 768px) and (max-width: 991px) {
-}
-
-/* ---------- Responsive cho màn hình lớn ---------- */
-@media screen and (min-width: 990px) and (max-width: 1400px) {
-  .menu-item {
-    flex: 0 0 33.33% !important;
-    max-width: 33.33% !important;
-  }
-}
-
-/* ---------- Hiệu ứng khi hover ảnh món ăn ---------- */
+/* ---------- Hover ảnh ---------- */
 .card-img-top:hover {
-  opacity: 0.8;
+  opacity: 0.85;
   transition: opacity 0.3s ease;
   cursor: pointer;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 768px) and (max-width: 991px) {
+  .menu-item { flex: 0 0 50%; max-width: 50%; }
+}
+@media (min-width: 990px) and (max-width: 1400px) {
+  .menu-item { flex: 0 0 33.33%; max-width: 33.33%; }
+}
+@media (max-width: 767px) {
+  .menu-item { flex: 0 0 100%; max-width: 100%; }
 }
