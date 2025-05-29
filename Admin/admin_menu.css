@@ -406,3 +406,70 @@ button:hover {
 #delete-btn:hover {
   transform: scale(1.3);
 }
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px; /* khoảng cách giữa các nút */
+  padding: 10px 30px;
+}
+
+.modal-footer button {
+  margin: 0; /* reset */
+}
+/* Đảm bảo khoảng cách giữa modal và footer */
+.modal-container {
+  margin-bottom: 60px; /* tạo khoảng cách an toàn với footer */
+}
+
+.modal-footer {
+  padding-bottom: 20px; /* đẩy footer modal lên một chút */
+}
+/* Ẩn text No file chosen */
+input[type="file"].input {
+  font-size: 0;        /* Ẩn chữ text */
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: auto;         /* tránh chiếm hết chiều ngang */
+  display: inline-block;
+}
+
+/* Giữ nút upload */
+input[type="file"].input::-webkit-file-upload-button {
+  font-size: 14px;
+  padding: 8px 20px;
+  background-color: #C14600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Chỉnh label không bị chồng lên nút file */
+.input-group {
+  position: relative;
+  margin-bottom: 20px; /* đủ khoảng cách */
+}
+
+.input-group label.label {
+  position: absolute;
+  top: -10px;  /* nâng lên trên */
+  left: 10px;
+  background-color: #E5D0AC; /* nền trùng với form */
+  padding: 0 5px;
+  font-size: 14px;
+  color: #1d1818;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Khi input file focus hoặc có giá trị, label nhỏ lại */
+input[type="file"].input:focus + label,
+input[type="file"].input:not(:placeholder-shown) + label {
+  top: -20px;
+  left: 10px;
+  font-size: 12px;
+  color: #C14600;
+}
