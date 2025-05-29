@@ -20,6 +20,42 @@ body {
   /* Default star color */
 }
 
+.review-summary {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.review-summary .card {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.review-summary .card h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.chart-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+canvas {
+  max-width: 400px;
+  max-height: 300px;
+}
+
 
 .modal {
   position: fixed;
