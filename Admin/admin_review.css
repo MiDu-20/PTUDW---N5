@@ -60,17 +60,16 @@ body {
 }
 
 .modal-container {
-  position: absolute;
-  width: 50rem;
-  height: 35rem;
+  height: 90vh;
+  max-height: 90vh;   
+  max-width: 50rem;
   border-radius: 7px;
-  z-index: 998;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  transform: scale(0.8);
-  transition: all 0.3s ease;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 998;
 }
 
 .modal.open .modal-container {
@@ -86,10 +85,8 @@ body {
 
 .modal-header,
 .modal-footer {
-  flex: 0 0 10%;
-  padding: 10px 30px;
+  flex: 0 0 auto;
 }
-
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -105,9 +102,7 @@ body {
 }
 
 .modal-content {
-  flex: 1;
-  overflow: auto;
-  padding: 10px;
+  padding: 10px 30px;
 }
 
 .modal-content::-webkit-scrollbar {
@@ -127,19 +122,26 @@ body {
 
 .input-group {
   position: relative;
-
-
+  margin-bottom: 20px;
 }
 
+.fixed-label {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  background: #ffffff; 
+  padding: 0 5px;
+  font-size: 14px;
+  transform: translateY(-50%);
+  color: #000;
+}
 .input {
   width: 100%;
-  border: solid 1.5px #000;
+  border: 1.5px solid #000;
   border-radius: 7px;
-  background: none;
-  padding: 15px;
+  padding: 25px 15px 15px 15px; /* chừa khoảng trên cho label */
   font-size: 18px;
-  text-align: center;
-  margin-bottom: 10px;
+  resize: vertical;
 }
 
 .input:read-only {
