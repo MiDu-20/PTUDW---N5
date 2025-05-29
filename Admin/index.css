@@ -20,8 +20,8 @@ body {
   gap: 20px;
   padding: 16px 0;
   /* max-width: 900px; */
-  height: 350px; */
-    display: flex;
+  height: 350px; 
+  display: flex;
   overflow-x: auto;
   gap: 16px; /* khoảng cách giữa các card */
   padding: 10px;
