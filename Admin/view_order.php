@@ -50,6 +50,8 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
   <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="admin_orders.css">
   <link rel="stylesheet" href="view_order.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <!-- Sidebar điều hướng -->
