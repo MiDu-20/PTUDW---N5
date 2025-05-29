@@ -108,14 +108,6 @@ include 'sidebar.php';
       <h2><i class="fas fa-star"></i>Đánh giá</h2>
     </div>
 
-    <div class="actions">
-      <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
-        <option value="">Tất cả</option>
-        <option value="pending">Đang chờ</option>
-        <option value="approved">Xác nhận</option>
-        <option value="rejected">Từ chối</option>
-      </select>
-    </div>
     <h2>Thống kê đánh giá</h2>
 <div class="review-summary">
   <div class="card total-reviews">
@@ -137,6 +129,27 @@ include 'sidebar.php';
   <canvas id="responsePie"></canvas>
 </div>
 
+<div class="actions">
+      <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
+        <option value="">Tất cả</option>
+        <option value="pending">Đang chờ</option>
+        <option value="approved">Xác nhận</option>
+        <option value="rejected">Từ chối</option>
+      </select>
+    </div>
+
+<div class="actions">
+  <label for="filter-rating">Lọc theo số sao:</label>
+  <select id="filter-rating" onchange="filterReviews()" class="status-select" style="margin-left: 10px;">
+    <option value="all">Tất cả</option>
+    <option value="1">1 sao</option>
+    <option value="2">2 sao</option>
+    <option value="3">3 sao</option>
+    <option value="4">4 sao</option>
+    <option value="5">5 sao</option>
+  </select>
+</div>
+
 
     <div class="table">
       <table id="reviewTable">
@@ -149,6 +162,7 @@ include 'sidebar.php';
             <th>Trạng thái</th>
             <th>Phản hồi</th>
             <th>Chỉnh sửa</th>
+            <th>Chi tiết</th>
           </tr>
         </thead>
         <tbody>
@@ -165,13 +179,22 @@ include 'sidebar.php';
             while ($row = mysqli_fetch_assoc($result)) {
               // Chuyển rating thành biểu tượng sao
               $ratingStars = str_repeat('&#9733;', $row['rating']) . str_repeat('&#9734;', 5 - $row['rating']);
+              // Xác định class màu dòng theo số sao
+  $rowClass = '';
+  if ($row['rating'] == 1) {
+      $rowClass = 'rating-1';
+  } elseif ($row['rating'] == 2) {
+      $rowClass = 'rating-2';
+  } elseif ($row['rating'] == 3) {
+      $rowClass = 'rating-3';
+  }
 
               echo "<tr>
-                        <td>{$row['order_id']}</td>
-                        <td>{$row['email']}</td>
-                        <td>{$row['review_text']}</td>
+                        <td class='$rowClass'>{$row['order_id']}</td>
+                        <td class='$rowClass'>{$row['email']}</td>
+                        <td class='$rowClass'>{$row['review_text']}</td>
                         <td class='rating-stars'>{$ratingStars}</td>
-                        <td>
+                        <td class='$rowClass'>
                          <select id='status-{$row['order_id']}' onchange='updateStatus({$row['order_id']}, this.value)' class='status-select'>
                          <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Đang chờ</option>
                          <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Xác nhận</option>
@@ -179,11 +202,12 @@ include 'sidebar.php';
                          </select>
                         </td>
 
-                        <td>{$row['response']}</td>
-                        <td>
+                        <td class='$rowClass'>{$row['response']}</td>
+                        <td class='$rowClass'>
                             <button id='editbtn' onclick='openEditReviewModal(this)' data-id='{$row['order_id']}' data-email='{$row['email']}' data-review_text='{$row['review_text']}' data-rating='{$row['rating']}' data-response='{$row['response']}'><i class='fas fa-edit'></i></button>
                             <button id='deletebtn' onclick=\"deleteReview('{$row['order_id']}', '{$row['email']}')\"><i class='fas fa-trash'></i></button>
                         </td>
+                        <td><button id='viewbtn' onclick=\"viewDetails(" . $row['order_id'] . ")\">Xem</button></td>
                       </tr>";
             }
           } else {
@@ -426,7 +450,39 @@ $responseRate = $totalReviews ? round(($responded / $totalReviews) * 100, 2) : 0
   });
   
 </script>
+<script>
+  function filterReviews() {
+    const selectedRating = document.getElementById('filter-rating').value;
+    const rows = document.querySelectorAll("table tbody tr");
 
+    rows.forEach(row => {
+      const starsCell = row.querySelector(".rating-stars");
+      if (!starsCell) return;
+
+      const rating = starsCell.textContent.trim().split("★").length - 1;
+
+      if (selectedRating === "all" || parseInt(selectedRating) === rating) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  }
+</script>
+<script>
+                // Chuyển tới trang chi tiết đơn hàng
+                function viewDetails(orderId) {
+            window.location.href = 'view_order.php?orderId=' + orderId;
+        }
+    const modal = document.querySelector('.modal');
+    const buttons = document.querySelectorAll('.toggle-button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.classList.toggle('open');
+        });
+    });
+</script>
 </body>
 
 </html>
