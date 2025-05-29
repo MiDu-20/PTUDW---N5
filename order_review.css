@@ -6,6 +6,7 @@
 
 /* Thêm khoảng trống phía trên thân trang để tránh đè lên header */
 body {
+  font-family: "Baloo 2", cursive;
   padding-top: 90px;
 }
 

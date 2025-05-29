@@ -2,23 +2,23 @@
 session_start();
 require 'db_connection.php';
 
-// Check if user is logged in
+// Kiểm tra đăng nhập
 if (!isset($_SESSION['userloggedin']) || $_SESSION['userloggedin'] !== true) {
   header('location:login.php');
   exit;
 }
 
-// Get the email from the session
+// Lấy email 
 $email = $_SESSION['email'];
 
-//fetch user data
+//Truy vấn dữ liệu
 $stmt = $conn->prepare('SELECT * FROM users WHERE email=?');
 $stmt->bind_param('s', $email);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-// Fetch cart items for the logged-in user
+// Truy vấn giỏ hàng
 $stmt = $conn->prepare('SELECT * FROM cart WHERE email=?');
 $stmt->bind_param('s', $email);
 $stmt->execute();
@@ -36,6 +36,10 @@ $itemsResult = $stmt->get_result();
  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" >
+  
   <title>Your Cart</title>
   <link rel="stylesheet" href="cart.css" />
 </head>
@@ -175,21 +179,21 @@ $itemsResult = $stmt->get_result();
       let subtotal = 0;
       let deliveryFee = 0;
 
-      // Function to update the summary
+      // Hàm tính tổng chi phí
       function updateSummary() {
         subtotalElement.textContent = subtotal.toFixed(2);
         deliveryFeeElement.textContent = deliveryFee.toFixed(2);
         totalElement.textContent = (subtotal + deliveryFee).toFixed(2);
       }
 
-      // Function to update delivery fee based on payment mode
+      // Hàm tính chi phí vận chuyển
       function updateDeliveryFee() {
         const selectedPaymentMode = document.querySelector('input[name="payment_mode"]:checked').value;
         deliveryFee = selectedPaymentMode === 'Takeaway' ? 0 : 130;
         updateSummary();
       }
 
-      // Initialize the subtotal correctly
+      // Hàm khởi tạo Giá tạm tính
       function initializeSubtotal() {
         subtotal = Array.from(checkboxInputs).reduce((sum, checkbox) => {
           if (checkbox.checked) {
@@ -202,7 +206,7 @@ $itemsResult = $stmt->get_result();
         updateSummary();
       }
 
-      // Function to handle checkbox changes
+      // Hàm tính lại giá từng món khi có sự thay đổi về số lượng
       function handleCheckboxChange(checkbox) {
         const itemPrice = parseFloat(checkbox.dataset.price);
         const itemQuantity = parseInt(checkbox.closest('li').querySelector('.itemQty').value);
@@ -217,14 +221,14 @@ $itemsResult = $stmt->get_result();
         updateSummary();
       }
 
-      // Event listener for checkbox changes
+      // Xử lý sự kiện thay đổi trạng thái Checkbox
       checkboxInputs.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
           handleCheckboxChange(this);
         });
       });
 
-      // Function to handle quantity updates
+      // Hàm cập nhật thay đổi giá khi số lượng thay đổi
       function updateQuantity(element, change, isInput = false) {
         let itemId = element.dataset.id;
         let itemPrice = parseFloat(element.dataset.price);
@@ -239,7 +243,7 @@ $itemsResult = $stmt->get_result();
         itemContainer.querySelector('.item-quantity').textContent = newQuantity;
         itemContainer.querySelector('.item-total-price').textContent = 'VNĐ ' + itemTotalPrice;
 
-        // Update quantity in the database
+        // Cập nhật số lượng trong DB
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'update_cart_quantity.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -252,7 +256,7 @@ $itemsResult = $stmt->get_result();
 
         xhr.send(`id=${itemId}&quantity=${newQuantity}&total_price=${itemTotalPrice}`);
 
-        // If the checkbox is checked, update the subtotal accordingly
+        // Nếu checkbox được thông qua, cập nhật lại giá tạm tính
         const checkbox = itemContainer.querySelector('input[type="checkbox"].form-check-input');
         if (checkbox.checked) {
           subtotal += change * itemPrice;
@@ -260,28 +264,28 @@ $itemsResult = $stmt->get_result();
         }
       }
 
-      // Event listener for minus button
+      // Xử lý giảm số lượng đặt đơn
       document.querySelectorAll('.minus-btn').forEach(button => {
         button.addEventListener('click', function() {
           updateQuantity(this, -1);
         });
       });
 
-      // Event listener for plus button
+      // Xử lý tăng số lượng đặt đơn
       document.querySelectorAll('.plus-btn').forEach(button => {
         button.addEventListener('click', function() {
           updateQuantity(this, 1);
         });
       });
 
-      // Event listener for quantity input change
+      // Xử lý tăng số lượng đơn hàng
       document.querySelectorAll('.itemQty').forEach(input => {
         input.addEventListener('change', function() {
           updateQuantity(this, 0, true);
         });
       });
 
-      // Event listener for delete icon
+      // Xử lý sự kiện xoá đơn
       document.querySelectorAll('.delete-icon').forEach(button => {
         button.addEventListener('click', function() {
           let itemId = this.dataset.id;
@@ -296,10 +300,10 @@ $itemsResult = $stmt->get_result();
             updateSummary();
           }
 
-          // Remove the item from the UI
+          // Xoá Đơn khỏi UI
           itemContainer.remove();
 
-          // Send a request to the server to delete the item
+          // Gửi truy vấn về DB
           let xhr = new XMLHttpRequest();
           xhr.open('POST', 'delete_cart_item.php', true);
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -313,12 +317,12 @@ $itemsResult = $stmt->get_result();
         });
       });
 
-      // Initialize the summary and subtotal on page load
+      // Cập nhật lại chính xác Tạm tính và chi phí tổng
       initializeSubtotal();
       updateDeliveryFee();
 
       load_cart_item_number();
-      // Function to update the cart item number in the UI
+      // Hàm cập nhật số lượng sản phẩm trong giỏ hàng
       function load_cart_item_number() {
         $.ajax({
           url: 'action.php',
@@ -334,7 +338,7 @@ $itemsResult = $stmt->get_result();
 
 
 
-      // Event listener for payment mode changes
+      // Xử lý khi người dùng thay đổi phương thức thanh toán
       paymentModeInputs.forEach(input => {
         input.addEventListener('change', updateDeliveryFee);
       });
@@ -355,7 +359,7 @@ $itemsResult = $stmt->get_result();
 
       document.getElementById('selected-items').value = JSON.stringify(selectedItems);
 
-      // Get selected payment mode
+      // xử lý phương thức được chọn
       const paymentMode = document.querySelector('input[name="payment_mode"]:checked').value;
       document.getElementById('payment-mode').value = paymentMode;
 

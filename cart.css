@@ -6,6 +6,7 @@
 
 /* --Cài đặt nền và khoảng cách phần thân */
 body {
+  font-family: "Baloo 2", cursive;
   background: #feead4;
   padding-top: 95px; /* --Để trống không gian cho header cố định */
 }
