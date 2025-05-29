@@ -355,5 +355,30 @@ document.querySelectorAll('.category-row').forEach(row => {
 </script>
 
 <?php include_once('footer.html'); ?>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<script>
+// Hiển thị toast với nội dung message
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3500);
+}
+
+// Kiểm tra param success trong URL để hiển thị toast tương ứng
+const urlParams = new URLSearchParams(window.location.search);
+const successParam = urlParams.get('success');
+
+if (successParam === 'add_category') {
+    showToast('Bạn đã thêm danh mục thành công!');
+} else if (successParam === 'add_item') {
+    showToast('Bạn đã thêm món mới thành công!');
+}
+</script>
 </body>
 </html> 
