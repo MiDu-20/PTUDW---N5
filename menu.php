@@ -27,10 +27,14 @@ while ($row = $categoryResult->fetch_assoc()) {
 <?php include isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] ? 'nav-logged.php' : 'navbar.php'; ?>
 
 <div class="heading">
-  <div class="row heading-title">Thực đơn</div>
-  <div class="row heading-description">Thưởng thức món ăn ngon</div>
+  <div class="heading-hero-blur">
+    <div class="heading-text">
+      <h1 class="heading-title">Thực đơn</h1>
+      <p class="heading-description">Thưởng thức món ăn ngon</p>
+    </div>
+  </div>
 </div>
-
+<p class="heading-description">Thưởng thức món ăn ngon</p>
 <?php foreach ($categories as $category): ?>
 <section id="<?= strtolower($category) ?>">
   <div id="message"></div>
