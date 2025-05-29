@@ -168,8 +168,8 @@ include 'sidebar.php';
         </div>
         <div class="modal-content">
           <div class="input-group">
-            <input type="text" name="review_text" id="editReview_text" class="input" readonly>
-            <label for="editReview_text" class="label">Nhận xét</label>
+            <textarea type="text" name="review_text" id="editReview_text" class="input" rows="3" readonly></textarea>
+            <label for="editReview_text" class="fixed-label">Nhận xét</label>
           </div>
         </div>
         <div class="modal-content">
