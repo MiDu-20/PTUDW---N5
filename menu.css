@@ -1,4 +1,4 @@
-/* menu.css (hiện đại hơn, không sến, không cần index.css) */
+/* menu.css (phiên bản responsive đẹp hơn) */
 
 /* Reset */
 * {
@@ -15,15 +15,9 @@ body {
 }
 
 .heading {
-  background: linear-gradient(135deg, #FFA726, #FB8C00);
-  color: white;
-  padding: 40px 60px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-width: 480px;
-  margin: 0 auto 60px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 38px;
+  font-weight: 800;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .heading-title {
@@ -32,28 +26,43 @@ body {
   margin-bottom: 10px;
   color: #4A2100;
   text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
-
 }
-    .heading-description {
-      font-size: 18px;
-      font-weight: 400;
-      color: #4A2E00;
-    }
 
+.heading-description {
+  font-size: 18px;
+  font-weight: 400;
+  color: #4A2E00;
+}
+
+/* Responsive Container */
 .menu-container {
+  max-width: 1000px;
+  margin: 40px auto 60px auto;
+  background: #FF9D23;
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  padding: 0 20px;
+  gap: 24px;
+  color: #5A2E00;
 }
 
 .menu-item {
-  flex: 0 0 300px;
-  max-width: 300px;
+  width: 280px;
+  max-width: 90vw;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.menu-item.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card {
@@ -148,42 +157,91 @@ body {
   transform: scale(1.03);
 }
 
-/* Slide-in hiệu ứng nhẹ nhàng */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Hiệu ứng xuất hiện mượt từng món và chỉ một lần  */
-.menu-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.menu-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Thêm Section title */
 .section-title {
-  font-size: 30px;
-  letter-spacing: 0.5px;  
-  font-weight: 700;
-  color: #5A2E00;
-  margin: 60px auto 25px auto;
-  padding: 14px 32px;
-  border-left: 8px solid #f17223; /* đậm hơn, cam Jollibee */
-  background-color: #ffecd6;      /* nền sáng hơn, ấm */
+  background: #FFB347; /*  Cam sáng nổi bật */
   border-radius: 10px;
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.08);
-  width: fit-content;
-  max-width: 90%;
+  padding: 8px 24px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #4A2100; /* Chữ nâu đậm dễ đọc */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-left: 6px solid #C14600; /* Viền trái nâu đậm */
+  margin: 40px 0 20px 0; /* Thêm khoảng cách trên và dưới */
 }
 
+/* Phiên bản không khung, nền blur */
+.heading-hero-blur {
+  position: relative;
+  background-image: url('uploads/burger_hero.png'); /* ảnh bạn dùng */
+  background-size: cover;
+  background-position: center;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heading-hero-blur::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px); /* 📸 làm mờ nền */
+  background-color: rgba(255, 255, 255, 0.2); /* thêm lớp sáng nhẹ */
+  z-index: 0;
+}
+
+.heading-title {
+  position: relative;
+  z-index: 1;
+  font-size: 48px;
+  font-weight: 800;
+  color: #4A2E00;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.heading-description {
+  font-size: 18px;
+  color: #5e3a00;
+  margin: 0;
+  display: none; /* Ẩn mô tả nếu muốn gọn tối đa */
+}
+
+/* 💡 Responsive tối ưu */
+@media (max-width: 600px) {
+  .menu-container {
+    padding: 10px;
+  }
+
+  .menu-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-img-top {
+    height: 160px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .addItemBtn {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .menu-item {
+    width: 45%;
+  }
+}
 
