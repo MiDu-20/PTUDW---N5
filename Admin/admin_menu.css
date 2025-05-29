@@ -6,7 +6,7 @@
 
 /* Cài đặt nền và font cho body */
 body {
-  background: #FEF9E1; /* Nền chung */
+  background: #FCE8DF; /* màu nền pastel nhạt */
   font-family: "Baloo 2", cursive;
   margin: 0;
 }
@@ -196,8 +196,8 @@ table {
   font-size: 17px;
   text-align: center;
   cursor: pointer;
-  border-radius: 5px; 
-  background-color: #FF9D23;  /* Block */
+  background-color: #E4F0FB;  /* xanh nhạt */
+  border: 2px solid #E4F0FB;
 }
 table th,
 table td {
@@ -206,25 +206,25 @@ table td {
   border-radius: 5px;
 }
 table th {
-  background-color: #E5D0AC; /* tone sáng hơn */
+  background-color: #7FB6EB; /* xanh nước biển */
+  color: white;
   color: #1d1818;
 }
 table tr:nth-of-type(even) {
-  background-color: #FFE7B3; /* tone sáng hơn */
+  background-color: #FCE8DF; /* màu nền nhạt */ 
   color: #1d1818;
 }
 table tr:hover {
-  background-color: #FFC966; /* highlight hover */
+  background-color: #C5E0F7; /* xanh sáng hơn */
 }
-
 /* HEADER */
 .header {
   padding: 10px;
-  background-color: #FF9D23; /* Nền header */
+  background-color: #F6C7B9; /* cam hồng nhẹ */
+  color: #000000;            /* chữ đen */
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  color: #1d1818;
 }
 
 /* Hàng nằm trong modal (thường là filter hoặc control) */

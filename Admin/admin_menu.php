@@ -30,6 +30,7 @@ include 'sidebar.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="admin_menu.css">
 </head>
@@ -277,6 +278,58 @@ include 'sidebar.php';
     </script>
 
     <?php include_once('footer.html'); ?>
+<!-- Nút mở popup và Modal -->
+<button onclick="openModal()">Xem Danh Mục Món Ăn</button>
 
+<div class="modal" id="menuModal">
+  <div class="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Danh mục món ăn</h2>
+      <span class="close-icon" onclick="closeModal()">×</span>
+    </div>
+    <div class="modal-content">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tên danh mục</th>
+          </tr>
+        </thead>
+        <tbody id="categoryList"></tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button onclick="confirmDelete()">Bạn chắc chưa?</button>
+      <button class="button" onclick="closeModal()">Thoát</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const categories = ["Món khai vị", "Món chính", "Tráng miệng", "Đồ uống"];
+
+  function openModal() {
+    const modal = document.getElementById("menuModal");
+    const tbody = document.getElementById("categoryList");
+    tbody.innerHTML = categories.map((name, i) =>
+      `<tr><td>${i + 1}</td><td>${name}</td></tr>`
+    ).join('');
+    modal.classList.add("open");
+  }
+
+  function closeModal() {
+    document.getElementById("menuModal").classList.remove("open");
+  }
+
+  function confirmDelete() {
+    if (confirm("Bạn chắc chắn muốn xóa toàn bộ danh mục món ăn?")) {
+      categories.length = 0;
+      document.getElementById("categoryList").innerHTML = "";
+      alert("Đã xóa tất cả danh mục!");
+    }
+  }
+</script>
 </body>
+
 </html>
