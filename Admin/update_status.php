@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message .= "Chúng tôi rất mong được chào đón bạn tại nhà hàng.\n";
             $message .= "Trân trọng,\nChomp Chomp Restaurant";
 
-            $headers = "From: huyentrinh.0616@gmail.com";
+            $headers = "From: chompchomp@gmail.com";
             mail($to, $subject, $message, $headers);
         }
 
