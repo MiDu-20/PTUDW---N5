@@ -442,7 +442,7 @@ $conn->close();
         <div class="footer-col" id="contact">
           <h4>Liên hệ với chúng tôi</h4>
           <p>279 Nguyễn Tri Phương, Phường 8, Quận 10</p>
-          <p>Email: abc@chompchomp.com</p>
+          <p>Email: chompchomp@gmail.com</p>
           <p>Phone: +84 12 345 4567</p>
         </div>
         <div class="footer-col">
