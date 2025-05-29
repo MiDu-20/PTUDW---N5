@@ -8,6 +8,38 @@ if (!isset($_SESSION['adminloggedin'])) {
 }
 // Kết nối đến cơ sở dữ liệu
 include 'db_connection.php';
+// Tổng số đánh giá
+$total_query = "SELECT COUNT(*) as total FROM reviews";
+$total_result = mysqli_query($conn, $total_query);
+$total_reviews = mysqli_fetch_assoc($total_result)['total'];
+
+// Thống kê theo trạng thái
+$status_query = "SELECT status, COUNT(*) as count FROM reviews GROUP BY status";
+$status_result = mysqli_query($conn, $status_query);
+$status_counts = ['pending' => 0, 'approved' => 0, 'rejected' => 0];
+while ($row = mysqli_fetch_assoc($status_result)) {
+  $status_counts[$row['status']] = $row['count'];
+}
+
+// Thống kê theo số sao
+$rating_query = "SELECT rating, COUNT(*) as count FROM reviews GROUP BY rating";
+$rating_result = mysqli_query($conn, $rating_query);
+$rating_counts = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+while ($row = mysqli_fetch_assoc($rating_result)) {
+  $rating_counts[$row['rating']] = $row['count'];
+}
+
+// Trung bình số sao
+$avg_query = "SELECT AVG(rating) as avg_rating FROM reviews";
+$avg_result = mysqli_query($conn, $avg_query);
+$avg_rating = round(mysqli_fetch_assoc($avg_result)['avg_rating'], 1);
+
+// Tỷ lệ đánh giá đã được phản hồi
+$response_query = "SELECT COUNT(*) as responded FROM reviews WHERE response IS NOT NULL AND response != ''";
+$response_result = mysqli_query($conn, $response_query);
+$responded = mysqli_fetch_assoc($response_result)['responded'];
+$response_rate = $total_reviews > 0 ? round(($responded / $total_reviews) * 100, 1) : 0;
+
 ?>
 <?php
 include 'sidebar.php';
@@ -20,6 +52,7 @@ include 'sidebar.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Quản lý đánh giá</title>
 
   <!-- Baloo 2 font -->
@@ -83,6 +116,27 @@ include 'sidebar.php';
         <option value="rejected">Từ chối</option>
       </select>
     </div>
+    <h2>Thống kê đánh giá</h2>
+<div class="review-summary">
+  <div class="card total-reviews">
+    <h3>Tổng đánh giá</h3>
+    <p id="totalReviews">0</p>
+  </div>
+  <div class="card average-rating">
+    <h3>Đánh giá trung bình</h3>
+    <p id="averageRating">0</p>
+  </div>
+  <div class="card response-rate">
+    <h3>Tỷ lệ phản hồi (%)</h3>
+    <p id="responseRate">0%</p>
+  </div>
+</div>
+
+<div class="chart-container">
+  <canvas id="starChart"></canvas>
+  <canvas id="responsePie"></canvas>
+</div>
+
 
     <div class="table">
       <table id="reviewTable">
@@ -136,9 +190,6 @@ include 'sidebar.php';
             //Nếu không có review, hiển thị thông báo 
             echo "<tr><td colspan='6' style='text-align: center;'>Không có đánh giá nào.</td></tr>";
           }
-
-          // Đóng kết nối với cơ sở dữ liệu
-          mysqli_close($conn);
           ?>
         </tbody>
       </table>
@@ -291,6 +342,91 @@ include 'sidebar.php';
 }
 
   </script>
+  <?php
+// Truy vấn dữ liệu thống kê
+$sql = "SELECT rating, response FROM reviews";
+$result = mysqli_query($conn, $sql);
+
+$ratingsCount = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+$totalRating = 0;
+$totalReviews = 0;
+$responded = 0;
+
+while ($row = mysqli_fetch_assoc($result)) {
+  $rating = (int)$row['rating'];
+  $ratingsCount[$rating]++;
+  $totalRating += $rating;
+  $totalReviews++;
+
+  if (!empty($row['response'])) {
+    $responded++;
+  }
+}
+
+$averageRating = $totalReviews ? round($totalRating / $totalReviews, 2) : 0;
+$responseRate = $totalReviews ? round(($responded / $totalReviews) * 100, 2) : 0;
+ // Đóng kết nối với cơ sở dữ liệu
+          mysqli_close($conn);
+?>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Cập nhật số liệu vào thẻ
+    document.getElementById("totalReviews").textContent = <?= $totalReviews ?>;
+    document.getElementById("averageRating").textContent = <?= $averageRating ?>;
+    document.getElementById("responseRate").textContent = "<?= $responseRate ?>%";
+
+    // Biểu đồ số lượng đánh giá theo sao
+    const ctx1 = document.getElementById('starChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['1 Sao', '2 Sao', '3 Sao', '4 Sao', '5 Sao'],
+        datasets: [{
+          label: 'Số lượng đánh giá',
+          data: [
+            <?= $ratingsCount[1] ?>,
+            <?= $ratingsCount[2] ?>,
+            <?= $ratingsCount[3] ?>,
+            <?= $ratingsCount[4] ?>,
+            <?= $ratingsCount[5] ?>
+          ],
+          backgroundColor: '#4bc0c0',
+          borderRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Phân bố đánh giá theo sao' }
+        }
+      }
+    });
+
+    // Biểu đồ tròn tỷ lệ phản hồi
+    const ctx2 = document.getElementById('responsePie').getContext('2d');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: ['Đã phản hồi', 'Chưa phản hồi'],
+        datasets: [{
+          data: [<?= $responded ?>, <?= $totalReviews - $responded ?>],
+          backgroundColor: ['#36a2eb', '#ffcd56']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: { display: true, text: 'Tỷ lệ phản hồi' }
+        }
+      }
+    });
+  });
+  
+</script>
+
 </body>
 
 </html>
