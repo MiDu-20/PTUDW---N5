@@ -260,10 +260,10 @@ $pmodeDisplay = $paymentModes[$pmodeRaw];
             <div class="card" style="background: rgba(255, 99, 132, 0.3);">
                 <div class="cta-row">
                     <a href="menu.php">
-                        <button class="secondary">Back To Menu</button>
+                        <button class="secondary">Quay lại Thực đơn</button>
                     </a>
                     <a href="orders.php">
-                        <button>Track Order</button>
+                        <button>Trạng thái Đơn hàng</button>
                     </a>
                 </div>
             </div>
