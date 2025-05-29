@@ -76,7 +76,7 @@ include 'sidebar.php';
         <thead>
             <tr>
                 <th>Tên Món</th>
-    
+                <th>Hình Ảnh</th>
                 <th>Mô Tả</th>
                 <th>Giá</th>
                 <th>Danh Mục</th>
@@ -296,7 +296,7 @@ document.querySelectorAll('.category-row').forEach(row => {
                 </div>
                 <div class="input-group">
                     <input type="file" name="image" class="input" accept="image/*" required />
-            
+                    <label class="label"></label>
                 </div>
             </div>
             <div class="modal-footer">
@@ -328,5 +328,6 @@ function filterCategories() {
     });
 }
 </script>
+
 </body>
 </html>

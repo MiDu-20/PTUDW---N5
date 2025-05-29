@@ -425,51 +425,35 @@ button:hover {
 .modal-footer {
   padding-bottom: 20px; /* đẩy footer modal lên một chút */
 }
-/* Ẩn text No file chosen */
-input[type="file"].input {
-  font-size: 0;        /* Ẩn chữ text */
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  width: auto;         /* tránh chiếm hết chiều ngang */
-  display: inline-block;
+/* Ẩn toàn bộ phần text "No file chosen" */
+input[type="file"].input::-webkit-file-upload-text,
+input[type="file"].input::-webkit-file-upload-button {
+  display: none !important;
 }
 
-/* Giữ nút upload */
+/* Ẩn phần text mặc định bên cạnh nút trên Firefox */
+input[type="file"].input::file-selector-text {
+  display: none !important;
+}
+
+/* Ẩn phần text mặc định bên cạnh nút trên Chrome/Edge */
+input[type="file"].input {
+  /* Ẩn luôn text bằng cách đặt font-size 0, padding 0 */
+  font-size: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  cursor: pointer;
+}
+
+/* Tạo lại nút chọn file riêng (hiện nút) */
 input[type="file"].input::-webkit-file-upload-button {
-  font-size: 14px;
-  padding: 8px 20px;
+  display: inline-block !important;
+  font-size: 16px;
+  padding: 10px 20px;
   background-color: #C14600;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-/* Chỉnh label không bị chồng lên nút file */
-.input-group {
-  position: relative;
-  margin-bottom: 20px; /* đủ khoảng cách */
-}
-
-.input-group label.label {
-  position: absolute;
-  top: -10px;  /* nâng lên trên */
-  left: 10px;
-  background-color: #E5D0AC; /* nền trùng với form */
-  padding: 0 5px;
-  font-size: 14px;
-  color: #1d1818;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-
-/* Khi input file focus hoặc có giá trị, label nhỏ lại */
-input[type="file"].input:focus + label,
-input[type="file"].input:not(:placeholder-shown) + label {
-  top: -20px;
-  left: 10px;
-  font-size: 12px;
-  color: #C14600;
 }
