@@ -207,7 +207,7 @@ include 'sidebar.php';
                             <button id='editbtn' onclick='openEditReviewModal(this)' data-id='{$row['order_id']}' data-email='{$row['email']}' data-review_text='{$row['review_text']}' data-rating='{$row['rating']}' data-response='{$row['response']}'><i class='fas fa-edit'></i></button>
                             <button id='deletebtn' onclick=\"deleteReview('{$row['order_id']}', '{$row['email']}')\"><i class='fas fa-trash'></i></button>
                         </td>
-                        <td><button id='viewbtn' onclick=\"viewDetails(" . $row['order_id'] . ")\">Xem</button></td>
+                        <td class='$rowClass'><button id='viewbtn' onclick=\"viewDetails(" . $row['order_id'] . ")\">Xem</button></td>
                       </tr>";
             }
           } else {
