@@ -176,7 +176,7 @@ $user_info = getUserInfo($user_email);
 
 
 
-        <button type="submit">Lưu thông tin</button>
+        <button type="button" id="editBtn">Chỉnh sửa thông tin</button>
       </form>
     </div>
   </div>
@@ -208,7 +208,7 @@ include_once ('footer.html');
       }
     });
   </script>
-
+  
   <script> // Tự động tắt ô thông báo lưu thông tin thành công trong 4 giây
   window.onload = function () {
     const popup = document.getElementById('successOverlay');
@@ -241,6 +241,31 @@ include_once ('footer.html');
     }
   };
   </script>
+
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const editBtn = document.getElementById('editBtn');
+  const form = document.querySelector('form');
+  const inputs = form.querySelectorAll('input:not([type="file"]):not([readonly])');
+  
+  // Ban đầu khóa các input
+  inputs.forEach(input => input.setAttribute('disabled', true));
+
+  let isEditing = false;
+
+  editBtn.addEventListener('click', function () {
+    if (!isEditing) {
+      // Lần đầu bấm: mở khóa các input
+      inputs.forEach(input => input.removeAttribute('disabled'));
+      editBtn.innerText = 'Lưu thông tin';
+      isEditing = true;
+    } else {
+      // Lần hai bấm: submit form
+      form.submit();
+    }
+  });
+});
+</script>
 
 </body>
 
