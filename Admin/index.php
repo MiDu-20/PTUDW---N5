@@ -178,7 +178,7 @@ include 'sidebar.php';
 </head>
 
 <body>
-
+    
     <!-- Sidebar (thanh bên trái) -->
     <div class="sidebar">
         <button class="close-sidebar" id="closeSidebar">&times;</button>
@@ -187,7 +187,7 @@ include 'sidebar.php';
         <div class="profile-section">
             <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Picture">
             <div class="info">
-                <h3>Welcome Back!</h3>
+                <h3>Chào mừng bạn quay trở lại!</h3>
                 <p><?php echo htmlspecialchars($admin_info['firstName']) . ' ' . htmlspecialchars($admin_info['lastName']); ?></p>
             </div>
         </div>
@@ -293,7 +293,7 @@ include 'sidebar.php';
                 <i class="icon-top-right icon fas fa-calendar-check"></i>
                 <canvas id="chart4"></canvas>
             </div>
-
+        
         </div>
         <!-- Bảng đơn hàng gần nhất và biểu đồ trạng thái -->
         <div class="table-chart">
@@ -701,6 +701,7 @@ include 'sidebar.php';
             
         });
     </script>
+    
     <script>
         // Fetch review data từ  PHP script
         fetch('fetch_reviews.php')
