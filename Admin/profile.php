@@ -72,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   updateAdminInfo($admin_email, $firstName, $lastName, $contact, $password, $profile_image);
 
   // Gán thông báo thành công vào session
-  $_SESSION['success_message'] = "Thay đổi thành công";
+  $_SESSION['success_message'] = "Thay đổi thông tin thành công";
 
   // Chuyển về lại trang hồ sơ sau khi cập nhật
-  header('Location: profile.php');
+  header('Location: profile.php?updated=1');
   exit;
 }
 
@@ -108,6 +108,16 @@ $admin_info = getAdminInfo($admin_email);
 </head>
 
 <body>
+  <!-- Hiển thị thông báo lưu thông tin thành công -->
+ <?php if (isset($_GET['updated']) && $_GET['updated'] == '1'): ?>
+  <div id="overlay"></div>
+  <div id="popup-success">
+  <button class="close-popup" onclick="closePopup()">
+  <i class="fas fa-times"></i>
+  </button>
+  <i class="fas fa-check-circle"></i> Thay đổi thông tin thành công
+</div>
+<?php endif; ?>
   <!-- Thanh bên trái (Sidebar) -->
   <div class="sidebar">
     <!-- Nút đóng sidebar -->
@@ -152,13 +162,6 @@ $admin_info = getAdminInfo($admin_email);
         <!-- Hiển thị ảnh đại diện admin -->
         <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Image" class="profile-image">
 
-        <!-- Hiển thị thông báo -->
-        <?php if (isset($_SESSION['success_message'])): ?>
-          <div style="background-color: #d4edda; color: #155724; padding: 10px 20px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #c3e6cb;">
-            <i class="fas fa-check-circle"></i> <?php echo $_SESSION['success_message']; ?>
-          </div>
-          <?php unset($_SESSION['success_message']); ?>
-        <?php endif; ?>
 
         <!-- Form cập nhật thông tin -->
         <form action="profile.php" method="post" enctype="multipart/form-data">
@@ -215,9 +218,66 @@ $admin_info = getAdminInfo($admin_email);
 
   <!-- Script xử lý sidebar -->
   <script src="sidebar.js"></script>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const inputs = form.querySelectorAll("input:not([type='email']):not([type='file'])");
+    const fileInput = form.querySelector("input[type='file']");
+    const submitButton = form.querySelector("button[type='submit']");
+
+    // Vô hiệu hoá các trường input khi chưa nhấn nút chỉnh sửa thông tin
+    inputs.forEach(input => input.disabled = true);
+    fileInput.disabled = true;
+    submitButton.style.display = 'none';
+
+    // Tạo nút chỉnh sửa thông tin và huỷ chỉnh sửa
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.textContent = "Chỉnh sửa thông tin";
+    editButton.style.marginTop = "10px";
+    form.appendChild(editButton);
+
+    let isEditing = false;
+
+    editButton.addEventListener("click", function () {
+      isEditing = !isEditing;
+
+      inputs.forEach(input => input.disabled = !isEditing);
+      fileInput.disabled = !isEditing;
+      submitButton.style.display = isEditing ? 'inline-block' : 'none';
+      editButton.textContent = isEditing ? "Huỷ chỉnh sửa" : "Chỉnh sửa thông tin";
+    });
+  });
+</script>
+
+<!-- Tự động đóng thông báo lưu thông tin thành công sau 4s -->
+<script>
+  function closePopup() {
+    const popup = document.getElementById('popup-success');
+    const overlay = document.getElementById('overlay');
+    if (popup) popup.style.display = 'none';
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('popup-success');
+    const overlay = document.getElementById('overlay');
+    if (popup && overlay) {
+      setTimeout(() => {
+        closePopup();
+      }, 4000);
+    }
+  });
+</script>
+
 </body>
 
 </html>
 
 <!-- Đóng kết nối CSDL -->
 <?php $conn->close(); ?>
+
+
+

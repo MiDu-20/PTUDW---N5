@@ -189,5 +189,8 @@ h2 {
     transform: translateY(0);
   }
 }
-
+/* Nút huỷ chỉ */
+#cancelBtn {
+  margin-left: 10px;
+}
 
