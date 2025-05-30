@@ -190,7 +190,40 @@ h2 {
   }
 }
 /* Nút huỷ chỉ */
-#cancelBtn {
-  margin-left: 10px;
+
+.button-group {
+  display: flex;
+  gap: 10px; /* Khoảng cách giữa 2 nút */
+  margin-top: 15px;
 }
 
+.button-group button {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+#saveBtn {
+  background-color: #fb4a36;
+  border: 2px solid #fb4a36;
+  transition: background-color 0.3s ease;
+}
+
+#saveBtn:hover {
+  background-color: #fbdac7;
+  color: #fb4a36;
+}
+
+#cancelBtn {
+  background-color: #fb4a36;
+  border: 2px solid #fb4a36;
+  transition: background-color 0.3s ease;
+}
+
+#cancelBtn:hover {
+  background-color: #f5b7b1;
+  color: #d9534f;
+}

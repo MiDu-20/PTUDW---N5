@@ -234,17 +234,6 @@ include_once ('footer.html');
   };
   </script>
 
-  <script>
-  window.onload = function () {
-    const overlay = document.getElementById('successOverlay');
-    if (overlay) {
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 4000); // 4 giây tự đóng
-    }
-  };
-  </script>
-
   <script src="sidebar.js"></script>
   <!-- ... -->
 
