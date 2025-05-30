@@ -389,7 +389,7 @@ include 'sidebar.php';
                 .then(data => {
                     const ctx = document.getElementById('earningsChart').getContext('2d');
                     new Chart(ctx, {
-                        type: 'line',
+                        type: 'bar',
                         data: {
                             labels: ['2024-08-09', '2024-08-11', '2024-08-12'],
                             datasets: [
@@ -662,7 +662,7 @@ include 'sidebar.php';
             const labels = Object.keys(statusCounts);
             const data = Object.values(statusCounts);
             
-            // Tạo biểu đồ thanh
+            // Tạo biểu đồ donut
             const ctx = document.getElementById('orderStatusChart').getContext('2d');
             new Chart(ctx, {
                 type: 'doughnut',
@@ -727,7 +727,7 @@ include 'sidebar.php';
                 // Tạo biểu đồ đường
                 const ctx = document.getElementById('ratingsLineChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: labels,
                         datasets: datasets
