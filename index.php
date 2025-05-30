@@ -81,7 +81,7 @@ $conn->close();
   }
   ?>
 
-  <div class="main" style="background-image: url('images/background-main.png');">
+  <div class="main">
     <section>
       <div class="container mt-3">
         <div class="row d-flex justify-content-start align-items-center main-container">
@@ -178,7 +178,7 @@ $conn->close();
   </div>
   
   <!-- Why Choose Us Section  -->
-  <section class="why-choose-us" id="why-choose-us" style="background-color: #fef9e1;">
+  <section class="why-choose-us" id="why-choose-us" style="background-color: #fff5da;">
     <div class="container">
       <div class="row why-us-content">
         <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12 mt-5 reveal d-flex justify-content-start align-items-start" data-aos="fade-up">
@@ -230,7 +230,7 @@ $conn->close();
   </section>
 
   <!-- Menu Section -->
-  <section class="menu pb-5" id="menu" style="background-color: #fef9e1;">
+  <section class="menu pb-5" id="menu" style="background-color: #fff5da;">
             <div class="menu-section">
               <div class="container-fluid">
                 <div class="row">
@@ -390,7 +390,7 @@ $conn->close();
   </div>
 
   <!-- Review  -->
-  <section class="testimonial" id="review" style="background-color: #fef9e1;">
+  <section class="testimonial" id="review" style="background-color: #fff5da;">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
@@ -463,7 +463,7 @@ $conn->close();
         </div>
       </div>
       <div class="footer-bottom">
-        <h4>&copy; 2024 Authored by Asna Assalam. All Rights Reserved.</h4>
+        <h4>&copy; 2025 Nhóm 5 || 2024 Authored by Asna Assalam. All Rights Reserved.</h4>
       </div>
     </div>
   </footer>
