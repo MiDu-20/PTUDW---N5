@@ -74,9 +74,8 @@ while ($row = $update_result->fetch_assoc()) {
     }
 }
 // Bước 2: Truy vấn lại để hiển thị danh sách đã cập nhật
-$sql = "SELECT * FROM reservations ORDER BY CONCAT(reservedDate, ' ', reservedTime) ASC";
-// Thực thi truy vấn và lưu kết quả
-$result = $conn->query($sql);
+$query .= " ORDER BY CONCAT(reservedDate, ' ', reservedTime) ASC";
+$result = $conn->query($query);
 
 ?>
 <?php
@@ -222,12 +221,21 @@ include 'sidebar.php';
           
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-             $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
-        $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
-        $highlight = "";
-        $note = "";
+    $res_time = new DateTime($row['reservedDate'] . ' ' . $row['reservedTime']);
+    $interval_minutes = ($current_time->getTimestamp() - $res_time->getTimestamp()) / 60;
+    $highlight = "";
+    $note = "";
 
-  // Nếu đã đến giờ và chưa xử lý
+    // Định dạng ngày/tháng/năm cho reservedDate
+    $reservedDateFormatted = date('d/m/Y', strtotime($row['reservedDate']));
+
+    // Định dạng lại "Đặt bàn lúc" (reservedAt)
+    $reservedAtFormatted = '';
+    if (!empty($row['reservedAt'])) {
+        $reservedAtFormatted = date('d/m/Y H:i:s', strtotime($row['reservedAt']));
+    }
+
+    // Nếu đã đến giờ và chưa xử lý
    if ($interval_minutes >= 30 && $row['status'] == 'Cancelled') {
             $highlight = 'style="background-color: #f8d7da;"';
             $note = 'Tự động hủy sau 30 phút trễ';
@@ -241,12 +249,12 @@ include 'sidebar.php';
 
               echo "<tr $highlight>
       <td>{$row['reservation_id']}</td>
-      <td>{$row['reservedAt']}</td>
+      <td>{$reservedAtFormatted}</td>
       <td>{$row['email']}</td>
       <td>{$row['name']}</td>
       <td>{$row['contact']}</td>
       <td>{$row['noOfGuests']}</td>
-      <td>{$row['reservedDate']}</td>
+      <td>{$reservedDateFormatted}</td>
       <td>{$row['reservedTime']}</td>
       <td>
         <select id='status-{$row['reservation_id']}' onchange=\"updateStatus('{$row['reservation_id']}', this.value)\" class='status-select'>
