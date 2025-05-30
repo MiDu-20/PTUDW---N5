@@ -81,11 +81,11 @@ $conn->close();
   }
   ?>
 
-  <div class="main">
+  <div class="main" style="background-image: url('images/background-main.png');">
     <section>
       <div class="container mt-3">
         <div class="row d-flex justify-content-start align-items-center main-container">
-          <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" data-aos="fade-up">
+          <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" style="background-color: rgba(255,255,255,0.7); border-radius: 12px; padding: 24px;" data-aos="fade-up">
             <h1>Welcome to <span> Chomp Chomp Fast Food,</span></h1>
             <h4 style="color: gray; font-weight: 450;">"Ngon là Nhai!"</h4>
             <p style="font-size: 24px; text-align: justify;">
@@ -178,7 +178,7 @@ $conn->close();
   </div>
   
   <!-- Why Choose Us Section  -->
-  <section class="why-choose-us" id="why-choose-us">
+  <section class="why-choose-us" id="why-choose-us" style="background-color: #fef9e1;">
     <div class="container">
       <div class="row why-us-content">
         <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12 mt-5 reveal d-flex justify-content-start align-items-start" data-aos="fade-up">
@@ -230,7 +230,7 @@ $conn->close();
   </section>
 
   <!-- Menu Section -->
-  <section class="menu pb-5" id="menu">
+  <section class="menu pb-5" id="menu" style="background-color: #fef9e1;">
             <div class="menu-section">
               <div class="container-fluid">
                 <div class="row">
@@ -363,7 +363,7 @@ $conn->close();
   </section>
 
   <!-- About Us section -->
-  <div class="aboutus" id="About-Us" style="background-image: url(images/about-bg.png); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="aboutus" id="About-Us" style="background-image: url(images/main.png); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <section class="our-story-section p-5">
       <div class="container ">
         <div class="row" data-aos="fade-up">
@@ -371,7 +371,7 @@ $conn->close();
           <h4 style="text-align: center;" class="mb-5">Tạo dựng những bữa ăn khó quên!</h4>
         </div>
         <div class="row d-flex align-items-center">
-          <div class="story-text col-lg-6 col-md-6 col-sm-12 my-auto text-lg-start text-center" data-aos="fade-up" data-os-interval="300">
+          <div class="story-text col-lg-6 col-md-6 col-sm-12 my-auto text-lg-start text-center" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 12px; padding: 24px;" data-aos="fade-up" data-os-interval="300">
             <p>Tại <strong>Chomp Chomp Fast Food</strong>, chúng tôi đam mê tôn vinh nghệ thuật ẩm thực. Đội ngũ đầu bếp sáng tạo của chúng tôi thổi hồn vào từng món ăn, mang đến một bữa tiệc đầy xúc cảm cho các giác quan. Hãy cùng chúng tôi trải nghiệm hành trình ẩm thực độc đáo, nơi hương vị và niềm vui được nâng niu từng khoảnh khắc.</p>
             <p>Được thành lập vào năm 2021, Chomp Chomp luôn tiên phong trong đổi mới ẩm thực. Cam kết sử dụng nguyên liệu tươi ngon nhất cùng chuyên môn tài năng của đội ngũ đầu bếp đã mang lại cho chúng tôi danh tiếng xuất sắc. Chúng tôi tin rằng thưởng thức không chỉ là ăn; mà là trải nghiệm nghệ thuật ẩm thực.</p>
             <p>Cho dù bạn đang tìm kiếm một bữa tối lãng mạn, buổi sum họp gia đình hay không gian lý tưởng để kỷ niệm những dịp đặc biệt, Chomp Chomp luôn mang đến không gian hoàn hảo cùng ẩm thực tinh tế, giúp mỗi khoảnh khắc trở nên khó quên. Hãy đến và cảm nhận niềm vui của hương vị cùng chúng tôi!</p>
@@ -390,7 +390,7 @@ $conn->close();
   </div>
 
   <!-- Review  -->
-  <section class="testimonial" id="review">
+  <section class="testimonial" id="review" style="background-color: #fef9e1;">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
