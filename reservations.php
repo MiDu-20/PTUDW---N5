@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact = $_POST['contact'];
     $noOfGuests = $_POST['noOfGuests'];
     $reservedTime = $_POST['reservedTime']; //-- Định dạng HH:MM
-    echo "Thời gian nhận từ form: " . $_POST['reservedTime'];
+    echo "Thời gian nhận từ form: " . $reservedTime;
+exit;
     $reservedDate = $_POST['reservedDate']; //-- Định dạng YYYY-MM-DD
 
     
