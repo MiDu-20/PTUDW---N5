@@ -4,7 +4,7 @@
 }
 
 body {
-  padding-top: 95px;
+  padding-top: 63px;
   background-color: #fff5da !important; 
 }
 
@@ -15,8 +15,8 @@ body {
   background-position: center;
   /* Centers the image */
   background-repeat: no-repeat;
-  margin-bottom: 50px;
   background-color: #fff5da;
+  margin-bottom: 50px;
 }
 
 .button {

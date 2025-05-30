@@ -85,7 +85,7 @@ $conn->close();
     <section>
       <div class="container mt-3">
         <div class="row d-flex justify-content-start align-items-center main-container">
-          <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" style="background-color: rgba(255,255,255,0.7); border-radius: 12px; padding: 24px;" data-aos="fade-up">
+          <div class="col-md-5 col-sm-12 col-lg-5 reveal main-text mb-4 text-align-justify mt-5" style="background-color: rgba(255,255,255,0.9); border-radius: 12px; padding: 24px;" data-aos="fade-up">
             <h1>Welcome to <span> Chomp Chomp Fast Food,</span></h1>
             <h4 style="color: gray; font-weight: 450;">"Ngon là Nhai!"</h4>
             <p style="font-size: 24px; text-align: justify;">
@@ -121,7 +121,12 @@ $conn->close();
             <img src="images/tastyburger.png" class="img" style=" width: 85%; height: 80%;">
           </div>
         </div>
-        <div class="row">
+        
+      </div>
+    </section>
+  </div>
+  
+
           <!-- Top picks section -->
           <section>
             <div class="popular reveal" data-aos="fade-up">
@@ -172,11 +177,8 @@ $conn->close();
               </div>
             </div>
           </section>  
-        </div>
-      </div>
-    </section>
-  </div>
-  
+        
+
   <!-- Why Choose Us Section  -->
   <section class="why-choose-us" id="why-choose-us" style="background-color: #fff5da;">
     <div class="container">
