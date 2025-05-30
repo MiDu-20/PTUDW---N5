@@ -243,3 +243,17 @@ body {
   color: white;
   cursor: not-allowed;
 }
+/* FIX NAV BỊ LỆCH */
+/* Để tránh phần tiêu đề bị che bởi navbar cố định */
+.card-title {
+  position: relative;
+}
+
+.card-title::before {
+  content: "";
+  display: block;
+  height: 70px; /* bằng chiều cao navbar cố định */
+  margin-top: -70px; /* trừ phần navbar */
+  visibility: hidden;
+  pointer-events: none;
+}
