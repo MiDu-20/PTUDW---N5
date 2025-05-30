@@ -497,7 +497,7 @@ $conn->close();
 
       // 3. Nếu đặt trong hôm nay thì giờ phải lớn hơn giờ hiện tại
       const today = now.toISOString().slice(0, 10); // YYYY-MM-DD
-      if (inputDate === today && inputTime <= now.toTimeString().slice(0, 5)) {
+      if (inputDate === today && selectedDateTime <= now) {
         alert("Giờ đặt phải lớn hơn thời điểm hiện tại.");
         event.preventDefault();
         return;
