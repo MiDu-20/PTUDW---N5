@@ -408,6 +408,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+<script>
+document.getElementById('toggleSidebar').addEventListener('click', () => {
+  document.querySelector('.sidebar').classList.toggle('open');
+});
+document.getElementById('closeSidebar').addEventListener('click', () => {
+  document.querySelector('.sidebar').classList.remove('open');
+});
+</script>
 
 </body>
 </html>

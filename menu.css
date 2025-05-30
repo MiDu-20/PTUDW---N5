@@ -9,6 +9,7 @@
 
 body {
   background-color: #FEF9E1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('uploads/NenThucDon.png') /* làm cho màu nền nhẹ nhàng hơn */;
   font-family: "Baloo 2", cursive;
   padding-top: 100px;
   overflow-x: hidden;
@@ -172,7 +173,6 @@ body {
 /* Phiên bản không khung, nền blur */
 .heading-hero-blur {
   position: relative;
-  background-image: url('uploads/burger_hero.png'); /* ảnh bạn dùng */
   background-size: cover;
   background-position: center;
   height: 100px;
@@ -184,14 +184,6 @@ body {
   z-index: 1;
 }
 
-.heading-hero-blur::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(4px); /* 📸 làm mờ nền */
-  background-color: rgba(255, 255, 255, 0.2); /* thêm lớp sáng nhẹ */
-  z-index: 0;
-}
 
 .heading-title {
   position: relative;
@@ -245,3 +237,9 @@ body {
   }
 }
 
+/* ======= Nút bị disabled khi món hết hàng ======= */
+.disabled-button {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}

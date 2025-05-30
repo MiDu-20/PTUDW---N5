@@ -34,7 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //== Chuyển đổi thời gian đặt sang định dạng có bao gồm giây (HH:MM:SS)
     $reservedTimeWithSeconds = date('H:i:s', strtotime($reservedTime));
-    
+    if (empty($reservedTime)) {
+    die("Không nhận được giờ đặt bàn hợp lệ.");
+}
    
     //-- Câu truy vấn SQL để chèn dữ liệu đặt bàn vào bảng reservations
     $sql = "INSERT INTO reservations (email, name, contact, noOfGuests, reservedTime, reservedDate) 

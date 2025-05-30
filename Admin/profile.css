@@ -149,3 +149,71 @@ form button:hover {
 .sidebar ul li a.active {
   font-weight: bold;
 }
+
+/* Ban đầu vô hiệu hoá các trường thông tin khi chưa ấn nút chỉnh sửa */
+input:disabled {
+  background-color: #f0f0f0;
+  opacity: 0.7;
+}
+/* Hiển thị thông báo lưu thông tin thành công */
+
+  #overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+  }
+
+  #popup-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d4edda;
+    color: #155724;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #c3e6cb;
+    z-index: 10000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.4s ease;
+    position: fixed;
+  }
+
+  .close-popup {
+  position: absolute;
+  top: 8px;           /* cách trên popup 8px */
+  right: 10px;         /* cách phải popup 10px */
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #155724;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-popup:hover {
+  color: #0b2e13;
+  transform: scale(1.2);
+}
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+

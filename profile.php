@@ -176,7 +176,10 @@ $user_info = getUserInfo($user_email);
 
 
 
-        <button type="button" id="editBtn">Chỉnh sửa thông tin</button>
+        <div class="button-group">
+          <button type="button" id="editBtn">Chỉnh sửa thông tin</button>
+          <button type="button" id="cancelBtn" style="display:none;">Huỷ chỉnh sửa</button>
+        </div>
       </form>
     </div>
   </div>
@@ -208,7 +211,7 @@ include_once ('footer.html');
       }
     });
   </script>
-  
+
   <script> // Tự động tắt ô thông báo lưu thông tin thành công trong 4 giây
   window.onload = function () {
     const popup = document.getElementById('successOverlay');
@@ -231,23 +234,16 @@ include_once ('footer.html');
   };
   </script>
 
-  <script>
-  window.onload = function () {
-    const overlay = document.getElementById('successOverlay');
-    if (overlay) {
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 4000); // 4 giây tự đóng
-    }
-  };
-  </script>
+  <script src="sidebar.js"></script>
+  <!-- ... -->
 
- <script>
-document.addEventListener('DOMContentLoaded', function () {
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
   const editBtn = document.getElementById('editBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
   const form = document.querySelector('form');
   const inputs = form.querySelectorAll('input:not([type="file"]):not([readonly])');
-  
+
   // Ban đầu khóa các input
   inputs.forEach(input => input.setAttribute('disabled', true));
 
@@ -255,17 +251,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   editBtn.addEventListener('click', function () {
     if (!isEditing) {
-      // Lần đầu bấm: mở khóa các input
+      // Bật chế độ chỉnh sửa
       inputs.forEach(input => input.removeAttribute('disabled'));
-      editBtn.innerText = 'Lưu thông tin';
+      editBtn.textContent = 'Lưu thông tin';
+      cancelBtn.style.display = 'inline-block';
       isEditing = true;
     } else {
-      // Lần hai bấm: submit form
+      // Submit form khi đang chỉnh sửa
       form.submit();
     }
   });
+
+  cancelBtn.addEventListener('click', function () {
+    // Huỷ chỉnh sửa: khóa input, đổi lại nút, ẩn nút hủy
+    inputs.forEach(input => input.setAttribute('disabled', true));
+    editBtn.textContent = 'Chỉnh sửa thông tin';
+    cancelBtn.style.display = 'none';
+    isEditing = false;
+  });
 });
-</script>
+  </script>
 
 </body>
 
