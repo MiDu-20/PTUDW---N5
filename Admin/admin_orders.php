@@ -85,7 +85,8 @@ $result = $conn->query($query);
             <select id="statusFilter" name="statusFilter">
                 <option value="">Tất cả đơn hàng</option>
                 <option value="Pending">Pending</option>
-                <option value="On Process">On Process</option>
+                <option value="On Process">Processing</option>
+                <option value="On the way">On the way</option>
                 <option value="Completed">Completed</option>
                 <option value="Cancelled">Cancelled</option>
             </select>
