@@ -348,7 +348,7 @@ $conn->close();
             <div class="form-row">
               <div class="form-group">
                 <label for="reservedTime">Thời gian đặt:</label>
-                <input type="time" id="time" name="reservedTime" required>
+                <input type="time" id="time" name="reservedTime" required step="1">
               </div>
               <div class="form-group">
                 <label for="guests">Số thực khách:</label>
