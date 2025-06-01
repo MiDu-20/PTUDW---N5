@@ -21,6 +21,11 @@ include 'sidebar.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="sidebar.css" />
     <link rel="stylesheet" href="admin_menu.css" />
+
+    <!-- DataTables CSS + JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <!-- ### FIX/ADD: CSS cho Toast Notification -->
     <style>
         .toast {

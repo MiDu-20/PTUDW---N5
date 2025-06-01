@@ -229,7 +229,7 @@ table tr:hover {
 /* HEADER */
 .header {
   padding: 10px;
-  background-color: #F6C7B9; /* cam hồng nhẹ */
+  background-color: #FBDAC7; /* cam hồng nhẹ */
   color: #000000;            /* chữ đen */
   margin-bottom: 20px;
   display: flex;
@@ -246,7 +246,7 @@ table tr:hover {
 
 /* Button tìm kiếm */
 .search-bar button {
-  background-color: #C14600; /* Nền button */
+  background-color: #0566DB; /* Nền button */
   border: none;
   padding: 13px;
   color: #fff;
@@ -292,9 +292,9 @@ table tr:hover {
 
 /* Nút bấm chung */
 button {
-  background-color: #C14600;  /* Nền button chính */
+  background-color: #0566DB;  /* Nền button chính */
   color: white;
-  border: 2px solid #C14600;
+  border: 2px solid #0566DB;
   padding: 13px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -302,9 +302,9 @@ button {
   font-size: 1.2rem;
 }
 button:hover {
-  background-color: #FF9D23;  /* Block */
+  background-color: #ADD7F3;  /* Block */
   color: #1d1818;
-  border: 2px solid #FF9D23;
+  border: 2px solid #ADD7F3;
 }
 
 /* Nút phụ dạng bo tròn nhỏ */
@@ -322,7 +322,7 @@ button:hover {
   transition: all 0.3s ease;
 }
 .button:hover {
-  background-color: #C14600;  /* Nền button */
+  background-color: #ADD7F3;  /* Nền button */
   color: white;
 }
 
@@ -410,7 +410,7 @@ button:hover {
   padding: 0 5px;
   outline: none;
   cursor: pointer;
-  color: #d7062a;
+  color: #ADD7F3;
 }
 #delete-btn:hover {
   transform: scale(1.3);
