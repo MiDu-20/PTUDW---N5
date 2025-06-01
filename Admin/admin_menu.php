@@ -445,5 +445,21 @@ document.addEventListener("DOMContentLoaded", function () {
   paginate(); // khởi tạo ban đầu
 });
 </script>
+<script>// Script hiển thị mô tả ngắn gọn trong bảng
+document.addEventListener("DOMContentLoaded", function () {
+  const descriptionCells = document.querySelectorAll("#menuTable td:nth-child(3)");
+
+  descriptionCells.forEach(cell => {
+    const text = cell.textContent.trim();
+    const words = text.split(/\s+/); // tách theo từ
+
+    if (words.length > 4) {
+      const shortText = words.slice(0, 4).join(" ") + " ...";
+      cell.setAttribute("title", text); // hiển thị đầy đủ khi hover
+      cell.textContent = shortText;
+    }
+  });
+});
+</script>
 </body>
 </html>
