@@ -62,7 +62,7 @@ include 'sidebar.php';
     <div class="profile-section">
       <img src="../uploads/<?php echo htmlspecialchars($admin_info['profile_image']); ?>" alt="Profile Picture">
       <div class="info">
-        <h3>Welcome Back!</h3>
+        <h3>Chào mừng quay trở lại!</h3>
         <p><?php echo htmlspecialchars($admin_info['firstName']) . ' ' . htmlspecialchars($admin_info['lastName']); ?></p>
       </div>
     </div>
@@ -86,7 +86,7 @@ include 'sidebar.php';
       <button id="toggleSidebar" class="toggle-button">
         <i class="fas fa-bars"></i>
       </button>
-      <h2><i class="fas fa-users"></i>&nbsp;Staff List</h2>
+      <h2><i class="fas fa-users"></i>&nbsp;Danh sách nhân viên</h2>
     </div>
 
 
@@ -107,7 +107,7 @@ include 'sidebar.php';
           <th>Ngày thêm</th>
           <th>Email</th>
           <th>Họ và tên</th>
-          <th>Số điện thoại</th>
+          <th>Số liên lạc</th>
           <th>Chức vụ</th>
           <th>Mật khẩu</th>
           <th>Chỉnh sửa</th>
@@ -159,7 +159,7 @@ include 'sidebar.php';
     <div class="modal-container" style="height: 40rem;">
       <form id="addUserForm" method="POST" action="add_staffs.php">
         <div class="modal-header">
-          <h2>Thêm nhân viên</h2>
+          <h2>Thêm Nhân viên</h2>
           <span class="close-icon" onclick="closeaddUserModal()">&times;</span>
         </div>
         <div class="modal-content">
@@ -186,7 +186,7 @@ include 'sidebar.php';
         <div class="modal-content">
           <div class="input-group">
             <input type="text" name="contact" id="contact" class="input" required>
-            <label for="contact" class="label">Số điện thoại</label>
+            <label for="contact" class="label">Số liên lạc</label>
           </div>
         </div>
         <div class="modal-content">
@@ -247,7 +247,7 @@ include 'sidebar.php';
 
           <div class="input-group">
             <input type="text" name="contact" id="editContact" class="input" required>
-            <label for="editContact" class="label">Số điện thoại</label>
+            <label for="editContact" class="label">Số liên lạc</label>
           </div>
 
           <div class="input-group" style="padding-bottom: 20px;">
