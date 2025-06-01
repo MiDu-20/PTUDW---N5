@@ -159,7 +159,7 @@ include 'sidebar.php';
     <div class="modal-container" style="height: 40rem;">
       <form id="addUserForm" method="POST" action="add_staffs.php">
         <div class="modal-header">
-          <h2>Add Staff</h2>
+          <h2>Thêm nhân viên</h2>
           <span class="close-icon" onclick="closeaddUserModal()">&times;</span>
         </div>
         <div class="modal-content">
