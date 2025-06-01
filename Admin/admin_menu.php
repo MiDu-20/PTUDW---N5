@@ -466,5 +466,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+<script> // Kích hoạt DataTables
+$(document).ready(function () {
+  $('#menuTable').DataTable({
+    pageLength: 10,
+    lengthMenu: [5, 10, 20, 50],
+    language: {
+      search: "Tìm kiếm:",
+      lengthMenu: "Số hàng/trang: _MENU_",
+      info: "Trang _PAGE_ / _PAGES_",
+      paginate: {
+        first: "<<",
+        last: ">>",
+        next: ">",
+        previous: "<"
+      },
+      emptyTable: "Không có dữ liệu"
+    },
+    columnDefs: [
+      { targets: 2, render: function (data, type, row) {
+        let words = data.split(/\s+/);
+        return words.length > 4 ? words.slice(0, 4).join(" ") + " ..." : data;
+      }}
+    ]
+  });
+});
+</script>
 </body>
 </html>
