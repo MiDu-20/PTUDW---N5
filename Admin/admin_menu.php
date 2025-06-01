@@ -106,8 +106,6 @@ include 'sidebar.php';
     }
     ?>
   </select>
-  </div>
-
   <!-- Chọn số món mỗi trang -->
   <select id="itemsPerPage">
     <option value="5">5 món/trang</option>
@@ -116,6 +114,9 @@ include 'sidebar.php';
     <option value="1000">Tất cả</option>
   </select>
 </div>
+  </div>
+
+  
 
 
     <table id="menuTable">

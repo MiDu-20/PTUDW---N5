@@ -201,9 +201,9 @@ table {
 }
 table th,
 table td {
-  padding: 6px 10px;       /* giảm padding để hàng mỏng hơn */
+  padding: 4px 8px;      /* giảm padding để hàng mỏng hơn */
   font-size: 14px;         /* giảm cỡ chữ */
-  line-height: 1.3;        /* giúp chữ không quá cao hàng */
+  line-height: 1;        /* giúp chữ không quá cao hàng */
   max-width: 120px;        /* giới hạn chiều ngang từng ô */
   white-space: normal;     /* cho phép xuống dòng */
   word-wrap: break-word;
