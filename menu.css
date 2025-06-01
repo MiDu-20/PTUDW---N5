@@ -89,6 +89,10 @@ body {
 .card-img-top:hover {
   opacity: 0.85;
 }
+.addItemBtn:hover {
+  background-color: #a93800;
+  transform: scale(1.03);
+}
 
 .card-body.modern-card {
   padding: 20px;
@@ -153,10 +157,7 @@ body {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.addItemBtn:hover {
-  background-color: #a93800;
-  transform: scale(1.03);
-}
+
 
 .section-title {
   background: #FFB347; /*  Cam sáng nổi bật */
