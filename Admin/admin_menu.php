@@ -94,7 +94,7 @@ include 'sidebar.php';
             <button onclick="openItemModal()"> <i class="fas fa-plus"></i> &nbsp;Thêm Món Mới</button>
             <button id="viewCategoryBtn"><i class="fas fa-eye"></i> &nbsp;Xem Danh Mục</button>
         </div>
-        <div class="search-bar">
+        < class="search-bar">
         <select id="categoryFilter">
                 <option value="">Tất cả danh mục</option>
                 <?php
@@ -105,6 +105,13 @@ include 'sidebar.php';
                 }
                 ?>
             </select>
+            <!-- Dropdown chọn số món mỗi trang -->
+  <select id="itemsPerPage">
+    <option value="5">5 món/trang</option>
+    <option value="10" selected>10 món/trang</option>
+    <option value="20">20 món/trang</option>
+    <option value="1000">Tất cả</option>
+  </select>
         </div>
     </div>
 
@@ -408,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
-<script>
+<script> // Script phân trang và lọc món ăn
 document.getElementById('toggleSidebar').addEventListener('click', () => {
   document.querySelector('.sidebar').classList.toggle('open');
 });
@@ -416,6 +423,23 @@ document.getElementById('closeSidebar').addEventListener('click', () => {
   document.querySelector('.sidebar').classList.remove('open');
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const table = document.getElementById("menuTable");
+  const tbody = table.querySelector("tbody");
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+  const itemsPerPageSelect = document.getElementById("itemsPerPage");
 
+  function paginate() {
+    const perPage = parseInt(itemsPerPageSelect.value);
+    rows.forEach((row, index) => {
+      row.style.display = index < perPage ? "" : "none";
+    });
+  }
+
+  itemsPerPageSelect.addEventListener("change", paginate);
+  paginate(); // khởi tạo ban đầu
+});
+</script>
 </body>
 </html>
