@@ -31,7 +31,7 @@ if ($orderId) {
 }
 
 $paymentMode = $order['pmode'] ?? 'takeaway';
-$deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
+$deliveryFee = ($paymentMode === 'takeaway') ? 0 : 30000.00;
 ?>
 
 <?php include 'sidebar.php'; ?>
@@ -129,7 +129,8 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 130;
         </div>
         <div class="summary-details">
           <p><strong>Phí vận chuyển:</strong></p>
-          <p><?php echo number_format($deliveryFee, 2); ?> đ</p>
+          <?php echo number_format($deliveryFee, 2, '.', ''); ?> đ
+
         </div>
         <div class="summary-details">
           <p><strong>Tổng cộng:</strong></p>

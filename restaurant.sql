@@ -156,18 +156,18 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `itemName`, `image`, `quantity`, `price`, `total_price`) VALUES
-(122, 54, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 1, 350, 350.00),
-(123, 54, 'Khoai tây chiên', 'fries.jpg', 1, 760, 760.00),
-(124, 54, 'Pizza Phô Mai', 'cheese-pizza.jpg', 1, 800, 800.00),
-(125, 55, 'Mojito Thanh Long', 'Dragon-fruit-drink.png', 1, 760, 760.00),
-(126, 55, 'Burger Gà Nướng BBQ', 'bbq-burger.jpeg', 3, 1900, 5700.00),
-(127, 55, 'Cánh Gà Chiên', 'chicken-wing.avif', 2, 480, 960.00),
-(128, 56, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 1, 350, 350.00),
-(129, 56, 'Pizza Phô Mai', 'cheese-pizza.jpg', 1, 800, 800.00),
-(130, 57, 'Khoai tây chiên', 'fries.jpg', 2, 760, 1520.00),
-(131, 57, 'Burger Gà Cay Lửa', 'firebird-burger.jpeg', 2, 2100, 4200.00),
-(132, 58, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 3, 350, 1050.00),
-(133, 58, 'Mocktail Dâu Tây', 'strawberry-drink.png', 3, 550, 1650.00);
+(122, 54, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 1, 50000.00, 50000.00),
+(123, 54, 'Khoai tây chiên', 'fries.jpg', 1, 41000.00, 41000.00),
+(124, 54, 'Pizza Phô Mai', 'cheese-pizza.jpg', 1, 100000.00, 100000.00),
+(125, 55, 'Mojito Thanh Long', 'Dragon-fruit-drink.png', 1, 42000.00, 42000.00),
+(126, 55, 'Burger Gà Nướng BBQ', 'bbq-burger.jpeg', 3, 200000.00, 600000.00),
+(127, 55, 'Cánh Gà Chiên', 'chicken-wing.avif', 2, 50000.00, 100000.00),
+(128, 56, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 1, 50000.00, 50000.00),
+(129, 56, 'Pizza Phô Mai', 'cheese-pizza.jpg', 1, 65000.00, 65000.00),
+(130, 57, 'Khoai tây chiên', 'fries.jpg', 2, 86000.00, 172000.00),
+(131, 57, 'Burger Gà Cay Lửa', 'firebird-burger.jpeg', 2, 200000.00, 400000.00),
+(132, 58, 'Bánh Mì Bơ Tỏi', 'garlic-bread.avif', 3, 60000.00, 180000.00),
+(133, 58, 'Mocktail Dâu Tây', 'strawberry-drink.png', 3, 30000.00, 90000.00);
 
 -- --------------------------------------------------------
 
