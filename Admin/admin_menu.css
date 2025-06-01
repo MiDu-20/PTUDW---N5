@@ -594,3 +594,81 @@ input[type="file"].input::-webkit-file-upload-button {
     box-sizing: border-box;
   }
 }
+/* Cấu hình DataTables */
+.dataTables_wrapper .top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dataTables_wrapper .top-row select,
+.dataTables_wrapper .top-row input[type="search"] {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  outline: none;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+}
+
+.dataTables_wrapper .bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-family: "Baloo 2", cursive;
+}
+
+/* Điều chỉnh ô tìm kiếm của DataTables để giống dropdown */
+.dataTables_wrapper .dataTables_filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+  font-family: "Baloo 2", cursive;
+}
+
+.dataTables_wrapper .dataTables_filter label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #1d1818;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  outline: none;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+}
+.filter-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter-row select,
+.filter-row input[type="search"] {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+  background-color: white !important; /*  thêm dòng này */
+}
+.dataTables_wrapper .dataTables_filter input {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  outline: none;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+  background-color: white !important; /*  thêm dòng này */
+}
