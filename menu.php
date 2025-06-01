@@ -9,6 +9,16 @@ while ($row = $categoryResult->fetch_assoc()) {
     $categories[] = $row['catName'];
 }
 ?>
+<?php
+// Map tên tiếng Việt trong DB sang id chuẩn cho anchor menu
+$mapId = [
+  'Món khai vị' => 'appetizer',
+  'Pizza' => 'pizza',
+  'Burger' => 'burger',
+  'Đồ uống' => 'beverage'
+];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +46,8 @@ while ($row = $categoryResult->fetch_assoc()) {
 </div>
 <p class="heading-description">Thưởng thức món ăn ngon</p>
 <?php foreach ($categories as $category): ?>
-<section id="<?= strtolower($category) ?>">
+  <?php $id = isset($mapId[$category]) ? $mapId[$category] : strtolower($category); ?> <!-- Sử dụng id chuẩn từ mảng $mapId nếu có, nếu không thì chuyển đổi sang chữ thường -->
+  <section id="<?= $id ?>">
   <div id="message"></div>
   <div class="container-fluid">
   <h2 class="section-title"><?= $category ?></h2> <!--  Sửa lại tiêu đề món ăn -->

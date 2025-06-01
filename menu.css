@@ -89,6 +89,10 @@ body {
 .card-img-top:hover {
   opacity: 0.85;
 }
+.addItemBtn:hover {
+  background-color: #a93800;
+  transform: scale(1.03);
+}
 
 .card-body.modern-card {
   padding: 20px;
@@ -153,10 +157,7 @@ body {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.addItemBtn:hover {
-  background-color: #a93800;
-  transform: scale(1.03);
-}
+
 
 .section-title {
   background: #FFB347; /*  Cam sáng nổi bật */
@@ -242,4 +243,18 @@ body {
   background-color: gray;
   color: white;
   cursor: not-allowed;
+}
+/* FIX NAV BỊ LỆCH */
+/* Để tránh phần tiêu đề bị che bởi navbar cố định */
+.card-title {
+  position: relative;
+}
+
+.card-title::before {
+  content: "";
+  display: block;
+  height: 70px; /* bằng chiều cao navbar cố định */
+  margin-top: -70px; /* trừ phần navbar */
+  visibility: hidden;
+  pointer-events: none;
 }

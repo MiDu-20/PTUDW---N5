@@ -27,17 +27,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $contact = $_POST['contact'];
     $noOfGuests = $_POST['noOfGuests'];
-    $reservedTime = $_POST['reservedTime']; //-- Định dạng HH:MM
-    $reservedDate = $_POST['reservedDate']; //-- Định dạng YYYY-MM-DD
+    $reservedTime = trim($_POST['reservedTime']);
+    $reservedDate = $_POST['reservedDate']; 
 
-    
+  
 
-    //== Chuyển đổi thời gian đặt sang định dạng có bao gồm giây (HH:MM:SS)
-    $reservedTimeWithSeconds = date('H:i:s', strtotime($reservedTime));
-    if (empty($reservedTime)) {
-    die("Không nhận được giờ đặt bàn hợp lệ.");
-}
-   
+    // Xử lý nếu có SA/CH (AM/PM tiếng Việt)
+    try {
+        $reservedTimeUpper = mb_strtoupper($reservedTime, 'UTF-8');
+        $reservedTimeUpper = str_replace(['SA','CH'], ['AM','PM'], $reservedTimeUpper);
+        $reservedTimeObj = DateTime::createFromFormat('h:i:s A', $reservedTimeUpper);
+        if ($reservedTimeObj) {
+            $reservedTimeWithSeconds = $reservedTimeObj->format('H:i:s');
+        } else {
+            // Nếu không phải SA/CH thì thử định dạng 24h
+            $reservedTimeObj = DateTime::createFromFormat('H:i:s', $reservedTimeUpper);
+            if ($reservedTimeObj) {
+                $reservedTimeWithSeconds = $reservedTimeObj->format('H:i:s');
+            } else {
+                die("Thời gian không đúng định dạng.");
+            }
+        }
+    } catch (Exception $e) {
+        die("Lỗi xử lý thời gian: " . $e->getMessage());
+    }
+
+
+
+    // // sao test trên web
+    // echo "<div style='color:red'>";
+    // var_dump($reservedTime, $reservedTimeWithSeconds);
+    // echo "</div>";
+    // // dừng lại chương trình để kiểm tra dữ liệu ở trên echo
+    // die();
+
     //-- Câu truy vấn SQL để chèn dữ liệu đặt bàn vào bảng reservations
     $sql = "INSERT INTO reservations (email, name, contact, noOfGuests, reservedTime, reservedDate) 
             VALUES (?, ?, ?, ?, ?, ?)";
@@ -50,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     //-- Gán các biến dữ liệu người dùng vào các tham số trong truy vấn
     //-- "sssiis" là định dạng dữ liệu: s = string, i = integer
-    $stmt->bind_param("sssiis", $email, $name, $contact, $noOfGuests, $reservedTimeWithSeconds, $reservedDate);
+    $stmt->bind_param("sssiss", $email, $name, $contact, $noOfGuests, $reservedTimeWithSeconds, $reservedDate);
 
     //-- Thực thi truy vấn (chèn dữ liệu vào bảng)
     if ($stmt->execute()) {
