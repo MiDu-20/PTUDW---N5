@@ -52,7 +52,7 @@ try {
         $_SESSION['email'] = $email;
         $_SESSION['userloggedin'] = true;
 
-        echo '<script>alert("User is logged in!"); window.location.href="menu.php";</script>';
+        echo '<script>alert("User is logged in!"); window.location.href="index.php";</script>';
         exit();
     } 
     // Kiểm tra thông tin đăng nhập cho nhân viên (admin hoặc superadmin)
