@@ -41,7 +41,7 @@ foreach ($chiTietGioHang as $matHang) {
 }
 
 // --Nếu là hình thức "mang đi", không tính phí giao hàng
-$phiGiaoHang = ($_POST['payment_mode'] === 'Takeaway') ? 0 : 130;
+$phiGiaoHang = ($_POST['payment_mode'] === 'Takeaway') ? 0 : 30.000;
 $tongCong = $tongPhu + $phiGiaoHang;
 
 // Bảng ánh xạ tiếng Anh sang tiếng Việt
