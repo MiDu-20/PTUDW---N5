@@ -111,13 +111,6 @@ include 'sidebar.php';
     }
     ?>
   </select>
-  <!-- Chọn số món mỗi trang -->
-  <select id="itemsPerPage">
-    <option value="5">5 món/trang</option>
-    <option value="10" selected>10 món/trang</option>
-    <option value="20">20 món/trang</option>
-    <option value="1000">Tất cả</option>
-  </select>
 </div>
   </div>
 
@@ -432,44 +425,11 @@ document.getElementById('closeSidebar').addEventListener('click', () => {
   document.querySelector('.sidebar').classList.remove('open');
 });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const table = document.getElementById("menuTable");
-  const tbody = table.querySelector("tbody");
-  const rows = Array.from(tbody.querySelectorAll("tr"));
-  const itemsPerPageSelect = document.getElementById("itemsPerPage");
-
-  function paginate() {
-    const perPage = parseInt(itemsPerPageSelect.value);
-    rows.forEach((row, index) => {
-      row.style.display = index < perPage ? "" : "none";
-    });
-  }
-
-  itemsPerPageSelect.addEventListener("change", paginate);
-  paginate(); // khởi tạo ban đầu
-});
-</script>
-<script>// Script hiển thị mô tả ngắn gọn trong bảng
-document.addEventListener("DOMContentLoaded", function () {
-  const descriptionCells = document.querySelectorAll("#menuTable td:nth-child(3)");
-
-  descriptionCells.forEach(cell => {
-    const text = cell.textContent.trim();
-    const words = text.split(/\s+/); // tách theo từ
-
-    if (words.length > 4) {
-      const shortText = words.slice(0, 4).join(" ") + " ...";
-      cell.setAttribute("title", text); // hiển thị đầy đủ khi hover
-      cell.textContent = shortText;
-    }
-  });
-});
-</script>
 <script> // Kích hoạt DataTables
 $(document).ready(function () {
   $('#menuTable').DataTable({
     pageLength: 10,
+    ordering: false,
     lengthMenu: [5, 10, 20, 50],
     language: {
       search: "Tìm kiếm:",
