@@ -94,26 +94,29 @@ include 'sidebar.php';
             <button onclick="openItemModal()"> <i class="fas fa-plus"></i> &nbsp;Thêm Món Mới</button>
             <button id="viewCategoryBtn"><i class="fas fa-eye"></i> &nbsp;Xem Danh Mục</button>
         </div>
-        < class="search-bar">
-        <select id="categoryFilter">
-                <option value="">Tất cả danh mục</option>
-                <?php
-                $sql = "SELECT catName FROM menucategory";
-                $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
-                }
-                ?>
-            </select>
-            <!-- Dropdown chọn số món mỗi trang -->
+        <div class="search-bar">
+  <!-- Lọc theo danh mục -->
+  <select id="categoryFilter">
+    <option value="">Tất cả danh mục</option>
+    <?php
+    $sql = "SELECT catName FROM menucategory";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
+    }
+    ?>
+  </select>
+  </div>
+
+  <!-- Chọn số món mỗi trang -->
   <select id="itemsPerPage">
     <option value="5">5 món/trang</option>
     <option value="10" selected>10 món/trang</option>
     <option value="20">20 món/trang</option>
     <option value="1000">Tất cả</option>
   </select>
-        </div>
-    </div>
+</div>
+
 
     <table id="menuTable">
         <thead>
