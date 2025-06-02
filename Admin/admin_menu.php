@@ -210,21 +210,23 @@ include 'sidebar.php';
             <h2>Thêm Danh Mục Mới</h2>
             <span class="close-icon" onclick="closeModal()">&times;</span>
         </div>
+        
         <form action="add_category.php" method="POST" class="form">
             <div class="modal-content">
                 <div class="input-group">
-                    <input type="text" name="catName" class="input" required />
-                    <div class="input-group">
-  <select name="status" class="input" required>
-    <option value="">-- Chọn trạng thái --</option>
-    <option value="Available">Available</option>
-    <option value="Unavailable">Unavailable</option>
-  </select>
-  <label class="label">Trạng thái</label>
-</div>
                     <label class="label">Tên danh mục</label>
+                    <input type="text" name="catName" class="input" required />
+                </div>
+                <div class="input-group">
+                    <label class="label">Trạng thái</label>
+                    <select name="status" class="input" required>
+                        <option value="">-- Chọn trạng thái --</option>
+                        <option value="Available">Available</option>
+                        <option value="Unavailable">Unavailable</option>
+                    </select>
                 </div>
             </div>
+
             <div class="modal-footer">
                 <button type="submit">Thêm</button>
                 <button type="button" onclick="closeModal()">Hủy</button>
@@ -232,6 +234,7 @@ include 'sidebar.php';
         </form>
     </div>
 </div>
+
 
 <!-- Modal thêm món -->
 <div class="modal" id="itemModal">
