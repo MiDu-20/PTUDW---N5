@@ -65,9 +65,9 @@ $result = $conn->query($query);
         <li><a href="admin_menu.php"><i class="fas fa-utensils"></i>Quản lý thực đơn</a></li>
         <li><a href="admin_orders.php" class="active"><i class="fas fa-shopping-cart"></i>Đơn hàng</a></li>
         <li><a href="reservations.php"><i class="fas fa-calendar-alt"></i>Đặt bàn</a></li>
-        <li><a href="users.php"><i class="fas fa-users"></i>Nhân viên</a></li>
-        <li><a href="reviews.php"><i class="fas fa-star"></i>Đánh giá</a></li>
         <li><a href="staffs.php"><i class="fas fa-users"></i>Người dùng</a></li>
+        <li><a href="reviews.php"><i class="fas fa-star"></i>Đánh giá</a></li>
+        <li><a href="users.php"><i class="fas fa-users"></i>Nhân viên</a></li>
         <li><a href="profile.php"><i class="fas fa-user"></i>Hồ sơ</a></li>
         <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li>
     </ul>

@@ -141,7 +141,7 @@ include 'sidebar.php';
                         <td>" . htmlspecialchars($row['itemName']) . "</td>
                         <td><img src='../uploads/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['itemName']) . "' width='50'></td>
                         <td>" . htmlspecialchars($row['description']) . "</td>
-                        <td>Rs " . htmlspecialchars($row['price']) . "</td>
+                        <td>VNĐ " . htmlspecialchars($row['price']) . "</td>
                         <td>" . htmlspecialchars($row['catName']) . "</td>
                         <td>" . htmlspecialchars($row['status']) . "</td>
                         <td>

@@ -253,6 +253,11 @@ body {
   color: #c14600;
 }
 
+/*Top picks Section*/
+.top-picks {
+  background-color: #fff5da;
+}
+
 /* Why Choose Us Section */
 .why-choose-us {
   padding: 60px 0;

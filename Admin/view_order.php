@@ -30,8 +30,8 @@ if ($orderId) {
   exit();
 }
 
-$paymentMode = $order['pmode'] ?? 'takeaway';
-$deliveryFee = ($paymentMode === 'takeaway') ? 0 : 30000.00;
+$paymentMode = $order['pmode'] ?? 'Takeaway'; 
+$deliveryFee = ($paymentMode === 'Takeaway') ? 0 : 30000.00;
 ?>
 
 <?php include 'sidebar.php'; ?>
