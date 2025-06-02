@@ -100,17 +100,6 @@ include 'sidebar.php';
             <button id="viewCategoryBtn"><i class="fas fa-eye"></i> &nbsp;Xem Danh Mục</button>
         </div>
         <div class="search-bar">
-  <!-- Lọc theo danh mục -->
-  <select id="categoryFilter">
-    <option value="">Tất cả danh mục</option>
-    <?php
-    $sql = "SELECT catName FROM menucategory";
-    $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
-    }
-    ?>
-  </select>
 </div>
   </div>
 
@@ -415,33 +404,6 @@ if (existingImage) {
   });
 });
 
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const categoryFilter = document.getElementById('categoryFilter');
-
-  // Hàm lọc món theo danh mục
-  function filterCategories() {
-    const selectedCategory = categoryFilter.value.trim().toLowerCase();
-    const rows = document.querySelectorAll('#menuTable tbody tr');
-
-    rows.forEach(row => {
-      const rowCategory = row.getAttribute('data-category');
-      if (!rowCategory) return; // Bỏ qua dòng không có data-category
-
-      if (selectedCategory === '' || rowCategory.toLowerCase() === selectedCategory) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    });
-  }
-
-  // Gán sự kiện onchange cho select
-  if (categoryFilter) {
-    categoryFilter.addEventListener('change', filterCategories);
-  }
-});
 </script>
 <script> // Script phân trang và lọc món ăn
 document.getElementById('toggleSidebar').addEventListener('click', () => {
