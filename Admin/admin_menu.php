@@ -21,6 +21,11 @@ include 'sidebar.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="sidebar.css" />
     <link rel="stylesheet" href="admin_menu.css" />
+
+    <!-- DataTables CSS + JS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <!-- ### FIX/ADD: CSS cho Toast Notification -->
     <style>
         .toast {
@@ -95,18 +100,22 @@ include 'sidebar.php';
             <button id="viewCategoryBtn"><i class="fas fa-eye"></i> &nbsp;Xem Danh Mục</button>
         </div>
         <div class="search-bar">
-        <select id="categoryFilter">
-                <option value="">Tất cả danh mục</option>
-                <?php
-                $sql = "SELECT catName FROM menucategory";
-                $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
-                }
-                ?>
-            </select>
-        </div>
-    </div>
+  <!-- Lọc theo danh mục -->
+  <select id="categoryFilter">
+    <option value="">Tất cả danh mục</option>
+    <?php
+    $sql = "SELECT catName FROM menucategory";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
+    }
+    ?>
+  </select>
+</div>
+  </div>
+
+  
+
 
     <table id="menuTable">
         <thead>
@@ -408,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
-<script>
+<script> // Script phân trang và lọc món ăn
 document.getElementById('toggleSidebar').addEventListener('click', () => {
   document.querySelector('.sidebar').classList.toggle('open');
 });
@@ -416,6 +425,38 @@ document.getElementById('closeSidebar').addEventListener('click', () => {
   document.querySelector('.sidebar').classList.remove('open');
 });
 </script>
-
+<script> // Kích hoạt DataTables
+$(document).ready(function () {
+  $('#menuTable').DataTable({
+  ordering: false,
+  pageLength: 10,
+  lengthMenu: [5, 10, 20, 50],
+  dom: '<"top-row d-flex justify-between mb-3"lf>rt<"bottom-row d-flex justify-between mt-3"ip>',
+  language: {
+    search: "Tìm kiếm:",
+    lengthMenu: "Số hàng/trang: _MENU_",
+    info: "Trang _PAGE_ / _PAGES_",
+    paginate: {
+      first: "<<",
+      last: ">>",
+      next: ">",
+      previous: "<"
+    },
+    emptyTable: "Không có dữ liệu"
+  },
+  columnDefs: [
+    {
+      targets: 2,
+      render: function (data, type, row) {
+        let words = data.split(/\s+/);
+        let shortText = words.length > 4 ? words.slice(0, 4).join(" ") + " ..." : data;
+        return `<span title="${data}">${shortText}</span>`;
+      }
+    },
+    { targets: [1, 6, 7], orderable: false }
+  ]
+});
+});
+</script>
 </body>
 </html>

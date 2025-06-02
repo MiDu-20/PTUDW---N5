@@ -189,38 +189,47 @@ body {
   }
 }
 
-/* BẢNG - bảng hiển thị dữ liệu */
+/* BẢNG - Hiển thị thực đơn */
 table {
   width: 100%;
-  border: 2px solid #FF9D23; /* Block nổi bật */
-  font-size: 17px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #E4F0FB;  /* xanh nhạt */
-  border: 2px solid #E4F0FB;
+  border-collapse: collapse;  /* gộp viền cho gọn */
+  background-color: #E4F0FB;
+  font-size: 14px;
+  table-layout: fixed;
 }
+
 table th,
 table td {
-  padding: 12px 15px;
-  border: 2px solid #FF9D23; /* Block */
-  border-radius: 5px;
+  padding: 4px 8px;
+  line-height: 1.4;
+  max-width: 140px;
+  white-space: normal;
+  word-break: break-word;
+  text-align: left;
+  vertical-align: middle;
+  border: 1.5px solid #FF9D23;
 }
+
+/* Header bảng */
 table th {
-  background-color: #7FB6EB; /* xanh nước biển */
-  color: white;
+  background-color: #7FB6EB;
   color: #1d1818;
+  font-weight: bold;
 }
-table tr:nth-of-type(even) {
-  background-color: #FCE8DF; /* màu nền nhạt */ 
-  color: #1d1818;
+
+/* Hàng xen kẽ màu */
+table tr:nth-child(even) {
+  background-color: #FCE8DF;
 }
+
+/* Hover hàng */
 table tr:hover {
-  background-color: #C5E0F7; /* xanh sáng hơn */
+  background-color: #C5E0F7;
 }
 /* HEADER */
 .header {
   padding: 10px;
-  background-color: #F6C7B9; /* cam hồng nhẹ */
+  background-color: #FBDAC7; /* cam hồng nhẹ */
   color: #000000;            /* chữ đen */
   margin-bottom: 20px;
   display: flex;
@@ -237,7 +246,7 @@ table tr:hover {
 
 /* Button tìm kiếm */
 .search-bar button {
-  background-color: #C14600; /* Nền button */
+  background-color: #0566DB; /* Nền button */
   border: none;
   padding: 13px;
   color: #fff;
@@ -283,9 +292,9 @@ table tr:hover {
 
 /* Nút bấm chung */
 button {
-  background-color: #C14600;  /* Nền button chính */
+  background-color: #0566DB;  /* Nền button chính */
   color: white;
-  border: 2px solid #C14600;
+  border: 2px solid #0566DB;
   padding: 13px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -293,9 +302,9 @@ button {
   font-size: 1.2rem;
 }
 button:hover {
-  background-color: #FF9D23;  /* Block */
+  background-color: #ADD7F3;  /* Block */
   color: #1d1818;
-  border: 2px solid #FF9D23;
+  border: 2px solid #ADD7F3;
 }
 
 /* Nút phụ dạng bo tròn nhỏ */
@@ -313,7 +322,7 @@ button:hover {
   transition: all 0.3s ease;
 }
 .button:hover {
-  background-color: #C14600;  /* Nền button */
+  background-color: #ADD7F3;  /* Nền button */
   color: white;
 }
 
@@ -401,7 +410,7 @@ button:hover {
   padding: 0 5px;
   outline: none;
   cursor: pointer;
-  color: #d7062a;
+  color: #ADD7F3;
 }
 #delete-btn:hover {
   transform: scale(1.3);
@@ -540,17 +549,24 @@ input[type="file"].input::-webkit-file-upload-button {
     margin: 10px auto !important;
   }
 
-  /* Bảng scroll ngang */
-  #menuTable {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
-  }
+  /* Tối ưu bảng để nằm gọn trong màn hình */
+#menuTable {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+#menuTable th, #menuTable td {
+  padding: 8px;
+  max-width: 150px;
+  word-wrap: break-word;
+  white-space: normal;
+}
   /* Giữ bảng không bị vỡ layout */
   #menuTable thead, #menuTable tbody, #menuTable tr, #menuTable th, #menuTable td {
     display: table-cell;
   }
+
 
   /* Nút và font nhỏ hơn */
   button, #editbtn, #deletebtn {
@@ -577,4 +593,82 @@ input[type="file"].input::-webkit-file-upload-button {
     width: 100%;
     box-sizing: border-box;
   }
+}
+/* Cấu hình DataTables */
+.dataTables_wrapper .top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dataTables_wrapper .top-row select,
+.dataTables_wrapper .top-row input[type="search"] {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  outline: none;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+}
+
+.dataTables_wrapper .bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  font-family: "Baloo 2", cursive;
+}
+
+/* Điều chỉnh ô tìm kiếm của DataTables để giống dropdown */
+.dataTables_wrapper .dataTables_filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+  font-family: "Baloo 2", cursive;
+}
+
+.dataTables_wrapper .dataTables_filter label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #1d1818;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  outline: none;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+}
+.filter-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filter-row select,
+.filter-row input[type="search"] {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+  background-color: white !important; /*  thêm dòng này */
+}
+.dataTables_wrapper .dataTables_filter input {
+  padding: 13px 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #FF9D23;
+  outline: none;
+  color: #1d1818;
+  font-family: "Baloo 2", cursive;
+  background-color: white !important; /*  thêm dòng này */
 }
