@@ -79,6 +79,8 @@ $conn->close();
   } else {
     include 'navbar.php';
   }
+  $loggedIn = isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] === true;
+  $targetPage = $loggedIn ? "menu.php" : "login.php";
   ?>
 
   <div class="main">
@@ -93,7 +95,7 @@ $conn->close();
             </p>
             <div class="buttondiv">
               <div>
-                <a href="login.php">
+                <a href="<?= $targetPage ?>">
                   <button class="button">
                     Bắt đầu đặt mua
                     <svg class="cartIcon" viewBox="0 0 576 512">
@@ -127,57 +129,57 @@ $conn->close();
   </div>
   
 
-          <!-- Top picks section -->
-          <section>
-            <div class="popular reveal" data-aos="fade-up">
-              <h1 class="text-center mt-3"><span>TOP TUYỂN CHỌN</span> DÀNH CHO BẠN</h1>
-              <P class="text-center" style="font-size: 1.3rem;">Những bữa ăn được lựa chọn kỹ lưỡng và chinh phục mọi thực khách.</P>
+  <!-- Top picks section -->
+    <div class="container">
+      <section class="top-picks" id="top-picks">
+        <div class="popular reveal" data-aos="fade-up">
+          <h1 class="text-center mt-3"><span>TOP TUYỂN CHỌN</span> DÀNH CHO BẠN</h1>
+          <P class="text-center" style="font-size: 1.3rem;">Những bữa ăn được lựa chọn kỹ lưỡng và chinh phục mọi thực khách.</P>
 
-              <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-aos="fade-up">
-                <div class="carousel-inner">
+          <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-aos="fade-up">
+            <div class="carousel-inner">
 
-                  <div id="toast" class="toast">
-                    <button class="toast-btn toast-close">&times;</button>
-                    <span class="pt-3"><strong>Bạn phải đăng nhập để thêm vào giỏ hàng.</strong></span>
-                    <button class="toast-btn toast-ok">Okay</button>
-                  </div>
-                  <?php
-                    $chunkedItems = array_chunk($popularItems, 3); // Group items into chunks of 3
-                    $isActive = true; // To set the first carousel item as active
-
-                    foreach ($chunkedItems as $items) {
-                      echo '<div class="carousel-item' . ($isActive ? ' active' : '') . '" >';
-                      echo '<div class="d-flex justify-content-center">';
-
-                      foreach ($items as $item) {
-                        echo '<div class="card" >';
-                        echo '<img src="uploads/' . $item['image'] . '" class="card-img-top" alt="' . $item['itemName'] . '">';
-                        echo '<div class="card-body">';
-                        echo '<h5 class="card-title text-center">' . $item['itemName'] . '</h5>';
-                        echo '<p class="card-text text-center">VNĐ ' . $item['price'] . '</p>';
-                        echo '<a class="button-cart" onclick="addToCart()">Thêm vào giỏ hàng</a>';
-                        echo '</div>';
-                        echo '</div>';
-                      }
-
-                      echo '</div>';
-                      echo '</div>';
-                      $isActive = false; // Only the first item should be active
-                    }
-                  ?>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Trước</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Sau</span>
-                </button>
+              <div id="toast" class="toast">
+                <button class="toast-btn toast-close">&times;</button>
+                <span class="pt-3"><strong>Bạn phải đăng nhập để thêm vào giỏ hàng.</strong></span>
+                <button class="toast-btn toast-ok">Okay</button>
               </div>
+              <?php
+                $chunkedItems = array_chunk($popularItems, 3); // Group items into chunks of 3
+                $isActive = true; // To set the first carousel item as active
+
+                foreach ($chunkedItems as $items) {
+                  echo '<div class="carousel-item' . ($isActive ? ' active' : '') . '" >';
+                  echo '<div class="d-flex justify-content-center">';
+
+                  foreach ($items as $item) {
+                    echo '<div class="card" >';
+                    echo '<img src="uploads/' . $item['image'] . '" class="card-img-top" alt="' . $item['itemName'] . '">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title text-center">' . $item['itemName'] . '</h5>';
+                    echo '<p class="card-text text-center">VNĐ ' . $item['price'] . '</p>';
+                    echo '<a class="button-cart" onclick="addToCart()">Thêm vào giỏ hàng</a>';
+                    echo '</div>';
+                    echo '</div>';
+                  }
+
+                  echo '</div>';
+                  echo '</div>';
+                  $isActive = false; // Only the first item should be active
+                }
+              ?>
             </div>
-          </section>  
-        
+            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Trước</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Sau</span>
+            </button>
+          </div>
+        </section>  
+    </div>
 
   <!-- Why Choose Us Section  -->
   <section class="why-choose-us" id="why-choose-us" style="background-color: #fff5da;">
@@ -324,7 +326,7 @@ $conn->close();
           <img src="images/reservation.jpg" alt="Reservation" style="background: none ; width: 100%; height: 100%; padding: 0 !important;" class=" w-100 h-100">
         </div>
         <div class="reservation-section col-lg-5 col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center">
-          <h2 class="text-center" style="background-color: #ffead4;">Đặt bàn ngay!</h2>
+          <h2 class="text-center" style="background-color: #fff5da;">Đặt bàn ngay!</h2>
           <form id="reservation-form" action="reservations.php" method="POST">
             <div class="form-row">
               <div class="form-group">

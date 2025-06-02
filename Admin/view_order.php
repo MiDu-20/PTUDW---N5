@@ -30,8 +30,8 @@ if ($orderId) {
   exit();
 }
 
-$paymentMode = $order['pmode'] ?? 'takeaway';
-$deliveryFee = ($paymentMode === 'takeaway') ? 0 : 30000.00;
+$paymentMode = $order['pmode'] ?? 'Takeaway'; 
+$deliveryFee = ($paymentMode === 'Takeaway') ? 0 : 30000.00;
 ?>
 
 <?php include 'sidebar.php'; ?>
@@ -134,7 +134,7 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 30000.00;
         </div>
         <div class="summary-details">
           <p><strong>Tổng cộng:</strong></p>
-          <p><?php echo $order['grand_total']; ?> đ</p>
+          <p><?php echo number_format($order['sub_total'] + $deliveryFee, 2, '.', ''); ?> đ</p>
         </div>
         <div class="summary-details">
           <p><strong>Phương thức thanh toán:</strong></p>

@@ -189,7 +189,7 @@ $itemsResult = $stmt->get_result();
       // Hàm tính chi phí vận chuyển
       function updateDeliveryFee() {
         const selectedPaymentMode = document.querySelector('input[name="payment_mode"]:checked').value;
-        deliveryFee = selectedPaymentMode === 'Takeaway' ? 0 : 130;
+        deliveryFee = selectedPaymentMode === 'Takeaway' ? 0 : 30000;
         updateSummary();
       }
 
