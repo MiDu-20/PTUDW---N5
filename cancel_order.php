@@ -6,7 +6,8 @@ include 'db_connection.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // --Lấy ID đơn hàng và lý do hủy từ POST
     $ma_don = isset($_POST['orderId']) ? intval($_POST['orderId']) : 0;
-    $ly_do = isset($_POST['reason']) ? trim($_POST['reason']) : '';
+    $ly_do = isset($_POST['cancelReason']) ? trim($_POST['cancelReason']) : '';
+
 
     error_log("Nhận được mã đơn: $ma_don, lý do: $ly_do"); // --Ghi log phục vụ debug
 

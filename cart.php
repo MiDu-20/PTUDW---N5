@@ -112,7 +112,7 @@ $itemsResult = $stmt->get_result();
       <hr class="mb-4">
       <div class="summary-details ">
         <p><strong>Tạm tính:</strong></p>
-        <p> <span id="subtotal">0</span></p>
+        <p> <span id="subtotal">0</span> VNĐ</p>
       </div>
       <div class="summary-details payment">
         <p><strong>Phương thức thanh toán:</strong></p>
@@ -131,11 +131,11 @@ $itemsResult = $stmt->get_result();
       </div>
       <div class="summary-details">
         <p><strong>Phí vận chuyển: </strong></p>
-        <p> <span id="delivery-fee">0</span></p>
+        <p> <span id="delivery-fee">0</span> VNĐ</p>
       </div>
       <div class="summary-details mb-3">
         <p><strong>Tổng cộng:</strong></p>
-        <p><span id="total">0</span></p>
+        <p><span id="total">0</span> VNĐ</p>
       </div>
       <hr>
 
