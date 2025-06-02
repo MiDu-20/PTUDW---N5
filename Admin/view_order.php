@@ -134,7 +134,7 @@ $deliveryFee = ($paymentMode === 'takeaway') ? 0 : 30000.00;
         </div>
         <div class="summary-details">
           <p><strong>Tổng cộng:</strong></p>
-          <p><?php echo $order['grand_total']; ?> đ</p>
+          <p><?php echo number_format($order['sub_total'] + $deliveryFee, 2, '.', ''); ?> đ</p>
         </div>
         <div class="summary-details">
           <p><strong>Phương thức thanh toán:</strong></p>
