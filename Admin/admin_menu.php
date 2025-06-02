@@ -126,7 +126,6 @@ include 'sidebar.php';
                 <th>Giá</th>
                 <th>Danh Mục</th>
                 <th>Trạng Thái</th>
-                <th>Phổ Biến</th>
                 <th>Hành Động</th>
             </tr>
         </thead>
@@ -144,15 +143,6 @@ include 'sidebar.php';
                         <td>VNĐ " . htmlspecialchars($row['price']) . "</td>
                         <td>" . htmlspecialchars($row['catName']) . "</td>
                         <td>" . htmlspecialchars($row['status']) . "</td>
-                        <td>
-                            <div class='toggler'>
-                                <input id='toggler-" . $row['itemId'] . "' name='toggler-" . $row['itemId'] . "' type='checkbox' value='1' $isPopularChecked onchange='togglePopular(" . $row['itemId'] . ", this)' />
-                                <label for='toggler-" . $row['itemId'] . "'>
-                                    <svg class='toggler-on' viewBox='0 0 130.2 130.2'><polyline class='path check' points='100.2,40.2 51.5,88.8 29.8,67.5'></polyline></svg>
-                                    <svg class='toggler-off' viewBox='0 0 130.2 130.2'><line class='path line' x1='34.4' y1='34.4' x2='95.8' y2='95.8'></line><line class='path line' x1='95.8' y1='34.4' x2='34.4' y2='95.8'></line></svg>
-                                </label>
-                            </div>
-                        </td>
                         <td>
                             <button id='editbtn' onclick='openEditItemModal(this)' data-itemid='" . htmlspecialchars($row['itemId']) . "' data-itemname='" . htmlspecialchars($row['itemName']) . "' data-description='" . htmlspecialchars($row['description']) . "' data-price='" . htmlspecialchars($row['price']) . "' data-image='" . htmlspecialchars($row['image']) . "' data-category='" . htmlspecialchars($row['catName']) . "' data-status='" . htmlspecialchars($row['status']) . "'><i class='fas fa-edit'></i></button>
                             <button id='deletebtn' onclick=\"deleteItem('" . htmlspecialchars($row['itemId']) . "')\"><i class='fas fa-trash'></i></button>
@@ -235,6 +225,14 @@ include 'sidebar.php';
             <div class="modal-content">
                 <div class="input-group">
                     <input type="text" name="catName" class="input" required />
+                    <div class="input-group">
+  <select name="status" class="input" required>
+    <option value="">-- Chọn trạng thái --</option>
+    <option value="Available">Available</option>
+    <option value="Unavailable">Unavailable</option>
+  </select>
+  <label class="label">Trạng thái</label>
+</div>
                     <label class="label">Tên danh mục</label>
                 </div>
             </div>
@@ -248,52 +246,71 @@ include 'sidebar.php';
 
 <!-- Modal thêm món -->
 <div class="modal" id="itemModal">
-    <div class="modal-overlay" onclick="closeItemModal()"></div>
-    <div class="modal-container">
-        <div class="modal-header">
-            <h2>Thêm Món Ăn Mới</h2>
-            <span class="close-icon" onclick="closeItemModal()">&times;</span>
-        </div>
-        <form action="add_item.php" method="POST" enctype="multipart/form-data" class="form" id="addItemForm">
-            <input type="hidden" name="itemId" value="" />
-            <div class="modal-content">
-                <div class="input-group">
-                    <input type="text" name="itemName" class="input" required />
-                    <label class="label">Tên món</label>
-                </div>
-                <div class="input-group">
-                    <input type="number" name="price" class="input" required />
-                    <label class="label">Giá</label>
-                </div>
-                <div class="input-group">
-                    <textarea name="description" class="input" required></textarea>
-                    <label class="label">Mô tả</label>
-                </div>
-                <div class="input-group">
-                    <select name="catName" class="input" required>
-                        <option value="">-- Chọn danh mục --</option>
-                        <?php
-                        $sql = "SELECT catName FROM menucategory";
-                        $result = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
-                        }
-                        ?>
-                    </select>
-                    <label class="label">Danh mục</label>
-                </div>
-                <div class="input-group">
-                    <input type="file" name="image" class="input" accept="image/*" required />
-                    <label class="label"></label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit">Thêm</button>
-                <button type="button" onclick="closeItemModal()">Hủy</button>
-            </div>
-        </form>
+  <div class="modal-overlay" onclick="closeItemModal()"></div>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>Thêm Món Ăn Mới</h2>
+      <span class="close-icon" onclick="closeItemModal()">&times;</span>
     </div>
+
+    <form action="add_item.php" method="POST" enctype="multipart/form-data" class="form" id="addItemForm">
+      <input type="hidden" name="itemId" value="" />
+      
+      <!-- ✅ Phần nội dung chính -->
+      <div class="modal-content">
+        <!-- Các input -->
+        <div class="input-group">
+          <input type="text" name="itemName" class="input" required />
+          <label class="label">Tên món</label>
+        </div>
+        <div class="input-group">
+          <input type="number" name="price" class="input" required />
+          <label class="label">Giá</label>
+        </div>
+        <div class="input-group">
+          <textarea name="description" class="input" required></textarea>
+          <label class="label">Mô tả</label>
+        </div>
+        <div class="input-group">
+          <select name="catName" class="input" required>
+            <option value="">-- Chọn danh mục --</option>
+            <?php
+            $sql = "SELECT catName FROM menucategory";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value='" . htmlspecialchars($row['catName']) . "'>" . htmlspecialchars($row['catName']) . "</option>";
+            }
+            ?>
+          </select>
+          <label class="label">Danh mục</label>
+        </div>
+        <div class="input-group">
+  <input type="file" name="image" class="input" accept="image/*" onchange="previewImage(this)" />
+  <label class="label">Ảnh món ăn</label>
 </div>
+<div class="input-group">
+  <img id="imagePreview" src="" alt="Xem trước ảnh" style="max-width: 100px; display: none; border: 1px solid #ccc; padding: 4px;">
+</div>
+        <div class="input-group">
+          <select name="status" class="input" required>
+            <option value="">-- Chọn trạng thái --</option>
+            <option value="Available">Available</option>
+            <option value="Unavailable">Unavailable</option>
+          </select>
+          <label class="label">Trạng thái</label>
+        </div>
+        <input type="hidden" name="existingImage" value="">
+      </div>
+
+      <!-- ✅ Footer đúng vị trí -->
+      <div class="modal-footer custom-footer">
+        <button type="submit" class="btn-confirm">Thêm</button>
+        <button type="button" class="btn-cancel" onclick="closeItemModal()">Hủy</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -341,11 +358,23 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.querySelector('.modal-header h2').textContent = 'Chỉnh sửa thông tin món ăn';
 
     const form = modal.querySelector('form');
+    form.action = 'edit_item.php'; // Cập nhật action form để chỉnh sửa món
+    form.querySelector('button[type="submit"]').textContent = 'Lưu thay đổi';
+    // Lấy dữ liệu từ nút bấm
     form.querySelector('input[name="itemId"]').value = button.getAttribute('data-itemid') || '';
     form.querySelector('input[name="itemName"]').value = button.getAttribute('data-itemname') || '';
     form.querySelector('textarea[name="description"]').value = button.getAttribute('data-description') || '';
     form.querySelector('input[name="price"]').value = button.getAttribute('data-price') || '';
     form.querySelector('select[name="catName"]').value = button.getAttribute('data-category') || '';
+    form.querySelector('input[name="existingImage"]').value = button.getAttribute('data-image') || ''; 
+    form.querySelector('select[name="status"]').value = button.getAttribute('data-status') || '';
+// Hiển thị ảnh đã chọn
+const preview = document.getElementById('imagePreview');
+const existingImage = button.getAttribute('data-image');
+if (existingImage) {
+  preview.src = `../uploads/${existingImage}`;
+  preview.style.display = 'block';
+}
 
     // Thêm class 'filled' nếu dùng floating label
     form.querySelectorAll('.input').forEach(input => {
@@ -389,7 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-<?php include_once('footer.html'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const categoryFilter = document.getElementById('categoryFilter');
@@ -453,7 +481,7 @@ $(document).ready(function () {
         return `<span title="${data}">${shortText}</span>`;
       }
     },
-    { targets: [1, 6, 7], orderable: false }
+    { targets: [1, 6,], orderable: false }
   ]
 });
 });
@@ -464,6 +492,20 @@ function deleteItem(itemId) {
         window.location.href = `delete_item.php?id=${itemId}`;
     }
 }
+function previewImage(input) {
+  const preview = document.getElementById('imagePreview');
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    preview.style.display = 'none';
+  }
+}
+
 </script>
 </body>
 </html>

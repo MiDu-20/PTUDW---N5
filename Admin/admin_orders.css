@@ -367,3 +367,32 @@ table tr:hover {
     height: 40rem;
   }
 }
+
+.modal-footer.custom-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: transparent; /* hoặc #e3cba4 nếu muốn cùng màu với form */
+  padding: 16px 20px;
+  margin: 0;
+  border-top: none;
+  box-shadow: none;
+}
+
+.btn-confirm, .btn-cancel {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  background-color: #007bff;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+}
+
