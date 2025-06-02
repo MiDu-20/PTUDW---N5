@@ -28,7 +28,6 @@ $mapId = [
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet"> <!-- Add Google Fonts for better typography -->
-  <link rel="stylesheet" href="style.css" />
 
   <link rel="stylesheet" href="menu.css" />
   <title>Thực đơn</title>
@@ -99,7 +98,7 @@ $mapId = [
 <div id="toast" class="toast">
   <button class="toast-btn toast-close">&times;</button>
   <span><strong>Bạn cần đăng nhập để thêm món vào giỏ hàng.</strong></span><br>
-  <button class="toast-btn toast-ok">Đồng ý</button>
+  <button class="toast-btn toast-ok">Đăng nhập</button>
 </div>
 
 <?php include_once('footer.html'); ?>
