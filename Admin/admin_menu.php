@@ -458,5 +458,12 @@ $(document).ready(function () {
 });
 });
 </script>
+<script> // Thêm hàm XÓA ITEM 
+function deleteItem(itemId) {
+    if (confirm("Bạn có chắc chắn muốn xóa món này không?")) {
+        window.location.href = `delete_item.php?id=${itemId}`;
+    }
+}
+</script>
 </body>
 </html>
