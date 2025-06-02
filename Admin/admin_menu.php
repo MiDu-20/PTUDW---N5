@@ -282,14 +282,10 @@ include 'sidebar.php';
             }
             ?>
           </select>
-          <label class="label">Danh mục</label>
         </div>
         <div class="input-group">
-  <input type="file" name="image" class="input" accept="image/*" onchange="previewImage(this)" />
-  <label class="label">Ảnh món ăn</label>
 </div>
 <div class="input-group">
-  <img id="imagePreview" src="" alt="Xem trước ảnh" style="max-width: 100px; display: none; border: 1px solid #ccc; padding: 4px;">
 </div>
         <div class="input-group">
           <select name="status" class="input" required>
@@ -297,11 +293,13 @@ include 'sidebar.php';
             <option value="Available">Available</option>
             <option value="Unavailable">Unavailable</option>
           </select>
-          <label class="label">Trạng thái</label>
+          <input type="file" name="image" class="input" accept="image/*" onchange="previewImage(this)" />
+          <img id="imagePreview" src="" alt="Xem trước ảnh" style="max-width: 100px; display: none; border: 1px solid #ccc; padding: 4px;">
         </div>
+
         <input type="hidden" name="existingImage" value="">
       </div>
-
+      
       <!-- ✅ Footer đúng vị trí -->
       <div class="modal-footer custom-footer">
         <button type="submit" class="btn-confirm">Thêm</button>
