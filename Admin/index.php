@@ -463,58 +463,7 @@ include 'sidebar.php';
                         }
                     });
 
-                    // const ctx = document.getElementById('earningsChart').getContext('2d');
-
-                    // const dates = data.dates;
-                    // const categories = data.categories;
-                    // const earnings = data.earnings;
-
-                    // const datasets = categories.map((category, index) => ({
-                    //     label: category,
-                    //     data: earnings[category],
-                    //     fill: true,
-                    //     borderColor: `hsl(${index * 360 / categories.length}, 70%, 50%)`,
-                    //     backgroundColor: `hsla(${index * 360 / categories.length}, 70%, 70%, 0.5)`,
-                    //     tension: 0.1
-                    // }));
-
-                    // new Chart(ctx, {
-                    //     type: 'line',
-                    //     data: {
-                    //         labels: dates,
-                    //         datasets: datasets
-                    //     },
-                    //     options: {
-                    //         scales: {
-                    //             x: {
-
-                    //                 stacked: true,
-                    //                 title: {
-                    //                     display: true,
-                    //                     text: 'Date'
-                    //                 }
-                    //             },
-                    //             y: {
-                    //                 color: '#fff',
-                    //                 stacked: true,
-                    //                 beginAtZero: true,
-                    //                 title: {
-                    //                     display: true,
-                    //                     text: 'Earnings'
-                    //                 }
-                    //             }
-                    //         },
-                    //         plugins: {
-                    //             legend: {
-                    //                 position: 'top',
-                    //             },
-                    //             tooltip: {
-                    //                 mode: 'index',
-                    //                 intersect: false,
-                    //             }
-                    //         }
-                    //     }
-                    // });
+                    
                 })
                 .catch(error => console.error('Error fetching data:', error));
         });
