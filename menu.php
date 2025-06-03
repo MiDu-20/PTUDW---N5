@@ -9,7 +9,7 @@ while ($row = $categoryResult->fetch_assoc()) {
     $categories[] = $row['catName'];
 }
 ?>
-<?php
+<p?php
 // Map tên tiếng Việt trong DB sang id chuẩn cho anchor menu
 $mapId = [
   'Món khai vị' => 'appetizer',
@@ -97,7 +97,7 @@ $mapId = [
 
 <div id="toast" class="toast">
   <button class="toast-btn toast-close">&times;</button>
-  <span><strong>Bạn cần đăng nhập để thêm món vào giỏ hàng.</strong></span><br>
+  <p class="toast-message">Bạn cần đăng nhập để thêm món vào giỏ hàng.</p><br>
   <button class="toast-btn toast-ok">Đăng nhập</button>
 </div>
 
